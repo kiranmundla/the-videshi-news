@@ -1,0 +1,84 @@
+[
+  {
+    "id": "a15aac9b-24f3-47fb-a5be-27372a322f6b",
+    "headline": "Canada Holds Student Arrivals Target at Up to 150,000 a Year Through 2029",
+    "slug": "canada-extends-student-arrivals-target-2029-levels-plan",
+    "category": "nri-world",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Canada's 2027\u20132029 Immigration Levels Plan holds new international student arriv\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the target numbers by providing specific historical context or trends in student arrivals, such as how the numbers have changed over recent years and what factors might influence future arrivals.",
+        "Include a statement or quote from an official source, such as an IRCC spokesperson or a relevant expert, to enhance attribution and provide authoritative context to the information presented.",
+        "Add a brief explanation of what the implications of the 150,000 target mean for prospective students, such as potential impacts on visa processing times or competition for spots in programs, to provide readers with actionable insights."
+      ],
+      "embed_opportunities": [
+        "Embed the official IRCC announcement or tweet regarding the Immigration Levels Plan for direct access to primary information."
+      ]
+    }
+  },
+  {
+    "id": "6dfe066e-9221-428d-b8da-8b5cedf7a6e7",
+    "headline": "Dhurandhar Sweeps DPIFF Awards 2026 as Taylor Swift, James Cameron Take Global H",
+    "slug": "dpiff-awards-2026-winners-dhurandhar-taylor-swift",
+    "category": "entertainment",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Swift was named International Artist of the Year and Cameron was honoured for Ou\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the awards by providing context on DPIFF's reputation and how it compares to other film festivals, especially regarding its influence on the Indian film industry.",
+        "Include specific details about the awards, such as the total number of nominees or notable past winners, to give readers a better understanding of the festival's prestige.",
+        "Correct the repetition of information regarding DPIFF being a privately organized festival. This could be streamlined to enhance clarity and reduce redundancy.",
+        "Add a brief quote from a winner or organizer to provide a personal touch and enhance the article's depth."
+      ],
+      "embed_opportunities": [
+        "Embed the official DPIFF Twitter announcement or Instagram post about the winners for real-time updates and authenticity."
+      ]
+    }
+  },
+  {
+    "id": "5b724dfa-f5a2-49b8-9e15-eed5fca82cdb",
+    "headline": "Salman Khan Apologises to Shraddha Kapoor Over December 4 Box-Office Clash",
+    "slug": "salman-khan-apologises-shraddha-kapoor-maatrubhumi-eetha-clash",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the box-office clash by providing context on how such clashes typically affect film performance and audience choices. This could help readers understand the implications of the overlap.",
+        "Include direct quotes from both Salman Khan and Shraddha Kapoor to enhance attribution and provide a more vivid account of their interaction. This can improve the article's completeness and clarity.",
+        "Add a brief background on both films, including their budgets, expected target audiences, and any notable cast or crew members, to give readers a better understanding of the competition between the two releases."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from Salman Khan or Shraddha Kapoor regarding the apology or the films to provide direct access to their statements and enhance the article's credibility."
+      ]
+    }
+  },
+  {
+    "id": "28475e53-3b0b-404e-809b-53b8d9fd54d8",
+    "headline": "Pune's Swasti Patil Wins India's First Gold at European Girls' Informatics Olymp",
+    "slug": "pune-swasti-patil-first-indian-gold-egoi-informatics",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the year of the competition in the headline to avoid confusion. For example, change 'EGOI 2026' to 'EGOI 2026 held in May 2026'.",
+        "Provide more context about the significance of the European Girls' Olympiad in Informatics (EGOI) and its role in promoting girls in technology, which would help readers understand why this achievement is important.",
+        "Include a quote from Swasti Patil or a representative from the Indian Computing Olympiad to add a personal touch and provide insight into her experience and feelings about winning the gold medal.",
+        "Correct the redundancy in the article by removing repetitive phrases, such as the repeated mention of her winning gold and the timeline of the competition, to improve clarity and flow."
+      ],
+      "embed_opportunities": [
+        "Embed the official EGOI results table or a tweet from the Indian Computing Olympiad announcing her win to provide readers with direct access to the source of the information."
+      ]
+    }
+  }
+]

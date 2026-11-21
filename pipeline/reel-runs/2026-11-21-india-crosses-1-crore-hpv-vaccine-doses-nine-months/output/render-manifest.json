@@ -1,0 +1,420 @@
+{
+ "renderer": "reel_renderer_v8.py (Reels v8 \u2014 GPT-benchmark chrome, distinct photo per scene, PRODUCTION 2026-11-11)",
+ "design_system": "GPT-benchmark professional style (masthead + footer chrome, big-stat scenes, credited topical stock for concept/policy stories)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "india-crosses-1-crore-hpv-vaccine-doses-nine-months",
+ "article_slug": "india-crosses-1-crore-hpv-vaccine-doses-nine-months",
+ "article_id": "ccc7af4b-5c9e-4329-ad1c-2528fbdb2ff6",
+ "category": "News",
+ "video": "reel-runs/2026-11-21-india-crosses-1-crore-hpv-vaccine-doses-nine-months/output/india-crosses-1-crore-hpv-vaccine-doses-nine-months.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://images.pexels.com/photos/5207030/pexels-photo-5207030.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+  "local_path": "reel-runs/2026-11-21-india-crosses-1-crore-hpv-vaccine-doses-nine-months/output/hero.jpeg",
+  "width": 6720,
+  "height": 4480,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.482,0.684) damped=(0.491,0.592)",
+  "has_face": false,
+  "box_source": [
+   1418,
+   1666,
+   3763,
+   1792
+  ],
+  "box_bg": [
+   1418,
+   1666,
+   3763,
+   1792
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.5,
+   0.5
+  ]
+ },
+ "composition": {
+  "model": "per-scene distinct photo (never re-cropped), full-bleed cover or face-demoted backdrop, benchmark chrome baked into every background, xfade joins over the global Ken Burns phase",
+  "distinct_images": 6,
+  "footer_source": "Source: Press Information Bureau \u2022 21 NOV 2026",
+  "footer_credit": "Stock imagery: Pexels"
+ },
+ "grade": {
+  "mode": "native-resolution (v7 grade)"
+ },
+ "safe_zone": {
+  "x": [
+   80,
+   940
+  ],
+  "y": [
+   126,
+   1420
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 897,
+   "zone_h": 523,
+   "scale": 1.0,
+   "content_h": 523,
+   "block_top": 897,
+   "block_bottom": 1420,
+   "text_bbox": [
+    80,
+    897,
+    940,
+    1420
+   ],
+   "texts": [
+    "News",
+    "INDIA CROSSES 1 CRORE HPV VACCINE DOSES IN UNDER NINE MONTHS"
+   ],
+   "v8": {
+    "image_source": "hero",
+    "image_kind": "hero",
+    "track": "cover",
+    "photo_px": [
+     6720,
+     4480
+    ],
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.42857142857142855,
+     "window": [
+      2093,
+      0,
+      4613,
+      4480
+     ]
+    },
+    "provenance": {
+     "route": "article hero"
+    },
+    "kicker": "TOP STORY"
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 1144,
+   "zone_h": 276,
+   "scale": 1.0,
+   "content_h": 276,
+   "block_top": 1144,
+   "block_bottom": 1420,
+   "text_bbox": [
+    80,
+    1144,
+    940,
+    1420
+   ],
+   "texts": [
+    "What Happened",
+    "India has administered more than 1 crore HPV vaccine doses in less than nine months under the National HPV Vaccination Campaign, reaching nearly 87% of the annual target cohort of about 1.2 crore 14-year-old girls."
+   ],
+   "v8": {
+    "image_source": "stock:37899504",
+    "image_kind": "stock",
+    "track": "cover",
+    "photo_px": [
+     7533,
+     5022
+    ],
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.38243626062322944,
+     "window": [
+      3669,
+      0,
+      6493,
+      5022
+     ]
+    },
+    "provenance": {
+     "route": "stock \u2014 Pexels topical scenes, per-beat matched (reels only, 2026-11-11)",
+     "pexels_id": 37899504,
+     "size": [
+      7533,
+      5022
+     ],
+     "query": "taj mahal india travel",
+     "beat": "news",
+     "page": "https://www.pexels.com/photo/majestic-view-of-the-taj-mahal-in-agra-37899504/",
+     "photographer": "Mahmut Y\u0131lmaz",
+     "license": "Pexels License (free use); credited in the reel footer"
+    },
+    "kicker": "WHAT'S NEW"
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 678,
+   "zone_h": 742,
+   "scale": 1.0,
+   "content_h": 742,
+   "block_top": 678,
+   "block_bottom": 1420,
+   "text_bbox": [
+    80,
+    678,
+    940,
+    1420
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "1 crore",
+    "HPV vaccine doses administered in less than nine months under the National HPV Vaccination Campaign"
+   ],
+   "v8": {
+    "image_source": "stock:30981181",
+    "image_kind": "stock",
+    "track": "cover",
+    "photo_px": [
+     6240,
+     4160
+    ],
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.46153846153846156,
+     "window": [
+      2243,
+      0,
+      4583,
+      4160
+     ]
+    },
+    "provenance": {
+     "route": "stock \u2014 Pexels topical scenes, per-beat matched (reels only, 2026-11-11)",
+     "pexels_id": 30981181,
+     "size": [
+      6240,
+      4160
+     ],
+     "query": "traveler with suitcase airport",
+     "beat": "hero",
+     "page": "https://www.pexels.com/photo/traveler-with-luggage-in-airport-corridor-30981181/",
+     "photographer": "Jake Ryan",
+     "license": "Pexels License (free use); credited in the reel footer"
+    },
+    "kicker": "BY THE NUMBERS"
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 703,
+   "zone_h": 717,
+   "scale": 0.9,
+   "content_h": 717,
+   "block_top": 703,
+   "block_bottom": 1420,
+   "text_bbox": [
+    80,
+    703,
+    940,
+    1420
+   ],
+   "texts": [
+    "By The Numbers",
+    "1.2 crore",
+    "14-year-old girls in the annual target cohort \u2014 nearly 87% reached",
+    "29.33 lakh",
+    "Girls vaccinated in Uttar Pradesh, the highest of any state",
+    "6 states",
+    "Have covered 100% of their identified target populations"
+   ],
+   "v8": {
+    "image_source": "stock:3885527",
+    "image_kind": "stock",
+    "track": "cover",
+    "photo_px": [
+     6150,
+     4100
+    ],
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.4683434518647008,
+     "window": [
+      3227,
+      0,
+      5533,
+      4100
+     ]
+    },
+    "provenance": {
+     "route": "stock \u2014 Pexels topical scenes, per-beat matched (reels only, 2026-11-11)",
+     "pexels_id": 3885527,
+     "size": [
+      6150,
+      4100
+     ],
+     "query": "traveler with suitcase airport",
+     "beat": "grid",
+     "page": "https://www.pexels.com/photo/back-view-of-trendy-businesswoman-carrying-baggage-before-flight-near-airport-building-3885527/",
+     "photographer": "Gustavo Fring",
+     "license": "Pexels License (free use); credited in the reel footer"
+    },
+    "kicker": "BY THE NUMBERS"
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 1044,
+   "zone_h": 376,
+   "scale": 1.0,
+   "content_h": 376,
+   "block_top": 1044,
+   "block_bottom": 1420,
+   "text_bbox": [
+    80,
+    1044,
+    940,
+    1420
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "The vaccine is free, single-dose and voluntary, given with parental consent at designated government health facilities",
+    "A 14-year-old who has not yet been vaccinated can be registered and booked through the U-WIN platform"
+   ],
+   "v8": {
+    "image_source": "stock:17423832",
+    "image_kind": "stock",
+    "track": "cover",
+    "photo_px": [
+     6000,
+     4000
+    ],
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.48,
+     "window": [
+      1884,
+      0,
+      4134,
+      4000
+     ]
+    },
+    "provenance": {
+     "route": "stock \u2014 Pexels topical scenes, per-beat matched (reels only, 2026-11-11)",
+     "pexels_id": 17423832,
+     "size": [
+      6000,
+      4000
+     ],
+     "query": "taj mahal india travel",
+     "beat": "diaspora",
+     "page": "https://www.pexels.com/photo/taj-mahal-in-india-17423832/",
+     "photographer": "Sanket Sawale",
+     "license": "Pexels License (free use); credited in the reel footer"
+    },
+    "kicker": "WHAT IT MEANS FOR YOU"
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 952,
+   "zone_h": 468,
+   "scale": 1.0,
+   "content_h": 468,
+   "block_top": 952,
+   "block_bottom": 1420,
+   "text_bbox": [
+    80,
+    952,
+    940,
+    1420
+   ],
+   "texts": [
+    "The Takeaway",
+    "The campaign offers a free, single-dose vaccine to 14-year-old girls at government health facilities, with parental consent.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v8": {
+    "image_source": "stock:11948442",
+    "image_kind": "stock",
+    "track": "cover",
+    "photo_px": [
+     6000,
+     4000
+    ],
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.48,
+     "window": [
+      2247,
+      0,
+      4497,
+      4000
+     ]
+    },
+    "provenance": {
+     "route": "stock \u2014 Pexels topical scenes, per-beat matched (reels only, 2026-11-11)",
+     "pexels_id": 11948442,
+     "size": [
+      6000,
+      4000
+     ],
+     "query": "taj mahal india travel",
+     "beat": "payoff",
+     "page": "https://www.pexels.com/photo/the-taj-mahal-in-india-11948442/",
+     "photographer": "Abhinav Sharma",
+     "license": "Pexels License (free use); credited in the reel footer"
+    },
+    "kicker": "THE TAKEAWAY"
+   }
+  }
+ },
+ "music": {
+  "path": "music/emotional-inspiring-inspiring-uplifting.mp3",
+  "treatment": "bed: atrim 35s + fades (v6/v7 produce recipe)"
+ },
+ "render_seconds": 319.2,
+ "mp4_bytes": 26302486
+}

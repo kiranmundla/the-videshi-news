@@ -1,0 +1,143 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "india-crosses-1-crore-hpv-vaccine-doses-nine-months",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "India Crosses 1 Crore HPV Vaccine Doses in Less Than Nine Months",
+        "numbers": [
+          1.0,
+          10000000.0
+        ],
+        "entities": [
+          "India Crosses",
+          "Crore HPV Vaccine Doses",
+          "Less Than Nine Months"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states India crossed 1 crore doses in less than nine months.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The national campaign has reached nearly 87% of its target cohort of 14-year-old girls, with six states reporting full coverage of their identified populations.",
+        "numbers": [
+          14.0,
+          87.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms nearly 87% coverage and six states at full coverage.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "India administered over 1 crore HPV vaccine doses in under nine months",
+        "numbers": [
+          1.0,
+          10000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states India administered more than 1 crore doses in less than nine months.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "The campaign targets 1.2 crore 14-year-old girls annually",
+        "numbers": [
+          1.2,
+          14.0,
+          12000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions the target cohort is approximately 1.2 crore girls.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Six states achieved 100% coverage of their target populations",
+        "numbers": [
+          100.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article lists six states that achieved 100% coverage.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "India Crosses 1 Crore HPV Vaccine Doses in Less Than Nine Months",
+        "numbers": [
+          1.0,
+          10000000.0
+        ],
+        "entities": [
+          "India Crosses",
+          "Crore HPV Vaccine Doses",
+          "Less Than Nine Months"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states India crossed 1 crore doses in less than nine months.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000428,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

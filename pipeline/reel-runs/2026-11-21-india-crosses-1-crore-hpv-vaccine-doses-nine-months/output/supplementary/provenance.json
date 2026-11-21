@@ -1,0 +1,92 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "india-crosses-1-crore-hpv-vaccine-doses-nine-months",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "HPV vaccine",
+    "National HPV Vaccination Campaign",
+    "cervical cancer",
+    "Crore HPV Vaccine Doses",
+    "Less Than Nine Months",
+    "Uttar Pradesh"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'HPV vaccine' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'National HPV Vaccination Campaign' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'cervical cancer' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Crore HPV Vaccine Doses' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Less Than Nine Months' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Ayodhya Junction railway station, Ayodhya.jpg",
+      "route": "identity \u2014 depicts (P180=Q1498)",
+      "verdict": "rejected",
+      "reason": "resolution: 699x642 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Black-necked Stork juvenile eating snail.jpg",
+      "route": "identity \u2014 depicts (P180=Q1498)",
+      "verdict": "accepted",
+      "reason": "1083x784, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Flag of Dadri State.png",
+      "route": "identity \u2014 depicts (P180=Q1498)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Folio 1 of the Sirral Maktum Akbar's Album, housed in the Raza Library, Uttar Pradesh.jpg",
+      "route": "identity \u2014 depicts (P180=Q1498)",
+      "verdict": "rejected",
+      "reason": "resolution: 951x1545 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Gujiya, padukiya.jpg",
+      "route": "identity \u2014 depicts (P180=Q1498)",
+      "verdict": "accepted",
+      "reason": "3456x4608, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Gujiya, padukiya.jpg",
+      "route": "identity \u2014 depicts (P180=Q1498)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/5/54/Gujiya%2C_padukiya.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    },
+    {
+      "candidate": "File:Black-necked Stork juvenile eating snail.jpg",
+      "route": "identity \u2014 depicts (P180=Q1498)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/5/59/Black-necked_Stork_juvenile_eating_snail.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm"
+    }
+  ],
+  "extras": []
+}

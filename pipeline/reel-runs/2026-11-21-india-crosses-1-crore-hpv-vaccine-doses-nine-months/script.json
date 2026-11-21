@@ -1,0 +1,35 @@
+{
+  "hook_line": "INDIA CROSSES 1 CRORE HPV VACCINE DOSES IN UNDER NINE MONTHS",
+  "hook_stat": {
+    "big": "1 crore",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "HPV vaccine doses administered in less than nine months under the National HPV Vaccination Campaign"
+  },
+  "stats": [
+    {
+      "big": "1.2 crore",
+      "label": "14-year-old girls in the annual target cohort \u2014 nearly 87% reached"
+    },
+    {
+      "big": "29.33 lakh",
+      "label": "Girls vaccinated in Uttar Pradesh, the highest of any state"
+    },
+    {
+      "big": "6 states",
+      "label": "Have covered 100% of their identified target populations"
+    }
+  ],
+  "diaspora_bullets": [
+    "The vaccine is free, single-dose and voluntary, given with parental consent at designated government health facilities",
+    "A 14-year-old who has not yet been vaccinated can be registered and booked through the U-WIN platform"
+  ],
+  "key_entities": [
+    "HPV vaccine",
+    "National HPV Vaccination Campaign",
+    "cervical cancer"
+  ],
+  "news_summary": "India has administered more than 1 crore HPV vaccine doses in less than nine months under the National HPV Vaccination Campaign, reaching nearly 87% of the annual target cohort of about 1.2 crore 14-year-old girls.",
+  "payoff": "The campaign offers a free, single-dose vaccine to 14-year-old girls at government health facilities, with parental consent.",
+  "versus": "",
+  "story_mood": "celebratory"
+}

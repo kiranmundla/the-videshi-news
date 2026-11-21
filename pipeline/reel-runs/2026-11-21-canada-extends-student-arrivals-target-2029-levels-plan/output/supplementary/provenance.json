@@ -1,0 +1,110 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "canada-extends-student-arrivals-target-2029-levels-plan",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Canada",
+    "IRCC",
+    "international students",
+    "India",
+    "Arrivals",
+    "Year Through"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'international students' named 'International Students\u2019 Day', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Arrivals' named 'Arrivals & Departures', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Year Through' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:NASA astronaut Scott Kelly took this aurora image over Canada on Jan. 21, 2016 01.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q16)",
+      "verdict": "accepted",
+      "reason": "4928x3280, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:2016-09 Rue Price Chicoutimi 02.jpg",
+      "route": "identity \u2014 depicts (P180=Q16)",
+      "verdict": "accepted",
+      "reason": "5836x3891, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Citizenship and Immigration Canada Logo.png",
+      "route": "identity \u2014 Wikidata P18 (Q1056074)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:India-locator-map-blank.svg",
+      "route": "identity \u2014 Wikidata P18 (Q668)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:A villain performing in Dashavatara folk theatre.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Aerial photograph of the Himalayas, Ladakh 02.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Ambigram India Nepal (gray and beige) - animated.gif",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/gif)"
+    },
+    {
+      "candidate": "File:Close wing position of Loxura atymnus Stoll, 1780 \u2013 Yamfly.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "accepted",
+      "reason": "3600x2400, CC BY 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Close wing position of Papilio nephelus Boisduval, 1836 \u2013 Yellow Helen.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "accepted",
+      "reason": "2000x1500, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Close wing position of Loxura atymnus Stoll, 1780 \u2013 Yamfly.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/f/f9/Close_wing_position_of_Loxura_atymnus_Stoll%2C_1780_%E2%80%93_Yamfly.jpg?utm_source=commons.wikimedia.or"
+    },
+    {
+      "candidate": "File:2016-09 Rue Price Chicoutimi 02.jpg",
+      "route": "identity \u2014 depicts (P180=Q16)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/b/bc/2016-09_Rue_Price_Chicoutimi_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content="
+    },
+    {
+      "candidate": "File:NASA astronaut Scott Kelly took this aurora image over Canada on Jan. 21, 2016 01.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q16)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/0/0c/NASA_astronaut_Scott_Kelly_took_this_aurora_image_over_Canada_on_Jan._21%2C_2016_01.jpg?utm_source=commo"
+    }
+  ],
+  "extras": []
+}

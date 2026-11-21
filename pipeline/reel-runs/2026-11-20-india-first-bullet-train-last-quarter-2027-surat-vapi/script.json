@@ -1,0 +1,37 @@
+{
+ "hook_line": "INDIA'S FIRST BULLET TRAIN RUNS IN LATE 2027",
+ "hook_stat": {
+  "big": "280 kmph",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Design speed of the B28, India's first indigenous bullet train"
+ },
+ "stats": [
+  {
+   "big": "508 km",
+   "label": "Full Mumbai-Ahmedabad corridor, opening in phases after Surat-Vapi"
+  },
+  {
+   "big": "456 km",
+   "label": "Pier work completed on the corridor as of September"
+  },
+  {
+   "big": "557",
+   "label": "Passengers the eight-coach B28 is designed to carry"
+  }
+ ],
+ "diaspora_bullets": [
+  "The first service runs Surat to Vapi in Gujarat — not a Mumbai-Ahmedabad through journey",
+  "No fares, timetable or booking channel announced yet — nothing can be booked"
+ ],
+ "key_entities": [
+  "Ashwini Vaishnaw",
+  "B28",
+  "Mumbai-Ahmedabad corridor",
+  "Surat",
+  "Vapi"
+ ],
+ "news_summary": "India's first bullet train service will begin in the last quarter of 2027, Railway Minister Ashwini Vaishnaw said, with the Surat-Vapi section of the Mumbai-Ahmedabad corridor opening first and the full corridor following in phases.",
+ "payoff": "Track trials of the B28 are expected by mid-2027 and must be completed before passenger services begin.",
+ "versus": "",
+ "story_mood": "celebratory"
+}

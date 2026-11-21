@@ -1,0 +1,321 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "canada-extends-student-arrivals-target-2029-levels-plan",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "CANADA HOLDS STUDENT ARRIVALS TARGET AT UP TO 150,000 A YEAR THROUGH 2029",
+      "numbers": [
+        2029.0,
+        150000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2029
+        ]
+      },
+      "llm_reason": "The article states Canada holds a target of 150,000 through 2029.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Canada's 2027\u20132029 Immigration Levels Plan, released by IRCC alongside Budget 2026 on November 5, 2026, holds the target for new international student arrivals at up to 150,000 a year through 2029. India is Canada's largest source of students: 94,025 study permits that became effective in 2025 were for Indian nationals, 24.6% of the total.",
+      "numbers": [
+        5.0,
+        24.6,
+        2025.0,
+        2026.0,
+        2027.0,
+        2029.0,
+        94025.0,
+        150000.0
+      ],
+      "entities": [
+        "Immigration Levels Plan"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025,
+          2026,
+          2027,
+          2029
+        ]
+      },
+      "llm_reason": "All facts about the plan, dates, and statistics are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "150,000",
+      "numbers": [
+        150000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The target for student arrivals is confirmed as 150,000.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Canada's target for new international student arrivals each year through 2029, held in the 2027\u20132029 Immigration Levels Plan",
+      "numbers": [
+        2027.0,
+        2029.0
+      ],
+      "entities": [
+        "Immigration Levels Plan"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027,
+          2029
+        ]
+      },
+      "llm_reason": "The article confirms the target is held through 2029.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "94,025",
+      "numbers": [
+        94025.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states 94,025 study permits were for Indian nationals.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Study permits that became effective in 2025 for Indian nationals, Canada's largest source of students",
+      "numbers": [
+        2025.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025
+        ]
+      },
+      "llm_reason": "The article identifies India as the largest source of students.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "24.6%",
+      "numbers": [
+        24.6
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states this percentage for Indian nationals' study permits.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Share of Canada's 2025 study permits held by Indian nationals",
+      "numbers": [
+        2025.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025
+        ]
+      },
+      "llm_reason": "The article confirms this share for Indian nationals.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "115,180",
+      "numbers": [
+        115180.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states this number of new international students in 2025.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "New international students who actually arrived in Canada in 2025, against a target of 305,900",
+      "numbers": [
+        2025.0,
+        305900.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025
+        ]
+      },
+      "llm_reason": "The article confirms this number and the target.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "For a 2027 start, nothing changes in the application itself \u2014 you still apply for a study permit to a designated learning institution",
+      "numbers": [
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The article states the application process remains unchanged.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Master's and doctoral students were exempted from the study permit cap in January 2026 and took 20% of new permits issued from January to August 2026",
+      "numbers": [
+        20.0,
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "The article confirms this exemption and percentage.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The plan holds the student intake essentially flat rather than cutting it further, with the ceiling now set through 2029 \u2014 though the 2028 and 2029 figures are notional until IRCC confirms them.",
+      "numbers": [
+        2028.0,
+        2029.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2028,
+          2029
+        ]
+      },
+      "llm_reason": "The article states the intake is held flat and confirms the notional status.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Canada",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "IRCC",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "international students",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "India",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000824,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

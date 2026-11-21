@@ -1,0 +1,277 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "india-first-bullet-train-last-quarter-2027-surat-vapi",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIA'S FIRST BULLET TRAIN RUNS IN LATE 2027",
+      "numbers": [
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The article states the service will begin in the last quarter of 2027.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "India's first bullet train service will begin in the last quarter of 2027, Railway Minister Ashwini Vaishnaw said, with the Surat-Vapi section of the Mumbai-Ahmedabad corridor opening first and the full corridor following in phases.",
+      "numbers": [
+        2027.0
+      ],
+      "entities": [
+        "Railway Minister Ashwini Vaishnaw"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "All details about the service and timeline are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "280 kmph",
+      "numbers": [
+        280.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the B28 trainset is designed for 280 kmph.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Design speed of the B28, India's first indigenous bullet train",
+      "numbers": [
+        28.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the design speed of the B28 is 280 kmph.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "508 km",
+      "numbers": [
+        508.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The full Mumbai-Ahmedabad corridor length is stated as 508 km.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Full Mumbai-Ahmedabad corridor, opening in phases after Surat-Vapi",
+      "numbers": [],
+      "entities": [
+        "Full Mumbai-Ahmedabad"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies the corridor will open in phases after Surat-Vapi.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "456 km",
+      "numbers": [
+        456.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states 456 km of pier work has been completed.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Pier work completed on the corridor as of September",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms pier work completion as of September.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "557",
+      "numbers": [
+        557.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the B28 is designed to carry 557 passengers.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Passengers the eight-coach B28 is designed to carry",
+      "numbers": [
+        28.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the passenger capacity of the B28 trainset.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "The first service runs Surat to Vapi in Gujarat \u2014 not a Mumbai-Ahmedabad through journey",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies the first service is Surat to Vapi only.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "No fares, timetable or booking channel announced yet \u2014 nothing can be booked",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states no fares, timetable, or booking channel has been announced.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Track trials of the B28 are expected by mid-2027 and must be completed before passenger services begin.",
+      "numbers": [
+        28.0,
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The article confirms track trials are expected by mid-2027.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Ashwini Vaishnaw",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "B28",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Mumbai-Ahmedabad corridor",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Surat",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Vapi",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.00074,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

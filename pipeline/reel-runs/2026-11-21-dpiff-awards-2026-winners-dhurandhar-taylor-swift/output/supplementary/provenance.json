@@ -1,0 +1,114 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "dpiff-awards-2026-winners-dhurandhar-taylor-swift",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "Dhurandhar",
+    "Ranveer Singh",
+    "Taylor Swift",
+    "James Cameron",
+    "Aditya Dhar",
+    "DPIFF"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Dhurandhar.png",
+      "route": "identity \u2014 Wikidata P18 (Q135230927)",
+      "verdict": "rejected",
+      "reason": "resolution: 1524x481 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ranveer Singh in 2023 (1) (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q902879)",
+      "verdict": "rejected",
+      "reason": "resolution: 308x402 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Akshay Kumar at 'GQ Best Dressed Men', 2015.jpg",
+      "route": "identity \u2014 depicts (P180=Q902879)",
+      "verdict": "rejected",
+      "reason": "resolution: 449x250 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Apna Time Ayyega.jpg",
+      "route": "identity \u2014 depicts (P180=Q902879)",
+      "verdict": "accepted",
+      "reason": "2359x1546, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Ayushmann Khurrana\u2013Ranveer Singh.jpg",
+      "route": "identity \u2014 depicts (P180=Q902879)",
+      "verdict": "rejected",
+      "reason": "resolution: 882x882 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Deepika Padukone and Ranveer Singh reception.jpg",
+      "route": "identity \u2014 depicts (P180=Q902879)",
+      "verdict": "rejected",
+      "reason": "resolution: 537x394 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Malishka RJ and Ranveer Singh at the launch of 'Jack & Jones' new campaign.jpg",
+      "route": "identity \u2014 depicts (P180=Q902879)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x715 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Naveen Patnaik with Ranveer Singh.jpg",
+      "route": "identity \u2014 depicts (P180=Q902879)",
+      "verdict": "accepted",
+      "reason": "1200x899, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Taylor Swift at the 2023 MTV Video Music Awards (3).png",
+      "route": "identity \u2014 Wikidata P18 (Q26876)",
+      "verdict": "USED (news)",
+      "reason": "1801x2560, CC BY 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Eras Tour - Inglewood, California - Red act 7.jpg",
+      "route": "identity \u2014 depicts (P180=Q26876)",
+      "verdict": "accepted",
+      "reason": "1714x2446, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:James Cameron at 53rd Saturn Awards 2026-01 (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q42574)",
+      "verdict": "accepted",
+      "reason": "1200x1474, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Naveen Patnaik with Ranveer Singh.jpg",
+      "route": "identity \u2014 depicts (P180=Q902879)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/b/bd/Naveen_Patnaik_with_Ranveer_Singh.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_conten"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "taylor-swift-at-the-2023-mtv-video-music-awa",
+      "path": "taylor-swift-at-the-2023-mtv-video-music-awa.png",
+      "size": [
+        1801,
+        2560
+      ],
+      "role": "establishing",
+      "subject": "Taylor Swift at the 2023 MTV Video Music Awards",
+      "route": "identity \u2014 Wikidata P18 (Q26876)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Taylor_Swift_at_the_2023_MTV_Video_Music_Awards_(3).png",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Taylor_Swift_at_the_2023_MTV_Video_Music_Awards_%283%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 3.0",
+      "artist": "iHeartRadioCA",
+      "entity": "Taylor Swift",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Taylor Swift"
+      ]
+    }
+  ]
+}

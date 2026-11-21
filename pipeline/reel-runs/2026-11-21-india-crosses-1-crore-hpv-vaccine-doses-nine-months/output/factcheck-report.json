@@ -1,0 +1,270 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "india-crosses-1-crore-hpv-vaccine-doses-nine-months",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIA CROSSES 1 CRORE HPV VACCINE DOSES IN UNDER NINE MONTHS",
+      "numbers": [
+        1.0,
+        10000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states India crossed 1 crore doses in less than nine months.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "India has administered more than 1 crore HPV vaccine doses in less than nine months under the National HPV Vaccination Campaign, reaching nearly 87% of the annual target cohort of about 1.2 crore 14-year-old girls.",
+      "numbers": [
+        1.0,
+        1.2,
+        14.0,
+        87.0,
+        10000000.0,
+        12000000.0
+      ],
+      "entities": [
+        "National HPV Vaccination Campaign"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All facts in the claim are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "1 crore",
+      "numbers": [
+        1.0,
+        10000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions India administered over 1 crore doses.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "HPV vaccine doses administered in less than nine months under the National HPV Vaccination Campaign",
+      "numbers": [],
+      "entities": [
+        "National HPV Vaccination Campaign"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms doses were administered in less than nine months.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "1.2 crore",
+      "numbers": [
+        1.2,
+        12000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the target cohort is about 1.2 crore girls.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "14-year-old girls in the annual target cohort \u2014 nearly 87% reached",
+      "numbers": [
+        14.0,
+        87.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions nearly 87% of the target cohort of 14-year-old girls.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "29.33 lakh",
+      "numbers": [
+        29.33,
+        2933000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states over 29.33 lakh girls vaccinated in Uttar Pradesh.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Girls vaccinated in Uttar Pradesh, the highest of any state",
+      "numbers": [],
+      "entities": [
+        "Uttar Pradesh"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Uttar Pradesh has the highest number of vaccinated girls.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "6 states",
+      "numbers": [
+        6.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states six states have covered 100% of their populations.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Have covered 100% of their identified target populations",
+      "numbers": [
+        100.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms six states achieved full coverage.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "The vaccine is free, single-dose and voluntary, given with parental consent at designated government health facilities",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the vaccine is free, single-dose, and voluntary.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "A 14-year-old who has not yet been vaccinated can be registered and booked through the U-WIN platform",
+      "numbers": [
+        14.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions registration through the U-WIN platform.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The campaign offers a free, single-dose vaccine to 14-year-old girls at government health facilities, with parental consent.",
+      "numbers": [
+        14.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the campaign offers a free, single-dose vaccine.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "HPV vaccine",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "National HPV Vaccination Campaign",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "cervical cancer",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000705,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

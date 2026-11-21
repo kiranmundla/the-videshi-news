@@ -1,0 +1,320 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "dpiff-awards-2026-winners-dhurandhar-taylor-swift",
+  "verdict": "fail",
+  "held_claims": [
+    "hook_stat.big",
+    "stats[1].big"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "DHURANDHAR SWEEPS DPIFF AWARDS 2026 AS TAYLOR SWIFT, JAMES CAMERON TAKE GLOBAL HONOURS",
+      "numbers": [
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "Dhurandhar won multiple awards; Swift and Cameron received global honours.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "The Dadasaheb Phalke International Film Festival (DPIFF) announced its 2026 winners on November 20, 2026, in Mumbai, across 41 categories. Dhurandhar led the Indian film honours \u2014 Best Film, Best Actor for Ranveer Singh, Best Director for Aditya Dhar, Best Actor in a Negative Role for Akshaye Khanna and Best Music Director for Shashwat Sachdev \u2014 while Taylor Swift was named International Artist of the Year and James Cameron was honoured for Outstanding Contribution in Global Cinema.",
+      "numbers": [
+        20.0,
+        41.0,
+        2026.0
+      ],
+      "entities": [
+        "Dadasaheb Phalke International Film Festival",
+        "Best Film",
+        "Best Actor",
+        "Ranveer Singh",
+        "Best Director",
+        "Aditya Dhar",
+        "Best Actor",
+        "Negative Role",
+        "Akshaye Khanna",
+        "Best Music Director",
+        "Shashwat Sachdev",
+        "Taylor Swift",
+        "International Artist",
+        "James Cameron",
+        "Outstanding Contribution",
+        "Global Cinema"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "All details about the awards and winners are accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "5",
+      "numbers": [
+        5.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Claim lacks context; no mention of '5' in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Dhurandhar wins at the DPIFF Awards 2026, including Best Film, Best Actor for Ranveer Singh and Best Director for Aditya Dhar",
+      "numbers": [
+        2026.0
+      ],
+      "entities": [
+        "DPIFF Awards",
+        "Best Film",
+        "Best Actor",
+        "Ranveer Singh",
+        "Best Director",
+        "Aditya Dhar"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "Accurate summary of Dhurandhar's awards.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "41",
+      "numbers": [
+        41.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states there were 41 categories.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Categories across film, web series, television, music, short films and international cinema",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article lists these categories.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "2",
+      "numbers": [
+        2.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Claim lacks context; no mention of '2' in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Global honours: Taylor Swift named International Artist of the Year, James Cameron honoured for Outstanding Contribution in Global Cinema",
+      "numbers": [],
+      "entities": [
+        "Taylor Swift",
+        "International Artist",
+        "James Cameron",
+        "Outstanding Contribution",
+        "Global Cinema"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Accurate representation of the global honours awarded.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "2012",
+      "numbers": [
+        2012.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2012
+        ]
+      },
+      "llm_reason": "The article states DPIFF was founded in 2012.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Year the privately organised DPIFF festival was founded, per The Times of Bengal's winners report",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The founding year and source are mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Avatar: Fire and Ash was named Best International Feature Film",
+      "numbers": [],
+      "entities": [
+        "Best International Feature Film"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms this award.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "DPIFF is a privately organised festival, not the Government of India's Dadasaheb Phalke Award",
+      "numbers": [],
+      "entities": [
+        "India's Dadasaheb Phalke Award"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article clarifies this distinction.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "DPIFF is a privately organised festival, not the Government of India's Dadasaheb Phalke Award \u2014 its 2026 list is one private festival's picks, with a strong year for Dhurandhar, Saiyaara and Kantara: Chapter 1.",
+      "numbers": [
+        1.0,
+        2026.0
+      ],
+      "entities": [
+        "India's Dadasaheb Phalke Award"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "Accurate summary of DPIFF's nature and the year's highlights.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Dhurandhar",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Ranveer Singh",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Taylor Swift",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "James Cameron",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Aditya Dhar",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000809,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

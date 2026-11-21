@@ -1,0 +1,64 @@
+[
+  {
+    "id": "f6b4cede-23de-4c21-b2c2-06d9f937fbe4",
+    "headline": "Wall Street's AI Selloff Deepens as S&P 500 and Dow Confirm Correction",
+    "slug": "wall-street-ai-selloff-sp500-dow-correction-nasdaq",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the selloff and the significance of the upcoming PCE inflation figures. For example, mention when the PCE data will be released and its potential impact on market expectations.",
+        "Provide more context on the implications of the Federal Reserve's expected rate hike, including how it may affect investor sentiment and market stability in the coming months.",
+        "Include a brief explanation of what constitutes a 'correction' in the stock market for readers who may not be familiar with the term."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Federal Reserve or a financial analyst discussing the implications of the rate hike and market corrections."
+      ]
+    }
+  },
+  {
+    "id": "ca5ea6c9-b83f-42c5-b3c0-a5a0d2ce70d8",
+    "headline": "Yash Patil, 23, Sells AI Startup Applied Compute to Palo Alto for $4.5 Billion",
+    "slug": "yash-patil-applied-compute-palo-alto-4-5-billion-acquisition",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the acquisition process by explicitly stating the expected date for regulatory clearance and the implications if it is delayed.",
+        "Provide more context on the significance of the acquisition, such as how it positions Palo Alto Networks in the AI market compared to competitors, which would give readers a clearer understanding of its impact.",
+        "Include a brief explanation of what 'open-weight AI models' are for readers who may not be familiar with the terminology, enhancing clarity.",
+        "Ensure that the financial figures mentioned, such as the valuation and revenue run-rate, are clearly attributed to their sources or context to enhance accuracy."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement tweet from Palo Alto Networks regarding the acquisition for authenticity and to provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "3de26fd8-9a18-485a-a8ef-12b5afe6a848",
+    "headline": "Trump Threatens 'Tremendous Tax' on US Firms Building Data Centers Abroad",
+    "slug": "trump-threatens-tax-us-firms-data-centers-abroad",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the lack of existing policy by explicitly stating that no formal proposal has been put forward, and emphasize that this is merely a threat at this stage. This will help readers understand the current status of the situation.",
+        "Include specific details about the potential implications of the 'tremendous tax' on companies, such as estimated financial impacts or examples of how this could affect specific companies or sectors within the AI industry.",
+        "Provide context on the significance of data centers in the AI landscape, including statistics on their growth or importance, to help readers grasp why this issue matters.",
+        "Consider breaking up the text into smaller paragraphs for better readability, especially in sections where multiple quotes or points are made, to enhance clarity."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from President Trump or a relevant official statement to provide direct attribution and enhance the article's credibility."
+      ]
+    }
+  }
+]

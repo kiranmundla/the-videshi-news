@@ -1239,5 +1239,18 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "qqZu6B-W0wA",
+    "article_slug": "india-crosses-1-crore-hpv-vaccine-doses-nine-months",
+    "article_id": "ccc7af4b-5c9e-4329-ad1c-2528fbdb2ff6",
+    "title": "India Crosses 1 Crore HPV Vaccine Doses in Less Than Nine Months #Shorts #News",
+    "privacy": "public",
+    "uploaded_at": "2026-11-21T17:20:30.347719+00:00",
+    "video_path": "reel-runs/2026-11-21-india-crosses-1-crore-hpv-vaccine-doses-nine-months/output/india-crosses-1-crore-hpv-vaccine-doses-nine-months.mp4",
+    "video_sha256": "de8a2cdbc0b58762b0ade5cf8ad716c816366e963dcfe670d6d2696163af4cea",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

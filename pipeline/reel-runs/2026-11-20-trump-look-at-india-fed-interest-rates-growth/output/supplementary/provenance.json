@@ -1,0 +1,188 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "trump-look-at-india-fed-interest-rates-growth",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Donald Trump",
+    "Federal Reserve",
+    "India",
+    "Interest",
+    "US President Donald Trump",
+    "Nri World"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'Interest' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'US President Donald Trump' named 'US President Donald Trump tests positive for COVID-19', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "category label: 'Nri World' is this article's category name, not a picture subject"
+    },
+    {
+      "candidate": "File:Official Presidential Portrait of President Donald J. Trump (2025) (3x4).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q22686)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:-G7Biarritz (48632796802).jpg",
+      "route": "identity \u2014 depicts (P180=Q22686)",
+      "verdict": "accepted",
+      "reason": "1200x800, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:150th National Memorial Day Observance hosted by SECDEF 180528-D-SW162-1159.jpg",
+      "route": "identity \u2014 depicts (P180=Q22686)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:2025 Trump\u2013Zelenskyy Oval Office Meeting (Alternate Camera Angle).webm",
+      "route": "identity \u2014 depicts (P180=Q22686)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (video/webm)"
+    },
+    {
+      "candidate": "File:Adm. John M. Richardson, Donald J. Trump, and Mike Pence, Jan. 20, 2017.jpg",
+      "route": "identity \u2014 depicts (P180=Q22686)",
+      "verdict": "accepted",
+      "reason": "3523x2349, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:ASSA 2026 - Anil Kashyap, Athanasios Orphanides, Loretta Mester, Janet Yellen, David Romer 04.jpg",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:ASSA 2026 - Anil Kashyap, Athanasios Orphanides, Loretta Mester, Janet Yellen, David Romer 05.jpg",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:ASSA 2026 - Anil Kashyap, Athanasios Orphanides, Loretta Mester, Janet Yellen, David Romer 06.jpg",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:ASSA 2026 - Anil Kashyap, Athanasios Orphanides, Loretta Mester, Janet Yellen, David Romer 07.jpg",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:ASSA 2026 - Anil Kashyap, Athanasios Orphanides, Loretta Mester, Janet Yellen 02.jpg",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:ASSA 2026 - Anil Kashyap, Athanasios Orphanides, Loretta Mester, Janet Yellen 03.jpg",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:ASSA 2026 - Anil Kashyap, Athanasios Orphanides, Loretta Mester 01.jpg",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:ASSA 2026 - Anil Kashyap, Athanasios Orphanides, Loretta Mester 02.jpg",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:ASSA 2026 - Janet Yellen 22.jpg",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "verdict": "accepted",
+      "reason": "3376x6000, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:ASSA 2026 - Janet Yellen 23.jpg",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "verdict": "accepted",
+      "reason": "3376x6000, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:India-locator-map-blank.svg",
+      "route": "identity \u2014 Wikidata P18 (Q668)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:A villain performing in Dashavatara folk theatre.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Aerial photograph of the Himalayas, Ladakh 02.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Ambigram India Nepal (gray and beige) - animated.gif",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/gif)"
+    },
+    {
+      "candidate": "File:Close wing position of Loxura atymnus Stoll, 1780 \u2013 Yamfly.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "accepted",
+      "reason": "3600x2400, CC BY 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Close wing position of Papilio nephelus Boisduval, 1836 \u2013 Yellow Helen.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "accepted",
+      "reason": "2000x1500, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Adm. John M. Richardson, Donald J. Trump, and Mike Pence, Jan. 20, 2017.jpg",
+      "route": "identity \u2014 depicts (P180=Q22686)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/2/27/Adm._John_M._Richardson%2C_Donald_J._Trump%2C_and_Mike_Pence%2C_Jan._20%2C_2017.jpg?utm_source=commons.w"
+    },
+    {
+      "candidate": "File:Close wing position of Loxura atymnus Stoll, 1780 \u2013 Yamfly.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/f/f9/Close_wing_position_of_Loxura_atymnus_Stoll%2C_1780_%E2%80%93_Yamfly.jpg?utm_source=commons.wikimedia.or"
+    },
+    {
+      "candidate": "File:ASSA 2026 - Janet Yellen 22.jpg",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/b/b3/ASSA_2026_-_Janet_Yellen_22.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=orig"
+    },
+    {
+      "candidate": "File:ASSA 2026 - Janet Yellen 23.jpg",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/9/96/ASSA_2026_-_Janet_Yellen_23.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=orig"
+    }
+  ],
+  "extras": []
+}

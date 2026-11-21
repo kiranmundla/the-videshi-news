@@ -1,0 +1,20 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "dpiff-awards-2026-winners-dhurandhar-taylor-swift",
+  "name": "dpiff-awards-2026-winners-dhurandhar-taylor-swift",
+  "script": "reel-runs/2026-11-21-dpiff-awards-2026-winners-dhurandhar-taylor-swift/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "hook_stat.big",
+      "stats[1].big"
+    ],
+    "llm_cost_usd": 0.000809
+  }
+}

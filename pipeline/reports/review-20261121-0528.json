@@ -1,0 +1,83 @@
+[
+  {
+    "id": "45033b89-ff1c-4419-a748-2579de74582d",
+    "headline": "'Look at India': Trump Cites 7% Growth to Attack Fed Over High Interest Rates",
+    "slug": "trump-look-at-india-fed-interest-rates-growth",
+    "category": "nri-world",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Trump cited India's 7 per cent GDP growth to criticise the Federal Reserve over \u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the 15 to 20 percent GDP growth claim made by Trump. It should be explicitly stated that this is his assertion and not based on any official forecast or data, to avoid misleading readers.",
+        "Provide a brief explanation of the implications of Trump's statements for the Federal Reserve's policies. This could include potential impacts on interest rates or market reactions, which would enhance the completeness of the article.",
+        "Include a direct quote or a summary of the Federal Reserve's current stance on interest rates to provide context for Trump's comments and to ensure a balanced view.",
+        "Mention the date of the next Federal Reserve meeting or any upcoming economic reports that could be relevant to the discussion, giving readers a sense of timing and potential future developments."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Federal Reserve or a relevant economic analyst responding to Trump's claims to provide additional context and authority to the article."
+      ]
+    }
+  },
+  {
+    "id": "17f4e794-2dd4-44b6-a706-472253c5ff03",
+    "headline": "Modi to Unveil Rs 34,470 Crore of Bihar Projects on Three-State Saturday Tour",
+    "slug": "modi-three-state-tour-bihar-projects-34470-crore",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the Rs 34,470 crore projects by including specific details on how they will impact local communities or infrastructure in Bihar.",
+        "Include direct quotes from Prime Minister Modi or local officials to enhance attribution and provide a personal touch to the reporting.",
+        "Add a brief background on the Nitish Setu bridge and the Buxar Thermal Power Project to give readers context on these major projects and their expected benefits."
+      ],
+      "embed_opportunities": [
+        "Embed the official press release from the Prime Minister's office or a relevant tweet to provide readers with direct access to official information."
+      ]
+    }
+  },
+  {
+    "id": "793c0df6-fb5f-45da-89fe-881b6a3afceb",
+    "headline": "KL Rahul's Wellington Hundred Completes SENA Sweep, a First for an Indian Opener",
+    "slug": "kl-rahul-sena-century-sweep-wellington-hundred",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of KL Rahul's achievement by providing context on what it means for Indian cricket and how it compares to other openers in terms of performance metrics.",
+        "Include a direct quote from KL Rahul or the team captain regarding the match or his performance to enhance attribution and provide a personal touch.",
+        "Add specific statistics about the match situation, such as the number of overs remaining in the innings or the current run rate, to give readers a clearer picture of the game's progress.",
+        "Ensure that all statistics and records mentioned are accurately sourced and provide a link to the original reporting from ANI or WebIndia123 for verification."
+      ],
+      "embed_opportunities": [
+        "Embed a live score update or a relevant tweet from the official cricket board or a reputable sports journalist to keep readers informed about the ongoing match."
+      ]
+    }
+  },
+  {
+    "id": "6c2e0f05-1c93-4e8f-9a38-b29a30319709",
+    "headline": "India's First Bullet Train to Run in Last Quarter of 2027, Surat-Vapi First",
+    "slug": "india-first-bullet-train-last-quarter-2027-surat-vapi",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact month and day range for the last quarter of 2027 to provide readers with a clearer expectation of when the service will start.",
+        "Include specific details about the construction progress, such as the percentage of completion for the overall project, to give readers a better understanding of how much work remains.",
+        "Add a quote from Railway Minister Ashwini Vaishnaw to enhance attribution and provide a more personal touch to the announcement, which can also help clarify the significance of the updates.",
+        "Mention potential impacts on travel times or costs for passengers once the service is operational, even if those details are not yet finalized."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet or post from Railway Minister Ashwini Vaishnaw announcing the timeline for the bullet train, as it would provide direct attribution and enhance credibility."
+      ]
+    }
+  }
+]

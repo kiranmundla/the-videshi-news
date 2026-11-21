@@ -1,0 +1,92 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "india-first-bullet-train-last-quarter-2027-surat-vapi",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Ashwini Vaishnaw",
+    "B28",
+    "Mumbai-Ahmedabad corridor",
+    "Surat",
+    "Vapi",
+    "Surat-Vapi"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'B28' named 'Bundesstra\u00dfe 283', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Mumbai-Ahmedabad corridor' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Vapi' named 'Vapi railway station', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Surat-Vapi' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Ashwini Vaishnaw addressing the Media after assuming charge as the Minister of Railways at Rail Bhavan.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q75184694)",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Visit of Henna Virkkunen, to India (P-068900-00-17).jpg",
+      "route": "identity \u2014 depicts (P180=Q75184694)",
+      "verdict": "accepted",
+      "reason": "5500x3667, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Visit of Henna Virkkunen, to India (P-068900-00-18).jpg",
+      "route": "identity \u2014 depicts (P180=Q75184694)",
+      "verdict": "accepted",
+      "reason": "5500x3667, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Surat at night.JPG",
+      "route": "identity \u2014 Wikidata P18 (Q4629)",
+      "verdict": "accepted",
+      "reason": "4608x2592, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Beauty of Surat.jpg",
+      "route": "identity \u2014 depicts (P180=Q4629)",
+      "verdict": "accepted",
+      "reason": "2100x1575, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Visit of Henna Virkkunen, to India (P-068900-00-17).jpg",
+      "route": "identity \u2014 depicts (P180=Q75184694)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/8/83/Visit_of_Henna_Virkkunen%2C_to_India_%28P-068900-00-17%29.jpg?utm_source=commons.wikimedia.org&utm_campa"
+    },
+    {
+      "candidate": "File:Surat at night.JPG",
+      "route": "identity \u2014 Wikidata P18 (Q4629)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/f/f7/Surat_at_night.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    },
+    {
+      "candidate": "File:Beauty of Surat.jpg",
+      "route": "identity \u2014 depicts (P180=Q4629)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/7/79/Beauty_of_Surat.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  ],
+  "extras": []
+}

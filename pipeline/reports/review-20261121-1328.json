@@ -1,0 +1,85 @@
+[
+  {
+    "id": "2b4fe9b4-a370-4a27-a6f8-e2762c48638d",
+    "headline": "Senate Bill Asks Labor Department for a Plan on PERM Premium Processing",
+    "slug": "senate-bill-perm-premium-processing-dol-plan",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for when the Senate bill is expected to be enacted and when the Labor Department's report is due, as this will help readers understand the urgency and next steps involved in the process.",
+        "Include a brief explanation of what the PERM process entails for readers who may not be familiar with it, ensuring that the article is accessible to a broader audience.",
+        "Add a direct quote from a relevant official or expert to provide authoritative attribution and enhance the credibility of the information presented."
+      ],
+      "embed_opportunities": [
+        "Embed the official Senate Appropriations Committee tweet or press release regarding the spending bill for direct access to primary sources."
+      ]
+    }
+  },
+  {
+    "id": "b2f21539-d230-438d-8824-67696bd522be",
+    "headline": "Scaler Cofounder Anshuman Singh Launches Arcfront, an AI Training Data Venture",
+    "slug": "scaler-anshuman-singh-launches-arcfront-ai-training-data",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the claim that four of the five frontier AI labs became Arcfront customers in under a year by providing specific names or at least more context on these labs, as this would enhance credibility and transparency.",
+        "Provide more details about the nature of the partnership with Scaler and how it affects Arcfront's operations, especially since the ownership relationship is currently unconfirmed.",
+        "Include specific metrics or examples of how Arcfront's 'Decision Arc Data' will improve AI training, such as expected performance improvements or case studies, to give readers a clearer understanding of its significance.",
+        "Reorganize the content to clearly define what 'Decision Arc Data' is earlier in the article, as this concept is central to understanding the venture's purpose and innovation."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from Anshuman Singh announcing the launch of Arcfront to provide direct insight from the founder."
+      ]
+    }
+  },
+  {
+    "id": "fd24da8a-d542-4cfc-90b1-77148c913706",
+    "headline": "Two Indian-Origin Delta Residents Named as Victims in Targeted Surrey Walmart Sh",
+    "slug": "surrey-walmart-shooting-victims-identified-rehal-kaur",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by providing specific details about when the shooting occurred and when the victims were pronounced dead, as well as the timeline for the vehicle fire.",
+        "Include a quote from a police spokesperson or a law enforcement official to enhance attribution and provide authority to the information presented.",
+        "Provide more context about the victims, such as their backgrounds or any relevant community ties, to help readers understand the impact of the tragedy on the local community."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Surrey Police Service regarding the investigation for real-time updates and official statements."
+      ]
+    }
+  },
+  {
+    "id": "ccc7af4b-5c9e-4329-ad1c-2528fbdb2ff6",
+    "headline": "India Crosses 1 Crore HPV Vaccine Doses in Less Than Nine Months",
+    "slug": "india-crosses-1-crore-hpv-vaccine-doses-nine-months",
+    "category": "news",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/5207030/pexels-photo-5207030.jpeg?auto=compress",
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'India\u2019s National HPV Vaccination Campaign has crossed 1 crore doses in less than\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the campaign launch by correcting the year from 'February 2026' to 'February 2023' to ensure accuracy.",
+        "Include specific statistics on the impact of the HPV vaccination campaign, such as the percentage reduction in cervical cancer rates or projected future benefits, to provide context on the significance of reaching 1 crore doses.",
+        "Add a quote from Union Health Minister J. P. Nadda's post on X to enhance attribution and provide a direct perspective from a key official involved in the campaign.",
+        "Mention any upcoming deadlines or next steps for parents who wish to register their daughters for vaccination, such as specific dates for registration or vaccination events."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from Union Health Minister J. P. Nadda regarding the vaccination campaign to provide direct access to the source and enhance credibility."
+      ]
+    }
+  }
+]

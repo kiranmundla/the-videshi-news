@@ -1,0 +1,260 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "trump-look-at-india-fed-interest-rates-growth",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "TRUMP CITES INDIA'S 7% GROWTH TO ATTACK THE FED",
+      "numbers": [
+        7.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Trump cited India's 7% growth to criticize the Federal Reserve.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "US President Donald Trump on Friday cited India's low interest rates and 7 per cent GDP growth to attack the Federal Reserve, calling it very political and arguing US growth could reach 15 to 20 per cent if rates were lower.",
+      "numbers": [
+        7.0,
+        15.0,
+        20.0
+      ],
+      "entities": [
+        "US President Donald Trump",
+        "Federal Reserve"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about Trump's remarks on India and US growth are present.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "7%",
+      "numbers": [
+        7.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states India's GDP growth is 7%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "The growth figure for India that Trump cited at the White House on Friday",
+      "numbers": [],
+      "entities": [
+        "White House"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Trump cited India's 7% growth figure during his remarks.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "3.4%",
+      "numbers": [
+        3.4
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Official US third-quarter GDP growth is reported as 3.4%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Official US third-quarter GDP growth at an annual rate",
+      "numbers": [],
+      "entities": [
+        "Official US"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the 3.4% growth rate is official.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$650 billion",
+      "numbers": [
+        650.0,
+        650000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Trump's claim about debt costs per percentage point is included.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Debt costs per percentage point of interest rates, as cited by Trump",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions Trump's $650 billion figure.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "3.6%",
+      "numbers": [
+        3.6
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "US PCE inflation in September is reported as 3.6%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "US PCE inflation in September, above the Fed's 2 per cent target",
+      "numbers": [
+        2.0
+      ],
+      "entities": [
+        "US PCE"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states PCE inflation is above the Fed's target.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "No rate change was announced \u2014 the remarks are presidential pressure on the Fed, not a policy decision",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms no rate change was announced.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Borrowing costs move only when the Fed itself acts, so US mortgage and credit-card rates are unchanged",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article explains how borrowing costs are determined.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Nothing in Friday's remarks changes policy: the Fed sets rates independently, and no rate change was announced.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the Fed operates independently of Trump's remarks.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Donald Trump",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Federal Reserve",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "India",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000701,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

@@ -1,0 +1,100 @@
+[
+  {
+    "id": "5b51fe75-e5b1-4e83-a6cd-fcb127678ab3",
+    "headline": "Aakasamlo Oka Tara: Dulquer Salmaan Shines in a Heartfelt Journey of Dreams",
+    "slug": "aakasamlo-oka-tara-review-roundup-critics",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the pacing issues mentioned by providing specific examples or scenes that illustrate where the pacing falters, which would enhance the reader's understanding of the film's structure.",
+        "Include a brief overview of the film's plot to give context to readers unfamiliar with the story, such as key plot points or conflicts that drive the narrative forward.",
+        "Consider adding a quote from the director or lead actors to provide additional insight into the film's themes and intentions, which would enrich the article's depth."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the film's official account or the director discussing the film's themes or release to provide direct engagement with the film's promotional content."
+      ]
+    }
+  },
+  {
+    "id": "22c8a409-939c-4c24-b52e-af4a3fe4acdb",
+    "headline": "Tanker Hit Near Khasab as Hormuz Traffic Stays About 65% Below Pre-War Levels",
+    "slug": "hormuz-tanker-hit-khasab-traffic-65-percent-below-pre-war",
+    "category": "nri-world",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'A tanker was hit by an unidentified projectile about 11 nautical miles north of \u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the UKMTO data by specifying the date of the report to enhance accuracy and timeliness.",
+        "Include specific figures regarding the environmental impact or potential consequences of the tanker strike, as this is a key concern for readers.",
+        "Add a brief explanation of the significance of the Strait of Hormuz in global oil supply to provide context for readers unfamiliar with the topic."
+      ],
+      "embed_opportunities": [
+        "Embed the official UKMTO tweet or report regarding the incident for direct attribution and verification."
+      ]
+    }
+  },
+  {
+    "id": "baabc84e-0a14-4155-9da9-07ea41c70a86",
+    "headline": "Modi at IIT Kharagpur's 75th Year: 'Break the Limits, Unlock the Possibilities'",
+    "slug": "modi-iit-kharagpur-platinum-jubilee-break-limits-coin",
+    "category": "news",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Modi interacted with 75 students under the 75 Voices for Viksit Bharat initiativ\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the event in the body of the article, as the headline states November 21, which is a Saturday, but the actual date is November 18, 2023. This could lead to confusion for readers.",
+        "Include a direct quote from the Prime Minister regarding the significance of the commemorative coin he unveiled, as this detail is mentioned but not elaborated upon, which could provide more context and depth.",
+        "Add a brief background on the 'Viksit Bharat' initiative for readers who may not be familiar with it, to enhance completeness and clarity.",
+        "Mention the specific innovations or projects showcased at the exhibition to provide readers with a clearer picture of the event's significance."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Prime Minister's official account summarizing key points from his speech for real-time engagement and verification."
+      ]
+    }
+  },
+  {
+    "id": "ecefa61b-5c26-4b5f-9539-574ed02bf0fa",
+    "headline": "Airbnb Recreates K3G's Raichand House in Mumbai, Bookings Open November 23",
+    "slug": "airbnb-raichand-house-k3g-mumbai-experience-december",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the booking process by providing a direct link to the booking page and specifying if there are any time zone considerations for international guests.",
+        "Include a brief background on the significance of 'Kabhi Khushi Kabhie Gham' to enhance the context for readers who may not be familiar with the film.",
+        "Add a note about the expected demand for the experience, such as how quickly previous similar events have filled up, to give readers a sense of urgency.",
+        "Ensure that the details about the hosts are clear; mention that while they are associated with the experience, they will not be present, to avoid any potential confusion."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from Airbnb announcing the experience to provide readers with official information directly from the source."
+      ]
+    }
+  },
+  {
+    "id": "4bdbef56-6bfe-46bd-8745-dcdb11daa1d5",
+    "headline": "US Court Dispatches Summonses to Doval, Goel in Pannun Case via Delhi Courts",
+    "slug": "us-court-dispatches-summonses-doval-goel-pannun-delhi-courts",
+    "category": "news",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'A US court has dispatched summonses for Doval and former R&AW chief Samant Goel \u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the US court's decision for Doval and Goel, including potential legal consequences or next steps they may need to take in response to the summonses.",
+        "Include a brief background on Gurpatwant Singh Pannun and the nature of his allegations to provide context for readers unfamiliar with the case.",
+        "Add a direct quote from Judge Katherine Polk Failla's order to enhance the article's attribution and provide readers with a clearer understanding of the court's stance."
+      ],
+      "embed_opportunities": [
+        "Embed the official court order or a relevant tweet from the US District Court for added credibility and transparency."
+      ]
+    }
+  }
+]

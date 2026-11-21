@@ -1,0 +1,35 @@
+{
+ "hook_line": "TRUMP CITES INDIA'S 7% GROWTH TO ATTACK THE FED",
+ "hook_stat": {
+  "big": "7%",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "The growth figure for India that Trump cited at the White House on Friday"
+ },
+ "stats": [
+  {
+   "big": "3.4%",
+   "label": "Official US third-quarter GDP growth at an annual rate"
+  },
+  {
+   "big": "$650 billion",
+   "label": "Debt costs per percentage point of interest rates, as cited by Trump"
+  },
+  {
+   "big": "3.6%",
+   "label": "US PCE inflation in September, above the Fed's 2 per cent target"
+  }
+ ],
+ "diaspora_bullets": [
+  "No rate change was announced — the remarks are presidential pressure on the Fed, not a policy decision",
+  "Borrowing costs move only when the Fed itself acts, so US mortgage and credit-card rates are unchanged"
+ ],
+ "key_entities": [
+  "Donald Trump",
+  "Federal Reserve",
+  "India"
+ ],
+ "news_summary": "US President Donald Trump on Friday cited India's low interest rates and 7 per cent GDP growth to attack the Federal Reserve, calling it very political and arguing US growth could reach 15 to 20 per cent if rates were lower.",
+ "payoff": "Nothing in Friday's remarks changes policy: the Fed sets rates independently, and no rate change was announced.",
+ "versus": "",
+ "story_mood": "tense"
+}

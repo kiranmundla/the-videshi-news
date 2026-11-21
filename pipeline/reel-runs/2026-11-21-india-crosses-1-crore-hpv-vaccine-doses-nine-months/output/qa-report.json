@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-21-india-crosses-1-crore-hpv-vaccine-doses-nine-months/output/india-crosses-1-crore-hpv-vaccine-doses-nine-months.mp4",
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        6720,
+        4480
+      ],
+      "manifest_dims": [
+        6720,
+        4480
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 24.7,
+      "url": "https://images.pexels.com/photos/5207030/pexels-photo-5207030.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-21-india-crosses-1-crore-hpv-vaccine-doses-nine-months/output/qa/frames/frame-hook.png",
+      "text_px_detected": 33262,
+      "edge": {
+        "pass": true,
+        "offending_px": 94,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 113.7,
+        "delta": 140.2
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-21-india-crosses-1-crore-hpv-vaccine-doses-nine-months/output/qa/frames/frame-news.png",
+      "text_px_detected": 26900,
+      "edge": {
+        "pass": true,
+        "offending_px": 92,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 37.7,
+        "delta": 215.8
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-21-india-crosses-1-crore-hpv-vaccine-doses-nine-months/output/qa/frames/frame-hero.png",
+      "text_px_detected": 41525,
+      "edge": {
+        "pass": true,
+        "offending_px": 126,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 75.3,
+        "delta": 178.5
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-21-india-crosses-1-crore-hpv-vaccine-doses-nine-months/output/qa/frames/frame-grid.png",
+      "text_px_detected": 16754,
+      "edge": {
+        "pass": true,
+        "offending_px": 52,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.92)",
+        "box": [
+          475,
+          242,
+          125,
+          163
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 169.3,
+        "bg_luminance": 56.3,
+        "delta": 113.1
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-21-india-crosses-1-crore-hpv-vaccine-doses-nine-months/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 4503,
+      "edge": {
+        "pass": true,
+        "offending_px": 99,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 169.4,
+        "bg_luminance": 61.0,
+        "delta": 108.4
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-21-india-crosses-1-crore-hpv-vaccine-doses-nine-months/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 41155,
+      "edge": {
+        "pass": true,
+        "offending_px": 164,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 65.3,
+        "delta": 188.6
+      }
+    }
+  ]
+}
