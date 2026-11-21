@@ -60,6 +60,7 @@ THREADS_CLI = "/opt/hatch/bin/threads-cli"
 
 BASE = os.path.expanduser("~/workspace/the-videshi-news/pipeline/.state")
 FB_STATE = os.path.join(BASE, "fb-posted.json")
+FB_PARKED = os.path.join(BASE, "social-fb-posts-staged-1107.json")
 TWEET_LOG = os.path.expanduser(
     "~/workspace/the-videshi-news/pipeline/tweet-log.json")
 STATE_FILE = os.path.join(BASE, "threads-posted.json")
@@ -254,6 +255,16 @@ def collect_picks():
     # but their mirrors belong in the same flush — staged after the
     # FB originals, so created-order publishing keeps FB first.
     for entry in social_queue.load_entries():
+        if (entry.get("channel") == "facebook"
+                and entry.get("kind") == "article_post"
+                and entry.get("slug")):
+            picks[entry["slug"]] = True
+    # Park-them-all (2026-11-08): while the FB Page is gated, FB picks
+    # are parked into the staged file within minutes of staging, so the
+    # queue read above races empty and mirrors silently never stage.
+    # The parked file IS the FB pick set — read it too (2026-11-21).
+    parked = load_json(FB_PARKED, {})
+    for entry in parked.get("entries", []):
         if (entry.get("channel") == "facebook"
                 and entry.get("kind") == "article_post"
                 and entry.get("slug")):
