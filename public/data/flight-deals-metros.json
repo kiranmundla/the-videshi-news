@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-20T13:35:49Z",
-  "as_of": "2026-11-20",
+  "generated_at": "2026-11-21T13:26:28Z",
+  "as_of": "2026-11-21",
   "market": "india-metros",
   "band": {
     "id": "in-3wk",
@@ -19,7 +19,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-24 \u2192 2026-12-14",
+          "date_range": "2026-11-24 → 2026-12-14",
           "dep_date": "2026-11-24",
           "ret_date": "2026-12-14",
           "duration_days": 20,
@@ -46,7 +46,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -73,7 +73,7 @@
           }
         },
         {
-          "date_range": "2027-01-12 \u2192 2027-02-03",
+          "date_range": "2027-01-12 → 2027-02-03",
           "dep_date": "2027-01-12",
           "ret_date": "2027-02-03",
           "duration_days": 22,
@@ -107,7 +107,7 @@
         "band": "in-3wk",
         "duration_days": 22,
         "price_min": 1029,
-        "date_range": "2027-01-12 \u2192 2027-02-03"
+        "date_range": "2027-01-12 → 2027-02-03"
       }
     },
     "SFO-HYD": {
@@ -118,7 +118,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-26 \u2192 2026-12-18",
+          "date_range": "2026-11-26 → 2026-12-18",
           "dep_date": "2026-11-26",
           "ret_date": "2026-12-18",
           "duration_days": 22,
@@ -145,7 +145,7 @@
           }
         },
         {
-          "date_range": "2026-12-24 \u2192 2027-01-13",
+          "date_range": "2026-12-24 → 2027-01-13",
           "dep_date": "2026-12-24",
           "ret_date": "2027-01-13",
           "duration_days": 20,
@@ -172,7 +172,7 @@
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-15",
+          "date_range": "2027-01-26 → 2027-02-15",
           "dep_date": "2027-01-26",
           "ret_date": "2027-02-15",
           "duration_days": 20,
@@ -206,7 +206,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 1105,
-        "date_range": "2027-01-26 \u2192 2027-02-15"
+        "date_range": "2027-01-26 → 2027-02-15"
       }
     },
     "SFO-CCU": {
@@ -217,7 +217,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-26 \u2192 2026-12-18",
+          "date_range": "2026-11-26 → 2026-12-18",
           "dep_date": "2026-11-26",
           "ret_date": "2026-12-18",
           "duration_days": 22,
@@ -244,7 +244,7 @@
           }
         },
         {
-          "date_range": "2026-12-24 \u2192 2027-01-13",
+          "date_range": "2026-12-24 → 2027-01-13",
           "dep_date": "2026-12-24",
           "ret_date": "2027-01-13",
           "duration_days": 20,
@@ -271,7 +271,7 @@
           }
         },
         {
-          "date_range": "2027-01-12 \u2192 2027-02-01",
+          "date_range": "2027-01-12 → 2027-02-01",
           "dep_date": "2027-01-12",
           "ret_date": "2027-02-01",
           "duration_days": 20,
@@ -305,7 +305,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 1198,
-        "date_range": "2027-01-12 \u2192 2027-02-01"
+        "date_range": "2027-01-12 → 2027-02-01"
       }
     },
     "LAX-BOM": {
@@ -316,7 +316,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-24 \u2192 2026-12-16",
+          "date_range": "2026-11-24 → 2026-12-16",
           "dep_date": "2026-11-24",
           "ret_date": "2026-12-16",
           "duration_days": 22,
@@ -343,7 +343,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -370,7 +370,7 @@
           }
         },
         {
-          "date_range": "2027-01-12 \u2192 2027-02-01",
+          "date_range": "2027-01-12 → 2027-02-01",
           "dep_date": "2027-01-12",
           "ret_date": "2027-02-01",
           "duration_days": 20,
@@ -404,7 +404,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 1043,
-        "date_range": "2027-01-12 \u2192 2027-02-01"
+        "date_range": "2027-01-12 → 2027-02-01"
       }
     },
     "LAX-BLR": {
@@ -415,7 +415,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-24 \u2192 2026-12-14",
+          "date_range": "2026-11-24 → 2026-12-14",
           "dep_date": "2026-11-24",
           "ret_date": "2026-12-14",
           "duration_days": 20,
@@ -442,7 +442,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -469,7 +469,7 @@
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-17",
+          "date_range": "2027-01-26 → 2027-02-17",
           "dep_date": "2027-01-26",
           "ret_date": "2027-02-17",
           "duration_days": 22,
@@ -503,7 +503,7 @@
         "band": "in-3wk",
         "duration_days": 22,
         "price_min": 1109,
-        "date_range": "2027-01-26 \u2192 2027-02-17"
+        "date_range": "2027-01-26 → 2027-02-17"
       }
     },
     "LAX-HYD": {
@@ -514,7 +514,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-24 \u2192 2026-12-14",
+          "date_range": "2026-11-24 → 2026-12-14",
           "dep_date": "2026-11-24",
           "ret_date": "2026-12-14",
           "duration_days": 20,
@@ -541,7 +541,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -568,7 +568,7 @@
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-17",
+          "date_range": "2027-01-26 → 2027-02-17",
           "dep_date": "2027-01-26",
           "ret_date": "2027-02-17",
           "duration_days": 22,
@@ -602,7 +602,7 @@
         "band": "in-3wk",
         "duration_days": 22,
         "price_min": 1153,
-        "date_range": "2027-01-26 \u2192 2027-02-17"
+        "date_range": "2027-01-26 → 2027-02-17"
       }
     },
     "LAX-CCU": {
@@ -613,7 +613,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-26 \u2192 2026-12-16",
+          "date_range": "2026-11-26 → 2026-12-16",
           "dep_date": "2026-11-26",
           "ret_date": "2026-12-16",
           "duration_days": 20,
@@ -640,7 +640,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -667,7 +667,7 @@
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-17",
+          "date_range": "2027-01-26 → 2027-02-17",
           "dep_date": "2027-01-26",
           "ret_date": "2027-02-17",
           "duration_days": 22,
@@ -701,7 +701,7 @@
         "band": "in-3wk",
         "duration_days": 22,
         "price_min": 1258,
-        "date_range": "2027-01-26 \u2192 2027-02-17"
+        "date_range": "2027-01-26 → 2027-02-17"
       }
     },
     "SEA-BOM": {
@@ -712,7 +712,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-24 \u2192 2026-12-14",
+          "date_range": "2026-11-24 → 2026-12-14",
           "dep_date": "2026-11-24",
           "ret_date": "2026-12-14",
           "duration_days": 20,
@@ -739,7 +739,7 @@
           }
         },
         {
-          "date_range": "2026-12-24 \u2192 2027-01-15",
+          "date_range": "2026-12-24 → 2027-01-15",
           "dep_date": "2026-12-24",
           "ret_date": "2027-01-15",
           "duration_days": 22,
@@ -766,7 +766,7 @@
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-15",
+          "date_range": "2027-01-26 → 2027-02-15",
           "dep_date": "2027-01-26",
           "ret_date": "2027-02-15",
           "duration_days": 20,
@@ -800,7 +800,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 1095,
-        "date_range": "2027-01-26 \u2192 2027-02-15"
+        "date_range": "2027-01-26 → 2027-02-15"
       }
     },
     "SEA-BLR": {
@@ -811,7 +811,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-24 \u2192 2026-12-14",
+          "date_range": "2026-11-24 → 2026-12-14",
           "dep_date": "2026-11-24",
           "ret_date": "2026-12-14",
           "duration_days": 20,
@@ -838,7 +838,7 @@
           }
         },
         {
-          "date_range": "2026-12-24 \u2192 2027-01-15",
+          "date_range": "2026-12-24 → 2027-01-15",
           "dep_date": "2026-12-24",
           "ret_date": "2027-01-15",
           "duration_days": 22,
@@ -865,7 +865,7 @@
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-15",
+          "date_range": "2027-01-26 → 2027-02-15",
           "dep_date": "2027-01-26",
           "ret_date": "2027-02-15",
           "duration_days": 20,
@@ -899,7 +899,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 995,
-        "date_range": "2027-01-26 \u2192 2027-02-15"
+        "date_range": "2027-01-26 → 2027-02-15"
       }
     },
     "SEA-HYD": {
@@ -910,7 +910,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-24 \u2192 2026-12-14",
+          "date_range": "2026-11-24 → 2026-12-14",
           "dep_date": "2026-11-24",
           "ret_date": "2026-12-14",
           "duration_days": 20,
@@ -937,7 +937,7 @@
           }
         },
         {
-          "date_range": "2026-12-24 \u2192 2027-01-13",
+          "date_range": "2026-12-24 → 2027-01-13",
           "dep_date": "2026-12-24",
           "ret_date": "2027-01-13",
           "duration_days": 20,
@@ -964,7 +964,7 @@
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-15",
+          "date_range": "2027-01-26 → 2027-02-15",
           "dep_date": "2027-01-26",
           "ret_date": "2027-02-15",
           "duration_days": 20,
@@ -998,7 +998,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 1439,
-        "date_range": "2027-01-26 \u2192 2027-02-15"
+        "date_range": "2027-01-26 → 2027-02-15"
       }
     },
     "SEA-CCU": {
@@ -1009,7 +1009,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-24 \u2192 2026-12-16",
+          "date_range": "2026-11-24 → 2026-12-16",
           "dep_date": "2026-11-24",
           "ret_date": "2026-12-16",
           "duration_days": 22,
@@ -1036,7 +1036,7 @@
           }
         },
         {
-          "date_range": "2026-12-24 \u2192 2027-01-13",
+          "date_range": "2026-12-24 → 2027-01-13",
           "dep_date": "2026-12-24",
           "ret_date": "2027-01-13",
           "duration_days": 20,
@@ -1063,7 +1063,7 @@
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-17",
+          "date_range": "2027-01-26 → 2027-02-17",
           "dep_date": "2027-01-26",
           "ret_date": "2027-02-17",
           "duration_days": 22,
@@ -1097,7 +1097,7 @@
         "band": "in-3wk",
         "duration_days": 22,
         "price_min": 1359,
-        "date_range": "2027-01-26 \u2192 2027-02-17"
+        "date_range": "2027-01-26 → 2027-02-17"
       }
     },
     "JFK-BLR": {
@@ -1108,7 +1108,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-24 \u2192 2026-12-14",
+          "date_range": "2026-11-24 → 2026-12-14",
           "dep_date": "2026-11-24",
           "ret_date": "2026-12-14",
           "duration_days": 20,
@@ -1135,7 +1135,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -1162,7 +1162,7 @@
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-15",
+          "date_range": "2027-01-26 → 2027-02-15",
           "dep_date": "2027-01-26",
           "ret_date": "2027-02-15",
           "duration_days": 20,
@@ -1196,7 +1196,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 949,
-        "date_range": "2027-01-26 \u2192 2027-02-15"
+        "date_range": "2027-01-26 → 2027-02-15"
       }
     },
     "JFK-HYD": {
@@ -1207,16 +1207,16 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-18 \u2192 2026-12-08",
-          "dep_date": "2026-11-18",
-          "ret_date": "2026-12-08",
-          "duration_days": 20,
+          "date_range": "2026-11-26 → 2026-12-18",
+          "dep_date": "2026-11-26",
+          "ret_date": "2026-12-18",
+          "duration_days": 22,
           "band": "in-3wk",
-          "price_min": 1100,
-          "price_max": 1316,
-          "cheapest_airline": "Air India",
+          "price_min": 1185,
+          "price_max": 1682,
+          "cheapest_airline": "Emirates",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-14",
+          "fetched_as_of": "2026-11-21",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -1224,26 +1224,26 @@
           "origin_metro": "New York",
           "dest_metro": "Hyderabad",
           "change_vs_prev": {
-            "prev_price_min": 1019,
-            "prev_as_of": "2026-11-07",
-            "delta": -81,
-            "delta_pct": -7.9,
-            "trailing_avg_price_min": 962,
-            "delta_vs_trailing_avg": -138,
-            "delta_vs_trailing_avg_pct": -14.3
+            "prev_price_min": 1100,
+            "prev_as_of": "2026-11-14",
+            "delta": -85,
+            "delta_pct": -7.7,
+            "trailing_avg_price_min": 990,
+            "delta_vs_trailing_avg": -195,
+            "delta_vs_trailing_avg_pct": -19.7
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
           "band": "in-3wk",
           "price_min": 1316,
-          "price_max": 2006,
+          "price_max": 2384,
           "cheapest_airline": "Emirates",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-14",
+          "fetched_as_of": "2026-11-21",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -1251,26 +1251,26 @@
           "origin_metro": "New York",
           "dest_metro": "Hyderabad",
           "change_vs_prev": {
-            "prev_price_min": 1529,
-            "prev_as_of": "2026-11-07",
-            "delta": 213,
-            "delta_pct": 13.9,
-            "trailing_avg_price_min": 1489,
-            "delta_vs_trailing_avg": 173,
-            "delta_vs_trailing_avg_pct": 11.6
+            "prev_price_min": 1316,
+            "prev_as_of": "2026-11-14",
+            "delta": 0,
+            "delta_pct": 0.0,
+            "trailing_avg_price_min": 1454,
+            "delta_vs_trailing_avg": 138,
+            "delta_vs_trailing_avg_pct": 9.5
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-17",
-          "dep_date": "2027-01-26",
-          "ret_date": "2027-02-17",
-          "duration_days": 22,
+          "date_range": "2027-01-12 → 2027-02-01",
+          "dep_date": "2027-01-12",
+          "ret_date": "2027-02-01",
+          "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 849,
+          "price_min": 859,
           "price_max": 1019,
-          "cheapest_airline": "Etihad Airways",
+          "cheapest_airline": "Qatar Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-14",
+          "fetched_as_of": "2026-11-21",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -1280,9 +1280,12 @@
           "cheapest_month": true,
           "change_vs_prev": {
             "prev_price_min": 849,
-            "prev_as_of": "2026-11-07",
-            "delta": 0,
-            "delta_pct": 0.0
+            "prev_as_of": "2026-11-14",
+            "delta": -10,
+            "delta_pct": -1.2,
+            "trailing_avg_price_min": 849,
+            "delta_vs_trailing_avg": -10,
+            "delta_vs_trailing_avg_pct": -1.2
           }
         }
       ],
@@ -1290,9 +1293,9 @@
         "year": 2027,
         "month": 1,
         "band": "in-3wk",
-        "duration_days": 22,
-        "price_min": 849,
-        "date_range": "2027-01-26 \u2192 2027-02-17"
+        "duration_days": 20,
+        "price_min": 859,
+        "date_range": "2027-01-12 → 2027-02-01"
       }
     },
     "JFK-CCU": {
@@ -1303,16 +1306,16 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-15",
-          "dep_date": "2026-11-25",
-          "ret_date": "2026-12-15",
+          "date_range": "2026-11-26 → 2026-12-16",
+          "dep_date": "2026-11-26",
+          "ret_date": "2026-12-16",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1319,
-          "price_max": 1592,
-          "cheapest_airline": "JetBlue Airways",
+          "price_min": 1681,
+          "price_max": 1956,
+          "cheapest_airline": "Etihad Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-14",
+          "fetched_as_of": "2026-11-21",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -1320,26 +1323,26 @@
           "origin_metro": "New York",
           "dest_metro": "Kolkata",
           "change_vs_prev": {
-            "prev_price_min": 1235,
-            "prev_as_of": "2026-11-07",
-            "delta": -84,
-            "delta_pct": -6.8,
-            "trailing_avg_price_min": 1122,
-            "delta_vs_trailing_avg": -197,
-            "delta_vs_trailing_avg_pct": -17.6
+            "prev_price_min": 1319,
+            "prev_as_of": "2026-11-14",
+            "delta": -362,
+            "delta_pct": -27.4,
+            "trailing_avg_price_min": 1161,
+            "delta_vs_trailing_avg": -520,
+            "delta_vs_trailing_avg_pct": -44.8
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1554,
-          "price_max": 2585,
-          "cheapest_airline": "Qatar Airways",
+          "price_min": 1951,
+          "price_max": 2961,
+          "cheapest_airline": "Etihad Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-14",
+          "fetched_as_of": "2026-11-21",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -1347,26 +1350,26 @@
           "origin_metro": "New York",
           "dest_metro": "Kolkata",
           "change_vs_prev": {
-            "prev_price_min": 1531,
-            "prev_as_of": "2026-11-07",
-            "delta": -23,
-            "delta_pct": -1.5,
-            "trailing_avg_price_min": 1644,
-            "delta_vs_trailing_avg": 90,
-            "delta_vs_trailing_avg_pct": 5.5
+            "prev_price_min": 1554,
+            "prev_as_of": "2026-11-14",
+            "delta": -397,
+            "delta_pct": -25.5,
+            "trailing_avg_price_min": 1626,
+            "delta_vs_trailing_avg": -325,
+            "delta_vs_trailing_avg_pct": -20.0
           }
         },
         {
-          "date_range": "2027-01-12 \u2192 2027-02-01",
+          "date_range": "2027-01-12 → 2027-02-01",
           "dep_date": "2027-01-12",
           "ret_date": "2027-02-01",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1070,
-          "price_max": 1107,
-          "cheapest_airline": "Emirates",
+          "price_min": 1066,
+          "price_max": 1112,
+          "cheapest_airline": "Qatar Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-14",
+          "fetched_as_of": "2026-11-21",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -1375,10 +1378,13 @@
           "dest_metro": "Kolkata",
           "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 1035,
-            "prev_as_of": "2026-11-07",
-            "delta": -35,
-            "delta_pct": -3.4
+            "prev_price_min": 1070,
+            "prev_as_of": "2026-11-14",
+            "delta": 4,
+            "delta_pct": 0.4,
+            "trailing_avg_price_min": 1037,
+            "delta_vs_trailing_avg": -29,
+            "delta_vs_trailing_avg_pct": -2.8
           }
         }
       ],
@@ -1387,8 +1393,8 @@
         "month": 1,
         "band": "in-3wk",
         "duration_days": 20,
-        "price_min": 1070,
-        "date_range": "2027-01-12 \u2192 2027-02-01"
+        "price_min": 1066,
+        "date_range": "2027-01-12 → 2027-02-01"
       }
     },
     "EWR-DEL": {
@@ -1399,16 +1405,16 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-15",
-          "dep_date": "2026-11-25",
-          "ret_date": "2026-12-15",
+          "date_range": "2026-11-24 → 2026-12-14",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-12-14",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1478,
-          "price_max": 1969,
+          "price_min": 2305,
+          "price_max": 2305,
           "cheapest_airline": "KLM",
-          "num_samples": 4,
-          "fetched_as_of": "2026-11-14",
+          "num_samples": 2,
+          "fetched_as_of": "2026-11-21",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -1416,26 +1422,26 @@
           "origin_metro": "New York",
           "dest_metro": "Delhi",
           "change_vs_prev": {
-            "prev_price_min": 1731,
-            "prev_as_of": "2026-11-07",
-            "delta": 253,
-            "delta_pct": 14.6,
-            "trailing_avg_price_min": 1621,
-            "delta_vs_trailing_avg": 143,
-            "delta_vs_trailing_avg_pct": 8.8
+            "prev_price_min": 1478,
+            "prev_as_of": "2026-11-14",
+            "delta": -827,
+            "delta_pct": -56.0,
+            "trailing_avg_price_min": 1592,
+            "delta_vs_trailing_avg": -713,
+            "delta_vs_trailing_avg_pct": -44.8
           }
         },
         {
-          "date_range": "2026-12-24 \u2192 2027-01-13",
+          "date_range": "2026-12-24 → 2027-01-13",
           "dep_date": "2026-12-24",
           "ret_date": "2027-01-13",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1983,
-          "price_max": 2359,
-          "cheapest_airline": "LOT Polish Airlines",
+          "price_min": 1976,
+          "price_max": 2253,
+          "cheapest_airline": "Delta Air Lines",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-14",
+          "fetched_as_of": "2026-11-21",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -1443,26 +1449,26 @@
           "origin_metro": "New York",
           "dest_metro": "Delhi",
           "change_vs_prev": {
-            "prev_price_min": 2019,
-            "prev_as_of": "2026-11-07",
-            "delta": 36,
-            "delta_pct": 1.8,
-            "trailing_avg_price_min": 1916,
-            "delta_vs_trailing_avg": -66,
-            "delta_vs_trailing_avg_pct": -3.5
+            "prev_price_min": 1983,
+            "prev_as_of": "2026-11-14",
+            "delta": 7,
+            "delta_pct": 0.4,
+            "trailing_avg_price_min": 1930,
+            "delta_vs_trailing_avg": -46,
+            "delta_vs_trailing_avg_pct": -2.4
           }
         },
         {
-          "date_range": "2027-01-12 \u2192 2027-02-03",
+          "date_range": "2027-01-12 → 2027-02-03",
           "dep_date": "2027-01-12",
           "ret_date": "2027-02-03",
           "duration_days": 22,
           "band": "in-3wk",
-          "price_min": 1183,
-          "price_max": 1593,
+          "price_min": 1133,
+          "price_max": 1521,
           "cheapest_airline": "LOT Polish Airlines",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-14",
+          "fetched_as_of": "2026-11-21",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -1471,10 +1477,13 @@
           "dest_metro": "Delhi",
           "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 1384,
-            "prev_as_of": "2026-11-07",
-            "delta": 201,
-            "delta_pct": 14.5
+            "prev_price_min": 1183,
+            "prev_as_of": "2026-11-14",
+            "delta": 50,
+            "delta_pct": 4.2,
+            "trailing_avg_price_min": 1308,
+            "delta_vs_trailing_avg": 175,
+            "delta_vs_trailing_avg_pct": 13.4
           }
         }
       ],
@@ -1483,8 +1492,8 @@
         "month": 1,
         "band": "in-3wk",
         "duration_days": 22,
-        "price_min": 1183,
-        "date_range": "2027-01-12 \u2192 2027-02-03"
+        "price_min": 1133,
+        "date_range": "2027-01-12 → 2027-02-03"
       }
     },
     "EWR-BLR": {
@@ -1495,7 +1504,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-18 \u2192 2026-12-08",
+          "date_range": "2026-11-18 → 2026-12-08",
           "dep_date": "2026-11-18",
           "ret_date": "2026-12-08",
           "duration_days": 20,
@@ -1519,7 +1528,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -1546,7 +1555,7 @@
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-15",
+          "date_range": "2027-01-26 → 2027-02-15",
           "dep_date": "2027-01-26",
           "ret_date": "2027-02-15",
           "duration_days": 20,
@@ -1577,7 +1586,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 1205,
-        "date_range": "2027-01-26 \u2192 2027-02-15"
+        "date_range": "2027-01-26 → 2027-02-15"
       }
     },
     "EWR-HYD": {
@@ -1588,7 +1597,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-18 \u2192 2026-12-08",
+          "date_range": "2026-11-18 → 2026-12-08",
           "dep_date": "2026-11-18",
           "ret_date": "2026-12-08",
           "duration_days": 20,
@@ -1615,7 +1624,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -1642,7 +1651,7 @@
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-15",
+          "date_range": "2027-01-26 → 2027-02-15",
           "dep_date": "2027-01-26",
           "ret_date": "2027-02-15",
           "duration_days": 20,
@@ -1673,7 +1682,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 1164,
-        "date_range": "2027-01-26 \u2192 2027-02-15"
+        "date_range": "2027-01-26 → 2027-02-15"
       }
     },
     "EWR-CCU": {
@@ -1684,7 +1693,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-15",
+          "date_range": "2026-11-25 → 2026-12-15",
           "dep_date": "2026-11-25",
           "ret_date": "2026-12-15",
           "duration_days": 20,
@@ -1711,7 +1720,7 @@
           }
         },
         {
-          "date_range": "2026-12-24 \u2192 2027-01-13",
+          "date_range": "2026-12-24 → 2027-01-13",
           "dep_date": "2026-12-24",
           "ret_date": "2027-01-13",
           "duration_days": 20,
@@ -1738,7 +1747,7 @@
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-15",
+          "date_range": "2027-01-26 → 2027-02-15",
           "dep_date": "2027-01-26",
           "ret_date": "2027-02-15",
           "duration_days": 20,
@@ -1769,7 +1778,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 1087,
-        "date_range": "2027-01-26 \u2192 2027-02-15"
+        "date_range": "2027-01-26 → 2027-02-15"
       }
     },
     "ORD-BOM": {
@@ -1780,7 +1789,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-17",
+          "date_range": "2026-11-25 → 2026-12-17",
           "dep_date": "2026-11-25",
           "ret_date": "2026-12-17",
           "duration_days": 22,
@@ -1807,7 +1816,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -1834,7 +1843,7 @@
           }
         },
         {
-          "date_range": "2027-01-12 \u2192 2027-02-03",
+          "date_range": "2027-01-12 → 2027-02-03",
           "dep_date": "2027-01-12",
           "ret_date": "2027-02-03",
           "duration_days": 22,
@@ -1865,7 +1874,7 @@
         "band": "in-3wk",
         "duration_days": 22,
         "price_min": 970,
-        "date_range": "2027-01-12 \u2192 2027-02-03"
+        "date_range": "2027-01-12 → 2027-02-03"
       }
     },
     "ORD-BLR": {
@@ -1876,7 +1885,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-17",
+          "date_range": "2026-11-25 → 2026-12-17",
           "dep_date": "2026-11-25",
           "ret_date": "2026-12-17",
           "duration_days": 22,
@@ -1903,7 +1912,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -1930,7 +1939,7 @@
           }
         },
         {
-          "date_range": "2027-01-12 \u2192 2027-02-03",
+          "date_range": "2027-01-12 → 2027-02-03",
           "dep_date": "2027-01-12",
           "ret_date": "2027-02-03",
           "duration_days": 22,
@@ -1961,7 +1970,7 @@
         "band": "in-3wk",
         "duration_days": 22,
         "price_min": 1013,
-        "date_range": "2027-01-12 \u2192 2027-02-03"
+        "date_range": "2027-01-12 → 2027-02-03"
       }
     },
     "ORD-HYD": {
@@ -1972,7 +1981,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-15",
+          "date_range": "2026-11-25 → 2026-12-15",
           "dep_date": "2026-11-25",
           "ret_date": "2026-12-15",
           "duration_days": 20,
@@ -1999,7 +2008,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -2026,7 +2035,7 @@
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-15",
+          "date_range": "2027-01-26 → 2027-02-15",
           "dep_date": "2027-01-26",
           "ret_date": "2027-02-15",
           "duration_days": 20,
@@ -2057,7 +2066,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 1030,
-        "date_range": "2027-01-26 \u2192 2027-02-15"
+        "date_range": "2027-01-26 → 2027-02-15"
       }
     },
     "ORD-CCU": {
@@ -2068,7 +2077,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-15",
+          "date_range": "2026-11-25 → 2026-12-15",
           "dep_date": "2026-11-25",
           "ret_date": "2026-12-15",
           "duration_days": 20,
@@ -2095,7 +2104,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -2122,7 +2131,7 @@
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-15",
+          "date_range": "2027-01-26 → 2027-02-15",
           "dep_date": "2027-01-26",
           "ret_date": "2027-02-15",
           "duration_days": 20,
@@ -2153,7 +2162,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 1080,
-        "date_range": "2027-01-26 \u2192 2027-02-15"
+        "date_range": "2027-01-26 → 2027-02-15"
       }
     },
     "DFW-DEL": {
@@ -2164,7 +2173,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-17",
+          "date_range": "2026-11-25 → 2026-12-17",
           "dep_date": "2026-11-25",
           "ret_date": "2026-12-17",
           "duration_days": 22,
@@ -2191,7 +2200,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -2218,7 +2227,7 @@
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-15",
+          "date_range": "2027-01-26 → 2027-02-15",
           "dep_date": "2027-01-26",
           "ret_date": "2027-02-15",
           "duration_days": 20,
@@ -2249,7 +2258,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 1008,
-        "date_range": "2027-01-26 \u2192 2027-02-15"
+        "date_range": "2027-01-26 → 2027-02-15"
       }
     },
     "DFW-BOM": {
@@ -2260,7 +2269,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-17",
+          "date_range": "2026-11-25 → 2026-12-17",
           "dep_date": "2026-11-25",
           "ret_date": "2026-12-17",
           "duration_days": 22,
@@ -2287,7 +2296,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -2314,7 +2323,7 @@
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-15",
+          "date_range": "2027-01-26 → 2027-02-15",
           "dep_date": "2027-01-26",
           "ret_date": "2027-02-15",
           "duration_days": 20,
@@ -2345,7 +2354,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 940,
-        "date_range": "2027-01-26 \u2192 2027-02-15"
+        "date_range": "2027-01-26 → 2027-02-15"
       }
     },
     "DFW-BLR": {
@@ -2356,7 +2365,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-17",
+          "date_range": "2026-11-25 → 2026-12-17",
           "dep_date": "2026-11-25",
           "ret_date": "2026-12-17",
           "duration_days": 22,
@@ -2383,7 +2392,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -2410,7 +2419,7 @@
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-15",
+          "date_range": "2027-01-26 → 2027-02-15",
           "dep_date": "2027-01-26",
           "ret_date": "2027-02-15",
           "duration_days": 20,
@@ -2441,7 +2450,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 1076,
-        "date_range": "2027-01-26 \u2192 2027-02-15"
+        "date_range": "2027-01-26 → 2027-02-15"
       }
     },
     "DFW-CCU": {
@@ -2452,7 +2461,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-15",
+          "date_range": "2026-11-25 → 2026-12-15",
           "dep_date": "2026-11-25",
           "ret_date": "2026-12-15",
           "duration_days": 20,
@@ -2479,7 +2488,7 @@
           }
         },
         {
-          "date_range": "2026-12-24 \u2192 2027-01-13",
+          "date_range": "2026-12-24 → 2027-01-13",
           "dep_date": "2026-12-24",
           "ret_date": "2027-01-13",
           "duration_days": 20,
@@ -2506,7 +2515,7 @@
           }
         },
         {
-          "date_range": "2027-01-12 \u2192 2027-02-01",
+          "date_range": "2027-01-12 → 2027-02-01",
           "dep_date": "2027-01-12",
           "ret_date": "2027-02-01",
           "duration_days": 20,
@@ -2537,7 +2546,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 1967,
-        "date_range": "2027-01-12 \u2192 2027-02-01"
+        "date_range": "2027-01-12 → 2027-02-01"
       }
     },
     "IAD-BLR": {
@@ -2548,7 +2557,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-15",
+          "date_range": "2026-11-25 → 2026-12-15",
           "dep_date": "2026-11-25",
           "ret_date": "2026-12-15",
           "duration_days": 20,
@@ -2575,7 +2584,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -2602,7 +2611,7 @@
           }
         },
         {
-          "date_range": "2027-01-12 \u2192 2027-02-01",
+          "date_range": "2027-01-12 → 2027-02-01",
           "dep_date": "2027-01-12",
           "ret_date": "2027-02-01",
           "duration_days": 20,
@@ -2633,7 +2642,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 960,
-        "date_range": "2027-01-12 \u2192 2027-02-01"
+        "date_range": "2027-01-12 → 2027-02-01"
       }
     },
     "IAD-HYD": {
@@ -2644,7 +2653,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-15",
+          "date_range": "2026-11-25 → 2026-12-15",
           "dep_date": "2026-11-25",
           "ret_date": "2026-12-15",
           "duration_days": 20,
@@ -2671,7 +2680,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -2698,7 +2707,7 @@
           }
         },
         {
-          "date_range": "2027-01-12 \u2192 2027-02-01",
+          "date_range": "2027-01-12 → 2027-02-01",
           "dep_date": "2027-01-12",
           "ret_date": "2027-02-01",
           "duration_days": 20,
@@ -2729,7 +2738,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 875,
-        "date_range": "2027-01-12 \u2192 2027-02-01"
+        "date_range": "2027-01-12 → 2027-02-01"
       }
     },
     "IAD-CCU": {
@@ -2740,7 +2749,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-15",
+          "date_range": "2026-11-25 → 2026-12-15",
           "dep_date": "2026-11-25",
           "ret_date": "2026-12-15",
           "duration_days": 20,
@@ -2767,7 +2776,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -2794,7 +2803,7 @@
           }
         },
         {
-          "date_range": "2027-01-12 \u2192 2027-02-01",
+          "date_range": "2027-01-12 → 2027-02-01",
           "dep_date": "2027-01-12",
           "ret_date": "2027-02-01",
           "duration_days": 20,
@@ -2825,7 +2834,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 1048,
-        "date_range": "2027-01-12 \u2192 2027-02-01"
+        "date_range": "2027-01-12 → 2027-02-01"
       }
     },
     "ATL-BOM": {
@@ -2836,7 +2845,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-26 \u2192 2026-12-18",
+          "date_range": "2026-11-26 → 2026-12-18",
           "dep_date": "2026-11-26",
           "ret_date": "2026-12-18",
           "duration_days": 22,
@@ -2863,7 +2872,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -2890,7 +2899,7 @@
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-17",
+          "date_range": "2027-01-26 → 2027-02-17",
           "dep_date": "2027-01-26",
           "ret_date": "2027-02-17",
           "duration_days": 22,
@@ -2921,7 +2930,7 @@
         "band": "in-3wk",
         "duration_days": 22,
         "price_min": 1045,
-        "date_range": "2027-01-26 \u2192 2027-02-17"
+        "date_range": "2027-01-26 → 2027-02-17"
       }
     },
     "ATL-BLR": {
@@ -2932,7 +2941,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-26 \u2192 2026-12-16",
+          "date_range": "2026-11-26 → 2026-12-16",
           "dep_date": "2026-11-26",
           "ret_date": "2026-12-16",
           "duration_days": 20,
@@ -2959,7 +2968,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -2986,7 +2995,7 @@
           }
         },
         {
-          "date_range": "2027-01-12 \u2192 2027-02-01",
+          "date_range": "2027-01-12 → 2027-02-01",
           "dep_date": "2027-01-12",
           "ret_date": "2027-02-01",
           "duration_days": 20,
@@ -3017,7 +3026,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 1117,
-        "date_range": "2027-01-12 \u2192 2027-02-01"
+        "date_range": "2027-01-12 → 2027-02-01"
       }
     },
     "ATL-HYD": {
@@ -3028,7 +3037,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-26 \u2192 2026-12-16",
+          "date_range": "2026-11-26 → 2026-12-16",
           "dep_date": "2026-11-26",
           "ret_date": "2026-12-16",
           "duration_days": 20,
@@ -3056,7 +3065,7 @@
           }
         },
         {
-          "date_range": "2026-12-24 \u2192 2027-01-13",
+          "date_range": "2026-12-24 → 2027-01-13",
           "dep_date": "2026-12-24",
           "ret_date": "2027-01-13",
           "duration_days": 20,
@@ -3089,7 +3098,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 1543,
-        "date_range": "2026-11-26 \u2192 2026-12-16"
+        "date_range": "2026-11-26 → 2026-12-16"
       }
     },
     "ATL-CCU": {
@@ -3100,7 +3109,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-26 \u2192 2026-12-18",
+          "date_range": "2026-11-26 → 2026-12-18",
           "dep_date": "2026-11-26",
           "ret_date": "2026-12-18",
           "duration_days": 22,
@@ -3134,7 +3143,7 @@
         "band": "in-3wk",
         "duration_days": 22,
         "price_min": 1771,
-        "date_range": "2026-11-26 \u2192 2026-12-18"
+        "date_range": "2026-11-26 → 2026-12-18"
       }
     },
     "BOS-BOM": {
@@ -3145,7 +3154,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-24 \u2192 2026-12-14",
+          "date_range": "2026-11-24 → 2026-12-14",
           "dep_date": "2026-11-24",
           "ret_date": "2026-12-14",
           "duration_days": 20,
@@ -3172,7 +3181,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -3199,7 +3208,7 @@
           }
         },
         {
-          "date_range": "2027-01-12 \u2192 2027-02-01",
+          "date_range": "2027-01-12 → 2027-02-01",
           "dep_date": "2027-01-12",
           "ret_date": "2027-02-01",
           "duration_days": 20,
@@ -3230,7 +3239,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 879,
-        "date_range": "2027-01-12 \u2192 2027-02-01"
+        "date_range": "2027-01-12 → 2027-02-01"
       }
     },
     "BOS-BLR": {
@@ -3241,7 +3250,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-26 \u2192 2026-12-16",
+          "date_range": "2026-11-26 → 2026-12-16",
           "dep_date": "2026-11-26",
           "ret_date": "2026-12-16",
           "duration_days": 20,
@@ -3268,7 +3277,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -3295,7 +3304,7 @@
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-15",
+          "date_range": "2027-01-26 → 2027-02-15",
           "dep_date": "2027-01-26",
           "ret_date": "2027-02-15",
           "duration_days": 20,
@@ -3326,7 +3335,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 924,
-        "date_range": "2027-01-26 \u2192 2027-02-15"
+        "date_range": "2027-01-26 → 2027-02-15"
       }
     },
     "BOS-HYD": {
@@ -3337,7 +3346,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-26 \u2192 2026-12-16",
+          "date_range": "2026-11-26 → 2026-12-16",
           "dep_date": "2026-11-26",
           "ret_date": "2026-12-16",
           "duration_days": 20,
@@ -3364,7 +3373,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -3391,7 +3400,7 @@
           }
         },
         {
-          "date_range": "2027-01-12 \u2192 2027-02-01",
+          "date_range": "2027-01-12 → 2027-02-01",
           "dep_date": "2027-01-12",
           "ret_date": "2027-02-01",
           "duration_days": 20,
@@ -3425,7 +3434,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 1046,
-        "date_range": "2027-01-12 \u2192 2027-02-01"
+        "date_range": "2027-01-12 → 2027-02-01"
       }
     },
     "BOS-CCU": {
@@ -3436,7 +3445,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-26 \u2192 2026-12-16",
+          "date_range": "2026-11-26 → 2026-12-16",
           "dep_date": "2026-11-26",
           "ret_date": "2026-12-16",
           "duration_days": 20,
@@ -3463,7 +3472,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -3490,7 +3499,7 @@
           }
         },
         {
-          "date_range": "2027-01-12 \u2192 2027-02-01",
+          "date_range": "2027-01-12 → 2027-02-01",
           "dep_date": "2027-01-12",
           "ret_date": "2027-02-01",
           "duration_days": 20,
@@ -3524,7 +3533,7 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 1064,
-        "date_range": "2027-01-12 \u2192 2027-02-01"
+        "date_range": "2027-01-12 → 2027-02-01"
       }
     },
     "IAD-BOM": {
@@ -3535,7 +3544,7 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-15",
+          "date_range": "2026-11-25 → 2026-12-15",
           "dep_date": "2026-11-25",
           "ret_date": "2026-12-15",
           "duration_days": 20,
@@ -3562,7 +3571,7 @@
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "date_range": "2026-12-08 → 2026-12-28",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-28",
           "duration_days": 20,
@@ -3589,7 +3598,7 @@
           }
         },
         {
-          "date_range": "2027-01-12 \u2192 2027-02-01",
+          "date_range": "2027-01-12 → 2027-02-01",
           "dep_date": "2027-01-12",
           "ret_date": "2027-02-01",
           "duration_days": 20,
@@ -3620,16 +3629,33 @@
         "band": "in-3wk",
         "duration_days": 20,
         "price_min": 845,
-        "date_range": "2027-01-12 \u2192 2027-02-01"
+        "date_range": "2027-01-12 → 2027-02-01"
       }
     }
   },
-  "biggest_drops": [],
+  "biggest_drops": [
+    {
+      "route": "EWR-DEL",
+      "origin_metro": "New York",
+      "dest_metro": "Delhi",
+      "year": 2027,
+      "month": 1,
+      "band": "in-3wk",
+      "duration_days": 22,
+      "date_range": "2027-01-12 → 2027-02-03",
+      "was": 1183,
+      "now": 1133,
+      "drop_abs": 50,
+      "drop_pct": 4.2,
+      "baseline_as_of": "2026-11-14",
+      "cheapest_airline": "LOT Polish Airlines"
+    }
+  ],
   "festival_seasons": [
     {
       "id": "diwali-2026",
       "name": "Diwali",
-      "emoji": "\ud83e\ude94",
+      "emoji": "🪔",
       "start": [
         2026,
         11,
@@ -3646,7 +3672,7 @@
     {
       "id": "thanksgiving-2026",
       "name": "Thanksgiving",
-      "emoji": "\ud83e\udd83",
+      "emoji": "🦃",
       "start": [
         2026,
         11,
@@ -3663,7 +3689,7 @@
     {
       "id": "christmas-2026",
       "name": "Christmas & New Year",
-      "emoji": "\ud83c\udf84",
+      "emoji": "🎄",
       "start": [
         2026,
         12,
@@ -3680,7 +3706,7 @@
     {
       "id": "holi-2027",
       "name": "Holi",
-      "emoji": "\ud83c\udfa8",
+      "emoji": "🎨",
       "start": [
         2027,
         3,
@@ -3692,12 +3718,12 @@
         22
       ],
       "book_by_months": 2,
-      "note": "Shoulder season \u2014 moderate fares"
+      "note": "Shoulder season — moderate fares"
     },
     {
       "id": "diwali-2027",
       "name": "Diwali",
-      "emoji": "\ud83e\ude94",
+      "emoji": "🪔",
       "start": [
         2027,
         10,
@@ -3722,6 +3748,6 @@
   },
   "cadence": "weekly",
   "indicative": true,
-  "fetched_as_of_oldest": "2026-11-14",
-  "fetched_as_of_newest": "2026-11-20"
+  "fetched_as_of_oldest": "2026-11-15",
+  "fetched_as_of_newest": "2026-11-21"
 }
