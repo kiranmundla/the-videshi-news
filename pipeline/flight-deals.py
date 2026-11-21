@@ -458,8 +458,16 @@ def classify_duffel_result(data, returncode, stderr_text):
                     f"{(stderr_text or '')[:200]}")
 
 
+CACHE_DIR = Path(__file__).parent / ".state" / "duffel-cache"
+
+
 def cache_file_path(origin, dest, dep_date, ret_date):
-    return Path(f"/tmp/duffel-{origin}{dest}-{dep_date}-{ret_date}.json")
+    # Resumable state lives on the home disk, NOT /tmp: the ramdisk is
+    # wiped by service restarts, which silently destroyed this 48h-TTL
+    # resume cache three times on 2026-11-21 and stranded the daily
+    # refresh at 3 of 12 routes under the 36-searches/hour fanout cap.
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    return CACHE_DIR / f"duffel-{origin}{dest}-{dep_date}-{ret_date}.json"
 
 
 def cached_ok_offers(origin, dest, dep_date, ret_date):
@@ -525,7 +533,7 @@ def cache_search(origin, dest, dep_date, ret_date):
     global REQUEST_COUNT, FAILED_COUNT
     REQUEST_COUNT += 1
     route_key = f"{origin}-{dest}"
-    tmp = Path(f"/tmp/duffel-{origin}{dest}-{dep_date}-{ret_date}.json")
+    tmp = cache_file_path(origin, dest, dep_date, ret_date)
     if not tmp.exists():
         return None
     ATTEMPTED[route_key] = ATTEMPTED.get(route_key, 0) + 1
