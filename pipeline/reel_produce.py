@@ -297,13 +297,16 @@ def build_v8_candidates(hero, hero_size, inline_paths, extras,
 
 def render(script, article, hero, inline_paths, extras, music,
            outdir, name, stage, log=print, inline_persons=None,
-           v8_candidates=None, footer_credit=""):
+           v8_candidates=None, footer_credit="", force_v7=False):
     """The render dispatch — the ONLY place production chooses a
     renderer (see USE_V8_RENDERER / USE_V7_RENDERER). Returns
-    the manifest dict (with a 'video' path) in every branch."""
+    the manifest dict (with a 'video' path) in every branch.
+    force_v7 is the named-person distinct-image fallback
+    (Kiran, 2026-11-22): it renders this one script with v7
+    even when v8 is the production default."""
     category = (article.get("category") or "News") \
         .replace("-", " ").title()
-    if _use_v8():
+    if _use_v8() and not force_v7:
         import reel_renderer_v8     # lazy: see the import note
         video, manifest = reel_renderer_v8.render_reel_v8(
             script, v8_candidates, music, outdir, name=name,
@@ -377,6 +380,71 @@ def main():
                                                         indent=2))
         print(json.dumps(verdict, indent=2))
         return code
+
+    # ── v7 fallback for named-person distinct-image holds ──────
+    # Kiran's calibration ruling, 2026-11-22 (option C): when the
+    # v8 distinct-image gate holds a NAMED-PERSON story — stock
+    # is forbidden there and verified photos are scarce by
+    # nature — render the same script with the v7 renderer
+    # instead. The fallback verdict is "ready" ONLY at frame QA
+    # 10.0, a stricter bar than the normal ≥7.0 pass; fact-check
+    # (gate 1) has already passed on this identical script.
+    # Proven manually on Sachin Tendulkar–Recykal and the Cato
+    # H-1B reel (2026-11-14), both published public clean.
+    fallback_qa = None
+
+    def attempt_v7_fallback(reason):
+        nonlocal fallback_qa
+        import reel_stock_sourcing
+        try:
+            persons = reel_stock_sourcing.story_person_names(
+                article, script)
+        except Exception as e:
+            print(f"   ⚠ v7 fallback: person check failed ({e})")
+            return None
+        if not persons:
+            return None
+        print(f"── v7 fallback: named-person story "
+              f"({', '.join(persons)}) — {reason}")
+        fb = {"attempted": True, "persons": persons,
+              "reason": reason}
+        verdict["fallback"] = fb
+        try:
+            fb_manifest = render(
+                script, article, hero, inline_paths, extras,
+                args.music, outdir, name, args.stage,
+                inline_persons=inline_persons, force_v7=True)
+        except Exception as e:
+            fb["result"] = f"v7 render failed: {str(e)[:300]}"
+            print(f"   ⚠ v7 fallback render failed: {e}")
+            return None
+        try:
+            fb_qa = reel_frame_qa.run_qa(
+                fb_manifest["video"],
+                outdir / "render-manifest.json", outdir / "qa")
+        except Exception as e:
+            fb["result"] = f"v7 frame QA errored: {str(e)[:300]}"
+            print(f"   ⚠ v7 fallback QA errored: {e}")
+            return None
+        (outdir / "qa-report.json").write_text(
+            json.dumps(fb_qa, indent=2))
+        fb["qa_score"] = fb_qa["qa_score"]
+        fb["qa_passed"] = fb_qa["qa_passed"]
+        if fb_qa["qa_passed"] and fb_qa["qa_score"] >= 10.0:
+            fb["result"] = "ready (QA 10.0)"
+            fallback_qa = fb_qa
+            verdict["render"] = {
+                "renderer": "reel_renderer_v7.py",
+                "stage_color": args.stage,
+                "via": "v7 fallback — named-person distinct-image "
+                       "hold (Kiran 2026-11-22)"}
+            print(f"   ✅ v7 fallback READY — frame QA "
+                  f"{fb_qa['qa_score']}/10")
+            return fb_manifest
+        fb["result"] = (f"v7 fallback QA {fb_qa['qa_score']} "
+                        f"< 10.0 — hold stands")
+        print(f"   ⚠ {fb['result']}")
+        return None
 
     # ── Load script + article ───────────────────────────────────
     if not Path(args.script).exists():
@@ -500,6 +568,8 @@ def main():
             "mode": "not-needed", "own_images": own_count,
             "extras": {}}
 
+    manifest = None     # set by gate 2, or by the v7 fallback
+
     # ── v8: distinct-image assembly + HOLD + stock route ───────
     # A v8 reel needs one DISTINCT usable photo per scene (all
     # six beats are photo scenes). Candidates: the article's own
@@ -566,66 +636,86 @@ def main():
             "usable": len(v8_candidates), "scenes": n_scenes,
             "labels": [c["label"] for c in v8_candidates]}
         if len(v8_candidates) < n_scenes:
-            verdict["stage"] = "distinct_images"
-            verdict["detail"] = (
-                f"only {len(v8_candidates)} distinct usable "
-                f"images for {n_scenes} photo scenes — holding "
-                "rather than re-cropping one image across beats "
-                "(2026-11-11 visa Short failure)")
-            print(f"🚫 HELD: {verdict['detail']}", file=sys.stderr)
-            return finish(1)
+            fb_manifest = attempt_v7_fallback(
+                f"v8 distinct-image hold: {len(v8_candidates)} "
+                f"distinct usable images for {n_scenes} scenes")
+            if fb_manifest is not None:
+                manifest = fb_manifest
+            else:
+                verdict["stage"] = "distinct_images"
+                verdict["detail"] = (
+                    f"only {len(v8_candidates)} distinct usable "
+                    f"images for {n_scenes} photo scenes — holding "
+                    "rather than re-cropping one image across beats "
+                    "(2026-11-11 visa Short failure)")
+                print(f"🚫 HELD: {verdict['detail']}",
+                      file=sys.stderr)
+                return finish(1)
 
     # ── Gate 2: render ──────────────────────────────────────────
-    print(f"── gate 2/3: render ({renderer_name}"
-          + (f", stage={args.stage}" if USE_V7_RENDERER else "")
-          + ")")
-    try:
-        manifest = render(script, article, hero, inline_paths,
-                          extras, args.music, outdir, name,
-                          args.stage,
-                          inline_persons=inline_persons,
-                          v8_candidates=v8_candidates,
-                          footer_credit=footer_credit)
-    except (V8.DistinctImagesError if V8 is not None
-            else reel_renderer.PhotoTooSmallError) as e:
-        verdict["stage"] = "distinct_images"
-        verdict["detail"] = str(e)
-        print(f"🚫 HELD: {e}", file=sys.stderr)
-        return finish(1)
-    except reel_renderer.PhotoTooSmallError as e:
-        verdict["stage"] = "render_photo_floor"
-        verdict["detail"] = str(e)
-        print(f"🚫 HELD: {e}", file=sys.stderr)
-        return finish(1)
-    except (reel_renderer.TextFitError, RuntimeError,
-            FileNotFoundError) as e:
-        verdict["stage"] = "render"
-        verdict["detail"] = str(e)[:500]
-        print(f"🚫 HELD at render: {e}", file=sys.stderr)
-        return finish(1)
+    if manifest is None:
+        print(f"── gate 2/3: render ({renderer_name}"
+              + (f", stage={args.stage}" if USE_V7_RENDERER else "")
+              + ")")
+        try:
+            manifest = render(script, article, hero, inline_paths,
+                              extras, args.music, outdir, name,
+                              args.stage,
+                              inline_persons=inline_persons,
+                              v8_candidates=v8_candidates,
+                              footer_credit=footer_credit)
+        except (V8.DistinctImagesError if V8 is not None
+                else reel_renderer.PhotoTooSmallError) as e:
+            manifest = attempt_v7_fallback(
+                f"v8 render rejected: {e}")
+            if manifest is None:
+                verdict["stage"] = "distinct_images"
+                verdict["detail"] = str(e)
+                print(f"🚫 HELD: {e}", file=sys.stderr)
+                return finish(1)
+        except reel_renderer.PhotoTooSmallError as e:
+            verdict["stage"] = "render_photo_floor"
+            verdict["detail"] = str(e)
+            print(f"🚫 HELD: {e}", file=sys.stderr)
+            return finish(1)
+        except (reel_renderer.TextFitError, RuntimeError,
+                FileNotFoundError) as e:
+            verdict["stage"] = "render"
+            verdict["detail"] = str(e)[:500]
+            print(f"🚫 HELD at render: {e}", file=sys.stderr)
+            return finish(1)
     verdict["manifest"] = str(outdir / "render-manifest.json")
     verdict["video"] = manifest["video"]
 
     # ── Gate 3: frame QA ────────────────────────────────────────
-    print("── gate 3/3: frame QA")
-    try:
-        qa = reel_frame_qa.run_qa(manifest["video"],
-                                  outdir / "render-manifest.json",
-                                  outdir / "qa")
-    except Exception as e:
-        verdict["stage"] = "frame_qa_error"
-        verdict["detail"] = str(e)[:500]
-        print(f"🚫 QA could not run: {e}", file=sys.stderr)
-        return finish(1)
-    (outdir / "qa-report.json").write_text(json.dumps(qa, indent=2))
-    verdict["qa"] = {"score": qa["qa_score"],
-                     "passed": qa["qa_passed"],
-                     "failing_checks": qa["failing_checks"]}
-    if not qa["qa_passed"]:
-        verdict["stage"] = "frame_qa"
-        print(f"🚫 HELD at frame QA (score {qa['qa_score']}): "
-              f"{qa['failing_checks']}", file=sys.stderr)
-        return finish(1)
+    if fallback_qa is not None:
+        # The v7 fallback already ran QA under its stricter bar
+        # (10.0 required) — reuse that result.
+        qa = fallback_qa
+        verdict["qa"] = {"score": qa["qa_score"],
+                         "passed": qa["qa_passed"],
+                         "failing_checks": qa["failing_checks"]}
+    else:
+        print("── gate 3/3: frame QA")
+        try:
+            qa = reel_frame_qa.run_qa(manifest["video"],
+                                      outdir / "render-manifest.json",
+                                      outdir / "qa")
+        except Exception as e:
+            verdict["stage"] = "frame_qa_error"
+            verdict["detail"] = str(e)[:500]
+            print(f"🚫 QA could not run: {e}", file=sys.stderr)
+            return finish(1)
+        (outdir / "qa-report.json").write_text(json.dumps(qa,
+                                                          indent=2))
+        verdict["qa"] = {"score": qa["qa_score"],
+                         "passed": qa["qa_passed"],
+                         "failing_checks": qa["failing_checks"]}
+        if not qa["qa_passed"]:
+            verdict["stage"] = "frame_qa"
+            print(f"🚫 HELD at frame QA (score {qa['qa_score']}): "
+                  f"{qa['failing_checks']}", file=sys.stderr)
+            return finish(1)
 
     verdict["status"] = "ready"
     verdict["stage"] = "complete"
