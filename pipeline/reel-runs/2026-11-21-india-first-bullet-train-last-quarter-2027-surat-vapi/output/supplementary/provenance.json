@@ -1,0 +1,80 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "india-first-bullet-train-last-quarter-2027-surat-vapi",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Mumbai-Ahmedabad High-Speed Rail corridor",
+    "Surat",
+    "Vapi",
+    "B28 trainset",
+    "Surat-Vapi",
+    "India's First Bullet Train"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Mumbai-Ahmedabad High-Speed Rail corridor' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'B28 trainset' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Surat-Vapi' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: \"India's First Bullet Train\" has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Surat at night.JPG",
+      "route": "identity \u2014 Wikidata P18 (Q4629)",
+      "verdict": "accepted",
+      "reason": "4608x2592, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Beauty of Surat.jpg",
+      "route": "identity \u2014 depicts (P180=Q4629)",
+      "verdict": "accepted",
+      "reason": "2100x1575, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Jain Temple, Vapi GIDC, Vapi - panoramio.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q2087696)",
+      "verdict": "accepted",
+      "reason": "2816x2112, CC BY 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Surat at night.JPG",
+      "route": "identity \u2014 Wikidata P18 (Q4629)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/f/f7/Surat_at_night.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    },
+    {
+      "candidate": "File:Beauty of Surat.jpg",
+      "route": "identity \u2014 depicts (P180=Q4629)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/7/79/Beauty_of_Surat.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    },
+    {
+      "candidate": "File:Jain Temple, Vapi GIDC, Vapi - panoramio.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q2087696)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/f/f6/Jain_Temple%2C_Vapi_GIDC%2C_Vapi_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo"
+    }
+  ],
+  "extras": []
+}

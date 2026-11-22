@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "anupama-ramachandran-defends-world-snooker-title-indore",
+  "name": "anupama-ramachandran-defends-world-snooker-title-indore",
+  "script": "reel-runs/2026-11-21-anupama-ramachandran-defends-world-snooker-title-indore/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "diaspora_bullets[0]"
+    ],
+    "llm_cost_usd": 0.000649
+  }
+}

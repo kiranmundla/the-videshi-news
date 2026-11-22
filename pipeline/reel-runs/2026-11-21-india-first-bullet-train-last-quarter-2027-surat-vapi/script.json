@@ -1,0 +1,22 @@
+{
+ "hook_line": "INDIA'S FIRST BULLET TRAIN RUNS IN LATE 2027",
+ "hook_stat": {
+  "big": "2027",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "First bullet train service in the last quarter of 2027, Surat-Vapi section first"
+ },
+ "stats": [
+  {"big": "508", "label": "Kilometres, Mumbai-Ahmedabad High-Speed Rail corridor"},
+  {"big": "456", "label": "Kilometres of pier work completed as of September"},
+  {"big": "280", "label": "Design speed in kmph of the indigenous B28 trainset"}
+ ],
+ "diaspora_bullets": [
+  "The full 508 km corridor to Mumbai will follow in phases",
+  "Fares, a timetable and a booking channel have not been announced"
+ ],
+ "key_entities": ["Mumbai-Ahmedabad High-Speed Rail corridor", "Surat", "Vapi", "B28 trainset"],
+ "news_summary": "India's first high-speed rail service will commence in the last quarter of 2027, with the Surat-Vapi section of the Mumbai-Ahmedabad corridor opening first.",
+ "payoff": "For travellers, nothing can be booked yet: the first service is a Gujarat section, not a Mumbai-Ahmedabad through journey.",
+ "versus": "",
+ "story_mood": "celebratory"
+}

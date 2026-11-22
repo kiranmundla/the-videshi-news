@@ -1,0 +1,80 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "anupama-ramachandran-defends-world-snooker-title-indore",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Anupama Ramachandran",
+    "So Man Yan",
+    "IBSF World Snooker Championship",
+    "Indore",
+    "Snooker",
+    "So Man"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'Snooker' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'So Man' named 'So Many Tears', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:IBSF World Snooker Championship 2015.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1165859)",
+      "verdict": "accepted",
+      "reason": "1080x720, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Indore Rajwada.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q66616)",
+      "verdict": "rejected",
+      "reason": "resolution: 800x533 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ahilya fort , Maheshwar.jpg",
+      "route": "identity \u2014 depicts (P180=Q66616)",
+      "verdict": "rejected",
+      "reason": "resolution: 910x1700 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:BALA JI MAHARAJ.jpg",
+      "route": "identity \u2014 depicts (P180=Q66616)",
+      "verdict": "accepted",
+      "reason": "1080x1729, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Chappan Dukan street Food.jpg",
+      "route": "identity \u2014 depicts (P180=Q66616)",
+      "verdict": "accepted",
+      "reason": "3072x4080, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:IBSF World Snooker Championship 2015.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1165859)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/1/17/IBSF_World_Snooker_Championship_2015.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_con"
+    },
+    {
+      "candidate": "File:Chappan Dukan street Food.jpg",
+      "route": "identity \u2014 depicts (P180=Q66616)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/e/e2/Chappan_Dukan_street_Food.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=origin"
+    },
+    {
+      "candidate": "File:BALA JI MAHARAJ.jpg",
+      "route": "identity \u2014 depicts (P180=Q66616)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/7/7b/BALA_JI_MAHARAJ.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  ],
+  "extras": []
+}

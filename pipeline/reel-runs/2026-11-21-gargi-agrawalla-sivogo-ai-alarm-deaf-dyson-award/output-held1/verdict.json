@@ -1,0 +1,20 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "gargi-agrawalla-sivogo-ai-alarm-deaf-dyson-award",
+  "name": "gargi-agrawalla-sivogo-ai-alarm-deaf-dyson-award",
+  "script": "reel-runs/2026-11-21-gargi-agrawalla-sivogo-ai-alarm-deaf-dyson-award/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "hook_stat.sub",
+      "diaspora_bullets[0]"
+    ],
+    "llm_cost_usd": 0.000706
+  }
+}

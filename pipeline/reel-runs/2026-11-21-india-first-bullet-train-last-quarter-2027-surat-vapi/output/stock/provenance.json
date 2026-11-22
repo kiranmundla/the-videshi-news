@@ -1,0 +1,87 @@
+{
+  "route": "stock \u2014 Pexels topical scenes, per-beat matched (reels only, 2026-11-11)",
+  "story": "india-first-bullet-train-last-quarter-2027-surat-vapi",
+  "scenes": [
+    {
+      "path": "stock-37899504.jpg",
+      "size": [
+        7533,
+        5022
+      ],
+      "pexels_id": 37899504,
+      "page": "https://www.pexels.com/photo/majestic-view-of-the-taj-mahal-in-agra-37899504/",
+      "photographer": "Mahmut Y\u0131lmaz",
+      "query": "taj mahal india travel",
+      "beat": "news",
+      "alt": "A serene and captivating perspective of the iconic Taj Mahal in Agra with reflection in pool.",
+      "sha256": "b12de9ebfba5ca5d8b1460307c131b091de2c72ee8046fee4628702760025ded",
+      "license": "Pexels License (free use); credited in the reel footer"
+    },
+    {
+      "path": "stock-30981181.jpg",
+      "size": [
+        6240,
+        4160
+      ],
+      "pexels_id": 30981181,
+      "page": "https://www.pexels.com/photo/traveler-with-luggage-in-airport-corridor-30981181/",
+      "photographer": "Jake Ryan",
+      "query": "traveler with suitcase airport",
+      "beat": "hero",
+      "alt": "Person walking with luggage on blue carpeted airport corridor, traveling",
+      "sha256": "b6215af7ebc66a52401e77e8dcc503180df22b7607a0608d9fda254bd5218eb1",
+      "license": "Pexels License (free use); credited in the reel footer"
+    },
+    {
+      "path": "stock-3885527.jpg",
+      "size": [
+        6150,
+        4100
+      ],
+      "pexels_id": 3885527,
+      "page": "https://www.pexels.com/photo/back-view-of-trendy-businesswoman-carrying-baggage-before-flight-near-airport-building-3885527/",
+      "photographer": "Gustavo Fring",
+      "query": "traveler with suitcase airport",
+      "beat": "grid",
+      "alt": "Full length of stylish female traveler in warm coat walking with suitcase and bag looking at camera after arrival against airport terminal",
+      "sha256": "151182195a7bab5dd10c16666dde2337f03719ee1c12b5da524c82a64ea17616",
+      "license": "Pexels License (free use); credited in the reel footer"
+    },
+    {
+      "path": "stock-17423832.jpg",
+      "size": [
+        6000,
+        4000
+      ],
+      "pexels_id": 17423832,
+      "page": "https://www.pexels.com/photo/taj-mahal-in-india-17423832/",
+      "photographer": "Sanket Sawale",
+      "query": "taj mahal india travel",
+      "beat": "diaspora",
+      "alt": "The iconic Taj Mahal stands majestically with its reflection in a serene pond, surrounded by lush gardens.",
+      "sha256": "07a768a1cfa6b1fdefca87b21c51f938894e19abe5f7b9dfcca0a151ddc2ac8c",
+      "license": "Pexels License (free use); credited in the reel footer"
+    },
+    {
+      "path": "stock-6354991.jpg",
+      "size": [
+        5184,
+        3456
+      ],
+      "pexels_id": 6354991,
+      "page": "https://www.pexels.com/photo/black-and-white-photo-of-people-on-airport-6354991/",
+      "photographer": "Philippe Bonnaire",
+      "query": "airport departure terminal travelers",
+      "beat": "payoff",
+      "alt": "Black and white photo of travelers walking with luggage in a bustling airport terminal.",
+      "sha256": "4420805cbf78ea34085b269854ff0f2796965a64b678e9c18030b0455af5c3af",
+      "license": "Pexels License (free use); credited in the reel footer"
+    }
+  ],
+  "rejected": [
+    {
+      "candidate": "pexels 37772239",
+      "reason": "signage screen: alt text names unrelated locale(s): amsterdam, schiphol"
+    }
+  ]
+}

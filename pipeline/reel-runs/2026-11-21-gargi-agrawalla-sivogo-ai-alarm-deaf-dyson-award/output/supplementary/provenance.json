@@ -1,0 +1,134 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "gargi-agrawalla-sivogo-ai-alarm-deaf-dyson-award",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Gargi Agrawalla",
+    "SIVO.GO",
+    "James Dyson Award",
+    "Loughborough University",
+    "UK James Dyson Award",
+    "Times"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Gargi Agrawalla' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'SIVO.GO' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'UK James Dyson Award' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Loughborough University Entrance.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1434547)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:AAED.jpg",
+      "route": "identity \u2014 depicts (P180=Q1434547)",
+      "verdict": "accepted",
+      "reason": "1200x1144, CC BY 2.5, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Bicycle parking at Loughborough students union.jpg",
+      "route": "identity \u2014 depicts (P180=Q1434547)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:James Watt beam engine at Loughborough Students Union.jpg",
+      "route": "identity \u2014 depicts (P180=Q1434547)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:James watt beam engine plaque.jpg",
+      "route": "identity \u2014 depicts (P180=Q1434547)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Knight at William Morris.jpg",
+      "route": "identity \u2014 depicts (P180=Q1434547)",
+      "verdict": "accepted",
+      "reason": "3072x4096, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:The Times - Argentine Capture of the Falkland Islands 1821.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q50008)",
+      "verdict": "rejected",
+      "reason": "resolution: 485x569 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Alfred Ingvald Naess (1877-1955) in The Times of London, Greater London, England on February 26, 1894.jpg",
+      "route": "identity \u2014 depicts (P180=Q50008)",
+      "verdict": "rejected",
+      "reason": "resolution: 819x916 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Frontpage weekly magazine \"The Times\" May 15 1940, With headline \"The Old prime minister and the new\".jpg",
+      "route": "identity \u2014 depicts (P180=Q50008)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Image taken from page 26 of 'London and its Environs. A picturesque survey of the metropolis and the suburbs ... Translated by Henry Frith. With ... illustrations' (11291478094).jpg",
+      "route": "identity \u2014 depicts (P180=Q50008)",
+      "verdict": "accepted",
+      "reason": "1966x778, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:John Sims Obituary TIMES.jpg",
+      "route": "identity \u2014 depicts (P180=Q50008)",
+      "verdict": "rejected",
+      "reason": "resolution: 740x297 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:London Times on Zulfiqar Ali Bhutto duriang 1971 by Swadhin Bangla Betar Kendro.jpg",
+      "route": "identity \u2014 depicts (P180=Q50008)",
+      "verdict": "accepted",
+      "reason": "2026x2418, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:AAED.jpg",
+      "route": "identity \u2014 depicts (P180=Q1434547)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/7/73/AAED.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    },
+    {
+      "candidate": "File:London Times on Zulfiqar Ali Bhutto duriang 1971 by Swadhin Bangla Betar Kendro.jpg",
+      "route": "identity \u2014 depicts (P180=Q50008)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/0/09/London_Times_on_Zulfiqar_Ali_Bhutto_duriang_1971_by_Swadhin_Bangla_Betar_Kendro.jpg?utm_source=commons.w"
+    },
+    {
+      "candidate": "File:Knight at William Morris.jpg",
+      "route": "identity \u2014 depicts (P180=Q1434547)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/c/cf/Knight_at_William_Morris.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=origina"
+    },
+    {
+      "candidate": "File:Image taken from page 26 of 'London and its Environs. A picturesque survey of the metropolis and the suburbs ... Translated by Henry Frith. With ... illustrations' (11291478094).jpg",
+      "route": "identity \u2014 depicts (P180=Q50008)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/5/5f/Image_taken_from_page_26_of_%27London_and_its_Environs._A_picturesque_survey_of_the_metropolis_and_the_s"
+    }
+  ],
+  "extras": []
+}

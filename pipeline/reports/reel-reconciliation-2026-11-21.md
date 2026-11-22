@@ -1,14 +1,14 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-11-21T17:21:46+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-11-21T23:23:32+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
-- Channel uploads (actual, via API): **279**
-- prebuilt_reels rows: 212 (182 with a yt_video_id)
+- Channel uploads (actual, via API): **280**
+- prebuilt_reels rows: 213 (183 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 95
-- **In sync** (channel video backed by a DB/publish-log record): **161**
+- Phase 2 publish-log entries: 96
+- **In sync** (channel video backed by a DB/publish-log record): **162**
 - Unknown — legacy-logged only: 101
 - Unknown — no record anywhere: 17
 - Ghost DB rows (yt_video_id not on channel): 16
@@ -292,7 +292,7 @@ _None._
 - row `9cc51a36-a469-4ddf-96b3-3570fdcc497a` · slug infosys-doj-investigation-h1b-classifications-disclosure · yt_video_id `sVryrh31poY` · on channel: no
 - row `3c385175-84c2-48c0-afec-378bee1ba1d6` · slug ambani-adds-6-3-billion-reliance-shares-jump-record-profit · yt_video_id `B45MLVEFtk4` · on channel: no
 
-## (d) In sync (161)
+## (d) In sync (162)
 
 - `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
 - `5rPRXIxjDVc` · public · 2026-06-17 · Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts [prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee]
@@ -455,4 +455,5 @@ _None._
 - `bxnPvendbBM` · public · 2026-11-20 · Visa-Free Entry for Indians From January 1, 2027; Applications Open December 1 #Shorts #VisaNews [prebuilt_reels:5dbafbab-2a4c-4660-b1bf-a7dca79992c8]
 - `C5tzgwrGBG4` · public · 2026-11-20 · Rupee Closes Above 93 for First Time in Seven Months, at 92.67 to the Dollar #Shorts #Markets [prebuilt_reels:bf721aef-e84c-452f-865d-66b5d9a22bc6]
 - `qqZu6B-W0wA` · public · 2026-11-21 · India Crosses 1 Crore HPV Vaccine Doses in Less Than Nine Months #Shorts #News [prebuilt_reels:3035797c-6ec9-4605-adab-31654a332fb9]
+- `3fTjv2QeF0s` · public · 2026-11-21 · India's First Bullet Train to Run in Last Quarter of 2027, Surat-Vapi First #Shorts #News [prebuilt_reels:48da8e70-de35-471f-add9-6adde401126c]
 

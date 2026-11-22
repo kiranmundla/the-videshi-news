@@ -1,11 +1,11 @@
 {
   "counts": {
-    "channel_videos": 279,
-    "db_rows": 212,
-    "db_rows_with_yt_id": 182,
+    "channel_videos": 280,
+    "db_rows": 213,
+    "db_rows_with_yt_id": 183,
     "legacy_log_entries": 205,
-    "publish_log_entries": 95,
-    "in_sync": 161,
+    "publish_log_entries": 96,
+    "in_sync": 162,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 17,
     "ghost_db_rows": 16,
@@ -1140,6 +1140,13 @@
       "privacy": "public",
       "video_id": "qqZu6B-W0wA",
       "record": "prebuilt_reels:3035797c-6ec9-4605-adab-31654a332fb9"
+    },
+    {
+      "title": "India's First Bullet Train to Run in Last Quarter of 2027, Surat-Vapi First #Shorts #News",
+      "published_at": "2026-11-21T23:23:16Z",
+      "privacy": "public",
+      "video_id": "3fTjv2QeF0s",
+      "record": "prebuilt_reels:48da8e70-de35-471f-add9-6adde401126c"
     }
   ],
   "unknown_legacy_logged": [
@@ -4149,5 +4156,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-11-21T17:21:46+00:00"
+  "generated_at": "2026-11-21T23:23:32+00:00"
 }

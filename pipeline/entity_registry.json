@@ -26399,6 +26399,494 @@
    "resolved_confidence": "medium",
    "resolved_context": "Heat-Linked Gene Variant Helps Male Malaria Mosquitoes Mate, May Aid Transmission HEAT-LINKED GENE VARIANT HELPS MALE MALARIA MOSQUITOES MATE",
    "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Heat-Linked Gene Variant Helps Male Malaria Mosquitoes Mate, May Aid Transmission HEAT-LINKED GENE VARIANT HELPS MALE MALARIA MOSQUITOES MATE'; description: mosquito and malaria vector from India"
+  },
+  {
+   "name": "Love You／While We Were Drunk",
+   "aliases": [
+    "Love You",
+    "Love You／While We Were Drunk"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q286314",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "At Ahmedabad's Narendra Modi Stadium, Diljit Dosanjh Calls Out 'Double Standards' Over Concert Complaints   <div class=\"key-takeaways\"><ul>\n<li>Diljit Dosanjh performed at Ahmedabad's Narendra Modi Stadium on Saturday, November 21, as part of his Aura World Tour — a Punjabi-language set at the world's largest cricket stadium.</li>\n<li>On stage, he called out what he described as double standards: ",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'At Ahmedabad\\'s Narendra Modi Stadium, Diljit Dosanjh Calls Out \\'Double Standards\\' Over Concert Complaints   <div class=\"key-takeaways\"><ul>\\n<li>Diljit Dosanjh performed at Ahmedabad\\'s Narendra Modi St'; description: 2011 Taiwanese television series"
+  },
+  {
+   "name": "Clyde Nelson",
+   "aliases": [
+    "Clyde Nelson"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q102501759",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Deported in 1999, Brooklyn Man Can Still Seek Sale of Home Bought in 1985, Court Rules   <div class=\"key-takeaways\"><ul>\n<li>A New York appeals court ruled on November 18 that Clyde Nelson — removed from the United States in 1999 and never returned — can pursue the forced sale of the Brooklyn home he co-owns with his former wife.</li>\n<li>The couple's 2007 divorce never disposed of the house, so t",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Deported in 1999, Brooklyn Man Can Still Seek Sale of Home Bought in 1985, Court Rules   <div class=\"key-takeaways\"><ul>\\n<li>A New York appeals court ruled on November 18 that Clyde Nelson — removed f'; description: American baseball player (1921–1949)"
+  },
+  {
+   "name": "Bryan Lourd",
+   "aliases": [
+    "Bryan Lourd",
+    "Bryan William Lourd"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q4980225",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "CAA Chief Bryan Lourd Urges Congress to Pass NO FAKES Act Against AI Deepfakes   <div class=\"key-takeaways\"><ul>\n<li>Bryan Lourd, chief executive of talent agency CAA, used a New York Times opinion essay on Saturday to urge Congress to pass the NO FAKES Act before the year is out.</li>\n<li>The bill would create a federal right to control digital replicas of your voice and likeness — built on \"cont",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'CAA Chief Bryan Lourd Urges Congress to Pass NO FAKES Act Against AI Deepfakes   <div class=\"key-takeaways\"><ul>\\n<li>Bryan Lourd, chief executive of talent agency CAA, used a New York Times opinion es'; description: American talent agent (born 1960)"
+  },
+  {
+   "name": "No Fakes Act",
+   "aliases": [
+    "NO FAKES Act",
+    "No Fakes Act"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q137719232",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "CAA Chief Bryan Lourd Urges Congress to Pass NO FAKES Act Against AI Deepfakes   <div class=\"key-takeaways\"><ul>\n<li>Bryan Lourd, chief executive of talent agency CAA, used a New York Times opinion essay on Saturday to urge Congress to pass the NO FAKES Act before the year is out.</li>\n<li>The bill would create a federal right to control digital replicas of your voice and likeness — built on \"cont",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'CAA Chief Bryan Lourd Urges Congress to Pass NO FAKES Act Against AI Deepfakes   <div class=\"key-takeaways\"><ul>\\n<li>Bryan Lourd, chief executive of talent agency CAA, used a New York Times opinion es'; description: proposed law on digital replicas"
+  },
+  {
+   "name": "Riemann hypothesis",
+   "aliases": [
+    "Riemann Hypothesis",
+    "Riemann hypothesis",
+    "RH"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q205966",
+   "p18_file": "VignetteRiemannHypothesis.svg",
+   "p18_quality": 354,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Anthropic Mathematician Says He and Claude Have Proven the Riemann Hypothesis   <div class=\"key-takeaways\"><ul>\n<li>Levent Alpöge, a mathematician on Anthropic's technical staff, announced on Friday that he and the company's AI model Claude have produced a proof of the Riemann Hypothesis, the most famous unsolved problem in mathematics.</li>\n<li>The proof is not a paper but 17 million lines of cod",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Anthropic Mathematician Says He and Claude Have Proven the Riemann Hypothesis   <div class=\"key-takeaways\"><ul>\\n<li>Levent Alpöge, a mathematician on Anthropic\\'s technical staff, announced on Friday t'; description: conjecture in mathematics linked to the repartition of prime numbers"
+  },
+  {
+   "name": "Clay Mathematics Institute",
+   "aliases": [
+    "Clay Mathematics Institute"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q857975",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Anthropic Mathematician Says He and Claude Have Proven the Riemann Hypothesis   <div class=\"key-takeaways\"><ul>\n<li>Levent Alpöge, a mathematician on Anthropic's technical staff, announced on Friday that he and the company's AI model Claude have produced a proof of the Riemann Hypothesis, the most famous unsolved problem in mathematics.</li>\n<li>The proof is not a paper but 17 million lines of cod",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Anthropic Mathematician Says He and Claude Have Proven the Riemann Hypothesis   <div class=\"key-takeaways\"><ul>\\n<li>Levent Alpöge, a mathematician on Anthropic\\'s technical staff, announced on Friday t'; description: American foundation"
+  },
+  {
+   "name": "Ahmedabad",
+   "aliases": [
+    "Ahmedabad",
+    "Manchester of the East",
+    "Amdavad",
+    "Karnavati",
+    "Ahmadabad",
+    "Ashaval",
+    "अहमदाबाद"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1070",
+   "p18_file": "Amdavad Aerial.jpg",
+   "p18_quality": 500,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "At Ahmedabad's Narendra Modi Stadium, Diljit Dosanjh Calls Out 'Double Standards' Over Concert Complaints   <div class=\"key-takeaways\"><ul>\n<li>Diljit Dosanjh performed at Ahmedabad's Narendra Modi Stadium on Saturday, November 21, as part of his Aura World Tour — a Punjabi-language set at the world's largest cricket stadium.</li>\n<li>On stage, he called out what he described as double standards: ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'At Ahmedabad\\'s Narendra Modi Stadium, Diljit Dosanjh Calls Out \\'Double Standards\\' Over Concert Complaints   <div class=\"key-takeaways\"><ul>\\n<li>Diljit Dosanjh performed at Ahmedabad\\'s Narendra Modi St'; description: city in the state of Gujarat, India"
+  },
+  {
+   "name": "Brooklyn",
+   "aliases": [
+    "Brooklyn",
+    "Brooklyn, New York City",
+    "Brooklyn, New York",
+    "Brooklyn, New York City, New York",
+    "Brooklyn, NY"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q18419",
+   "p18_file": "Bedstuybrownstone1.jpg",
+   "p18_quality": 1600,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Deported in 1999, Brooklyn Man Can Still Seek Sale of Home Bought in 1985, Court Rules   <div class=\"key-takeaways\"><ul>\n<li>A New York appeals court ruled on November 18 that Clyde Nelson — removed from the United States in 1999 and never returned — can pursue the forced sale of the Brooklyn home he co-owns with his former wife.</li>\n<li>The couple's 2007 divorce never disposed of the house, so t",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Deported in 1999, Brooklyn Man Can Still Seek Sale of Home Bought in 1985, Court Rules   <div class=\"key-takeaways\"><ul>\\n<li>A New York appeals court ruled on November 18 that Clyde Nelson — removed f'; description: borough of New York City, New York, United States"
+  },
+  {
+   "name": "Kpler",
+   "aliases": [
+    "Kpler"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q126709116",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Tanker Hit Near Khasab as Hormuz Traffic Stays About 65% Below Pre-War Levels ANOTHER TANKER HIT IN THE STRAIT OF HORMUZ A tanker sailing outbound through the Strait of Hormuz was hit on its stern by an unidentified projectile about 11 nautical miles north of Khasab, UKMTO said, with no injuries reported. Oil flows through the strait fell to about 10 million barrels a day by November 10, down from",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Tanker Hit Near Khasab as Hormuz Traffic Stays About 65% Below Pre-War Levels ANOTHER TANKER HIT IN THE STRAIT OF HORMUZ A tanker sailing outbound through the Strait of Hormuz was hit on its stern by '; description: "
+  },
+  {
+   "name": "B28 trainset",
+   "aliases": [
+    "B28 trainset"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q138937330",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "India's First Bullet Train to Run in Last Quarter of 2027, Surat-Vapi First INDIA'S FIRST BULLET TRAIN RUNS IN LATE 2027 India's first high-speed rail service will commence in the last quarter of 2027, with the Surat-Vapi section of the Mumbai-Ahmedabad corridor opening first. For travellers, nothing can be booked yet: the first service is a Gujarat section, not a Mumbai-Ahmedabad through journey.",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: \"India's First Bullet Train to Run in Last Quarter of 2027, Surat-Vapi First INDIA'S FIRST BULLET TRAIN RUNS IN LATE 2027 India's first high-speed rail service will commence in the last quarter of 2027\"; description: Indigenous High Speed Train by BEML"
+  },
+  {
+   "name": "Loughborough University",
+   "aliases": [
+    "Loughborough University",
+    "University of Loughborough"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1434547",
+   "p18_file": "Loughborough University Entrance.jpg",
+   "p18_quality": 4032,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Deaf Graduate's AI Alarm SIVO.GO Wins UK James Dyson Award and £5,000   <div class=\"key-takeaways\"><ul>\n<li>Gargi Agrawalla, a 23-year-old Loughborough University product design graduate born profoundly deaf, built SIVO.GO, an AI device that alerts deaf users to fire alarms, doorbells and knocks.</li>\n<li>The device runs its AI on the unit itself — trained on more than 500 sound samples, with no W",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Deaf Graduate\\'s AI Alarm SIVO.GO Wins UK James Dyson Award and £5,000   <div class=\"key-takeaways\"><ul>\\n<li>Gargi Agrawalla, a 23-year-old Loughborough University product design graduate born profound'; description: public university in Loughborough, UK"
+  },
+  {
+   "name": "Anupama Ramachandran",
+   "aliases": [
+    "Anupama Ramachandran"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q133733440",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Anupama Ramachandran Beats So Man Yan 3-1 to Defend World Snooker Title   <div class=\"key-takeaways\"><ul>\n<li>Anupama Ramachandran beat Hong Kong China's So Man Yan 3-1 in Indore on Saturday to retain her IBSF World Snooker Championship title.</li>\n<li>She is the first Indian to win back-to-back world snooker crowns, having won her maiden title in Doha in November 2025.</li>\n<li>After dropping the",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Anupama Ramachandran Beats So Man Yan 3-1 to Defend World Snooker Title   <div class=\"key-takeaways\"><ul>\\n<li>Anupama Ramachandran beat Hong Kong China\\'s So Man Yan 3-1 in Indore on Saturday to retain'; description: Indian snooker player"
+  },
+  {
+   "name": "IBSF World Snooker Championship",
+   "aliases": [
+    "IBSF World Snooker Championship",
+    "World Amateur Snooker Championship"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1165859",
+   "p18_file": "IBSF World Snooker Championship 2015.jpg",
+   "p18_quality": 1080,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Anupama Ramachandran Beats So Man Yan 3-1 to Defend World Snooker Title   <div class=\"key-takeaways\"><ul>\n<li>Anupama Ramachandran beat Hong Kong China's So Man Yan 3-1 in Indore on Saturday to retain her IBSF World Snooker Championship title.</li>\n<li>She is the first Indian to win back-to-back world snooker crowns, having won her maiden title in Doha in November 2025.</li>\n<li>After dropping the",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Anupama Ramachandran Beats So Man Yan 3-1 to Defend World Snooker Title   <div class=\"key-takeaways\"><ul>\\n<li>Anupama Ramachandran beat Hong Kong China\\'s So Man Yan 3-1 in Indore on Saturday to retain'; description: snooker tournament"
+  },
+  {
+   "name": "snooker",
+   "aliases": [
+    "Snooker",
+    "snooker"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q11015",
+   "p18_file": "Snooker table selby.JPG",
+   "p18_quality": 2500,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Anupama Ramachandran Beats So Man Yan 3-1 to Defend World Snooker Title   <div class=\"key-takeaways\"><ul>\n<li>Anupama Ramachandran beat Hong Kong China's So Man Yan 3-1 in Indore on Saturday to retain her IBSF World Snooker Championship title.</li>\n<li>She is the first Indian to win back-to-back world snooker crowns, having won her maiden title in Doha in November 2025.</li>\n<li>After dropping the",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Anupama Ramachandran Beats So Man Yan 3-1 to Defend World Snooker Title   <div class=\"key-takeaways\"><ul>\\n<li>Anupama Ramachandran beat Hong Kong China\\'s So Man Yan 3-1 in Indore on Saturday to retain'; description: variant of billiard sports"
+  },
+  {
+   "name": "The Final Stage",
+   "aliases": [
+    "Final Stage",
+    "The Final Stage"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q7733944",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Air India Crash Probe in Final Stage, Government Tells Supreme Court   The Air India crash investigation is nearing completion, according to the government.   \n The investigation into the June 2025 Air India crash that killed 260 people is in its final stage, the government told the Supreme Court on Wednesday. \n Solicitor General Tushar Mehta asked for two to three weeks to complete the process, a",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Air India Crash Probe in Final Stage, Government Tells Supreme Court   The Air India crash investigation is nearing completion, according to the government.   \\n The investigation into the June 2025 Ai'; description: 1995 film by Frank Howson"
+  },
+  {
+   "name": "International Bobsleigh and Skeleton Federation",
+   "aliases": [
+    "IBSF",
+    "International Bobsleigh and Skeleton Federation",
+    "International Bobsleigh & Skeleton Federation"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q547007",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Anupama Ramachandran Beats So Man Yan 3-1 to Defend World Snooker Title   Anupama Ramachandran defends her IBSF World Snooker title, winning 3-1 against So Man Yan.   \n Anupama Ramachandran beat Hong Kong China's So Man Yan 3-1 in Indore on Saturday to retain her IBSF World Snooker Championship title. \n She is the first Indian to win back-to-back world snooker crowns, having won her maiden title i",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Anupama Ramachandran Beats So Man Yan 3-1 to Defend World Snooker Title   Anupama Ramachandran defends her IBSF World Snooker title, winning 3-1 against So Man Yan.   \\n Anupama Ramachandran beat Hong '; description: international sport governing body"
+  },
+  {
+   "name": "Narendra Modi Stadium",
+   "aliases": [
+    "Narendra Modi Stadium",
+    "Motera Stadium"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q3531421",
+   "p18_file": "Narendra Modi Stadium view from the gallery.jpg",
+   "p18_quality": 3656,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "At Ahmedabad's Narendra Modi Stadium, Diljit Dosanjh Calls Out 'Double Standards' Over Concert Complaints   Diljit Dosanjh performed at Ahmedabad's Narendra Modi Stadium on November 21.   \n Diljit Dosanjh performed at Ahmedabad's Narendra Modi Stadium on Saturday, November 21, as part of his Aura World Tour — a Punjabi-language set at the world's largest cricket stadium. \n On stage, he called out ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: \"At Ahmedabad's Narendra Modi Stadium, Diljit Dosanjh Calls Out 'Double Standards' Over Concert Complaints   Diljit Dosanjh performed at Ahmedabad's Narendra Modi Stadium on November 21.   \\n Diljit Dos\"; description: cricket stadium in Ahmedabad, Gujarat, India"
+  },
+  {
+   "name": "Fakes",
+   "aliases": [
+    "FAKES",
+    "Fakes"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q113699312",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "CAA Chief Bryan Lourd Urges Congress to Pass NO FAKES Act Against AI Deepfakes   Bryan Lourd urges Congress to pass the NO FAKES Act by year-end.   \n Bryan Lourd, chief executive of talent agency CAA, used a New York Times opinion essay on Saturday to urge Congress to pass the NO FAKES Act before the year is out. \n The bill would create a federal right to control digital replicas of your voice and",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'CAA Chief Bryan Lourd Urges Congress to Pass NO FAKES Act Against AI Deepfakes   Bryan Lourd urges Congress to pass the NO FAKES Act by year-end.   \\n Bryan Lourd, chief executive of talent agency CAA,'; description: Canadian television series"
+  },
+  {
+   "name": "Viksit Bharat @2047",
+   "aliases": [
+    "Viksit Bharat",
+    "Viksit Bharat @2047"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q141404515",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Modi at IIT Kharagpur's 75th Year: 'Break the Limits, Unlock the Possibilities'   He emphasized breaking limits to achieve 'Viksit Bharat' by 2047.   \n Prime Minister Narendra Modi addressed the platinum jubilee celebrations of IIT Kharagpur on Saturday, November 21, marking 75 years of India's first Indian Institute of Technology, founded in 1951. \n He interacted with 75 students under the '75 Vo",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: \"Modi at IIT Kharagpur's 75th Year: 'Break the Limits, Unlock the Possibilities'   He emphasized breaking limits to achieve 'Viksit Bharat' by 2047.   \\n Prime Minister Narendra Modi addressed the plati\"; description: national-level policy framework in India"
+  },
+  {
+   "name": "Mahatma Gandhi Setu",
+   "aliases": [
+    "Mahatma Gandhi Setu",
+    "Gandhi Setu",
+    "Ganga Setu"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q2724307",
+   "p18_file": "Gandhi Setu in Patna, India.jpg",
+   "p18_quality": 1252,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Modi Dedicates Nitish Setu, New Six-Lane Ganga Bridge in Bihar   \n<div class=\"key-takeaways\"><ul>\n<li>Prime Minister Narendra Modi dedicated Nitish Setu, a six-lane extradosed cable-stayed bridge over the Ganga in Bihar, to the nation on Saturday, November 21, 2026.</li>\n<li>The 19.7 km project — a 9.7 km main bridge plus 10 km of approach roads — was built at a cost of around ₹4,280 crore and con",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Modi Dedicates Nitish Setu, New Six-Lane Ganga Bridge in Bihar   \\n<div class=\"key-takeaways\"><ul>\\n<li>Prime Minister Narendra Modi dedicated Nitish Setu, a six-lane extradosed cable-stayed bridge over'; description: bridge in India Mahatma Gandhi setu patna"
+  },
+  {
+   "name": "Seattle–Tacoma International Airport",
+   "aliases": [
+    "Seattle-Tacoma International Airport",
+    "Seattle–Tacoma International Airport",
+    "Sea–Tac",
+    "SeaTac",
+    "KSEA",
+    "Seattle Tacoma International Airport",
+    "Sea-Tac",
+    "Sea-Tac Airport",
+    "Sea–Tac Airport",
+    "SEA",
+    "SEA Airport"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q14295",
+   "p18_file": "Seattle–Tacoma International Airport, Washington, October 7, 2023.jpg",
+   "p18_quality": 4048,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "ICE Arrests Two on Sea-Tac Jetway, Delaying Los Angeles-Bound Flight   \n<div class=\"key-takeaways\"><ul>\n<li>ICE officers arrested two people on the jetway of Alaska Airlines Flight 1306 at Seattle-Tacoma International Airport on Saturday morning, November 21, as passengers boarded for Los Angeles.</li>\n<li>ICE said the operation targeted Ricardo Larrondo Mendoza, who it said had overstayed his vis",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'ICE Arrests Two on Sea-Tac Jetway, Delaying Los Angeles-Bound Flight   \\n<div class=\"key-takeaways\"><ul>\\n<li>ICE officers arrested two people on the jetway of Alaska Airlines Flight 1306 at Seattle-Tac'; description: airport in SeaTac, Washington, USA"
+  },
+  {
+   "name": "Rishabh Pant",
+   "aliases": [
+    "Rishabh Pant",
+    "Rishabh Rajendra Pant"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q21622311",
+   "p18_file": "Rishabh Pant.jpg",
+   "p18_quality": 522,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "India Post 720 for 9 at Wellington, Highest Test Total in New Zealand   \n<div class=\"key-takeaways\"><ul>\n<li>India declared at 720 for 9 at the Basin Reserve, the highest innings total in a Test match played in New Zealand, passing New Zealand's 715 for 6 against Bangladesh at Hamilton in 2019.</li>\n<li>KL Rahul made 136 and Rishabh Pant 128, and each of India's top five scored 80 or more — the fi",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'India Post 720 for 9 at Wellington, Highest Test Total in New Zealand   \\n<div class=\"key-takeaways\"><ul>\\n<li>India declared at 720 for 9 at the Basin Reserve, the highest innings total in a Test match'; description: Indian cricketer"
+  },
+  {
+   "name": "Alaska Airlines",
+   "aliases": [
+    "Alaska Airlines"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q822614",
+   "p18_file": "Alaska Boeing 737-900ER N407AS departing Boston June 2025.jpg",
+   "p18_quality": 7176,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "ICE Arrests Two on Sea-Tac Jetway, Delaying Los Angeles-Bound Flight   \n<div class=\"key-takeaways\"><ul>\n<li>ICE officers arrested two people on the jetway of Alaska Airlines Flight 1306 at Seattle-Tacoma International Airport on Saturday morning, November 21, as passengers boarded for Los Angeles.</li>\n<li>ICE said the operation targeted Ricardo Larrondo Mendoza, who it said had overstayed his vis",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'ICE Arrests Two on Sea-Tac Jetway, Delaying Los Angeles-Bound Flight   \\n<div class=\"key-takeaways\"><ul>\\n<li>ICE officers arrested two people on the jetway of Alaska Airlines Flight 1306 at Seattle-Tac'; description: major American airline"
+  },
+  {
+   "name": "So Man-yan",
+   "aliases": [
+    "So Man Yan",
+    "So Man-yan"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q9185090",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Anupama Ramachandran Beats So Man Yan 3-1 to Defend World Snooker Title ANUPAMA RAMACHANDRAN DEFENDS WORLD SNOOKER TITLE IN INDORE Anupama Ramachandran beat Hong Kong China's So Man Yan 3-1 in Indore on Saturday to retain her IBSF World Snooker Championship title. She is the first Indian to win back-to-back world snooker crowns. She beat Ng On-yee 3-2 in Doha a year ago to win her maiden title Aft",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: \"Anupama Ramachandran Beats So Man Yan 3-1 to Defend World Snooker Title ANUPAMA RAMACHANDRAN DEFENDS WORLD SNOOKER TITLE IN INDORE Anupama Ramachandran beat Hong Kong China's So Man Yan 3-1 in Indore \"; description: snooker player"
+  },
+  {
+   "name": "Indore",
+   "aliases": [
+    "Indore"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q66616",
+   "p18_file": "Indore Rajwada.jpg",
+   "p18_quality": 800,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Anupama Ramachandran Beats So Man Yan 3-1 to Defend World Snooker Title ANUPAMA RAMACHANDRAN DEFENDS WORLD SNOOKER TITLE IN INDORE Anupama Ramachandran beat Hong Kong China's So Man Yan 3-1 in Indore on Saturday to retain her IBSF World Snooker Championship title. She is the first Indian to win back-to-back world snooker crowns. She beat Ng On-yee 3-2 in Doha a year ago to win her maiden title Aft",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: \"Anupama Ramachandran Beats So Man Yan 3-1 to Defend World Snooker Title ANUPAMA RAMACHANDRAN DEFENDS WORLD SNOOKER TITLE IN INDORE Anupama Ramachandran beat Hong Kong China's So Man Yan 3-1 in Indore \"; description: Metropolis in Madhya Pradesh, India"
   }
  ]
 }

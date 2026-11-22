@@ -1,0 +1,78 @@
+[
+  {
+    "id": "ccaae6f4-4727-4f10-9c42-b76948e3569a",
+    "headline": "At Ahmedabad's Narendra Modi Stadium, Diljit Dosanjh Calls Out 'Double Standards",
+    "slug": "diljit-dosanjh-ahmedabad-stadium-double-standards-coldplay",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the Coldplay concert that Dosanjh referenced. This will provide context for readers unfamiliar with the timeline.",
+        "Include quotes from Dosanjh's performance to enhance the article's depth and provide a more vivid account of his statements, rather than relying solely on paraphrasing.",
+        "Provide more context on the nature of the complaints against Dosanjh's concerts. This could include specific examples or details about the complaints to help readers understand the situation better.",
+        "Mention the significance of the venue itself, such as its capacity or past notable events, to give readers a better sense of the importance of Dosanjh's performance there."
+      ],
+      "embed_opportunities": [
+        "Embed a video clip of Diljit Dosanjh's performance or a relevant segment of his speech to give readers a direct connection to the event."
+      ]
+    }
+  },
+  {
+    "id": "3b240803-635e-433d-969d-8b75a99845ef",
+    "headline": "Deported in 1999, Brooklyn Man Can Still Seek Sale of Home Bought in 1985, Court",
+    "slug": "deported-brooklyn-man-partition-sale-shared-home-nelson-ruling",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by including specific dates for key milestones, such as when Clyde Nelson filed for partition in 2019 and the timeline of the divorce proceedings, to enhance completeness and clarity.",
+        "Provide more context about the implications of the court's ruling for similar cases, such as how this might affect other individuals in similar situations regarding property ownership after deportation or divorce.",
+        "Include a brief explanation of the legal terms used, such as 'partition action' and 'tenancy in common,' to improve clarity for readers who may not be familiar with legal jargon."
+      ],
+      "embed_opportunities": [
+        "Embed the official court ruling or a relevant tweet from a legal expert discussing the implications of this case."
+      ]
+    }
+  },
+  {
+    "id": "3014c15a-6221-4cdd-9caf-dd132390d2a7",
+    "headline": "CAA Chief Bryan Lourd Urges Congress to Pass NO FAKES Act Against AI Deepfakes",
+    "slug": "caa-bryan-lourd-no-fakes-act-deepfakes-congress",
+    "category": "technology",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Lourd used a New York Times opinion essay on Saturday to urge Congress to pass t\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Include a specific timeline for when the NO FAKES Act is expected to be voted on in Congress to inform readers about potential next steps.",
+        "Clarify the implications of the bill by providing concrete examples of how unauthorized use of likenesses has impacted individuals or celebrities in the past, which would help readers understand the urgency of the legislation.",
+        "Add a brief explanation of the current state of laws regarding digital likenesses to provide context for why the NO FAKES Act is necessary and how it differs from existing regulations.",
+        "Ensure that the attribution to Variety and TheWrap is clear by specifying what information was sourced from each publication, enhancing the article's credibility."
+      ],
+      "embed_opportunities": [
+        "Embed a link to the official text of the NO FAKES Act or a relevant tweet from Senator Chris Coons regarding the bill to provide readers with direct access to more information."
+      ]
+    }
+  },
+  {
+    "id": "874c3c8b-c1d7-49bb-ab69-a47c766dba5f",
+    "headline": "Anthropic Mathematician Says He and Claude Have Proven the Riemann Hypothesis",
+    "slug": "anthropic-mathematician-claude-riemann-hypothesis-proof-claim",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the Riemann Hypothesis and why its proof matters in the context of mathematics and its applications. This could help readers understand the implications of the announcement better.",
+        "Include a direct quote from Levent Alp\u00f6ge or another relevant mathematician to provide more context and authority to the claims made in the article.",
+        "Provide a clearer timeline of events, including when Alp\u00f6ge began working on the proof and when he expects the Clay Mathematics Institute to review it, to give readers a sense of the process ahead."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Clay Mathematics Institute regarding their stance on the Riemann Hypothesis or the Millennium Prize to provide official context."
+      ]
+    }
+  }
+]

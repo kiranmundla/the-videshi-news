@@ -1,0 +1,22 @@
+{
+ "hook_line": "ANOTHER TANKER HIT IN THE STRAIT OF HORMUZ",
+ "hook_stat": {
+  "big": "65%",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Strait of Hormuz traffic about 65% below pre-conflict levels"
+ },
+ "stats": [
+  {"big": "263", "label": "Vessel transits in the seven days to November 18, down from 308 a week earlier"},
+  {"big": "106", "label": "Incidents recorded by UKMTO in the strait since February 28"},
+  {"big": "6", "label": "Tankers attacked during the week"}
+ ],
+ "diaspora_bullets": [
+  "The casualties this week included Indian seafarers",
+  "One crew member missing and two injured on an LPG tanker attacked on November 16"
+ ],
+ "key_entities": ["Strait of Hormuz", "Khasab", "UKMTO", "Kpler"],
+ "news_summary": "A tanker sailing outbound through the Strait of Hormuz was hit on its stern by an unidentified projectile about 11 nautical miles north of Khasab, UKMTO said, with no injuries reported.",
+ "payoff": "Oil flows through the strait fell to about 10 million barrels a day by November 10, down from 13.4 million at the start of the month.",
+ "versus": "",
+ "story_mood": "tense"
+}

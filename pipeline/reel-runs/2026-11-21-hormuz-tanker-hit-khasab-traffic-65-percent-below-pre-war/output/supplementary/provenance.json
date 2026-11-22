@@ -1,0 +1,92 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "hormuz-tanker-hit-khasab-traffic-65-percent-below-pre-war",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Strait of Hormuz",
+    "Khasab",
+    "UKMTO",
+    "Kpler",
+    "Traffic",
+    "Joint Maritime Information Center"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'UKMTO' named 'United Kingdom Maritime Trade Operations', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'Traffic' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Joint Maritime Information Center' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:\u062a\u0627\u0628\u0634 \u0622\u0641\u062a\u0627\u0628 \u0627\u0632 \u0628\u06cc\u0646 \u0627\u0628\u0631\u0647\u0627 - panoramio.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q79883)",
+      "verdict": "rejected",
+      "reason": "resolution: 1024x768 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Elphinstone Inlet.webp",
+      "route": "identity \u2014 depicts (P180=Q79883)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/webp)"
+    },
+    {
+      "candidate": "File:Elphinstone Inlet 2.webp",
+      "route": "identity \u2014 depicts (P180=Q79883)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/webp)"
+    },
+    {
+      "candidate": "File:ISS047-E-146174 - View of Earth.jpg",
+      "route": "identity \u2014 depicts (P180=Q79883)",
+      "verdict": "accepted",
+      "reason": "4928x3280, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Kappa Ebisen Monochrome Package of Naphtha Shock at Lawson Store100 Inada Shinmachi Higashi-Osaka.jpg",
+      "route": "identity \u2014 depicts (P180=Q79883)",
+      "verdict": "accepted",
+      "reason": "3000x4000, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Khasab Airport.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1431085)",
+      "verdict": "accepted",
+      "reason": "3456x2304, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Khasab Airport.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1431085)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/1/17/Khasab_Airport.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    },
+    {
+      "candidate": "File:ISS047-E-146174 - View of Earth.jpg",
+      "route": "identity \u2014 depicts (P180=Q79883)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/d/d6/ISS047-E-146174_-_View_of_Earth.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content="
+    },
+    {
+      "candidate": "File:Kappa Ebisen Monochrome Package of Naphtha Shock at Lawson Store100 Inada Shinmachi Higashi-Osaka.jpg",
+      "route": "identity \u2014 depicts (P180=Q79883)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/d/d3/Kappa_Ebisen_Monochrome_Package_of_Naphtha_Shock_at_Lawson_Store100_Inada_Shinmachi_Higashi-Osaka.jpg?ut"
+    }
+  ],
+  "extras": []
+}

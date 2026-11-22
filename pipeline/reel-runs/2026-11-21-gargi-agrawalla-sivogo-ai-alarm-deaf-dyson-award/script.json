@@ -1,0 +1,36 @@
+{
+ "diaspora_bullets": [
+  "SIVO.GO came from her own experience as a deaf cochlear implant user who felt anxious when travelling somewhere unfamiliar",
+  "Alerts come through colour-coded lights, screen symbols and haptic vibrations"
+ ],
+ "hook_line": "DEAF GRADUATE'S AI ALARM WINS UK JAMES DYSON AWARD",
+ "hook_stat": {
+  "big": "\u00a35,000",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Prize fund for SIVO.GO, the AI alarm for deaf users built by Gargi Agrawalla, UK winner of the James Dyson Award"
+ },
+ "key_entities": [
+  "Gargi Agrawalla",
+  "SIVO.GO",
+  "James Dyson Award",
+  "Loughborough University"
+ ],
+ "news_summary": "Gargi Agrawalla, a 23-year-old Loughborough University product design graduate born profoundly deaf, built SIVO.GO, an AI device that alerts deaf users to fire alarms, doorbells and knocks.",
+ "payoff": "SIVO.GO remains a prototype, but the \u00a35,000 funds reliability work, expanded user trials and steps toward certification and pilot manufacture.",
+ "stats": [
+  {
+   "big": "500+",
+   "label": "Sound samples used to train the AI model on the device itself"
+  },
+  {
+   "big": "23",
+   "label": "Age of Gargi Agrawalla, the Loughborough University graduate who built SIVO.GO"
+  },
+  {
+   "big": "12",
+   "label": "Age at which she received a cochlear implant and heard sounds for the first time"
+  }
+ ],
+ "story_mood": "celebratory",
+ "versus": ""
+}

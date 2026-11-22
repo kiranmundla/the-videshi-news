@@ -1,0 +1,82 @@
+[
+  {
+    "id": "6ebebf40-2a1a-4b3a-9af0-c9967f11db0c",
+    "headline": "Deaf Graduate's AI Alarm SIVO.GO Wins UK James Dyson Award and \u00a35,000",
+    "slug": "gargi-agrawalla-sivogo-ai-alarm-deaf-dyson-award",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the SIVO.GO's development and potential market release. Readers would benefit from knowing when they might expect to see the product available for purchase or further trials.",
+        "Provide more specific details about the functionality of SIVO.GO, such as the range of sounds it can detect and the types of alerts it provides. This would enhance understanding of its practical applications.",
+        "Include a quote or statement from a relevant authority or expert in the field of assistive technology to provide additional context and credibility to the article."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the James Dyson Award announcing the winners to enhance credibility and provide a direct source for readers."
+      ]
+    }
+  },
+  {
+    "id": "b7be6924-b525-45c1-951d-95c66139fc5d",
+    "headline": "Air India Crash Probe in Final Stage, Government Tells Supreme Court",
+    "slug": "air-india-crash-investigation-final-stage-supreme-court",
+    "category": "news",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The investigation into the crash, which killed 260 people, is in its final stage\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact date of the crash in June 2025, as well as the date when the preliminary report was released in July 2025, to enhance the reader's understanding of the sequence of events.",
+        "Include a brief summary of the implications of the crash investigation for Air India and the aviation industry, such as potential regulatory changes or safety measures that might be implemented, to provide context on what this means moving forward.",
+        "Ensure that all quotes are accurately attributed and provide context for the statements made by Solicitor General Tushar Mehta and Advocate Prashant Bhushan, particularly regarding their significance in the ongoing investigation.",
+        "Add a concluding paragraph that summarizes the key points of the article, reinforcing the importance of the investigation and the next steps, to improve the overall clarity and completeness of the report."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement from the Directorate General of Civil Aviation (DGCA) regarding the investigation's status or any relevant updates to provide readers with direct access to authoritative information."
+      ]
+    }
+  },
+  {
+    "id": "1d479c30-9ff7-4c66-b3c8-01f9cb341f9a",
+    "headline": "Google Gives IIT Kharagpur $5 Million to Accelerate AI Research and Training",
+    "slug": "google-iit-kharagpur-5-million-ai-research-funding",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the funding and project implementation. Include specific dates or milestones for when the AI research and training initiatives are expected to begin or be completed.",
+        "Provide more details on the specific projects or areas of research that will be funded under the three pillars mentioned. This could include examples of potential research topics or initiatives that IIT Kharagpur might pursue with this funding.",
+        "Include a quote from a representative of IIT Kharagpur to provide additional context and perspective on the significance of this funding for the institution and its students.",
+        "Ensure that the attribution for Sundar Pichai's quote is complete, as it currently cuts off mid-sentence. This could confuse readers and detracts from the professionalism of the article."
+      ],
+      "embed_opportunities": [
+        "Embed Google's official blog post or announcement regarding the funding to provide readers with direct access to the source of information."
+      ]
+    }
+  },
+  {
+    "id": "302cbe90-8c42-4219-b6e6-a9e44cb73bc2",
+    "headline": "Anupama Ramachandran Beats So Man Yan 3-1 to Defend World Snooker Title",
+    "slug": "anupama-ramachandran-defends-world-snooker-title-indore",
+    "category": "sports",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'She defended her IBSF World Snooker Championship title in Indore on Saturday, be\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by correcting the date of Anupama's first title win, which should be November 2022 instead of 2025, to ensure accuracy in reporting.",
+        "Provide more context on the significance of Anupama's victory, such as how it impacts her career or the sport of snooker in India, to enhance completeness.",
+        "Include a direct quote from Anupama Ramachandran about her feelings on winning the title, which would add depth and clarity to the article."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the IBSF or a relevant sports authority congratulating Anupama on her victory."
+      ]
+    }
+  }
+]

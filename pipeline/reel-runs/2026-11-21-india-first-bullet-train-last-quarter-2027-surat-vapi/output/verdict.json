@@ -1,0 +1,49 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "india-first-bullet-train-last-quarter-2027-surat-vapi",
+  "name": "india-first-bullet-train-last-quarter-2027-surat-vapi",
+  "script": "reel-runs/2026-11-21-india-first-bullet-train-last-quarter-2027-surat-vapi/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000718
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-21-india-first-bullet-train-last-quarter-2027-surat-vapi/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {}
+  },
+  "stock": {
+    "eligible": true,
+    "reason": "concept entity 'Mumbai-Ahmedabad High-Speed Rail corridor' has no identity to photograph",
+    "scenes": 5,
+    "provenance": "reel-runs/2026-11-21-india-first-bullet-train-last-quarter-2027-surat-vapi/output/stock/provenance.json"
+  },
+  "distinct_images": {
+    "usable": 6,
+    "scenes": 6,
+    "labels": [
+      "hero",
+      "stock:37899504",
+      "stock:30981181",
+      "stock:3885527",
+      "stock:17423832",
+      "stock:6354991"
+    ]
+  },
+  "manifest": "reel-runs/2026-11-21-india-first-bullet-train-last-quarter-2027-surat-vapi/output/render-manifest.json",
+  "video": "reel-runs/2026-11-21-india-first-bullet-train-last-quarter-2027-surat-vapi/output/india-first-bullet-train-last-quarter-2027-surat-vapi.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-21-india-first-bullet-train-last-quarter-2027-surat-vapi/output/tiktok-caption.txt"
+}

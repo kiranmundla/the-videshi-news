@@ -1252,5 +1252,18 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "3fTjv2QeF0s",
+    "article_slug": "india-first-bullet-train-last-quarter-2027-surat-vapi",
+    "article_id": "6c2e0f05-1c93-4e8f-9a38-b29a30319709",
+    "title": "India's First Bullet Train to Run in Last Quarter of 2027, Surat-Vapi First #Shorts #News",
+    "privacy": "public",
+    "uploaded_at": "2026-11-21T23:22:50.155274+00:00",
+    "video_path": "reel-runs/2026-11-21-india-first-bullet-train-last-quarter-2027-surat-vapi/output/india-first-bullet-train-last-quarter-2027-surat-vapi.mp4",
+    "video_sha256": "65a20a75d698d16b249996898b905a0874d55464e9d91c0a9bfc17bceb4909db",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]
