@@ -1,18 +1,22 @@
 {
- "generated_at": "2026-11-16T17:06:00.734291+00:00",
- "week_of": "Nov 16 – Nov 22, 2026",
- "as_of": "2026-11-16",
+ "generated_at": "2026-11-23T17:02:27.603366+00:00",
+ "week_of": "Nov 23 – Nov 29, 2026",
+ "as_of": "2026-11-23",
  "films": [
   {
    "title": "Ramayana: Part 1",
    "language": "Hindi",
    "release_date": "2026-11-05",
-   "india_net_crore": 792.6,
-   "worldwide_gross_crore": 1437.25,
+   "india_net_crore": 942.75,
+   "worldwide_gross_crore": 1693.0,
    "budget_crore": null,
    "verdict": null,
    "poster_url": "https://upload.wikimedia.org/wikipedia/en/4/48/Ramayana_Part_1_%28poster%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
    "sources": [
+    {
+     "name": "Hollywood Reporter India (via Sacnilk)",
+     "url": "https://www.hollywoodreporterindia.com/features/insight/ramayana-box-office-ranbir-kapoor-yash-starrer-set-to-cross-1700-crore-worldwide-surpasses-dhurandhar-2-in-the-us"
+    },
     {
      "name": "Sacnilk (day-wise)",
      "url": "https://www.sacnilk.com/news/ramayana_part_1_2026_Box_Office_Collection_Day_Wise_Worldwide"
@@ -23,19 +27,19 @@
    "title": "Jailer 2",
    "language": "Tamil",
    "release_date": "2026-10-15",
-   "india_net_crore": 474.81,
-   "worldwide_gross_crore": 832.31,
+   "india_net_crore": 475.03,
+   "worldwide_gross_crore": 835.66,
    "budget_crore": 350,
    "verdict": "Super Hit",
    "poster_url": "https://upload.wikimedia.org/wikipedia/en/d/dc/Jailer_2_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
    "sources": [
     {
-     "name": "Sacnilk (day-wise)",
-     "url": "https://www.sacnilk.com/news/Jailer_2_2026_Box_Office_Collection_Day_Wise_Worldwide"
+     "name": "Koimoi (day-wise)",
+     "url": "https://www.koimoi.com/box-office/daily-breakdown/jailer-2-day-wise-box-office-collection/"
     },
     {
-     "name": "Koimoi",
-     "url": "https://www.koimoi.com/box-office/jailer-2-box-office-collection-day-19-becomes-kollywoods-first-film-of-2026-to-enjoy-an-roi-of-100-crore/"
+     "name": "Sacnilk (day-wise)",
+     "url": "https://www.sacnilk.com/news/Jailer_2_2026_Box_Office_Collection_Day_Wise_Worldwide"
     }
    ]
   },
@@ -43,8 +47,8 @@
    "title": "Drishyam: The Conclusion",
    "language": "Hindi",
    "release_date": "2026-10-02",
-   "india_net_crore": 380.65,
-   "worldwide_gross_crore": 588.93,
+   "india_net_crore": 381.01,
+   "worldwide_gross_crore": 589.33,
    "budget_crore": 110,
    "verdict": "All-Time Blockbuster",
    "poster_url": "https://upload.wikimedia.org/wikipedia/en/d/d9/Drishyam-_The_Conclusion_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -123,8 +127,8 @@
    "title": "Scene",
    "language": "Tamil",
    "release_date": "2026-11-06",
-   "india_net_crore": 139.35,
-   "worldwide_gross_crore": 247.85,
+   "india_net_crore": 150.65,
+   "worldwide_gross_crore": 264.5,
    "budget_crore": null,
    "verdict": null,
    "poster_url": "https://upload.wikimedia.org/wikipedia/en/3/3b/Scene_%282026_film%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -163,7 +167,7 @@
    "worldwide_gross_crore": 138.24,
    "budget_crore": 50,
    "verdict": "Super Hit",
-   "poster_url": "https://upload.wikimedia.org/wikipedia/en/e/ea/Mandaadi.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "poster_url": null,
    "sources": [
     {
      "name": "Koimoi (closing collection)",
@@ -199,12 +203,16 @@
    "title": "Ranabaali",
    "language": "Telugu",
    "release_date": "2026-10-16",
-   "india_net_crore": 58.97,
-   "worldwide_gross_crore": 80.81,
+   "india_net_crore": 58.98,
+   "worldwide_gross_crore": 81.95,
    "budget_crore": 120,
    "verdict": "Flop",
    "poster_url": "https://upload.wikimedia.org/wikipedia/en/8/82/Ranabaali_2026_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
    "sources": [
+    {
+     "name": "Koimoi (closing collection)",
+     "url": "https://www.koimoi.com/box-office/ranabaali-box-office-closing-collection-vijay-deverakondas-film-recovers-less-than-50-of-its-budget/"
+    },
     {
      "name": "Sacnilk (day-wise)",
      "url": "https://www.sacnilk.com/news/Ranabaali_2026_Box_Office_Collection_Day_Wise_Worldwide"
@@ -251,8 +259,8 @@
    "title": "Mookuthi Amman 2",
    "language": "Tamil",
    "release_date": "2026-11-06",
-   "india_net_crore": 20.13,
-   "worldwide_gross_crore": 23.25,
+   "india_net_crore": 21.54,
+   "worldwide_gross_crore": 24.83,
    "budget_crore": 100,
    "verdict": "Flop",
    "poster_url": "https://upload.wikimedia.org/wikipedia/en/e/ef/Mookuthi_Amman_2_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -260,6 +268,22 @@
     {
      "name": "Sacnilk",
      "url": "https://www.sacnilk.com/movie/Mookuthi_Amman_2_2026"
+    }
+   ]
+  },
+  {
+   "title": "Aakasamlo Oka Tara",
+   "language": "Telugu",
+   "release_date": "2026-11-20",
+   "india_net_crore": 13.1,
+   "worldwide_gross_crore": 22.7,
+   "budget_crore": null,
+   "verdict": null,
+   "poster_url": "https://upload.wikimedia.org/wikipedia/en/d/d2/Aakasamlo_Oka_Tara.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "sources": [
+    {
+     "name": "Sacnilk (day-wise)",
+     "url": "https://www.sacnilk.com/news/Aakasamlo_Oka_Tara_2026_Box_Office_Collection_Day_Wise_Worldwide"
     }
    ]
   },
@@ -348,11 +372,15 @@
    "language": "Telugu",
    "release_date": "2026-10-30",
    "india_net_crore": 5.17,
-   "worldwide_gross_crore": 6.61,
+   "worldwide_gross_crore": 6.75,
    "budget_crore": null,
    "verdict": null,
    "poster_url": "https://upload.wikimedia.org/wikipedia/en/6/62/Cult_%282026_film%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
    "sources": [
+    {
+     "name": "Koimoi (Telugu verdicts list)",
+     "url": "https://www.koimoi.com/box-office/hits-flops/tollywood-telugu-box-office-collection-verdicts/"
+    },
     {
      "name": "Sacnilk",
      "url": "https://www.sacnilk.com/movie/Cult_Telugu_2026"
@@ -387,7 +415,7 @@
    "worldwide_gross_crore": 0.66,
    "budget_crore": 15,
    "verdict": "Flop",
-   "poster_url": null,
+   "poster_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/2/2e/Tu_Hai_Meri_Kiran.jpg/500px-Tu_Hai_Meri_Kiran.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "sources": [
     {
      "name": "Bollywood Hungama",
