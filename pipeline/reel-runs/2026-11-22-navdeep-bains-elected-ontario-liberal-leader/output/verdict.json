@@ -1,0 +1,57 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black",
+    "via": "v7 fallback \u2014 named-person distinct-image hold (Kiran 2026-11-22)"
+  },
+  "article_slug": "navdeep-bains-elected-ontario-liberal-leader",
+  "name": "navdeep-bains-elected-ontario-liberal-leader",
+  "script": "reel-runs/2026-11-22-navdeep-bains-elected-ontario-liberal-leader/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000647
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-22-navdeep-bains-elected-ontario-liberal-leader/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "navdeep-bains3"
+    }
+  },
+  "stock": {
+    "eligible": false,
+    "reason": "named-person story (Navdeep Bains, Lee Fairclough) \u2014 stock fallback forbidden"
+  },
+  "distinct_images": {
+    "usable": 2,
+    "scenes": 6,
+    "labels": [
+      "hero",
+      "extra:navdeep-bains3"
+    ]
+  },
+  "fallback": {
+    "attempted": true,
+    "persons": [
+      "Navdeep Bains",
+      "Lee Fairclough"
+    ],
+    "reason": "v8 distinct-image hold: 2 distinct usable images for 6 scenes",
+    "qa_score": 10.0,
+    "qa_passed": true,
+    "result": "ready (QA 10.0)"
+  },
+  "manifest": "reel-runs/2026-11-22-navdeep-bains-elected-ontario-liberal-leader/output/render-manifest.json",
+  "video": "reel-runs/2026-11-22-navdeep-bains-elected-ontario-liberal-leader/output/navdeep-bains-elected-ontario-liberal-leader.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-22-navdeep-bains-elected-ontario-liberal-leader/output/tiktok-caption.txt"
+}

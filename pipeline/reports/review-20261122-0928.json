@@ -1,0 +1,84 @@
+[
+  {
+    "id": "3182ebcc-b940-4e52-8864-925d11c6a5fa",
+    "headline": "Anthropic Co-Founder to Make 'Large Gift' to Trump Accounts, Bessent Says",
+    "slug": "anthropic-co-founder-tom-brown-trump-accounts-gift",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline for the donation by specifying a more precise date range instead of 'over the next few weeks' to enhance clarity for readers.",
+        "Include the specific amount of the 'large gift' if it becomes available, as this would provide a concrete takeaway for readers regarding the scale of the donation.",
+        "Provide context on the significance of Trump Accounts and how they compare to previous donations, which would help readers understand the potential impact of this gift."
+      ],
+      "embed_opportunities": [
+        "Embed the official CNBC segment featuring Scott Bessent's announcement for direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "16af70a5-1b4e-487d-93b5-d40311c079be",
+    "headline": "Pant's Wellington 128 Makes Him First Asian Keeper With Hundreds in All SENA Cou",
+    "slug": "rishabh-pant-first-asian-wicketkeeper-sena-centuries",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of Pant's achievement by providing context on the historical performance of wicketkeepers in Test cricket, particularly in SENA countries. This could help readers understand why this milestone is noteworthy.",
+        "Include a quote from Rishabh Pant or the Indian team's coach/captain regarding his performance or the importance of this milestone. This would enhance attribution and provide a personal touch to the story.",
+        "Add a brief overview of the match situation at the time of Pant's innings, including the score and context of India's performance in the series, to give readers a clearer picture of the significance of his century.",
+        "Ensure that the article maintains a consistent flow by avoiding repetitive phrases. For example, the sentence 'Rishabh Pant completed a set no Asian wicketkeeper had managed before him' could be rephrased or integrated more smoothly into the narrative."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official ICC or a cricket-related account celebrating Pant's achievement, which would provide real-time reactions and enhance the article's engagement."
+      ]
+    }
+  },
+  {
+    "id": "68d53ed8-e303-4227-9496-67ffe3d3f8a7",
+    "headline": "NRI Seafarers Can Now Use a Job Contract or Seaman's Book to Open an NPS Account",
+    "slug": "nps-kyc-nri-seafarers-employment-contract-cdc-pfrda",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Ensure all relevant dates are clearly stated and consistent throughout the article, particularly the effective date of the circular and any previous regulations mentioned.",
+        "Add a quote from a PFRDA official or an expert in the field to provide authoritative attribution and enhance credibility.",
+        "Include a brief explanation of the significance of the NPS for NRI seafarers, which would improve completeness and help readers understand the context better.",
+        "Clarify the implications of the changes for seafarers who may not have access to traditional address proof, enhancing the article's clarity."
+      ],
+      "embed_opportunities": [
+        "Consider embedding a link to the full text of the PFRDA circular for readers seeking more detailed information.",
+        "Include a relevant infographic that outlines the steps NRI seafarers need to take to open an NPS account under the new guidelines."
+      ],
+      "rubric_violation": true
+    }
+  },
+  {
+    "id": "f3f39014-b0ce-417a-8ac8-031f7e1b1bc6",
+    "headline": "ICE Holds Texas Store Worker After Jail Term Over Customer's Private Photos",
+    "slug": "ice-custody-raghul-anandakrishnan-texas-photo-case",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date when ICE took custody of Anandakrishnan after his jail sentence, as this is crucial for understanding the immediacy of the situation.",
+        "Provide more details about Anandakrishnan's immigration status and the potential implications of his detention, as this information is vital for readers to understand the legal context of the case.",
+        "Include a quote or statement from a legal expert or immigration advocate regarding the implications of this case for similar situations, which would add depth and context to the article."
+      ],
+      "embed_opportunities": [
+        "Embed the official ICE statement or tweet regarding Anandakrishnan's case for direct attribution and to enhance credibility."
+      ]
+    }
+  }
+]

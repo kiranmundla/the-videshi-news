@@ -1,0 +1,180 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "edmonton-sneha-joy-wins-5-million-lotto-649",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Edmonton's Sneha Joy Wins $5 Million Lotto 6/49 Jackpot",
+        "numbers": [
+          5.0,
+          6.0,
+          49.0,
+          5000000.0
+        ],
+        "entities": [
+          "Edmonton's Sneha Joy Wins",
+          "Million Lotto"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Sneha Joy won the $5 million jackpot.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Joy matched all six numbers in the October 21 Classic draw with a ticket bought on the Lotto Spot app, and plans to clear her mortgage, travel the world and share with family.",
+        "numbers": [
+          21.0
+        ],
+        "entities": [
+          "Lotto Spot"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "All details about the draw, ticket purchase, and plans are in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Sneha Joy matched all six numbers in the October 21 Lotto 6/49 Classic draw to win $5 million",
+        "numbers": [
+          5.0,
+          6.0,
+          21.0,
+          49.0,
+          5000000.0
+        ],
+        "entities": [
+          "Sneha Joy"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms she matched all numbers in the draw for $5 million.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Joy bought the winning ticket through the Lotto Spot app",
+        "numbers": [],
+        "entities": [
+          "Lotto Spot"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states she purchased the ticket via the Lotto Spot app.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "She plans to pay off her mortgage, travel around the world and share the winnings with family",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Her plans to pay off mortgage and travel are detailed in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Sneha Joy",
+        "numbers": [],
+        "entities": [
+          "Sneha Joy"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions her name multiple times.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Lotto 6/49 jackpot winner",
+        "numbers": [
+          6.0,
+          49.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms she won the Lotto 6/49 jackpot.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Edmonton's Sneha Joy Wins $5 Million Lotto 6/49 Jackpot",
+        "numbers": [
+          5.0,
+          6.0,
+          49.0,
+          5000000.0
+        ],
+        "entities": [
+          "Edmonton's Sneha Joy Wins",
+          "Million Lotto"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states she won the jackpot.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000453,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

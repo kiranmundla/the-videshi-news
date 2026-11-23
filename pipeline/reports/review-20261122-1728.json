@@ -1,0 +1,82 @@
+[
+  {
+    "id": "2b01f068-e911-4087-9887-7f24b220f193",
+    "headline": "Adani Energy Wins 25-Year Bengal Deal for 1,750 MW of Round-the-Clock Renewable ",
+    "slug": "adani-energy-west-bengal-1750-mw-renewable-power-award",
+    "category": "markets-finance",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Adani Energy Solutions said its subsidiary has won a 25-year award to supply 1,7\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the 750 MW greenshoe option in the context of the overall deal, perhaps by explaining the implications of this option for future capacity planning and energy supply in West Bengal.",
+        "Include a brief overview of the competitive bidding process and how it positions Adani Energy Solutions within the renewable energy market in India, which would provide readers with context on the company's competitive advantage.",
+        "Add a statement or quote from a company representative or an industry expert regarding the expected impact of this deal on West Bengal's energy landscape or on renewable energy initiatives in India, enhancing the article's depth and authority."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement or tweet from Adani Energy Solutions regarding the deal to provide direct access to the company's perspective on the award."
+      ]
+    }
+  },
+  {
+    "id": "db5edab3-b909-46cb-ae70-e54688cff873",
+    "headline": "Princeton PhD Student Eva Yi Xie Detained by ICE After Neuroscience Conference",
+    "slug": "princeton-phd-student-eva-yi-xie-detained-ice",
+    "category": "immigration",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Princeton doctoral student Eva Yi Xie was detained by ICE at Reagan National Air\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events, particularly the dates of her initial admission and the implications of her pending asylum application. Include specific details about what this means for her legal status and potential outcomes in her case.",
+        "Provide more context on the legal implications of her situation, such as what the habeas petition entails and what the next steps might be after the government responds on November 25.",
+        "Include a quote from Xie's lawyer or a representative from Princeton to provide a human element and further context to her situation."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from ICE or a relevant government agency regarding their policies on detaining individuals with pending asylum applications."
+      ]
+    }
+  },
+  {
+    "id": "37d19929-228a-453a-8537-d37a4729c793",
+    "headline": "Manipur Spurious Liquor Death Toll Rises to 17, About 230 People in Hospital",
+    "slug": "manipur-spurious-liquor-death-toll-rises-17",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the dates of the deaths and hospitalizations more clearly. For instance, mention that the first death occurred on November 18 and subsequent deaths followed over the next few days, providing a clearer chronology.",
+        "Include a direct quote from a local official or health spokesperson to enhance attribution and provide a more personal perspective on the situation, which can help convey urgency and human impact.",
+        "Add specific information about the types of treatment being administered to the hospitalized patients, especially regarding the suspected methanol poisoning, to give readers a clearer understanding of the medical response.",
+        "Correct the redundancy in the reporting of the death toll; the phrase 'the death toll in the suspected spurious liquor tragedy in Manipur rose to 17 on Sunday' appears twice in close succession, which can confuse readers."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a local government or health department account providing updates on the situation, which could serve as a real-time source of information for readers."
+      ]
+    }
+  },
+  {
+    "id": "53ffd99b-8dc2-4f7a-80a1-b0839997c6e1",
+    "headline": "Neena Gupta, Who Answered a 70-Year-Old Maths Problem, Named to TIME100 Next Ind",
+    "slug": "neena-gupta-time100-next-india-zariski-cancellation",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of Gupta's work by including a brief explanation of why solving the Zariski Cancellation Problem is important in the field of mathematics and its potential implications for future research.",
+        "Provide a direct quote from Neena Gupta or a relevant authority (such as a representative from the TIME100 list or the Department of Science and Technology) to enhance attribution and give the article more depth.",
+        "Include a timeline or context regarding the TIME100 Next India list, such as when it was established and its significance in recognizing emerging leaders in various fields, to give readers a better understanding of the honor.",
+        "Ensure that the article avoids redundancy by removing repetitive phrases, particularly in the introduction, where Gupta's name and title are mentioned multiple times in close succession."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from TIME or the official TIME100 account announcing the list to provide readers with direct access to the source of the news."
+      ]
+    }
+  }
+]

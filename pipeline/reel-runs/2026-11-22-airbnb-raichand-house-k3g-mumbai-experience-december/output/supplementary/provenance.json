@@ -1,0 +1,170 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "airbnb-raichand-house-k3g-mumbai-experience-december",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Raichand House",
+    "Kabhi Khushi Kabhie Gham",
+    "Airbnb",
+    "Mumbai",
+    "Karan Johar",
+    "Home"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Raichand House' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:888 Brannan, San Francisco, 2016.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q63327)",
+      "verdict": "accepted",
+      "reason": "13604x5000, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Joe-gebbia-2024.png",
+      "route": "identity \u2014 depicts (P180=Q63327)",
+      "verdict": "rejected",
+      "reason": "resolution: 347x410 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:KakaoTalk 20210324 141032700.jpg",
+      "route": "identity \u2014 depicts (P180=Q63327)",
+      "verdict": "accepted",
+      "reason": "1080x1076, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Panoramic view of Taj Palace Hotel and Taj Tower with the iconic Gateway of India in the background (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1156)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:A Plan of Bombay-Harbour on the Coast of Malabar.jpg",
+      "route": "identity \u2014 depicts (P180=Q1156)",
+      "verdict": "accepted",
+      "reason": "4146x3000, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:A Street is Bombay, 1875.jpg",
+      "route": "identity \u2014 depicts (P180=Q1156)",
+      "verdict": "accepted",
+      "reason": "5157x3743, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Karan Johar filmfare.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q468442)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x882 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:DVD release of Wake Up Sid.jpg",
+      "route": "identity \u2014 depicts (P180=Q468442)",
+      "verdict": "rejected",
+      "reason": "resolution: 353x271 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Dharma productions.jpg",
+      "route": "identity \u2014 depicts (P180=Q468442)",
+      "verdict": "rejected",
+      "reason": "identity: depicts (P180) file for a person whose own title/description/categories never name 'Karan Johar' (or a known alias) \u2014 a depicts statement alone is not identity (polluted Commons structured data: the Mount Charleston trail file 'depicts' Mukesh Ambani); fail closed"
+    },
+    {
+      "candidate": "File:Dwayne, Jacqueline, kJo setsof-JDJ 3.jpg",
+      "route": "identity \u2014 depicts (P180=Q468442)",
+      "verdict": "rejected",
+      "reason": "resolution: 530x228 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ganesh, jacki, kJo Premiere of JDJ 09.jpg",
+      "route": "identity \u2014 depicts (P180=Q468442)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x304 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Guests at the 2026 Met Gala 120.jpg",
+      "route": "identity \u2014 depicts (P180=Q468442)",
+      "verdict": "rejected",
+      "reason": "resolution: 911x1338 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Guests at the 2026 Met Gala 121.jpg",
+      "route": "identity \u2014 depicts (P180=Q468442)",
+      "verdict": "rejected",
+      "reason": "resolution: 906x1344 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Hrithik Roshan with Karan Johar in 2026.jpg",
+      "route": "identity \u2014 depicts (P180=Q468442)",
+      "verdict": "rejected",
+      "reason": "resolution: 480x360 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ileana and Karan Johar.jpg",
+      "route": "identity \u2014 depicts (P180=Q468442)",
+      "verdict": "rejected",
+      "reason": "resolution: 432x293 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Jacqueline, karan sets of JDJ-2.jpg",
+      "route": "identity \u2014 depicts (P180=Q468442)",
+      "verdict": "rejected",
+      "reason": "resolution: 310x340 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Judges of JDJ5.jpg",
+      "route": "identity \u2014 depicts (P180=Q468442)",
+      "verdict": "rejected",
+      "reason": "resolution: 584x459 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:254 Parkway Drive, Mission Hills, 2024-04-21, 01.jpg",
+      "route": "identity \u2014 depicts (P180=Q637087)",
+      "verdict": "accepted",
+      "reason": "5464x3648, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Gabinio.Sulla Strada Per Morgex. Valle Di Aosta-Alpini In Cammino Sulla Strada Per Morgex 5A95.jpg",
+      "route": "identity \u2014 depicts (P180=Q637087)",
+      "verdict": "rejected",
+      "reason": "resolution: 1024x762 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Moments before Sunrise by Mariam Azadi.png",
+      "route": "identity \u2014 depicts (P180=Q637087)",
+      "verdict": "accepted",
+      "reason": "2160x942, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:KakaoTalk 20210324 141032700.jpg",
+      "route": "identity \u2014 depicts (P180=Q63327)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/b/bd/KakaoTalk_20210324_141032700.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=ori"
+    },
+    {
+      "candidate": "File:A Plan of Bombay-Harbour on the Coast of Malabar.jpg",
+      "route": "identity \u2014 depicts (P180=Q1156)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/0/04/A_Plan_of_Bombay-Harbour_on_the_Coast_of_Malabar.jpg?utm_source=commons.wikimedia.org&utm_campaign=image"
+    },
+    {
+      "candidate": "File:A Street is Bombay, 1875.jpg",
+      "route": "identity \u2014 depicts (P180=Q1156)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/7/74/A_Street_is_Bombay%2C_1875.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=origi"
+    },
+    {
+      "candidate": "File:888 Brannan, San Francisco, 2016.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q63327)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/2/25/888_Brannan%2C_San_Francisco%2C_2016.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_con"
+    }
+  ],
+  "extras": []
+}

@@ -1,0 +1,290 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "adani-energy-west-bengal-1750-mw-renewable-power-award",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "ADANI ENERGY WINS 25-YEAR BENGAL DEAL FOR 1,750 MW OF ROUND-THE-CLOCK RENEWABLE POWER",
+      "numbers": [
+        25.0,
+        1750.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Adani Energy won a 25-year deal for 1,750 MW.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Adani Energy Solutions said on Saturday, November 21, that its wholly owned subsidiary Powerpulse Trading Solutions Ltd has received a Letter of Award from West Bengal State Electricity Distribution Company Ltd (WBSEDCL) to supply 1,750 MW of renewable energy round-the-clock power for 25 years.",
+      "numbers": [
+        21.0,
+        25.0,
+        1750.0
+      ],
+      "entities": [
+        "Adani Energy Solutions",
+        "Powerpulse Trading Solutions Ltd",
+        "West Bengal State Electricity Distribution Company Ltd"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the details about the award and the companies involved.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "1,750 MW",
+      "numbers": [
+        1750.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the awarded capacity is 1,750 MW.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Round-the-clock renewable power Adani Energy Solutions' subsidiary will supply to West Bengal's state discom for 25 years",
+      "numbers": [
+        25.0
+      ],
+      "entities": [
+        "Adani Energy Solutions'",
+        "West Bengal's"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the supply is for round-the-clock renewable power for 25 years.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "25 years",
+      "numbers": [
+        25.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies the term of the deal is 25 years.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Term of the Letter of Award from WBSEDCL, West Bengal's state electricity distributor",
+      "numbers": [],
+      "entities": [
+        "West Bengal's"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article identifies WBSEDCL as the distributor and confirms the term.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "2,500 MW",
+      "numbers": [
+        2500.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the potential total capacity if the greenshoe option is exercised.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Total capacity if WBSEDCL exercises the 750 MW greenshoe option on top of the award",
+      "numbers": [
+        750.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article explains the greenshoe option and its impact on total capacity.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "July 1, 2028",
+      "numbers": [
+        1.0,
+        2028.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2028
+        ]
+      },
+      "llm_reason": "The article states this is when supply of the first 1,750 MW begins.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "When supply of the first 1,750 MW is scheduled to begin",
+      "numbers": [
+        1750.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the start date for the supply.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "No tariff or contract value was disclosed, so the revenue the deal will generate cannot be calculated from the announcement",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states no tariff or contract value was disclosed.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Nothing in the award changes West Bengal's power supply before the July 2028 start date",
+      "numbers": [
+        2028.0
+      ],
+      "entities": [
+        "West Bengal's"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2028
+        ]
+      },
+      "llm_reason": "The article confirms no changes to power supply before the start date.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The confirmed facts are the 1,750 MW award, the 25-year term, and a start date in mid-2028 \u2014 how large the deal becomes depends on whether WBSEDCL exercises the 750 MW greenshoe option.",
+      "numbers": [
+        25.0,
+        750.0,
+        1750.0,
+        2028.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2028
+        ]
+      },
+      "llm_reason": "The article summarizes the confirmed facts and conditions for the deal.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Adani Energy Solutions",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Powerpulse Trading Solutions",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "WBSEDCL",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "West Bengal",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000743,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "hook_line": "ICE ARRESTS TWO ON SEA-TAC JETWAY, DELAYING LOS ANGELES-BOUND FLIGHT",
+  "hook_stat": {
+    "big": "3 hours",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Delay to Alaska Airlines Flight 1306 after ICE arrests on the jetway at Sea-Tac"
+  },
+  "stats": [
+    {
+      "big": "2",
+      "label": "People arrested by ICE during boarding at Sea-Tac"
+    },
+    {
+      "big": "8:10 a.m.",
+      "label": "Scheduled departure of Flight 1306 to Los Angeles \u2014 it left at 11 a.m."
+    },
+    {
+      "big": "2nd",
+      "label": "Known incident within a month of ICE arresting multiple people at Sea-Tac, per FOX 13"
+    }
+  ],
+  "diaspora_bullets": [
+    "ICE has stepped up arrests at airports, particularly of people who overstayed visas",
+    "Travelers with a pending application or a past overstay should take legal advice before flying domestically"
+  ],
+  "key_entities": [
+    "ICE",
+    "Sea-Tac",
+    "Alaska Airlines",
+    "Ricardo Larrondo Mendoza",
+    "Sofia Hernandez Mejia"
+  ],
+  "news_summary": "ICE officers arrested two people on the jetway of Alaska Airlines Flight 1306 at Seattle-Tacoma International Airport on Saturday morning as passengers boarded for Los Angeles.",
+  "payoff": "Flight 1306 departed at 11 a.m., about three hours late, and many passengers were moved to other flights.",
+  "versus": "",
+  "story_mood": "tense"
+}

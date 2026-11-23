@@ -1,0 +1,81 @@
+[
+  {
+    "id": "080a954f-7ecb-4129-98d1-21cf053ba895",
+    "headline": "India's Food Regulator to Take Bisleri to Court Over Unsafe Water Sample",
+    "slug": "fssai-bisleri-prosecution-unsafe-water-sample-bromate",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the specific health risks associated with the detected contaminants (bromate and PAHs) to provide readers with a better understanding of the implications for public health.",
+        "Include a statement from Bisleri International, if available, to provide a balanced view and enhance attribution.",
+        "Add a timeline for when the prosecution process is expected to begin or any potential penalties Bisleri could face if found guilty, which would give readers a clearer picture of the situation's urgency."
+      ],
+      "embed_opportunities": [
+        "Embed the official FSSAI announcement regarding the prosecution for direct access to the source of information."
+      ]
+    }
+  },
+  {
+    "id": "b3ec72ae-4341-449c-8c71-42085c5a78d0",
+    "headline": "A. R. Rahman Spent Three Years on 'Ramayana' Music, Turned Down 10\u201312 Films",
+    "slug": "ar-rahman-ramayana-three-years-turned-down-films-iffi",
+    "category": "entertainment",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Rahman told the festival he spent nearly three years composing the music for Ram\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the release of the second part of 'Ramayana' to provide readers with a complete understanding of the project's schedule.",
+        "Include direct quotes from A. R. Rahman regarding the significance of turning down other projects, which would enhance the article's depth and provide more context about his artistic choices.",
+        "Add a brief background on Nitesh Tiwari and his previous works to give readers context about the director's reputation and the expectations for 'Ramayana'.",
+        "Mention any notable collaborators or additional details about the production team that could enrich the story and provide a fuller picture of the project."
+      ],
+      "embed_opportunities": [
+        "Embed a video clip of A. R. Rahman's press conference or a relevant tweet from the International Film Festival of India for real-time engagement."
+      ]
+    }
+  },
+  {
+    "id": "05557ff0-0e5a-4895-b1bc-350ec7e089a3",
+    "headline": "Modi and Nepal's Balen Shah to Flag Off Ayodhya\u2013Janakpur Express on November 23",
+    "slug": "ayodhya-janakpur-express-modi-balen-shah-flag-off-november-23",
+    "category": "news",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The new weekly Ayodhya-Janakpur Express links Ayodhya Dham with Janakpur Dham in\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the train service for travelers, such as expected fare ranges or how it might facilitate travel for pilgrims, as this would provide readers with concrete information about what to expect.",
+        "Include a brief background on the historical and cultural significance of Ayodhya and Janakpur to enhance the context of the train service, which would help readers understand its importance beyond just transportation.",
+        "Ensure the article mentions the expected duration of the train journey between Ayodhya and Janakpur, as this is a key detail that travelers would find useful."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement or tweet from the Ministry of Railways regarding the train service to provide readers with direct access to authoritative information."
+      ]
+    }
+  },
+  {
+    "id": "53cac36a-958e-42ed-909d-0d05c42f6ece",
+    "headline": "Navdeep Bains Wins Ontario Liberal Leadership on Final Ballot, 50.3 to 49.7",
+    "slug": "navdeep-bains-elected-ontario-liberal-leader",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the leadership election and the date of the voting period more prominently, as this will help readers understand the context better.",
+        "Include a direct quote from Navdeep Bains regarding his vision or plans as the new leader, which would provide insight into what his leadership might mean for the party and Ontario.",
+        "Add a brief background on the current political landscape in Ontario, including the significance of the Ontario Liberal Party's position and challenges they face, to provide more context for Bains' leadership."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Navdeep Bains announcing his victory or a statement from the Ontario Liberal Party to provide official confirmation and additional context."
+      ]
+    }
+  }
+]

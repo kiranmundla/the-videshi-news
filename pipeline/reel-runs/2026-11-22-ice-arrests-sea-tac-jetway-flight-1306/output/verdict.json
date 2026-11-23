@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "distinct_images",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "ice-arrests-sea-tac-jetway-flight-1306",
+  "name": "ice-arrests-sea-tac-jetway-flight-1306",
+  "script": "reel-runs/2026-11-22-ice-arrests-sea-tac-jetway-flight-1306/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000725
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-22-ice-arrests-sea-tac-jetway-flight-1306/output/supplementary/provenance.json",
+    "own_images": 2,
+    "extras": {}
+  },
+  "stock": {
+    "eligible": false,
+    "reason": "named-person story (Ricardo Larrondo Mendoza, Sofia Hernandez Mejia) \u2014 stock fallback forbidden"
+  },
+  "distinct_images": {
+    "usable": 2,
+    "scenes": 6,
+    "labels": [
+      "hero",
+      "inline:1"
+    ]
+  },
+  "detail": "only 2 distinct usable images for 6 photo scenes \u2014 holding rather than re-cropping one image across beats (2026-11-11 visa Short failure)"
+}

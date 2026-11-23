@@ -1,0 +1,248 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "edmonton-sneha-joy-wins-5-million-lotto-649",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "EDMONTON'S SNEHA JOY WINS $5 MILLION LOTTO 6/49 JACKPOT",
+      "numbers": [
+        5.0,
+        6.0,
+        49.0,
+        5000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Sneha Joy won a $5 million Lotto 6/49 jackpot.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Edmonton's Sneha Joy matched all six numbers in the October 21 Lotto 6/49 Classic draw to win $5 million, the Western Canada Lottery Corporation announced this week.",
+      "numbers": [
+        5.0,
+        6.0,
+        21.0,
+        49.0,
+        5000000.0
+      ],
+      "entities": [
+        "Edmonton's Sneha Joy",
+        "Western Canada Lottery Corporation"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about the win and announcement are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$5 million",
+      "numbers": [
+        5.0,
+        5000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$5 million is the amount won by Sneha Joy.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Lotto 6/49 Classic draw jackpot won by Edmonton's Sneha Joy",
+      "numbers": [
+        6.0,
+        49.0
+      ],
+      "entities": [
+        "Edmonton's Sneha Joy"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Joy won the Lotto 6/49 Classic draw jackpot.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "October 21",
+      "numbers": [
+        21.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies the draw date as October 21.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Date of the Lotto 6/49 Classic draw Joy won",
+      "numbers": [
+        6.0,
+        49.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The date of the draw is confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "6",
+      "numbers": [
+        6.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Joy matched all six numbers in the draw.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Numbers matched \u2014 1, 10, 18, 22, 33 and 37",
+      "numbers": [
+        1.0,
+        10.0,
+        18.0,
+        22.0,
+        33.0,
+        37.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article lists the exact numbers matched by Joy.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Joy bought the winning ticket through the Lotto Spot app and plays regularly",
+      "numbers": [],
+      "entities": [
+        "Lotto Spot"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Joy bought the ticket via the Lotto Spot app.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "She plans to pay off her mortgage, travel around the world and share the winnings with family",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Joy's plans for her winnings are detailed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Joy said the best part of winning is being financially stress-free.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This quote from Joy is included in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Sneha Joy",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Lotto 6/49",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Western Canada Lottery Corporation",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Edmonton",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000558,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

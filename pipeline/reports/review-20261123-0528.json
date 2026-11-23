@@ -1,0 +1,80 @@
+[
+  {
+    "id": "0af31d55-bbda-45c4-b2de-2943127cefad",
+    "headline": "Ramayana Nears \u20b91,700 Crore Worldwide, Passes Dhurandhar 2 in the US",
+    "slug": "ramayana-day-18-box-office-1693-crore-passes-dhurandhar-2-us",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the film's release and the date of the reported earnings to enhance timeliness. For example, specify that the earnings are as of November 22, 2023, to avoid confusion.",
+        "Include a brief explanation of the significance of the \u20b91,700 crore milestone for the film industry, particularly in the context of Indian cinema's global presence, to provide completeness.",
+        "Ensure that all figures are consistently formatted for clarity. For instance, use either '\u20b9' or '$' consistently throughout the article when discussing earnings to avoid confusion.",
+        "Correct any potential inaccuracies in the reporting of the film's earnings by cross-referencing with additional sources, especially regarding the comparison with Dhurandhar 2's earnings."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a reputable film industry tracker or the official account of the film to provide real-time updates on box office performance."
+      ]
+    }
+  },
+  {
+    "id": "07045938-d50e-4e5d-8f3f-06dbccd18d0b",
+    "headline": "Jaipur's Vinita Somani Cooked Through Chemotherapy, Then Trained Nearly 200 Wome",
+    "slug": "vinita-somani-jaipur-cancer-survivor-trained-200-women-cooking",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Provide specific details about the impact of Somani's work, such as the average income earned by the women she trained or the number of businesses they have started, to give readers a clearer understanding of her influence.",
+        "Include a quote from a participant in Somani's classes or a statistic about the success of her students to add depth and personal connection to the story.",
+        "Clarify the timeline of events, particularly the years of her cancer diagnoses and treatments, to help readers understand the progression of her journey more clearly."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant Instagram post showcasing Somani's cooking classes or the community events she organizes to visually engage readers."
+      ]
+    }
+  },
+  {
+    "id": "630b236c-aa55-4334-b4bb-313a66f08235",
+    "headline": "OpenAI's Chief Scientist Proposes Common AI Limits Measured by Perplexity",
+    "slug": "openai-pachocki-common-ai-limits-perplexity-proposal",
+    "category": "technology",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'OpenAI Chief Scientist Jakub Pachocki has proposed that AI developers adopt comm\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the proposed limits by including specific examples of how these thresholds could impact AI developers and users, such as potential changes in model performance or safety measures that could be expected by 2027.",
+        "Include a direct quote from Jakub Pachocki or Sam Altman regarding the urgency or importance of this proposal to add depth and authority to the reporting.",
+        "Provide context on what current industry standards are for perplexity and how they compare to the proposed limits to help readers understand the significance of the changes being suggested."
+      ],
+      "embed_opportunities": [
+        "Embed the official OpenAI blog post where the proposal was detailed for readers to access the primary source directly."
+      ]
+    }
+  },
+  {
+    "id": "53f22964-8c8d-4e5a-96b3-6e0ca7ccb301",
+    "headline": "Microsoft's Brad Smith Defends Overseas Data Centres After Trump's Penalty Threa",
+    "slug": "microsoft-brad-smith-defends-overseas-data-centres-trump-threat",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of Trump's threat by including specific details on what penalties could entail for companies like Microsoft, such as potential fines or restrictions on operations.",
+        "Provide context around the significance of Microsoft's $17.5 billion investment plan for 2026\u20132029, including how it fits into the larger landscape of U.S.-India tech relations and any potential impact on local economies.",
+        "Include a direct quote from Trump or a representative to enhance attribution and provide a clearer understanding of the administration's stance on data centers and technology transfer.",
+        "Add a brief explanation of how the proposed penalties could affect the tech industry as a whole, not just Microsoft, to give readers a broader understanding of the potential impact."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from CBS's 'Face the Nation' account featuring a clip of Brad Smith's interview for visual context and credibility."
+      ]
+    }
+  }
+]

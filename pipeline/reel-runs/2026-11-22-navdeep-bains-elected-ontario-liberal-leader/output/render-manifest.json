@@ -1,0 +1,394 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "navdeep-bains-elected-ontario-liberal-leader",
+ "article_slug": "navdeep-bains-elected-ontario-liberal-leader",
+ "article_id": "53cac36a-958e-42ed-909d-0d05c42f6ece",
+ "category": "Nri World",
+ "video": "reel-runs/2026-11-22-navdeep-bains-elected-ontario-liberal-leader/output/navdeep-bains-elected-ontario-liberal-leader.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://img.youtube.com/vi/GkuIL-oedxQ/maxresdefault.jpg",
+  "local_path": "reel-runs/2026-11-22-navdeep-bains-elected-ontario-liberal-leader/output/hero.jpg",
+  "width": 1280,
+  "height": 720,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.92)",
+  "has_face": true,
+  "box_source": [
+   534,
+   145,
+   216,
+   283
+  ],
+  "box_bg": [
+   434,
+   250,
+   141,
+   184
+  ],
+  "chin_bg": 434,
+  "anchor": [
+   0.503,
+   0.395
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 279,
+   "block_top": 982,
+   "block_bottom": 1261,
+   "text_bbox": [
+    70,
+    982,
+    930,
+    1261
+   ],
+   "texts": [
+    "Nri World",
+    "NAVDEEP BAINS WINS ONTARIO LIBERAL LEADERSHIP ON FINAL BALLOT"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.652,
+    "photo_px": [
+     1280,
+     720
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.6515625,
+     "window": [
+      0,
+      0,
+      1280,
+      718
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.67x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 948,
+   "zone_h": 632,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 1157,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1157,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Navdeep Bains was elected leader of the Ontario Liberal Party on November 21, 2026, beating Lee Fairclough 50.3 per cent to 49.7 per cent on the third and final ballot."
+   ],
+   "v7": {
+    "image_source": "extra:navdeep-bains3",
+    "track": "full-bleed",
+    "render_scale": 0.773,
+    "photo_px": [
+     3680,
+     2485
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.772635814889336,
+     "window": [
+      863,
+      0,
+      2260,
+      2485
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "22 May 2019; Navdeep Bains, Minister of Innovation, Science and Economic Development, Government of Canada, on Centre Stage during day two of Collision 2019 at Enercare Center in Toronto, Canada. Photo by Vaughn Ridley/Collision via Sportsf",
+     "route": "identity \u2014 depicts (P180=Q3337237)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Navdeep_Bains3.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Navdeep_Bains3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 2.0",
+     "artist": "Vaughn Ridley/Collision via Sportsfile"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 434,
+   "block_top": 905,
+   "block_bottom": 1339,
+   "text_bbox": [
+    70,
+    905,
+    930,
+    1339
+   ],
+   "texts": [
+    "ELECTIONS 2026",
+    "50.3%",
+    "Navdeep Bains's share on the final ballot, against Lee Fairclough's 49.7%"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.741,
+    "photo_px": [
+     1280,
+     720
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7406749555950266,
+     "window": [
+      81,
+      0,
+      1207,
+      631
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.67x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 545,
+   "block_top": 849,
+   "block_bottom": 1394,
+   "text_bbox": [
+    70,
+    849,
+    930,
+    1394
+   ],
+   "texts": [
+    "By The Numbers",
+    "20,510",
+    "Party members voted in the leadership contest",
+    "14",
+    "Seats the Ontario Liberals hold in the legislature"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.814,
+    "photo_px": [
+     1280,
+     720
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.814453125,
+     "window": [
+      0,
+      0,
+      1024,
+      574
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.67x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 937,
+   "block_bottom": 1306,
+   "text_bbox": [
+    70,
+    937,
+    930,
+    1306
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "First visible minority to lead the Ontario Liberal Party",
+    "A five-time MP for Mississauga and Brampton ridings"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.814,
+    "photo_px": [
+     1280,
+     720
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.814453125,
+     "window": [
+      256,
+      0,
+      1280,
+      574
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.67x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "Bains now has to rebuild a party that holds 14 seats in the legislature.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-newer-wave.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 112.0,
+ "mp4_bytes": 5687675
+}

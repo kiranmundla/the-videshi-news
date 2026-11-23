@@ -1,0 +1,43 @@
+[
+  {
+    "id": "a8a4971f-67e4-4f2a-8bcb-3e7b9c5a87e8",
+    "headline": "Ramayana: Part 1 Collects \u20b964.10 Crore in Kerala in 17 Days",
+    "slug": "ramayana-part-1-kerala-box-office-64-crore-17-days",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the \u20b9850.50 crore nett figure for the film's total collection across India. While Pinkvilla is mentioned, it would strengthen the article to specify whether this figure is confirmed or also an estimate.",
+        "Include a brief explanation of what constitutes 'nett' versus 'gross' box office figures, as this could help readers better understand the financial context of the film's performance.",
+        "Add a timeline or context regarding the film's release date and any significant competition it may face in the coming weeks to provide readers with a clearer picture of its box office trajectory.",
+        "Ensure that the final Day 18 figure is confirmed and included in the article to provide the most accurate and up-to-date information for readers."
+      ],
+      "embed_opportunities": [
+        "Embed the official Twitter account of the film or a relevant tweet from a film industry analyst discussing the box office performance."
+      ]
+    }
+  },
+  {
+    "id": "682b9fb3-0d86-4c8d-87f5-80f27b2f1c01",
+    "headline": "Delhi High Court Orders Fresh Notice in Amrit Wilson OCI Cancellation Case",
+    "slug": "delhi-high-court-fresh-notice-amrit-wilson-oci-cancellation",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events related to the cancellation of Wilson's OCI card by providing specific dates for the initial cancellation notice and any relevant context regarding the allegations.",
+        "Include a brief explanation of the implications of the court's ruling for other OCI cardholders, such as what they should expect in terms of their rights and the process for contesting cancellations.",
+        "Provide a clearer summary of the legal principles involved, particularly regarding 'natural justice' and how they apply to the cancellation of OCI cards, to enhance reader understanding."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Delhi High Court or a legal expert commenting on the ruling to provide authoritative context and enhance credibility."
+      ]
+    }
+  }
+]

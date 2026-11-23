@@ -1,0 +1,20 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "hormuz-tanker-hit-khasab-traffic-65-percent-below-pre-war",
+  "name": "hormuz-tanker-hit-khasab-traffic-65-percent-below-pre-war",
+  "script": "reel-runs/2026-11-22-hormuz-tanker-hit-khasab-traffic-65-percent-below-pre-war/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "news_summary",
+      "diaspora_bullets[1]"
+    ],
+    "llm_cost_usd": 0.000764
+  }
+}

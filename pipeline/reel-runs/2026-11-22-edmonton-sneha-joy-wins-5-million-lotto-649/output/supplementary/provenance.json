@@ -1,0 +1,80 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "edmonton-sneha-joy-wins-5-million-lotto-649",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Sneha Joy",
+    "Lotto 6/49",
+    "Western Canada Lottery Corporation",
+    "Edmonton",
+    "Lotto",
+    "Million Lotto"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Sneha Joy' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'Lotto 6/49' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Million Lotto' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Western Canada Lottery Corporation, Winnipeg, Manitoba (43924985802).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q16211896)",
+      "verdict": "accepted",
+      "reason": "5184x3888, CC BY-SA 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Metcalfe County Kentucky courthouse.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q669416)",
+      "verdict": "accepted",
+      "reason": "1824x1259, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Lotto Lorenzo (attributed) presumably self portrait 31862-p.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q310973)",
+      "verdict": "accepted",
+      "reason": "2205x2750, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Lorenzo lotto, san felice in cattedra, 1542, 00.jpg",
+      "route": "identity \u2014 depicts (P180=Q310973)",
+      "verdict": "rejected",
+      "reason": "resolution: 960x2416 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Western Canada Lottery Corporation, Winnipeg, Manitoba (43924985802).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q16211896)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/c/cd/Western_Canada_Lottery_Corporation%2C_Winnipeg%2C_Manitoba_%2843924985802%29.jpg?utm_source=commons.wiki"
+    },
+    {
+      "candidate": "File:Lotto Lorenzo (attributed) presumably self portrait 31862-p.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q310973)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/d/df/Lotto_Lorenzo_%28attributed%29_presumably_self_portrait_31862-p.jpg?utm_source=commons.wikimedia.org&utm"
+    },
+    {
+      "candidate": "File:Metcalfe County Kentucky courthouse.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q669416)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/6/64/Metcalfe_County_Kentucky_courthouse.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_cont"
+    }
+  ],
+  "extras": []
+}

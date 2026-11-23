@@ -1,0 +1,127 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "navdeep-bains-elected-ontario-liberal-leader",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Navdeep Bains",
+    "Ontario Liberal Party",
+    "Lee Fairclough",
+    "Mississauga",
+    "Ontario",
+    "Liberal"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Liberal' named 'liberalism', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:NavdeepBains 2011.JPG",
+      "route": "identity \u2014 Wikidata P18 (Q3337237)",
+      "verdict": "rejected",
+      "reason": "resolution: 380x537 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Karn Manhas, Annett Rozek, and Navdeep Bains.jpg",
+      "route": "identity \u2014 depicts (P180=Q3337237)",
+      "verdict": "accepted",
+      "reason": "3600x2400, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Navdeep Bains3.jpg",
+      "route": "identity \u2014 depicts (P180=Q3337237)",
+      "verdict": "USED (news)",
+      "reason": "3680x2485, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:ALL DelDucaHeadshot.jpg",
+      "route": "identity \u2014 depicts (P180=Q1553186)",
+      "verdict": "accepted",
+      "reason": "3479x4871, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Granville Anderson Durham MPP 2014-2018.jpg",
+      "route": "identity \u2014 depicts (P180=Q1553186)",
+      "verdict": "rejected",
+      "reason": "resolution: 506x627 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:OLP 2022 Election Sign.jpg",
+      "route": "identity \u2014 depicts (P180=Q1553186)",
+      "verdict": "accepted",
+      "reason": "4032x3024, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Lee Fairclough - 2024.jpg",
+      "route": "identity \u2014 depicts (P180=Q132810676)",
+      "verdict": "rejected",
+      "reason": "resolution: 649x787 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Lee Fairclough 2025.png",
+      "route": "identity \u2014 depicts (P180=Q132810676)",
+      "verdict": "rejected",
+      "reason": "resolution: 428x481 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Downtown Mississauga.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q50816)",
+      "verdict": "accepted",
+      "reason": "3779x2519, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Brampton ON GOT-302 Cab-Car 2025-07-28.jpg",
+      "route": "identity \u2014 depicts (P180=Q50816)",
+      "verdict": "accepted",
+      "reason": "6016x4016, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Karn Manhas, Annett Rozek, and Navdeep Bains.jpg",
+      "route": "identity \u2014 depicts (P180=Q3337237)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/0/0e/Karn_Manhas%2C_Annett_Rozek%2C_and_Navdeep_Bains.jpg?utm_source=commons.wikimedia.org&utm_campaign=image"
+    },
+    {
+      "candidate": "File:OLP 2022 Election Sign.jpg",
+      "route": "identity \u2014 depicts (P180=Q1553186)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/c/c5/OLP_2022_Election_Sign.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    },
+    {
+      "candidate": "File:Downtown Mississauga.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q50816)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/3/31/Downtown_Mississauga.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "navdeep-bains3",
+      "path": "navdeep-bains3.jpg",
+      "size": [
+        3680,
+        2485
+      ],
+      "role": "establishing",
+      "subject": "22 May 2019; Navdeep Bains, Minister of Innovation, Science and Economic Development, Government of Canada, on Centre Stage during day two of Collision 2019 at Enercare Center in Toronto, Canada. Photo by Vaughn Ridley/Collision via Sportsf",
+      "route": "identity \u2014 depicts (P180=Q3337237)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Navdeep_Bains3.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Navdeep_Bains3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "Vaughn Ridley/Collision via Sportsfile",
+      "entity": "Navdeep Bains",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Navdeep Bains",
+        "Navdeep Singh Bains"
+      ]
+    }
+  ]
+}

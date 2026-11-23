@@ -1,0 +1,82 @@
+[
+  {
+    "id": "fe8296ed-7041-491b-b0ea-9a29d821d8f6",
+    "headline": "A Cancer Vaccine Made for One Patient? Hyderabad's RNA Foundry Is Building It",
+    "slug": "hyderabad-popvax-rna-foundry-personalised-cancer-vaccine",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the RNA Foundry's launch and its implications for current cancer treatment options, as the article mentions it was launched in October 2026 but does not specify if this is a future projection or an error.",
+        "Include a quote from a credible source, such as a medical expert or a representative from PopVax, to enhance the article's attribution and provide a human element to the technical details.",
+        "Expand on the potential risks and ethical considerations of using personalised mRNA vaccines, as this is a significant aspect of experimental treatments that readers may want to understand."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from PopVax or a reputable medical organization discussing the significance of personalized cancer vaccines or the launch of the RNA Foundry."
+      ]
+    }
+  },
+  {
+    "id": "9230e5de-d0de-4ea1-ab79-9466369d970a",
+    "headline": "Edmonton's Sneha Joy Wins $5 Million Lotto 6/49 Jackpot",
+    "slug": "edmonton-sneha-joy-wins-5-million-lotto-649",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the announcement regarding the win. The article states it was announced 'this week' but does not specify the exact date, which could help with timeliness and clarity.",
+        "Provide additional context about the Lotto 6/49 Classic draw, such as the odds of winning or how frequently the draw occurs. This information would enhance completeness and help readers understand the significance of the win.",
+        "Include a quote from a lottery official or representative from the Western Canada Lottery Corporation to add credibility and attribution to the reporting.",
+        "Reorganize the structure to avoid redundancy. The article repeats information about the winning numbers and Joy's reaction. Streamlining this could improve clarity and flow."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement or tweet from the Western Canada Lottery Corporation regarding the win for verification and to provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "908242ef-db07-4c47-a328-1312a83a721c",
+    "headline": "Texas State Employee Faces Losing His Job as DACA Renewal Stalls",
+    "slug": "texas-state-employee-daca-renewal-stalls-job-december",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for DACA renewals by providing specific dates or statistics on current processing times from USCIS to enhance completeness and clarity.",
+        "Include a direct quote or statement from USCIS regarding the current status of DACA renewals to improve attribution and accuracy.",
+        "Expand on the implications of losing work authorization for DACA recipients, including potential financial impacts or legal consequences, to provide more context for readers."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet or announcement regarding DACA renewal processing times to provide authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "5451b039-57be-426a-8757-f2f7ca0d3a30",
+    "headline": "Google's Willow Qubits Win a Game No Classical Strategy Can Match",
+    "slug": "google-willow-quantum-contextuality-magic-square-science",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the 98.30% win rate by providing context on how this compares to previous quantum computing achievements or benchmarks in the field. This would help readers understand the magnitude of this result.",
+        "Include a brief explanation of quantum contextuality for readers who may not be familiar with the concept. This would enhance clarity and completeness, making the article more accessible.",
+        "Add a quote from a researcher or expert in the field to provide attribution and depth to the reporting. This would lend credibility and a human element to the technical details.",
+        "Ensure that the article mentions the potential implications of this research for future quantum computing applications or advancements, as this could be a key takeaway for readers interested in the technology's future."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from Google Quantum AI announcing the research findings to provide direct access to the source and enhance engagement."
+      ]
+    }
+  }
+]

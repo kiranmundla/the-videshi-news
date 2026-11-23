@@ -1,0 +1,182 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "navdeep-bains-elected-ontario-liberal-leader",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Navdeep Bains Wins Ontario Liberal Leadership on Final Ballot, 50.3 to 49.7",
+        "numbers": [
+          49.7,
+          50.3
+        ],
+        "entities": [
+          "Navdeep Bains Wins Ontario Liberal Leadership",
+          "Final Ballot"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms Bains won with those exact percentages.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The former federal industry minister from Mississauga beat MPP Lee Fairclough by less than a point after a nine-month race, and now has to rebuild a party that holds 14 seats.",
+        "numbers": [
+          14.0
+        ],
+        "entities": [
+          "MPP Lee Fairclough"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "All details about the race and party status are present in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Navdeep Bains was elected leader of the Ontario Liberal Party on November 21, 2026, beating Lee Fairclough 50.3 per cent to 49.7 per cent on the third and final ballot",
+        "numbers": [
+          21.0,
+          49.7,
+          50.3,
+          2026.0
+        ],
+        "entities": [
+          "Navdeep Bains",
+          "Ontario Liberal Party",
+          "Lee Fairclough"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2026
+          ]
+        },
+        "llm_reason": "The article states the election date and results clearly.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Bains is the first visible minority to lead the Ontario Liberal Party",
+        "numbers": [],
+        "entities": [
+          "Ontario Liberal Party"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article explicitly states Bains is the first visible minority leader.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "20,510 party members voted in the leadership contest",
+        "numbers": [
+          20510.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions the exact number of voters.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Navdeep Bains",
+        "numbers": [],
+        "entities": [
+          "Navdeep Bains"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions Navdeep Bains throughout.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Leader, Ontario Liberal Party",
+        "numbers": [],
+        "entities": [
+          "Ontario Liberal Party"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms Bains is the leader of the Ontario Liberal Party.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Navdeep Bains Wins Ontario Liberal Leadership on Final Ballot, 50.3 to 49.7",
+        "numbers": [
+          49.7,
+          50.3
+        ],
+        "entities": [
+          "Navdeep Bains Wins Ontario Liberal Leadership",
+          "Final Ballot"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the first claim, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000576,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

@@ -1,0 +1,36 @@
+{
+ "hook_line": "TANKER HIT NEAR KHASAB AS HORMUZ TRAFFIC STAYS ABOUT 65% BELOW PRE-WAR LEVELS",
+ "hook_stat": {
+  "big": "65%",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "How far Strait of Hormuz shipping traffic sits below pre-conflict levels, according to UKMTO's weekly overview"
+ },
+ "stats": [
+  {
+   "big": "263",
+   "label": "Vessel transits in the seven days to November 18, down from 308 the previous week"
+  },
+  {
+   "big": "6",
+   "label": "Tankers attacked during the week \u2014 four in the strait and two in the Persian Gulf"
+  },
+  {
+   "big": "10 million",
+   "label": "Barrels of oil a day flowing through Hormuz by November 10, down from 13.4 million at the start of the month"
+  }
+ ],
+ "diaspora_bullets": [
+  "Indian crew sail many of the tankers transiting the Gulf \u2014 the week's casualties included Indian seafarers, with crew members missing and injured",
+  "UKMTO has recorded 106 incidents in the strait since February 28, and the Joint Maritime Information Center assesses the threat level as severe"
+ ],
+ "key_entities": [
+  "Strait of Hormuz",
+  "Khasab",
+  "UKMTO",
+  "Oman"
+ ],
+ "news_summary": "UKMTO said a tanker sailing outbound through the Strait of Hormuz was struck on its stern by an unidentified projectile about 11 nautical miles north of Khasab, on Oman's Musandam Peninsula, on Saturday, with no injuries reported.",
+ "payoff": "There is no sign in the latest reporting of the strait reopening to normal traffic \u2014 the next UKMTO weekly overview will show whether the November 20\u201321 strikes near Khasab mark a new tempo or the peak of the current one.",
+ "versus": "",
+ "story_mood": "tense"
+}

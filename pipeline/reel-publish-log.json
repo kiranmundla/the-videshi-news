@@ -1265,5 +1265,31 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "mUknYZg0gqc",
+    "article_slug": "edmonton-sneha-joy-wins-5-million-lotto-649",
+    "article_id": "9230e5de-d0de-4ea1-ab79-9466369d970a",
+    "title": "Edmonton's Sneha Joy Wins $5 Million Lotto 6/49 Jackpot #Shorts #NRI",
+    "privacy": "public",
+    "uploaded_at": "2026-11-22T23:14:08.179042+00:00",
+    "video_path": "reel-runs/2026-11-22-edmonton-sneha-joy-wins-5-million-lotto-649/output/edmonton-sneha-joy-wins-5-million-lotto-649.mp4",
+    "video_sha256": "4b0631d037fdc6af31f2653b61a5598f20d8c193dafec4ce66c2c2255a8cc067",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "rCyMQoAZPTg",
+    "article_slug": "navdeep-bains-elected-ontario-liberal-leader",
+    "article_id": "53cac36a-958e-42ed-909d-0d05c42f6ece",
+    "title": "Navdeep Bains Wins Ontario Liberal Leadership on Final Ballot, 50.3 to 49.7 #Shorts #USElections2026",
+    "privacy": "public",
+    "uploaded_at": "2026-11-23T05:14:56.485182+00:00",
+    "video_path": "reel-runs/2026-11-22-navdeep-bains-elected-ontario-liberal-leader/output/navdeep-bains-elected-ontario-liberal-leader.mp4",
+    "video_sha256": "54cba7b121d143329078438f01cc9d89e6eef5660255637938b3e6bf2194b312",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

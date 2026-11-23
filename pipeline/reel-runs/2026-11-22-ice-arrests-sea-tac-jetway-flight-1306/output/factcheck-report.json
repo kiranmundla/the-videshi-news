@@ -1,0 +1,271 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "ice-arrests-sea-tac-jetway-flight-1306",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "ICE ARRESTS TWO ON SEA-TAC JETWAY, DELAYING LOS ANGELES-BOUND FLIGHT",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states ICE arrested two on the jetway, delaying the flight.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "ICE officers arrested two people on the jetway of Alaska Airlines Flight 1306 at Seattle-Tacoma International Airport on Saturday morning as passengers boarded for Los Angeles.",
+      "numbers": [
+        1306.0
+      ],
+      "entities": [
+        "Alaska Airlines Flight",
+        "Seattle-Tacoma International Airport",
+        "Los Angeles"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the arrests occurred on the jetway of Flight 1306.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "3 hours",
+      "numbers": [
+        3.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The flight departed about three hours late according to the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Delay to Alaska Airlines Flight 1306 after ICE arrests on the jetway at Sea-Tac",
+      "numbers": [
+        1306.0
+      ],
+      "entities": [
+        "Alaska Airlines Flight"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the delay of Flight 1306 due to the arrests.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "2",
+      "numbers": [
+        2.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states that two people were arrested by ICE.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "People arrested by ICE during boarding at Sea-Tac",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms two arrests during boarding at Sea-Tac.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "8:10 a.m.",
+      "numbers": [
+        8.0,
+        10.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the flight was scheduled to depart at 8:10 a.m.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Scheduled departure of Flight 1306 to Los Angeles \u2014 it left at 11 a.m.",
+      "numbers": [
+        11.0,
+        1306.0
+      ],
+      "entities": [
+        "Los Angeles"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the scheduled departure and actual departure time.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "2nd",
+      "numbers": [
+        2.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions it was the second known incident of ICE arrests at the airport.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Known incident within a month of ICE arresting multiple people at Sea-Tac, per FOX 13",
+      "numbers": [
+        13.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states it was the second known incident within a month.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "ICE has stepped up arrests at airports, particularly of people who overstayed visas",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article notes ICE has increased airport arrests of visa overstayers.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Travelers with a pending application or a past overstay should take legal advice before flying domestically",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article advises travelers to seek legal advice regarding their situations.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Flight 1306 departed at 11 a.m., about three hours late, and many passengers were moved to other flights.",
+      "numbers": [
+        11.0,
+        1306.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the departure time and that passengers were moved.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "ICE",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Sea-Tac",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Alaska Airlines",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Ricardo Larrondo Mendoza",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Sofia Hernandez Mejia",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000725,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

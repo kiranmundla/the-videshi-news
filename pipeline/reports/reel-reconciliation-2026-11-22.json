@@ -1,11 +1,11 @@
 {
   "counts": {
-    "channel_videos": 280,
-    "db_rows": 213,
-    "db_rows_with_yt_id": 183,
+    "channel_videos": 281,
+    "db_rows": 214,
+    "db_rows_with_yt_id": 184,
     "legacy_log_entries": 205,
-    "publish_log_entries": 96,
-    "in_sync": 162,
+    "publish_log_entries": 97,
+    "in_sync": 163,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 17,
     "ghost_db_rows": 16,
@@ -1147,6 +1147,13 @@
       "privacy": "public",
       "video_id": "3fTjv2QeF0s",
       "record": "prebuilt_reels:48da8e70-de35-471f-add9-6adde401126c"
+    },
+    {
+      "title": "Edmonton's Sneha Joy Wins $5 Million Lotto 6/49 Jackpot #Shorts #NRI",
+      "published_at": "2026-11-22T23:14:32Z",
+      "privacy": "public",
+      "video_id": "mUknYZg0gqc",
+      "record": "prebuilt_reels:1815e710-eb5e-49a6-9cb4-01cc673376a6"
     }
   ],
   "unknown_legacy_logged": [
@@ -4156,5 +4163,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-11-22T05:23:10+00:00"
+  "generated_at": "2026-11-22T23:14:50+00:00"
 }

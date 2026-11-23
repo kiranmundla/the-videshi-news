@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-21-anupama-ramachandran-defends-world-snooker-title-indore/output-fallback-test/anupama-ramachandran-defends-world-snooker-title-indore.mp4",
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1500,
+        900
+      ],
+      "manifest_dims": [
+        1500,
+        900
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 9.1,
+      "url": "https://thebridge.in/h-upload/2025/11/13/64045-anupama-ramachandran-snooker.jpg"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-21-anupama-ramachandran-defends-world-snooker-title-indore/output-fallback-test/qa/frames/frame-hook.png",
+      "text_px_detected": 26795,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.92)",
+        "box": [
+          302,
+          336,
+          164,
+          206
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-21-anupama-ramachandran-defends-world-snooker-title-indore/output-fallback-test/qa/frames/frame-news.png",
+      "text_px_detected": 40742,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.93)",
+        "box": [
+          314,
+          284,
+          198,
+          235
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-21-anupama-ramachandran-defends-world-snooker-title-indore/output-fallback-test/qa/frames/frame-hero.png",
+      "text_px_detected": 16018,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.93)",
+        "box": [
+          345,
+          271,
+          212,
+          246
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 252.4,
+        "bg_luminance": 0.0,
+        "delta": 252.4
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-21-anupama-ramachandran-defends-world-snooker-title-indore/output-fallback-test/qa/frames/frame-grid.png",
+      "text_px_detected": 42052,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.94)",
+        "box": [
+          123,
+          265,
+          215,
+          256
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 0.0,
+        "delta": 253.4
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-21-anupama-ramachandran-defends-world-snooker-title-indore/output-fallback-test/qa/frames/frame-diaspora.png",
+      "text_px_detected": 35299,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.93)",
+        "box": [
+          367,
+          211,
+          229,
+          275
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-21-anupama-ramachandran-defends-world-snooker-title-indore/output-fallback-test/qa/frames/frame-payoff.png",
+      "text_px_detected": 23104,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          288,
+          326,
+          174,
+          215
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 0.0,
+        "delta": 253.6
+      }
+    }
+  ]
+}

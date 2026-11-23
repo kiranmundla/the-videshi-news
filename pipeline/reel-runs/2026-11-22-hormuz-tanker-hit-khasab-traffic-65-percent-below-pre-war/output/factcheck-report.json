@@ -1,0 +1,274 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "hormuz-tanker-hit-khasab-traffic-65-percent-below-pre-war",
+  "verdict": "fail",
+  "held_claims": [
+    "news_summary",
+    "diaspora_bullets[1]"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "TANKER HIT NEAR KHASAB AS HORMUZ TRAFFIC STAYS ABOUT 65% BELOW PRE-WAR LEVELS",
+      "numbers": [
+        65.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Both events and traffic levels are reported in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "A tanker sailing outbound through the Strait of Hormuz was hit on its stern by an unidentified projectile about 11 nautical miles north of Khasab, on Oman's Musandam Peninsula, the United Kingdom Maritime Trade Operations (UKMTO) said on Saturday. No injuries were reported.",
+      "numbers": [
+        11.0
+      ],
+      "entities": [
+        "Oman's Musandam Peninsula",
+        "United Kingdom Maritime Trade Operations",
+        "Saturday No"
+      ],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_entities": [
+          "Saturday No"
+        ]
+      },
+      "llm_reason": "Details match the article's account of the incident.",
+      "verdicts": {
+        "deterministic": "fail",
+        "llm": "supported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "65%",
+      "numbers": [
+        65.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Traffic levels are stated as 65% below pre-conflict levels.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "How far Strait of Hormuz shipping traffic sits below pre-conflict levels, according to UKMTO's weekly overview",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article cites UKMTO's overview on traffic levels.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "263",
+      "numbers": [
+        263.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article reports 263 vessel transits in the specified period.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Vessel transits in the seven days to November 18, down from 308 the previous week",
+      "numbers": [
+        18.0,
+        308.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms this statistic and comparison.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "6",
+      "numbers": [
+        6.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states six tankers were attacked during the week.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Tankers attacked during the week \u2014 four in the strait and two in the Persian Gulf",
+      "numbers": [],
+      "entities": [
+        "Persian Gulf"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article provides this breakdown of tanker attacks.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "10 million",
+      "numbers": [
+        10.0,
+        10000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states oil flows fell to 10 million barrels a day.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Barrels of oil a day flowing through Hormuz by November 10, down from 13.4 million at the start of the month",
+      "numbers": [
+        10.0,
+        13.4,
+        13400000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms this oil flow statistic.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Indian crew sail many of the tankers transiting the Gulf \u2014 the week's casualties included Indian seafarers, with crew members missing and injured",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions Indian casualties among the crew.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Gulf-based families depend on ports whose traffic is running at about a third of pre-war levels",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states traffic is about 65% below pre-war levels, not a third.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "payoff",
+      "text": "There is no sign in the latest reporting of the strait reopening to normal traffic \u2014 the next UKMTO weekly overview will show whether the November 20\u201321 strikes near Khasab mark a new tempo or the peak of the current one.",
+      "numbers": [
+        20.0,
+        21.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses the uncertainty of traffic normalization.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Strait of Hormuz",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Khasab",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "UKMTO",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Oman",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000764,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

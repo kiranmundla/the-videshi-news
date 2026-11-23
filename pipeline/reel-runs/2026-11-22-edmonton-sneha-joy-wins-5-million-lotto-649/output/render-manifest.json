@@ -1,0 +1,374 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "edmonton-sneha-joy-wins-5-million-lotto-649",
+ "article_slug": "edmonton-sneha-joy-wins-5-million-lotto-649",
+ "article_id": "9230e5de-d0de-4ea1-ab79-9466369d970a",
+ "category": "Nri World",
+ "video": "reel-runs/2026-11-22-edmonton-sneha-joy-wins-5-million-lotto-649/output/edmonton-sneha-joy-wins-5-million-lotto-649.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://img.onmanorama.com/content/dam/mm/en/archive/kerala/top-news/images/2026/11/22/sneha-joy-lottery.jpg",
+  "local_path": "reel-runs/2026-11-22-edmonton-sneha-joy-wins-5-million-lotto-649/output/hero.jpg",
+  "width": 1248,
+  "height": 650,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.92)",
+  "has_face": true,
+  "box_source": [
+   598,
+   49,
+   135,
+   179
+  ],
+  "box_bg": [
+   486,
+   189,
+   90,
+   120
+  ],
+  "chin_bg": 309,
+  "anchor": [
+   0.533,
+   0.212
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   433
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 653,
+   "zone_h": 903,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 923,
+   "block_bottom": 1286,
+   "text_bbox": [
+    70,
+    923,
+    930,
+    1286
+   ],
+   "texts": [
+    "Nri World",
+    "EDMONTON'S SNEHA JOY WINS $5 MILLION LOTTO 6/49 JACKPOT"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.668,
+    "photo_px": [
+     1248,
+     650
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 433,
+     "scale": 0.6682692307692307,
+     "window": [
+      0,
+      0,
+      1248,
+      647
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.95x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 653,
+   "zone_h": 903,
+   "scale": 1.0,
+   "content_h": 413,
+   "block_top": 898,
+   "block_bottom": 1311,
+   "text_bbox": [
+    70,
+    898,
+    930,
+    1311
+   ],
+   "texts": [
+    "What Happened",
+    "Edmonton's Sneha Joy matched all six numbers in the October 21 Lotto 6/49 Classic draw to win $5 million, the Western Canada Lottery Corporation announced this week."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.76,
+    "photo_px": [
+     1248,
+     650
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 433,
+     "scale": 0.7595628415300546,
+     "window": [
+      116,
+      0,
+      1214,
+      570
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.95x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 653,
+   "zone_h": 903,
+   "scale": 1.0,
+   "content_h": 426,
+   "block_top": 891,
+   "block_bottom": 1317,
+   "text_bbox": [
+    70,
+    891,
+    930,
+    1317
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "$5 million",
+    "Lotto 6/49 Classic draw jackpot won by Edmonton's Sneha Joy"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.836,
+    "photo_px": [
+     1248,
+     650
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 433,
+     "scale": 0.8356713426853707,
+     "window": [
+      0,
+      0,
+      998,
+      518
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.95x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 653,
+   "zone_h": 903,
+   "scale": 1.0,
+   "content_h": 545,
+   "block_top": 832,
+   "block_bottom": 1377,
+   "text_bbox": [
+    70,
+    832,
+    930,
+    1377
+   ],
+   "texts": [
+    "By The Numbers",
+    "October 21",
+    "Date of the Lotto 6/49 Classic draw Joy won",
+    "6",
+    "Numbers matched \u2014 1, 10, 18, 22, 33 and 37"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.836,
+    "photo_px": [
+     1248,
+     650
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 433,
+     "scale": 0.8356713426853707,
+     "window": [
+      250,
+      0,
+      1248,
+      518
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.95x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 653,
+   "zone_h": 903,
+   "scale": 1.0,
+   "content_h": 495,
+   "block_top": 857,
+   "block_bottom": 1352,
+   "text_bbox": [
+    70,
+    857,
+    930,
+    1352
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Joy bought the winning ticket through the Lotto Spot app and plays regularly",
+    "She plans to pay off her mortgage, travel around the world and share the winnings with family"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.904,
+    "photo_px": [
+     1248,
+     650
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 433,
+     "scale": 0.9035752979414952,
+     "window": [
+      204,
+      49,
+      1127,
+      528
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.95x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 699,
+   "block_bottom": 1020,
+   "text_bbox": [
+    70,
+    699,
+    930,
+    1020
+   ],
+   "texts": [
+    "The Takeaway",
+    "Joy said the best part of winning is being financially stress-free.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/upbeat-celebration-midnight-celebration.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 95.0,
+ "mp4_bytes": 5458523
+}

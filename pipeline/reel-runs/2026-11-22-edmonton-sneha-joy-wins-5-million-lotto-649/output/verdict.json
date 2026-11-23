@@ -1,0 +1,55 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black",
+    "via": "v7 fallback \u2014 named-person distinct-image hold (Kiran 2026-11-22)"
+  },
+  "article_slug": "edmonton-sneha-joy-wins-5-million-lotto-649",
+  "name": "edmonton-sneha-joy-wins-5-million-lotto-649",
+  "script": "reel-runs/2026-11-22-edmonton-sneha-joy-wins-5-million-lotto-649/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000558
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-22-edmonton-sneha-joy-wins-5-million-lotto-649/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {}
+  },
+  "stock": {
+    "eligible": false,
+    "reason": "named-person story (Sneha Joy, Lotto, Million Lotto) \u2014 stock fallback forbidden"
+  },
+  "distinct_images": {
+    "usable": 1,
+    "scenes": 6,
+    "labels": [
+      "hero"
+    ]
+  },
+  "fallback": {
+    "attempted": true,
+    "persons": [
+      "Sneha Joy",
+      "Lotto",
+      "Million Lotto"
+    ],
+    "reason": "v8 distinct-image hold: 1 distinct usable images for 6 scenes",
+    "qa_score": 10.0,
+    "qa_passed": true,
+    "result": "ready (QA 10.0)"
+  },
+  "manifest": "reel-runs/2026-11-22-edmonton-sneha-joy-wins-5-million-lotto-649/output/render-manifest.json",
+  "video": "reel-runs/2026-11-22-edmonton-sneha-joy-wins-5-million-lotto-649/output/edmonton-sneha-joy-wins-5-million-lotto-649.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-22-edmonton-sneha-joy-wins-5-million-lotto-649/output/tiktok-caption.txt"
+}
