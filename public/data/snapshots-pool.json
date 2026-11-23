@@ -120,13 +120,6 @@
     "added_date": "2026-05-01"
   },
   {
-    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/mumbai-gateway-of-india-6522109.jpg",
-    "label": "Vibrant crowd gathered at the famous Gateway of India in Mumbai, India during the day. · 📷 Shubam Bhasin",
-    "source": "pexels",
-    "added_date": "2026-05-27",
-    "pexels_id": 6522109
-  },
-  {
     "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/mumbai-gateway-of-india-6522114.jpg",
     "label": "The iconic Gateway of India in Mumbai, a popular tourist attraction and historical landmark, on a sunny day. · 📷 Shubam Bhasin",
     "source": "pexels",
@@ -258,5 +251,12 @@
     "source": "pexels",
     "added_date": "2026-11-16",
     "pexels_id": 7195782
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-street-market-bazaar-17161099.jpg",
+    "label": "Colorful market scene with fresh produce and diverse shoppers under tarps. · 📷 Pramod  Tiwari",
+    "source": "pexels",
+    "added_date": "2026-11-23",
+    "pexels_id": 17161099
   }
 ]
