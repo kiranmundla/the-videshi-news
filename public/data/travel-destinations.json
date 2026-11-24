@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-23",
+  "generated_at": "2026-11-24",
   "current_month": 11,
   "current_year": 2026,
   "destination_count": 50,
@@ -18,9 +18,9 @@
     "japan",
     "thailand",
     "maldives",
-    "karnataka",
     "kerala",
     "dubai",
+    "karnataka",
     "aruba",
     "mexico",
     "morocco",
@@ -66,11 +66,11 @@
       "maldives",
       "thailand",
       "dubai",
-      "karnataka",
       "kerala",
       "abu-dhabi",
       "aruba",
       "jamaica",
+      "karnataka",
       "mexico",
       "goa",
       "puerto-vallarta",
@@ -99,11 +99,11 @@
       "maldives",
       "thailand",
       "dubai",
-      "karnataka",
       "kerala",
       "abu-dhabi",
       "aruba",
       "jamaica",
+      "karnataka",
       "mexico",
       "goa",
       "puerto-vallarta",
@@ -351,8 +351,8 @@
       "london",
       "egypt",
       "japan",
-      "karnataka",
       "kerala",
+      "karnataka",
       "morocco",
       "cabo",
       "oman",
@@ -366,8 +366,8 @@
       "australia",
       "hawaii",
       "japan",
-      "karnataka",
       "kerala",
+      "karnataka",
       "morocco",
       "cabo",
       "oman",
@@ -412,10 +412,10 @@
       "maldives",
       "thailand",
       "dubai",
-      "karnataka",
       "kerala",
       "abu-dhabi",
       "jamaica",
+      "karnataka",
       "mexico",
       "morocco",
       "goa",
@@ -455,11 +455,11 @@
       "maldives",
       "thailand",
       "dubai",
-      "karnataka",
       "kerala",
       "abu-dhabi",
       "aruba",
       "jamaica",
+      "karnataka",
       "mexico",
       "goa",
       "puerto-vallarta",
@@ -3310,7 +3310,7 @@
         "date_range": "Jan 12 \u2192 Feb 3",
         "duration_days": 22,
         "weeks": null,
-        "as_of": "2026-11-23",
+        "as_of": "2026-11-24",
         "cadence": "daily"
       },
       "fares_by_origin": {
@@ -3322,7 +3322,7 @@
           "date_range": "Jan 12 \u2192 Feb 3",
           "duration_days": 22,
           "weeks": null,
-          "as_of": "2026-11-23",
+          "as_of": "2026-11-24",
           "cadence": "daily"
         }
       },
@@ -3372,7 +3372,7 @@
       "trending": {
         "month": 11,
         "year": 2026,
-        "score": 65,
+        "score": 64,
         "max_score": 100,
         "components": [
           {
@@ -3389,9 +3389,9 @@
           },
           {
             "id": "fare_drop",
-            "points": 1,
+            "points": 0,
             "max": 20,
-            "reason": "Fares down 0.8% on SFO-BLR ($1825 \u2192 $1811) vs 2026-11-21"
+            "reason": "Fare route tracked, no notable drop right now"
           },
           {
             "id": "offpeak_value",
@@ -6105,7 +6105,7 @@
       "dest_metro": "Delhi",
       "date_range": "Jan 26 \u2192 Feb 15",
       "duration_days": 20,
-      "as_of": "2026-11-23",
+      "as_of": "2026-11-24",
       "cadence": "daily"
     },
     "fares_by_origin": {
@@ -6116,7 +6116,7 @@
         "dest_metro": "Delhi",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-23",
+        "as_of": "2026-11-24",
         "cadence": "daily"
       },
       "JFK": {
@@ -6135,17 +6135,6 @@
         "route": "ORD-BOM",
         "origin_metro": "Chicago",
         "dest_metro": "Mumbai",
-        "date_range": "Jan 26 \u2192 Feb 15",
-        "duration_days": 20,
-        "as_of": "2026-11-23",
-        "cadence": "weekly",
-        "indicative": true
-      },
-      "DFW": {
-        "price_min": 1076,
-        "route": "DFW-BLR",
-        "origin_metro": "Dallas",
-        "dest_metro": "Bengaluru",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
         "as_of": "2026-11-23",
@@ -6213,6 +6202,17 @@
         "origin_metro": "Boston",
         "dest_metro": "Mumbai",
         "date_range": "Jan 12 \u2192 Feb 1",
+        "duration_days": 20,
+        "as_of": "2026-11-23",
+        "cadence": "weekly",
+        "indicative": true
+      },
+      "DFW": {
+        "price_min": 1076,
+        "route": "DFW-BLR",
+        "origin_metro": "Dallas",
+        "dest_metro": "Bengaluru",
+        "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
         "as_of": "2026-11-23",
         "cadence": "weekly",
