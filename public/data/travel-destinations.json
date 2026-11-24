@@ -6126,7 +6126,7 @@
         "dest_metro": "Hyderabad",
         "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
-        "as_of": "2026-11-23",
+        "as_of": "2026-11-24",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6137,7 +6137,18 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-23",
+        "as_of": "2026-11-24",
+        "cadence": "weekly",
+        "indicative": true
+      },
+      "DFW": {
+        "price_min": 940,
+        "route": "DFW-BOM",
+        "origin_metro": "Dallas",
+        "dest_metro": "Mumbai",
+        "date_range": "Jan 12 \u2192 Feb 1",
+        "duration_days": 20,
+        "as_of": "2026-11-24",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6148,7 +6159,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
-        "as_of": "2026-11-23",
+        "as_of": "2026-11-24",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6159,7 +6170,7 @@
         "dest_metro": "Bengaluru",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-23",
+        "as_of": "2026-11-24",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6170,18 +6181,18 @@
         "dest_metro": "Delhi",
         "date_range": "Jan 12 \u2192 Feb 3",
         "duration_days": 22,
-        "as_of": "2026-11-23",
+        "as_of": "2026-11-24",
         "cadence": "weekly",
         "indicative": true
       },
       "IAD": {
-        "price_min": 845,
-        "route": "IAD-BOM",
+        "price_min": 875,
+        "route": "IAD-HYD",
         "origin_metro": "Washington DC",
-        "dest_metro": "Mumbai",
+        "dest_metro": "Hyderabad",
         "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
-        "as_of": "2026-11-23",
+        "as_of": "2026-11-24",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6192,7 +6203,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 26 \u2192 Feb 17",
         "duration_days": 22,
-        "as_of": "2026-11-23",
+        "as_of": "2026-11-24",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6203,18 +6214,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
-        "as_of": "2026-11-23",
-        "cadence": "weekly",
-        "indicative": true
-      },
-      "DFW": {
-        "price_min": 1076,
-        "route": "DFW-BLR",
-        "origin_metro": "Dallas",
-        "dest_metro": "Bengaluru",
-        "date_range": "Jan 26 \u2192 Feb 15",
-        "duration_days": 20,
-        "as_of": "2026-11-23",
+        "as_of": "2026-11-24",
         "cadence": "weekly",
         "indicative": true
       }
@@ -6230,7 +6230,7 @@
     "trending": {
       "month": 11,
       "year": 2026,
-      "score": 80,
+      "score": 87,
       "max_score": 100,
       "components": [
         {
@@ -6247,9 +6247,9 @@
         },
         {
           "id": "fare_drop",
-          "points": 15,
+          "points": 22,
           "max": 30,
-          "reason": "Fares down 10.3% on ORD-HYD ($1635 \u2192 $1466) vs 2026-11-15"
+          "reason": "Fares down 14.4% on DFW-DEL ($2200 \u2192 $1884) vs 2026-11-15"
         }
       ]
     },
