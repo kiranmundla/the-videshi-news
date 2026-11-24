@@ -1,0 +1,288 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "ramayana-day-18-box-office-1693-crore-passes-dhurandhar-2-us",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "RAMAYANA PASSES DHURANDHAR 2 IN THE US, NEARS RS 1,700 CRORE WORLDWIDE",
+      "numbers": [
+        2.0,
+        1700.0,
+        17000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Ramayana passed Dhurandhar 2 in the US and nears Rs 1,700 crore worldwide.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Nitesh Tiwari's Ramayana has reached Rs 1,693.50 crore worldwide gross in 18 days, according to trade tracker Sacnilk, and its $28.4 million US total has passed Dhurandhar: The Revenge's $28.1 million to become the highest-grossing Indian film ever in the US.",
+      "numbers": [
+        18.0,
+        28.1,
+        28.4,
+        1693.5,
+        28100000.0,
+        28400000.0,
+        16935000000.0
+      ],
+      "entities": [
+        "Nitesh Tiwari's Ramayana"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All figures and claims about Ramayana's earnings are accurate and sourced.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$28.4 MILLION",
+      "numbers": [
+        28.4,
+        28400000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$28.4 million is the reported US total for Ramayana.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "The highest US total ever for an Indian film \u2014 past Dhurandhar: The Revenge at $28.1 million",
+      "numbers": [
+        28.1,
+        28100000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Ramayana's US total surpasses Dhurandhar: The Revenge's total.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "Rs 1,693.50 CRORE",
+      "numbers": [
+        1693.5,
+        16935000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is the reported worldwide gross for Ramayana.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Worldwide gross in 18 days, according to trade tracker Sacnilk",
+      "numbers": [
+        18.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately reflects the source of the figure.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "Rs 35.60 CRORE",
+      "numbers": [
+        35.6,
+        356000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is the reported net collection for Day 18 in India.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Day 18 net in India, up 28.8% from Day 17, across 16,277 shows",
+      "numbers": [
+        17.0,
+        18.0,
+        28.8,
+        16277.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately reflects the Day 18 performance details.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "33.5%",
+      "numbers": [
+        33.5
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This percentage represents the overseas share of the global gross.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Overseas share of the global gross \u2014 Rs 567 crore of the total",
+      "numbers": [
+        567.0,
+        5670000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately reflects the overseas contribution to the gross.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "For US audiences, the biggest Indian film in American box office history is a Hindi-language mythological epic",
+      "numbers": [],
+      "entities": [
+        "For US"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This statement is supported by the article's conclusion.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Nitesh Tiwari's epic is headlined by Ranbir Kapoor as Rama and Yash as Ravana, with Sai Pallavi",
+      "numbers": [],
+      "entities": [
+        "Nitesh Tiwari's",
+        "Ranbir Kapoor",
+        "Sai Pallavi"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the cast details for Ramayana.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "For US audiences, the argument is already settled: the biggest Indian film in American box office history is a Hindi-language mythological epic, three weekends into its run.",
+      "numbers": [],
+      "entities": [
+        "For US"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This claim is consistent with the article's assertions.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Ramayana",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Nitesh Tiwari",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Ranbir Kapoor",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Yash",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Dhurandhar: The Revenge",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000797,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

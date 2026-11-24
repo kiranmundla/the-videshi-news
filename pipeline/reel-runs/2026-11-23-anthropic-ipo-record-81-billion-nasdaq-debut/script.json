@@ -1,0 +1,37 @@
+{
+  "hook_line": "LARGEST IPO ON RECORD: ANTHROPIC RAISES $81.3 BILLION",
+  "hook_stat": {
+    "big": "$81.3 BILLION",
+    "eyebrow": "THE PRICE TAG",
+    "sub": "Raised by Anthropic in its IPO, surpassing the $75 billion SpaceX collected at its June listing"
+  },
+  "stats": [
+    {
+      "big": "34%",
+      "label": "Opening gain — shares opened at $111.50, above the $83 IPO price"
+    },
+    {
+      "big": "$97.17",
+      "label": "Closing price on the Nasdaq debut day, up 17% on the day"
+    },
+    {
+      "big": "$2 TRILLION",
+      "label": "Fully diluted valuation reached at the opening price"
+    }
+  ],
+  "diaspora_bullets": [
+    "Anthropic is the first large frontier AI model maker to go public",
+    "Its pricing is now the public benchmark for frontier AI valuations"
+  ],
+  "key_entities": [
+    "Anthropic",
+    "Claude",
+    "Nasdaq",
+    "SpaceX",
+    "Dario Amodei"
+  ],
+  "news_summary": "Anthropic, the maker of the Claude AI chatbot, sold 980 million shares at $83 each in its Nasdaq debut, raising $81.3 billion and surpassing SpaceX's June listing as the largest IPO on record.",
+  "payoff": "Anthropic's debut is now the public benchmark for frontier AI valuations, and its first-day fade is the caution attached to it.",
+  "versus": "",
+  "story_mood": "celebratory"
+}

@@ -1,0 +1,376 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "ramayana-day-18-box-office-1693-crore-passes-dhurandhar-2-us",
+ "article_slug": "ramayana-day-18-box-office-1693-crore-passes-dhurandhar-2-us",
+ "article_id": "0af31d55-bbda-45c4-b2de-2943127cefad",
+ "category": "Entertainment",
+ "video": "reel-runs/2026-11-23-ramayana-day-18-box-office-1693-crore-passes-dhurandhar-2-us/output2/ramayana-day-18-box-office-1693-crore-passes-dhurandhar-2-us.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://cdn.sacnilk.com/image/news300/1000028673.jpg",
+  "local_path": "reel-runs/2026-11-23-ramayana-day-18-box-office-1693-crore-passes-dhurandhar-2-us/output2/hero.jpg",
+  "width": 1200,
+  "height": 675,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.91)",
+  "has_face": true,
+  "box_source": [
+   441,
+   134,
+   75,
+   104
+  ],
+  "box_bg": [
+   392,
+   249,
+   52,
+   72
+  ],
+  "chin_bg": 321,
+  "anchor": [
+   0.399,
+   0.278
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 264,
+   "block_top": 990,
+   "block_bottom": 1254,
+   "text_bbox": [
+    70,
+    990,
+    930,
+    1254
+   ],
+   "texts": [
+    "Entertainment",
+    "RAMAYANA PASSES DHURANDHAR 2 IN THE US, NEARS RS 1,700 CRORE WORLDWIDE"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      673
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 288,
+   "block_top": 978,
+   "block_bottom": 1266,
+   "text_bbox": [
+    70,
+    978,
+    930,
+    1266
+   ],
+   "texts": [
+    "What Happened",
+    "Nitesh Tiwari's Ramayana has reached Rs 1,693.50 crore worldwide gross in 18 days, according to trade tracker Sacnilk, and its $28.4 million US total has passed Dhurandhar: The Revenge's $28.1 million to become the highest-grossing Indian film ever in the US."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7897727272727273,
+     "window": [
+      0,
+      0,
+      1056,
+      592
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 329,
+   "block_top": 957,
+   "block_bottom": 1286,
+   "text_bbox": [
+    70,
+    957,
+    930,
+    1286
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "$28.4 MILLION",
+    "The highest US total ever for an Indian film \u2014 past Dhurandhar: The Revenge at $28.1 million"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.86875,
+     "window": [
+      0,
+      0,
+      960,
+      538
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 779,
+   "block_top": 732,
+   "block_bottom": 1511,
+   "text_bbox": [
+    70,
+    732,
+    930,
+    1511
+   ],
+   "texts": [
+    "By The Numbers",
+    "Rs 1,693.50 CRORE",
+    "Worldwide gross in 18 days, according to trade tracker Sacnilk",
+    "Rs 35.60 CRORE",
+    "Day 18 net in India, up 28.8% from Day 17, across 16,277 shows",
+    "33.5%",
+    "Overseas share of the global gross \u2014 Rs 567 crore of the total"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.86875,
+     "window": [
+      240,
+      0,
+      1200,
+      538
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 477,
+   "block_top": 883,
+   "block_bottom": 1360,
+   "text_bbox": [
+    70,
+    883,
+    930,
+    1360
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "For US audiences, the biggest Indian film in American box office history is a Hindi-language mythological epic",
+    "Nitesh Tiwari's epic is headlined by Ranbir Kapoor as Rama and Yash as Ravana, with Sai Pallavi"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.939,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.9391891891891891,
+     "window": [
+      34,
+      134,
+      922,
+      632
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 295,
+   "block_top": 712,
+   "block_bottom": 1007,
+   "text_bbox": [
+    70,
+    712,
+    930,
+    1007
+   ],
+   "texts": [
+    "The Takeaway",
+    "For US audiences, the argument is already settled: the biggest Indian film in American box office history is a Hindi-language mythological epic, three weekends into its run.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/indian-beat.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 106.6,
+ "mp4_bytes": 9763725
+}

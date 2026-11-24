@@ -1,0 +1,128 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "anthropic-ipo-record-81-billion-nasdaq-debut",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Anthropic",
+    "Claude",
+    "Nasdaq",
+    "SpaceX",
+    "Dario Amodei",
+    "Wall Street's"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of \"Wall Street's\" named 'Wall Street', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:Anthropic corporate structure.svg",
+      "route": "identity \u2014 depicts (P180=Q116758847)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Claude ru wiki.png",
+      "route": "identity \u2014 depicts (P180=Q116758847)",
+      "verdict": "rejected",
+      "reason": "resolution: 776x595 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Claude Opus 4.1 output example screenshot.webp",
+      "route": "identity \u2014 Wikidata P18 (Q118876059)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/webp)"
+    },
+    {
+      "candidate": "File:AI-assisted patrolling - Bridging Pywikibot, Discord and LLMs to fight vandalism on small wikis.pdf",
+      "route": "identity \u2014 depicts (P180=Q118876059)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Claude icon.png",
+      "route": "identity \u2014 depicts (P180=Q118876059)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Robin Hood on a Horse.jpg",
+      "route": "identity \u2014 depicts (P180=Q118876059)",
+      "verdict": "rejected",
+      "reason": "resolution: 530x448 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:NYC - Midtown Manhattan \u2013 Times Square \u2013 Broadway by night - panoramio (2).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1472929)",
+      "verdict": "accepted",
+      "reason": "3000x4000, CC BY 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Entrance to SpaceX headquarters.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q193701)",
+      "verdict": "accepted",
+      "reason": "2848x4272, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:2018 12 03 spacex-launch 024 (45254556395).jpg",
+      "route": "identity \u2014 depicts (P180=Q193701)",
+      "verdict": "rejected",
+      "reason": "resolution: 501x756 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Akcie-spacex-usa.png",
+      "route": "identity \u2014 depicts (P180=Q193701)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:CRS-20 Dragon\u2013Enhanced.jpg",
+      "route": "identity \u2014 depicts (P180=Q193701)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Falcon 9 B1046 and two unidentified boosters in the SpaceX Rocket Assembly Building at Kennedy Space Center LC-39A, October 2019.jpg",
+      "route": "identity \u2014 depicts (P180=Q193701)",
+      "verdict": "accepted",
+      "reason": "3840x2560, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Dario Amodei at TechCrunch Disrupt 2023 02 (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q103335665)",
+      "verdict": "accepted",
+      "reason": "1768x2208, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Dario Amodei at TechCrunch Disrupt 2023 01.jpg",
+      "route": "identity \u2014 depicts (P180=Q103335665)",
+      "verdict": "accepted",
+      "reason": "4000x2667, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:NYC - Midtown Manhattan \u2013 Times Square \u2013 Broadway by night - panoramio (2).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1472929)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/2/2a/NYC_-_Midtown_Manhattan_%E2%80%93_Times_Square_%E2%80%93_Broadway_by_night_-_panoramio_%282%29.jpg?utm_s"
+    },
+    {
+      "candidate": "File:Falcon 9 B1046 and two unidentified boosters in the SpaceX Rocket Assembly Building at Kennedy Space Center LC-39A, October 2019.jpg",
+      "route": "identity \u2014 depicts (P180=Q193701)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/f/fb/Falcon_9_B1046_and_two_unidentified_boosters_in_the_SpaceX_Rocket_Assembly_Building_at_Kennedy_Space_Cen"
+    },
+    {
+      "candidate": "File:Entrance to SpaceX headquarters.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q193701)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/8/86/Entrance_to_SpaceX_headquarters.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content="
+    }
+  ],
+  "extras": []
+}

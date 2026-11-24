@@ -1,0 +1,82 @@
+[
+  {
+    "id": "54504bf4-6d5a-4bd3-8f59-567357d9ba5b",
+    "headline": "Rent From an Indian Flat Is Taxable in India, Treaty or NRE Account",
+    "slug": "india-us-tax-treaty-nre-account-rental-income-not-tax-free",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section that specifically addresses how Indian NRIs can manage their tax obligations effectively when renting out property in India. This could include practical tips or strategies tailored for NRIs.",
+        "Provide concrete numbers related to tax rates or potential tax credits that NRIs might face when renting out property in India. For example, specify the current tax rate on rental income in India and any relevant deadlines for filing taxes in both countries.",
+        "Include a clear 'What This Means for You' section that outlines actionable steps NRIs should take regarding their rental income, such as consulting a tax advisor by a certain date or filing specific forms.",
+        "Add a brief explanation of what an NRE account is and how it differs from an NRO account, as this context would be beneficial for NRIs who may not be familiar with these terms."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Indian tax authority or a reputable financial expert discussing the implications of the tax treaty on rental income for NRIs."
+      ]
+    }
+  },
+  {
+    "id": "7846a4d3-e3cd-4ea2-b232-4ce88be3118e",
+    "headline": "ICMR Survey Puts Anaemia at 56% of Women, Severe Cases Below 2%",
+    "slug": "icmr-sampada-survey-anaemia-prevalence-severe-below-2-percent",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the findings by including specific comparisons to previous surveys, such as the exact percentage changes in anaemia rates among women, adolescent girls, and children from NFHS-5 to SAMPADA.",
+        "Provide a brief explanation of the implications of the findings on public health policy or nutrition programs, particularly how the lower prevalence of severe cases might influence future health initiatives.",
+        "Include a direct quote from a relevant expert or official to enhance the article's authority and provide context to the findings.",
+        "Add a brief section summarizing the potential causes of anaemia beyond iron deficiency, as mentioned in the article, to give readers a more comprehensive understanding of the issue."
+      ],
+      "embed_opportunities": [
+        "Embed the official ICMR announcement or a relevant tweet summarizing the survey findings for direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "1401dd9b-6016-4f24-ac73-a7577ad8b818",
+    "headline": "India Runs More Military Exercises With US Than Any Other Country",
+    "slug": "india-us-defence-ties-military-exercises-fact-sheet-2026",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of military exercises mentioned by specifying the dates for each exercise, particularly for Tarang Shakti and Tiger Triumph, to enhance completeness and clarity.",
+        "Provide a brief summary or context about the significance of the US-India Major Defense Partnership for readers who may not be familiar with it, which would improve the article's completeness.",
+        "Include a direct quote from the US fact sheet or a specific statistic that highlights the increase in military exercises over the years, which would add depth and accuracy to the reporting."
+      ],
+      "embed_opportunities": [
+        "Embed the official US State Department tweet or announcement regarding the US-India Major Defense Partnership for credibility and to provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "a31e0404-38a0-4811-a1a2-c5e2f971c5ae",
+    "headline": "India Seeks Quick Fix as UK Flags 162.5% Bulk Scotch Duty",
+    "slug": "india-seeks-quick-fix-uk-flags-bulk-scotch-duty-trade-pact",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the 162.5% duty on consumers and businesses, including potential price increases for Scotch in India or impacts on local distillers. Specific figures or examples would enhance understanding.",
+        "Provide more context on the India-UK trade agreement, including key dates and the significance of the 75% tariff reduction. This would help readers understand the stakes involved in the dispute.",
+        "Include a quote from a representative of the Scotch industry or an expert on trade to provide additional perspective on the situation and its potential impact."
+      ],
+      "embed_opportunities": [
+        "Embed the official UK government statement regarding the duty increase or the India-UK trade agreement for authoritative context."
+      ]
+    }
+  }
+]

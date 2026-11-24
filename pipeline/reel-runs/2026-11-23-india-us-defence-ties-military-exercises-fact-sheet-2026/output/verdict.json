@@ -1,0 +1,53 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black",
+    "via": "v7 fallback \u2014 named-person distinct-image hold (Kiran 2026-11-22)"
+  },
+  "article_slug": "india-us-defence-ties-military-exercises-fact-sheet-2026",
+  "name": "india-us-defence-ties-military-exercises-fact-sheet-2026",
+  "script": "reel-runs/2026-11-23-india-us-defence-ties-military-exercises-fact-sheet-2026/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000733
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-23-india-us-defence-ties-military-exercises-fact-sheet-2026/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {}
+  },
+  "stock": {
+    "eligible": false,
+    "reason": "named-person story (Sergio Gor) \u2014 stock fallback forbidden"
+  },
+  "distinct_images": {
+    "usable": 1,
+    "scenes": 6,
+    "labels": [
+      "hero"
+    ]
+  },
+  "fallback": {
+    "attempted": true,
+    "persons": [
+      "Sergio Gor"
+    ],
+    "reason": "v8 distinct-image hold: 1 distinct usable images for 6 scenes",
+    "qa_score": 10.0,
+    "qa_passed": true,
+    "result": "ready (QA 10.0)"
+  },
+  "manifest": "reel-runs/2026-11-23-india-us-defence-ties-military-exercises-fact-sheet-2026/output/render-manifest.json",
+  "video": "reel-runs/2026-11-23-india-us-defence-ties-military-exercises-fact-sheet-2026/output/india-us-defence-ties-military-exercises-fact-sheet-2026.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-23-india-us-defence-ties-military-exercises-fact-sheet-2026/output/tiktok-caption.txt"
+}

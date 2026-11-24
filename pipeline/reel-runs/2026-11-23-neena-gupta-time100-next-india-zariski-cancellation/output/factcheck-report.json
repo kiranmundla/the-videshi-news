@@ -1,0 +1,255 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "neena-gupta-time100-next-india-zariski-cancellation",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "NEENA GUPTA, WHO ANSWERED A 70-YEAR-OLD MATHS PROBLEM, NAMED TO TIME100 NEXT INDIA",
+      "numbers": [
+        70.0,
+        100.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Gupta answered a 70-year-old problem and was named to TIME100 Next India.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Neena Gupta, a professor at the Indian Statistical Institute in Kolkata, has been named to TIME100 Next India 2026 in its Health and Science Innovators category.",
+      "numbers": [
+        100.0,
+        2026.0
+      ],
+      "entities": [
+        "Neena Gupta",
+        "Indian Statistical Institute",
+        "TIME100 Next India",
+        "Science Innovators"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "The article states Gupta's title, institution, and recognition in the TIME100 Next India 2026 list.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "2014",
+      "numbers": [
+        2014.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2014
+        ]
+      },
+      "llm_reason": "The article mentions 2014 as the year Gupta found the counterexample.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Gupta found a counterexample to the Zariski Cancellation Problem",
+      "numbers": [],
+      "entities": [
+        "Zariski Cancellation Problem"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Gupta found a counterexample to this problem.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "2019",
+      "numbers": [
+        2019.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2019
+        ]
+      },
+      "llm_reason": "The article states Gupta received the Shanti Swarup Bhatnagar Prize in 2019.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Shanti Swarup Bhatnagar Prize in Mathematical Sciences",
+      "numbers": [],
+      "entities": [
+        "Shanti Swarup Bhatnagar Prize",
+        "Mathematical Sciences"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions this specific prize awarded to Gupta.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "2021",
+      "numbers": [
+        2021.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2021
+        ]
+      },
+      "llm_reason": "The article states Gupta received the Ramanujan Prize in 2021.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Ramanujan Prize \u2014 third woman to receive it",
+      "numbers": [],
+      "entities": [
+        "Ramanujan Prize"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Gupta is the third woman to receive this prize.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Educated entirely in Kolkata, at Bethune College and ISI Kolkata",
+      "numbers": [],
+      "entities": [
+        "Bethune College",
+        "ISI Kolkata"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Gupta was educated at these institutions in Kolkata.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Recognised internationally without leaving ISI Kolkata",
+      "numbers": [],
+      "entities": [
+        "ISI Kolkata"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article indicates Gupta's international recognition while at ISI Kolkata.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Gupta's inclusion adds a pure mathematician to a list dominated by founders, policymakers and public figures.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions her unique position on the list.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Neena Gupta",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "TIME100 Next India",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Indian Statistical Institute",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Zariski Cancellation Problem",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000613,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

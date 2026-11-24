@@ -1,0 +1,12 @@
+VIDEO: /home/hatch/workspace/the-videshi-news/pipeline/reel-runs/2026-11-23-anthropic-ipo-record-81-billion-nasdaq-debut/output/anthropic-ipo-record-81-billion-nasdaq-debut.mp4
+
+CAPTION:
+LARGEST IPO ON RECORD: ANTHROPIC RAISES $81.3 BILLION
+
+Anthropic, the maker of the Claude AI chatbot, sold 980 million shares at $83 each in its Nasdaq debut, raising $81.3 billion and surpassing SpaceX's June listing as the largest IPO on record.
+
+Anthropic's debut is now the public benchmark for frontier AI valuations, and its first-day fade is the caution attached to it.
+
+Full story: https://thevideshi.com/articles/anthropic-ipo-record-81-billion-nasdaq-debut
+
+#TheVideshi #Anthropic #IPO #Tech #IndianDiaspora

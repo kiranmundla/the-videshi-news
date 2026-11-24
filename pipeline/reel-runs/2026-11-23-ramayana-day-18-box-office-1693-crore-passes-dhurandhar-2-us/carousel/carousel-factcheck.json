@@ -1,0 +1,162 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "ramayana-day-18-box-office-1693-crore-passes-dhurandhar-2-us",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Ramayana Nears \u20b91,700 Crore Worldwide, Passes Dhurandhar 2 in the US",
+        "numbers": [
+          2.0,
+          1700.0,
+          17000000000.0
+        ],
+        "entities": [
+          "Ramayana Nears",
+          "Crore Worldwide",
+          "Passes Dhurandhar"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article states Ramayana is nearing \u20b91,700 crore and passed Dhurandhar 2 in the US.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Day 18 added \u20b935.60 crore net in India as the worldwide gross hit \u20b91,693.50 crore \u2014 and its $28.4 million US total is now the highest ever for an Indian film.",
+        "numbers": [
+          18.0,
+          28.4,
+          35.6,
+          1693.5,
+          28400000.0,
+          356000000.0,
+          16935000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "All figures and claims are directly supported by the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Ramayana stands at \u20b91,693.50 crore worldwide gross in 18 days \u2014 \u20b91,126.50 crore gross in India and \u20b9567 crore overseas, per Sacnilk",
+        "numbers": [
+          18.0,
+          567.0,
+          1126.5,
+          1693.5,
+          5670000000.0,
+          11265000000.0,
+          16935000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article provides these exact figures and attributes them to Sacnilk.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Its $28.4 million US total has passed Dhurandhar: The Revenge's $28.1 million to become the highest-grossing Indian film ever in the US",
+        "numbers": [
+          28.1,
+          28.4,
+          28100000.0,
+          28400000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms this comparison and states it is the highest-grossing Indian film in the US.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Day 18 brought \u20b935.60 crore net in India, up 28.8 per cent from Day 17, across 16,277 shows at 37.9 per cent occupancy",
+        "numbers": [
+          17.0,
+          18.0,
+          28.8,
+          35.6,
+          37.9,
+          16277.0,
+          356000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "All details about Day 18's earnings and occupancy are present in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Ramayana Nears \u20b91,700 Crore Worldwide, Passes Dhurandhar 2 in the US",
+        "numbers": [
+          2.0,
+          1700.0,
+          17000000000.0
+        ],
+        "entities": [
+          "Ramayana Nears",
+          "Crore Worldwide",
+          "Passes Dhurandhar"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the first claim, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000543,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

@@ -1,0 +1,134 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "india-us-defence-ties-military-exercises-fact-sheet-2026",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "India",
+    "United States",
+    "Yudh Abhyas",
+    "Quad",
+    "Sergio Gor",
+    "Military"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'Quad' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Military' named 'veteran', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:India-locator-map-blank.svg",
+      "route": "identity \u2014 Wikidata P18 (Q668)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:A villain performing in Dashavatara folk theatre.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Aerial photograph of the Himalayas, Ladakh 02.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Ambigram India Nepal (gray and beige) - animated.gif",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/gif)"
+    },
+    {
+      "candidate": "File:Close wing position of Loxura atymnus Stoll, 1780 \u2013 Yamfly.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "accepted",
+      "reason": "3600x2400, CC BY 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Close wing position of Papilio nephelus Boisduval, 1836 \u2013 Yellow Helen.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "accepted",
+      "reason": "2000x1500, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:United States - Location Map (2013) - USA - UNOCHA.svg",
+      "route": "identity \u2014 Wikidata P18 (Q30)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:American bison in Yellowstone National Park.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:BigRiver.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "rejected",
+      "reason": "blocklist: this file is on the entity's corpus blocklist \u2014 proven wrong for 'United States' in a prior run"
+    },
+    {
+      "candidate": "File:Bodie September 2016 019.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "accepted",
+      "reason": "4280x2940, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Chrysler Building - 05.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "accepted",
+      "reason": "2250x3000, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Sergio Gor, official portrait (2025).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q113293710)",
+      "verdict": "accepted",
+      "reason": "1280x1600, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Sergio Gor presenting credentials to Droupadi Murmu.png",
+      "route": "identity \u2014 depicts (P180=Q113293710)",
+      "verdict": "rejected",
+      "reason": "resolution: 768x512 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Chrysler Building - 05.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/3/30/Chrysler_Building_-_05.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    },
+    {
+      "candidate": "File:Close wing position of Papilio nephelus Boisduval, 1836 \u2013 Yellow Helen.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/0/01/Close_wing_position_of_Papilio_nephelus_Boisduval%2C_1836_%E2%80%93_Yellow_Helen.jpg?utm_source=commons."
+    },
+    {
+      "candidate": "File:Bodie September 2016 019.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/1/1a/Bodie_September_2016_019.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=origina"
+    },
+    {
+      "candidate": "File:Close wing position of Loxura atymnus Stoll, 1780 \u2013 Yamfly.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/f/f9/Close_wing_position_of_Loxura_atymnus_Stoll%2C_1780_%E2%80%93_Yamfly.jpg?utm_source=commons.wikimedia.or"
+    }
+  ],
+  "extras": []
+}

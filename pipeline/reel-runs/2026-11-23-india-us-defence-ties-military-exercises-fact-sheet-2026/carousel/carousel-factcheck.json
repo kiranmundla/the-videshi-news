@@ -1,0 +1,177 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "india-us-defence-ties-military-exercises-fact-sheet-2026",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "India Runs More Military Exercises With US Than Any Other Country",
+        "numbers": [],
+        "entities": [
+          "India Runs More Military Exercises With US Than Any Other Country"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states India conducts more military exercises with the US than any other country.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "A US fact sheet catalogues a 2026 exercise calendar spanning Yudh Abhyas, Tarang Shakti, Tiger Triumph and Malabar.",
+        "numbers": [
+          2026.0
+        ],
+        "entities": [
+          "Yudh Abhyas",
+          "Tarang Shakti",
+          "Tiger Triumph"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2026
+          ]
+        },
+        "llm_reason": "The article mentions a 2026 exercise calendar including these exercises.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "India conducts more military exercises with the United States than with any other country, according to a US fact sheet titled \"US-India Major Defense Partnership\"",
+        "numbers": [],
+        "entities": [
+          "United States",
+          "US-India Major Defense Partnership"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is directly stated in the article referencing the US fact sheet.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Tarang Shakti at Jodhpur was the first exercise on Indian soil to include US F-35 jets",
+        "numbers": [
+          35.0
+        ],
+        "entities": [
+          "Tarang Shakti",
+          "US F-35"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms this was the first exercise with US F-35 jets on Indian soil.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "India signed a $45 million contract with Boeing for maintenance and inspection of the Indian Navy's P-8I fleet",
+        "numbers": [
+          8.0,
+          45.0,
+          45000000.0
+        ],
+        "entities": [
+          "Indian Navy's P-8I"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article details the $45 million contract with Boeing for the P-8I fleet.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Sergio Gor",
+        "numbers": [],
+        "entities": [
+          "Sergio Gor"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Sergio Gor is mentioned as the US ambassador to India in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "US Ambassador to India",
+        "numbers": [],
+        "entities": [
+          "US Ambassador"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article identifies Sergio Gor as the US ambassador to India.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "India Runs More Military Exercises With US Than Any Other Country",
+        "numbers": [],
+        "entities": [
+          "India Runs More Military Exercises With US Than Any Other Country"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is reiterated in the article as a key finding.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000541,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

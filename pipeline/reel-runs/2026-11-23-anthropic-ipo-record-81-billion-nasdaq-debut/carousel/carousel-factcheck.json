@@ -1,0 +1,185 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "anthropic-ipo-record-81-billion-nasdaq-debut",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Anthropic's Record $81.3 Billion IPO Opens 34% Higher, Then Fades to a 17% Gain",
+        "numbers": [
+          17.0,
+          34.0,
+          81.3,
+          81300000000.0
+        ],
+        "entities": [
+          "Anthropic's Record",
+          "Billion IPO Opens",
+          "Then Fades"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the IPO raised $81.3 billion and opened 34% higher, closing at a 17% gain.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The Claude maker's Nasdaq debut briefly valued it at about $2 trillion on a fully diluted basis, surpassing SpaceX's listing as the largest IPO on record.",
+        "numbers": [
+          2.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the valuation of $2 trillion and surpassing SpaceX's IPO.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Anthropic sold 980 million shares at $83 each, raising $81.3 billion, surpassing the $75 billion SpaceX collected at its June listing",
+        "numbers": [
+          75.0,
+          81.3,
+          83.0,
+          980.0,
+          980000000.0,
+          75000000000.0,
+          81300000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article details the share sale and amounts raised, including the comparison to SpaceX.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Shares opened at $111.50, 34% above the $83 IPO price, and closed at $97.17, up 17% on the day",
+        "numbers": [
+          17.0,
+          34.0,
+          83.0,
+          97.17,
+          111.5
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article provides the opening and closing prices along with the percentage changes.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "At the opening price, Anthropic's fully diluted valuation reached about $2 trillion",
+        "numbers": [
+          2.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the fully diluted valuation at the opening price was about $2 trillion.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Dario Amodei",
+        "numbers": [],
+        "entities": [
+          "Dario Amodei"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Dario Amodei is mentioned as the CEO of Anthropic in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Anthropic CEO",
+        "numbers": [],
+        "entities": [
+          "Anthropic CEO"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article identifies Dario Amodei as the CEO of Anthropic.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Anthropic's Record $81.3 Billion IPO Opens 34% Higher, Then Fades to a 17% Gain",
+        "numbers": [
+          17.0,
+          34.0,
+          81.3,
+          81300000000.0
+        ],
+        "entities": [
+          "Anthropic's Record",
+          "Billion IPO Opens",
+          "Then Fades"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the first claim, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000577,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

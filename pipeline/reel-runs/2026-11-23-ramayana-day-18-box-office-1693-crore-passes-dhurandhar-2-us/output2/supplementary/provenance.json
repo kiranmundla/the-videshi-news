@@ -1,0 +1,140 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "ramayana-day-18-box-office-1693-crore-passes-dhurandhar-2-us",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Ramayana",
+    "Nitesh Tiwari",
+    "Ranbir Kapoor",
+    "Yash",
+    "Dhurandhar: The Revenge",
+    "Dhurandhar"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Yash' named 'Yash Chopra', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:Battle at Lanka, Ramayana, Udaipur, 1649-53.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q37293)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:ADI09487.jpg",
+      "route": "identity \u2014 depicts (P180=Q37293)",
+      "verdict": "accepted",
+      "reason": "3751x4689, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Aragonda Hanuman Sanjeevani.JPG",
+      "route": "identity \u2014 depicts (P180=Q37293)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Balinese dance Legong in Ubud, Ramayana performance, 20220823 1900 0454.jpg",
+      "route": "identity \u2014 depicts (P180=Q37293)",
+      "verdict": "accepted",
+      "reason": "4703x2881, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Nitesh Tiwari at the \u2018Khidkiyaan\u2019 movie festival launch.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q16908467)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x881 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Nitesh Tiwari at the \u2018Khidkiyaan\u2019 movie festival launch (cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q16908467)",
+      "verdict": "rejected",
+      "reason": "resolution: 240x320 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ranbir Kapoor snapped at Kalina airport.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 245x343 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Anurag Basu, Ranbir Kapoor at the launch of 'Barfi!' promo 13.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x388 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Barfi2.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "accepted",
+      "reason": "2216x1804, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Filming of Tamasha in Corsica.JPG",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 502x440 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Photos-Ranbir-Kapoor-snapped-at-the-airport-1.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x878 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Photos-Ranbir-Kapoor-snapped-at-the-airport-4.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x775 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Priyanka Chopra, Ranbir Kapoor at the launch of 'Barfi!' promo 05.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 475x288 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ramayana \u2013 Rise of a Legend Ranbir Kapoor Sai Pallavi and Yash.png",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "accepted",
+      "reason": "1381x831, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Dhurandhar The Revenge.png",
+      "route": "identity \u2014 Wikidata P18 (Q137998501)",
+      "verdict": "rejected",
+      "reason": "resolution: 1524x587 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Dhurandhar.png",
+      "route": "identity \u2014 Wikidata P18 (Q135230927)",
+      "verdict": "rejected",
+      "reason": "resolution: 1524x481 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Balinese dance Legong in Ubud, Ramayana performance, 20220823 1900 0454.jpg",
+      "route": "identity \u2014 depicts (P180=Q37293)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/1/1b/Balinese_dance_Legong_in_Ubud%2C_Ramayana_performance%2C_20220823_1900_0454.jpg?utm_source=commons.wikim"
+    },
+    {
+      "candidate": "File:ADI09487.jpg",
+      "route": "identity \u2014 depicts (P180=Q37293)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/8/84/ADI09487.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    },
+    {
+      "candidate": "File:Ramayana \u2013 Rise of a Legend Ranbir Kapoor Sai Pallavi and Yash.png",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/6/6a/Ramayana_%E2%80%93_Rise_of_a_Legend_Ranbir_Kapoor_Sai_Pallavi_and_Yash.png?utm_source=commons.wikimedia."
+    }
+  ],
+  "extras": []
+}

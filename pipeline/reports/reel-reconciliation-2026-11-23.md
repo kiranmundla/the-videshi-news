@@ -1,14 +1,14 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-11-23T05:15:37+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-11-23T23:15:13+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
-- Channel uploads (actual, via API): **282**
-- prebuilt_reels rows: 215 (185 with a yt_video_id)
+- Channel uploads (actual, via API): **285**
+- prebuilt_reels rows: 218 (188 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 98
-- **In sync** (channel video backed by a DB/publish-log record): **164**
+- Phase 2 publish-log entries: 101
+- **In sync** (channel video backed by a DB/publish-log record): **167**
 - Unknown — legacy-logged only: 101
 - Unknown — no record anywhere: 17
 - Ghost DB rows (yt_video_id not on channel): 16
@@ -292,7 +292,7 @@ _None._
 - row `9cc51a36-a469-4ddf-96b3-3570fdcc497a` · slug infosys-doj-investigation-h1b-classifications-disclosure · yt_video_id `sVryrh31poY` · on channel: no
 - row `3c385175-84c2-48c0-afec-378bee1ba1d6` · slug ambani-adds-6-3-billion-reliance-shares-jump-record-profit · yt_video_id `B45MLVEFtk4` · on channel: no
 
-## (d) In sync (164)
+## (d) In sync (167)
 
 - `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
 - `5rPRXIxjDVc` · public · 2026-06-17 · Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts [prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee]
@@ -458,4 +458,7 @@ _None._
 - `3fTjv2QeF0s` · public · 2026-11-21 · India's First Bullet Train to Run in Last Quarter of 2027, Surat-Vapi First #Shorts #News [prebuilt_reels:48da8e70-de35-471f-add9-6adde401126c]
 - `mUknYZg0gqc` · public · 2026-11-22 · Edmonton's Sneha Joy Wins $5 Million Lotto 6/49 Jackpot #Shorts #NRI [prebuilt_reels:1815e710-eb5e-49a6-9cb4-01cc673376a6]
 - `rCyMQoAZPTg` · public · 2026-11-23 · Navdeep Bains Wins Ontario Liberal Leadership on Final Ballot, 50.3 to 49.7 #Shorts #USElections2026 [prebuilt_reels:a62a89b7-9ec3-4632-8c18-4a4293ed6fa9]
+- `fNKEpEIsw-s` · public · 2026-11-23 · Neena Gupta, Who Answered a 70-Year-Old Maths Problem, Named to TIME100 Next India #Shorts #NRI [prebuilt_reels:9bbf8576-ae9e-415f-ad54-3eadef933899]
+- `Vb2SYALaric` · public · 2026-11-23 · Ramayana Nears ₹1,700 Crore Worldwide, Passes Dhurandhar 2 in the US #Shorts #Entertainment [prebuilt_reels:d2cb6ce2-f6db-4829-851f-fb10e3a4c8e5]
+- `FCsXBiF2sBE` · public · 2026-11-23 · Anthropic's Record $81.3 Billion IPO Opens 34% Higher, Then Fades to a 17% Gain #Shorts #TechNews [prebuilt_reels:ab3389d7-2819-4bbc-a65a-5549c21a1ebf]
 

@@ -1,0 +1,295 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "india-us-defence-ties-military-exercises-fact-sheet-2026",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIA TRAINS WITH US MORE THAN ANYONE",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "India conducts more military exercises with the US than any other country.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "A US fact sheet on the Major Defense Partnership says India conducts more military exercises with the United States than with any other country, across a 2026 calendar spanning Yudh Abhyas, Tarang Shakti, Tiger Triumph and Malabar.",
+      "numbers": [
+        2026.0
+      ],
+      "entities": [
+        "Major Defense Partnership",
+        "United States",
+        "Yudh Abhyas",
+        "Tarang Shakti",
+        "Tiger Triumph"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "The article confirms the US fact sheet's claims about military exercises and the 2026 calendar.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$45 million",
+      "numbers": [
+        45.0,
+        45000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$45 million contract for P-8I maintenance is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Boeing contract for maintenance of the Indian Navy's P-8I fleet",
+      "numbers": [
+        8.0
+      ],
+      "entities": [
+        "Indian Navy's P-8I"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article details a Boeing contract for P-8I maintenance.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "22nd",
+      "numbers": [
+        22.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Yudh Abhyas is in its 22nd edition.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Edition of Yudh Abhyas, held in Uttarakhand and Rajasthan",
+      "numbers": [],
+      "entities": [
+        "Yudh Abhyas"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Yudh Abhyas was held in Uttarakhand and Rajasthan as stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "1st",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Tarang Shakti is the first exercise on Indian soil to include US F-35 jets.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Exercise on Indian soil to include US F-35 jets, Tarang Shakti at Jodhpur",
+      "numbers": [
+        35.0
+      ],
+      "entities": [
+        "US F-35",
+        "Tarang Shakti"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Tarang Shakti included US F-35 jets.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "2027",
+      "numbers": [
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The article mentions a joint military exercise planned for 2027.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "First-ever joint Quad military exercise, planned alongside Sea Dragon",
+      "numbers": [],
+      "entities": [
+        "Sea Dragon"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the first joint Quad exercise is planned for 2027.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Partnership rests on a 10-year framework signed in 2025",
+      "numbers": [
+        10.0,
+        2025.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025
+        ]
+      },
+      "llm_reason": "The article mentions a 10-year framework signed in 2025.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Javelin missiles may be co-produced in India under a Lockheed Martin-Raytheon-Tata MoU",
+      "numbers": [],
+      "entities": [
+        "Lockheed Martin-Raytheon-Tata MoU"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses a MoU for co-producing Javelin missiles in India.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The Quad's first-ever joint military exercise follows in 2027.",
+      "numbers": [
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The article confirms the Quad's first joint military exercise is planned for 2027.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "India",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "United States",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Yudh Abhyas",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Quad",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Sergio Gor",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000733,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "id": "d0c590cd-5e44-4349-a8d1-628df871e1c7",
+    "headline": "Anthropic's Record $81.3 Billion IPO Opens 34% Higher, Then Fades to a 17% Gain",
+    "slug": "anthropic-ipo-record-81-billion-nasdaq-debut",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the date of the IPO more prominently at the beginning of the article, as it currently appears in the middle of the text.",
+        "Provide more context about the significance of the IPO by including a brief explanation of what Anthropic does and why its IPO is particularly noteworthy in the AI sector.",
+        "Include a comparison of Anthropic's IPO performance with previous significant IPOs in the tech sector, which would help readers understand its impact relative to other companies.",
+        "Correct the statement about the date of the IPO; it mentions November 19, which does not align with the current date. Ensure the date reflects the actual IPO date accurately."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Anthropic or a financial news outlet that discusses the IPO to provide real-time reactions and insights."
+      ]
+    }
+  },
+  {
+    "id": "4fca8975-d328-4db3-aed7-7228c29d6cec",
+    "headline": "Sensex Falls More Than 1,100 Points as Profit Booking Ends Rally's Winning Strea",
+    "slug": "sensex-falls-1100-points-profit-booking-november-23-2026",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the article in the body text to avoid confusion, as the headline states November 23 but the article does not specify if this is the current date or a future date.",
+        "Provide more context on the implications of the US Federal Reserve rate hike expectations. For example, include specific details on how this might affect interest rates or market behavior in the short term.",
+        "Add a quote or attribution from a financial expert or analyst to provide credibility and depth to the analysis of the market drop.",
+        "Include a brief explanation of what profit booking entails for readers who may not be familiar with the term, enhancing clarity."
+      ],
+      "embed_opportunities": [
+        "Embed a live market ticker or relevant financial data feed to provide real-time updates on the Sensex and Nifty movements."
+      ]
+    }
+  },
+  {
+    "id": "b640bead-6297-4bf3-aa27-6d92b4f8e50a",
+    "headline": "Congress Seeks Over 100 UP Seats as Seat-Sharing Talks With SP Open in Delhi",
+    "slug": "congress-sp-up-seat-sharing-talks-open-delhi",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact dates for the next round of talks and any deadlines for finalizing the seat-sharing agreement, as this information is crucial for understanding the urgency of the negotiations.",
+        "Provide a brief background on the significance of the seat-sharing arrangement for both parties and its potential impact on the upcoming elections, to give readers context on why this is important.",
+        "Include direct quotes from the leaders involved in the negotiations to enhance attribution and provide a more personal touch to the reporting."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from either Congress or the Samajwadi Party regarding the seat-sharing talks to provide real-time updates and official perspectives."
+      ]
+    }
+  },
+  {
+    "id": "02286310-e0eb-4d61-9665-3e9a4f469f84",
+    "headline": "India's AI Funding Nearly Doubles to $1.6 Billion, With Mumbai Ahead of Bengalur",
+    "slug": "india-ai-funding-1-6-billion-mumbai-bengaluru-tracxn",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the funding data by specifying the exact months covered in the January-September 2026 period, as well as the corresponding months for previous years mentioned for better context.",
+        "Include a brief explanation of what the increase in funding means for the Indian AI industry, such as potential impacts on job creation, innovation, or market competitiveness, to provide readers with a clearer understanding of the significance of the data.",
+        "Ensure that all statistics are clearly attributed to Tracxn's report and India Today, and consider adding a direct quote from a relevant expert or stakeholder to enhance credibility and depth."
+      ],
+      "embed_opportunities": [
+        "Embed the official Tracxn report or a relevant tweet from Tracxn summarizing the findings to provide readers with direct access to the source of the data."
+      ]
+    }
+  }
+]

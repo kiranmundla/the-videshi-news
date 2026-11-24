@@ -1,0 +1,275 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "ar-rahman-ramayana-three-years-turned-down-films-iffi",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "A. R. RAHMAN SPENT THREE YEARS ON 'RAMAYANA' MUSIC, TURNED DOWN 10\u201312 FILMS",
+      "numbers": [
+        10.0,
+        12.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Both facts about time spent and films turned down are in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "A. R. Rahman told a press conference at the International Film Festival of India (IFFI) in Panaji that he has spent nearly three years on the music of Nitesh Tiwari's two-part 'Ramayana', turned down 10\u201312 film projects to stay focused on it, and is composing the score with Hans Zimmer.",
+      "numbers": [
+        10.0,
+        12.0
+      ],
+      "entities": [
+        "R Rahman",
+        "International Film Festival",
+        "Nitesh Tiwari's",
+        "Hans Zimmer"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about Rahman's statements and collaborations are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "3 YEARS",
+      "numbers": [
+        3.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Rahman spent nearly three years on the music.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Spent by A. R. Rahman on the music of Nitesh Tiwari's two-part 'Ramayana'",
+      "numbers": [],
+      "entities": [
+        "R Rahman",
+        "Nitesh Tiwari's"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the time spent on 'Ramayana' music.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "10\u201312 FILMS",
+      "numbers": [
+        10.0,
+        12.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions Rahman turned down 10-12 films.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Turned down by Rahman so he could stay focused on 'Ramayana'",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states he turned down films to focus on 'Ramayana'.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "12\u201313 VERSIONS",
+      "numbers": [
+        12.0,
+        13.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions some pieces went through 12-13 versions.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Some pieces went through \u2014 including the 'Ravana Tandav', worked on in different languages",
+      "numbers": [],
+      "entities": [
+        "Ravana Tandav'"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies 'Ravana Tandav' had multiple versions in different languages.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "HANS ZIMMER",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Hans Zimmer is co-composing the score.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Co-composing the 'Ramayana' score with Rahman",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Rahman is co-composing with Hans Zimmer.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "The Hindi-language epic stars Ranbir Kapoor as Rama, Sai Pallavi as Sita and Yash as Ravana",
+      "numbers": [],
+      "entities": [
+        "Ranbir Kapoor",
+        "Sai Pallavi"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article lists the cast of the Hindi-language epic.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Its first part reached cinemas at Diwali 2026 and is in theatres now",
+      "numbers": [
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "The article states the release date and current status of the film.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Three years of music work went into 'Ramayana', most of it before a frame reached the screen.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms three years of work before the film's release.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "A. R. Rahman",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Ramayana",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Hans Zimmer",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Nitesh Tiwari",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "IFFI",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000745,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

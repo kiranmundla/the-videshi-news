@@ -1,0 +1,184 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "ar-rahman-ramayana-three-years-turned-down-films-iffi",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "A. R. Rahman Spent Three Years on 'Ramayana' Music, Turned Down 10\u201312 Films",
+        "numbers": [
+          10.0,
+          12.0
+        ],
+        "entities": [
+          "R Rahman Spent Three Years",
+          "Ramayana' Music",
+          "Turned Down"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Rahman spent three years on music and turned down 10-12 films.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Rahman told a press conference at IFFI in Panaji that he set aside almost everything else for Nitesh Tiwari's two-part epic, co-composing with Hans Zimmer.",
+        "numbers": [],
+        "entities": [
+          "Nitesh Tiwari's",
+          "Hans Zimmer"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Rahman spoke at IFFI about focusing on Tiwari's epic and co-composing with Zimmer.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Rahman has spent nearly three years on the music of Nitesh Tiwari's two-part 'Ramayana' and turned down 10\u201312 film projects to stay focused on it",
+        "numbers": [
+          10.0,
+          12.0
+        ],
+        "entities": [
+          "Nitesh Tiwari's"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Rahman spent three years and turned down 10-12 projects.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "He is composing the score with Hans Zimmer, and some pieces went through 12\u201313 versions, including the 'Ravana Tandav'",
+        "numbers": [
+          12.0,
+          13.0
+        ],
+        "entities": [
+          "Hans Zimmer",
+          "Ravana Tandav'"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms he is co-composing with Zimmer and mentions 12-13 versions.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "The Hindi-language epic stars Ranbir Kapoor as Rama, Sai Pallavi as Sita and Yash as Ravana; its first part reached cinemas at Diwali 2026",
+        "numbers": [
+          2026.0
+        ],
+        "entities": [
+          "Ranbir Kapoor",
+          "Sai Pallavi"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2026
+          ]
+        },
+        "llm_reason": "The article lists the cast and confirms the release date at Diwali 2026.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "A. R. Rahman",
+        "numbers": [],
+        "entities": [
+          "R Rahman"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions A. R. Rahman throughout.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Oscar-winning composer, speaking at IFFI in Panaji",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article identifies Rahman as an Oscar-winning composer at IFFI.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "A. R. Rahman Spent Three Years on 'Ramayana' Music, Turned Down 10\u201312 Films",
+        "numbers": [
+          10.0,
+          12.0
+        ],
+        "entities": [
+          "R Rahman Spent Three Years",
+          "Ramayana' Music",
+          "Turned Down"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is a repetition of the first claim, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000582,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

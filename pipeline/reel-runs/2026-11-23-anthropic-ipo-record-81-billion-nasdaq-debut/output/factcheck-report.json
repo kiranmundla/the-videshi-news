@@ -1,0 +1,271 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "anthropic-ipo-record-81-billion-nasdaq-debut",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "LARGEST IPO ON RECORD: ANTHROPIC RAISES $81.3 BILLION",
+      "numbers": [
+        81.3,
+        81300000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Anthropic raised $81.3 billion, making it the largest IPO on record.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Anthropic, the maker of the Claude AI chatbot, sold 980 million shares at $83 each in its Nasdaq debut, raising $81.3 billion and surpassing SpaceX's June listing as the largest IPO on record.",
+      "numbers": [
+        81.3,
+        83.0,
+        980.0,
+        980000000.0,
+        81300000000.0
+      ],
+      "entities": [
+        "Claude AI",
+        "SpaceX's June"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about shares, price, and IPO status are accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$81.3 BILLION",
+      "numbers": [
+        81.3,
+        81300000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$81.3 billion is the amount raised by Anthropic in its IPO.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Raised by Anthropic in its IPO, surpassing the $75 billion SpaceX collected at its June listing",
+      "numbers": [
+        75.0,
+        75000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Anthropic's IPO surpassed SpaceX's $75 billion.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "THE PRICE TAG",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "34%",
+      "numbers": [
+        34.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Shares opened 34% higher than the IPO price.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Opening gain \u2014 shares opened at $111.50, above the $83 IPO price",
+      "numbers": [
+        83.0,
+        111.5
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Shares opened at $111.50, which is above the $83 IPO price.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$97.17",
+      "numbers": [
+        97.17
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Closing price on debut day was $97.17.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Closing price on the Nasdaq debut day, up 17% on the day",
+      "numbers": [
+        17.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The closing price was $97.17, up 17%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "$2 TRILLION",
+      "numbers": [
+        2.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Fully diluted valuation reached about $2 trillion.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Fully diluted valuation reached at the opening price",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Valuation of $2 trillion was based on the opening price.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Anthropic is the first large frontier AI model maker to go public",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Anthropic is noted as the first large frontier AI model maker to go public.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Its pricing is now the public benchmark for frontier AI valuations",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Anthropic's pricing is described as the public benchmark.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Anthropic's debut is now the public benchmark for frontier AI valuations, and its first-day fade is the caution attached to it.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The debut is indeed described as the public benchmark with caution noted.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "THE PRICE TAG",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Anthropic",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Claude",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Nasdaq",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "SpaceX",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Dario Amodei",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.00072,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

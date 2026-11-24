@@ -1,0 +1,81 @@
+[
+  {
+    "id": "67f28534-2a72-4401-8cfd-0f23067b9e36",
+    "headline": "Persistent Says Employee Immigration Data May Be Exfiltrated From US Law Firm",
+    "slug": "persistent-employee-immigration-data-us-law-firm-cyber-incident",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Provide the name of the law firm involved, if possible, to enhance transparency and allow affected employees to identify the source of the potential data breach.",
+        "Include specific details about when the incident occurred, as this information is crucial for understanding the timeline of the event and its implications for affected employees.",
+        "Clarify the number of employees potentially affected by the data breach to give readers a better understanding of the scale of the incident.",
+        "Add a direct quote from a company spokesperson or cybersecurity expert to provide authoritative context and enhance the credibility of the report."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Persistent Systems or a relevant cybersecurity authority to provide real-time updates or official statements regarding the incident."
+      ]
+    }
+  },
+  {
+    "id": "3bf5774c-40a3-43f4-ae1b-3af30431888c",
+    "headline": "FSSAI Suspends Licences of Five Nutraceutical Makers Over Safety Violations",
+    "slug": "fssai-suspends-licences-five-nutraceutical-makers-safety",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Provide specific details about the safety violations for each company, including any potential health risks associated with the expired substances and poor hygiene practices.",
+        "Include a statement from FSSAI or a representative to add authoritative attribution and context to the suspensions.",
+        "Clarify what consumers should do if they have purchased products from these companies, such as whether they should stop using them immediately or seek refunds."
+      ],
+      "embed_opportunities": [
+        "Embed the official FSSAI announcement or tweet regarding the suspensions for direct reference."
+      ]
+    }
+  },
+  {
+    "id": "42bc9a6e-db9b-403f-ba41-4f1bdab61e0a",
+    "headline": "AI-Assisted Attacks Trigger Unauthorized Payments at Indian Banks, CERT-In Warns",
+    "slug": "cert-in-ai-assisted-cyberattacks-unauthorized-payments-indian-banks",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the financial impact by including specific figures regarding the unauthorized transactions, such as the estimated total amount lost or the average amount per transaction, if available.",
+        "Provide a clearer explanation of what institutions should specifically do to mitigate these risks, such as recommended security measures or changes to approval processes.",
+        "Include a statement from CERT-In or another authoritative source to enhance attribution and credibility, especially regarding the nature of the attacks and their implications.",
+        "Add context about the frequency or scale of these attacks, such as how this incident compares to previous incidents or trends in cybercrime targeting financial institutions."
+      ],
+      "embed_opportunities": [
+        "Embed the official CERT-In advisory or a relevant tweet from CERT-In to provide direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "c795ead2-9582-4f20-a66b-5a18337122fb",
+    "headline": "Modi's December Canada Visit Is Set to Move Ties in a New Direction",
+    "slug": "modi-canada-visit-december-nadjibulla-reset-ties",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the context of the 'rupture' in India-Canada relations mentioned in the article. Providing a brief summary of the events leading to this point would enhance reader understanding.",
+        "Include specific details about the Comprehensive Economic Partnership Agreement (CEPA) that may be discussed during the visit, such as potential benefits or timelines for implementation, to give readers a clearer picture of what to expect.",
+        "Ensure that the attribution for statements made by Vina Nadjibulla is clear, specifying whether these are direct quotes or paraphrased insights, to enhance transparency.",
+        "Consider restructuring the article to lead with the most critical information about the visit and its significance, followed by background context, to improve the flow and clarity."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement or tweet from the Indian High Commission in Ottawa regarding Modi's visit to provide readers with direct access to the source."
+      ]
+    }
+  }
+]

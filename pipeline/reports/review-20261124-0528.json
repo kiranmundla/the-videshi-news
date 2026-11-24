@@ -1,0 +1,82 @@
+[
+  {
+    "id": "a23c8873-47fe-4cf3-8541-8538fefe5cd5",
+    "headline": "India's Pharma Sector, Now Around $60 Billion, Is Projected to Reach $130 Billio",
+    "slug": "india-pharma-sector-60-billion-projected-130-billion-by-2030",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the projected growth figures by specifying the years for the current valuation and the projected valuations. For example, explicitly state that the $60 billion valuation is as of 2023 and the $130 billion projection is for 2030.",
+        "Provide more context on the significance of the free trade agreements mentioned. Include specific countries involved and how these agreements could impact the pharmaceutical sector's growth.",
+        "Include a quote or statement from a key industry leader or government official to enhance attribution and provide a personal perspective on the projections mentioned."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Pharmaceuticals Export Promotion Council of India (Pharmexcil) regarding the event or the projections to enhance credibility and provide real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "3dadfec8-9bc5-40dd-8dff-df0696762547",
+    "headline": "Pennsylvania Measles Deaths Rise to Nine as Cases Reach 1,638",
+    "slug": "pennsylvania-measles-deaths-rise-to-nine-cases-reach-1638",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the previous death reported (eight last week) to provide context for the rise to nine deaths. This will enhance clarity and completeness.",
+        "Include specific details about the demographics of the confirmed cases and deaths, such as age ranges or vaccination status, to provide a more comprehensive understanding of the outbreak's impact.",
+        "Add a brief explanation of the implications of the outbreak for public health, such as potential policy changes or recommendations from health officials, to give readers a clearer understanding of what this means for their communities."
+      ],
+      "embed_opportunities": [
+        "Embed the official CDC tweet or statement regarding the measles outbreak and vaccination recommendations to provide authoritative context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "b59d28b3-c643-4493-a214-c80d305cc833",
+    "headline": "Immigration Court Memo Cuts Key Filing Deadlines to 10 Days",
+    "slug": "immigration-court-memo-cuts-key-filing-deadlines-to-10-days",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of missing deadlines by explicitly stating the potential consequences for respondents, including specific legal outcomes or examples of what 'DHS may ask the judge to find removability' entails.",
+        "Provide a brief overview of the previous guidance to help readers understand the significance of the changes being made, including a comparison of the old and new deadlines for clarity.",
+        "Include a direct quote from the EOIR memo or a relevant official to enhance attribution and provide authoritative context for the changes."
+      ],
+      "embed_opportunities": [
+        "Embed the official EOIR tweet or announcement regarding the new policy memo to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "b4ae1e36-0530-4b5f-b94a-73ae3c901e2b",
+    "headline": "CBI Brings Haryana Murder Accused Ashish Kumar Back From Kazakhstan",
+    "slug": "cbi-brings-haryana-murder-accused-ashish-kumar-back-from-kazakhstan",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events, particularly the discrepancy in dates (murder case in November 2025 and Red Notice in September 2026) to avoid confusion for readers.",
+        "Provide more details on the legal process that Kumar will face upon his return to India, including potential charges and the next steps in the judicial process, to enhance completeness.",
+        "Include a direct quote from a CBI official or a relevant authority to strengthen attribution and provide authoritative context."
+      ],
+      "embed_opportunities": [
+        "Embed the official INTERPOL Red Notice for Ashish Kumar to provide readers with direct access to the source of the information."
+      ]
+    }
+  }
+]

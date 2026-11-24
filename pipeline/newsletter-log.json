@@ -1866,5 +1866,16 @@
     "top_story_slug": "canada-extends-student-arrivals-target-2029-levels-plan",
     "quick_hit_count": 5,
     "deadline_count": 2
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-11-23T14:58:11.782214+00:00Z",
+    "subject": "The Videshi Daily \u2014 November 23, 2026",
+    "subscribers": 11,
+    "sent": 10,
+    "errors": 1,
+    "top_story_slug": "anthropic-ipo-record-81-billion-nasdaq-debut",
+    "quick_hit_count": 5,
+    "deadline_count": 3
   }
 ]

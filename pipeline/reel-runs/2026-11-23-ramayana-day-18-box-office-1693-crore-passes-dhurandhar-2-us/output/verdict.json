@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "ramayana-day-18-box-office-1693-crore-passes-dhurandhar-2-us",
+  "name": "ramayana-day-18-box-office-1693-crore-passes-dhurandhar-2-us",
+  "script": "reel-runs/2026-11-23-ramayana-day-18-box-office-1693-crore-passes-dhurandhar-2-us/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "hook_stat.sub"
+    ],
+    "llm_cost_usd": 0.000814
+  }
+}

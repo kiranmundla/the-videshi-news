@@ -1,0 +1,376 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "anthropic-ipo-record-81-billion-nasdaq-debut",
+ "article_slug": "anthropic-ipo-record-81-billion-nasdaq-debut",
+ "article_id": "d0c590cd-5e44-4349-a8d1-628df871e1c7",
+ "category": "Technology",
+ "video": "reel-runs/2026-11-23-anthropic-ipo-record-81-billion-nasdaq-debut/output/anthropic-ipo-record-81-billion-nasdaq-debut.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://cdn.lapost.com/2026/11/6aff4f4b428cd.jpg",
+  "local_path": "reel-runs/2026-11-23-anthropic-ipo-record-81-billion-nasdaq-debut/output/hero.jpg",
+  "width": 1230,
+  "height": 820,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.525,0.511) damped=(0.512,0.506)",
+  "has_face": false,
+  "box_source": [
+   286,
+   234,
+   688,
+   328
+  ],
+  "box_bg": [
+   280,
+   315,
+   466,
+   222
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.512,
+   0.505
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   556
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 984,
+   "block_bottom": 1347,
+   "text_bbox": [
+    70,
+    984,
+    930,
+    1347
+   ],
+   "texts": [
+    "Technology",
+    "LARGEST IPO ON RECORD: ANTHROPIC RAISES $81.3 BILLION"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.678,
+    "photo_px": [
+     1230,
+     820
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.6780487804878049,
+     "window": [
+      0,
+      0,
+      1230,
+      820
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.34x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 388,
+   "block_top": 972,
+   "block_bottom": 1360,
+   "text_bbox": [
+    70,
+    972,
+    930,
+    1360
+   ],
+   "texts": [
+    "What Happened",
+    "Anthropic, the maker of the Claude AI chatbot, sold 980 million shares at $83 each in its Nasdaq debut, raising $81.3 billion and surpassing SpaceX's June listing as the largest IPO on record."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.771,
+    "photo_px": [
+     1230,
+     820
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.7707948243992606,
+     "window": [
+      89,
+      53,
+      1171,
+      774
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.34x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 338,
+   "block_top": 997,
+   "block_bottom": 1335,
+   "text_bbox": [
+    70,
+    997,
+    930,
+    1335
+   ],
+   "texts": [
+    "THE PRICE TAG",
+    "$81.3 BILLION",
+    "Raised by Anthropic in its IPO, surpassing the $75 billion SpaceX collected at its June listing"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.848,
+    "photo_px": [
+     1230,
+     820
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.8475609756097561,
+     "window": [
+      0,
+      86,
+      984,
+      742
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.34x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 0.975,
+   "content_h": 771,
+   "block_top": 780,
+   "block_bottom": 1551,
+   "text_bbox": [
+    70,
+    780,
+    930,
+    1551
+   ],
+   "texts": [
+    "By The Numbers",
+    "34%",
+    "Opening gain \u2014 shares opened at $111.50, above the $83 IPO price",
+    "$97.17",
+    "Closing price on the Nasdaq debut day, up 17% on the day",
+    "$2 TRILLION",
+    "Fully diluted valuation reached at the opening price"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.848,
+    "photo_px": [
+     1230,
+     820
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.8475609756097561,
+     "window": [
+      246,
+      86,
+      1230,
+      742
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.34x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 950,
+   "block_bottom": 1382,
+   "text_bbox": [
+    70,
+    950,
+    930,
+    1382
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Anthropic is the first large frontier AI model maker to go public",
+    "Its pricing is now the public benchmark for frontier AI valuations"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.916,
+    "photo_px": [
+     1230,
+     820
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.9164835164835164,
+     "window": [
+      175,
+      214,
+      1085,
+      820
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.34x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 337,
+   "block_top": 691,
+   "block_bottom": 1028,
+   "text_bbox": [
+    70,
+    691,
+    930,
+    1028
+   ],
+   "texts": [
+    "The Takeaway",
+    "Anthropic's debut is now the public benchmark for frontier AI valuations, and its first-day fade is the caution attached to it.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/tech-corporate-technology.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 106.5,
+ "mp4_bytes": 12104950
+}

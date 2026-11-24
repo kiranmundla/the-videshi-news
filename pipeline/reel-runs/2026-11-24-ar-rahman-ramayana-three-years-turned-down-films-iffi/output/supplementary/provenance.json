@@ -1,0 +1,200 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "ar-rahman-ramayana-three-years-turned-down-films-iffi",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "A. R. Rahman",
+    "Ramayana",
+    "Hans Zimmer",
+    "Nitesh Tiwari",
+    "IFFI",
+    "Rahman"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:AR Rahman At The \u2018Marvel Anthem\u2019 Launch.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q108560)",
+      "verdict": "rejected",
+      "reason": "resolution: 800x1200 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:01ARRahman Sydney Concert 2010.jpg",
+      "route": "identity \u2014 depicts (P180=Q108560)",
+      "verdict": "rejected",
+      "reason": "resolution: 640x431 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:A.R.Rahman at 57th FF Awards.jpg",
+      "route": "identity \u2014 depicts (P180=Q108560)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x439 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:A.R.Rahman at 57th FF Awards with Award.jpg",
+      "route": "identity \u2014 depicts (P180=Q108560)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x439 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:A. R. Rahman.jpg",
+      "route": "identity \u2014 depicts (P180=Q108560)",
+      "verdict": "rejected",
+      "reason": "resolution: 377x437 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:A. R. Rahman & A. R. Ameen.jpg",
+      "route": "identity \u2014 depicts (P180=Q108560)",
+      "verdict": "accepted",
+      "reason": "3072x4080, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:A. R. Rahman launching a book.jpg",
+      "route": "identity \u2014 depicts (P180=Q108560)",
+      "verdict": "rejected",
+      "reason": "resolution: 434x356 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:AR Rahman.jpg",
+      "route": "identity \u2014 depicts (P180=Q108560)",
+      "verdict": "rejected",
+      "reason": "resolution: 350x297 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:AR Rahman - Nagore Dargah Kalifa 01.jpg",
+      "route": "identity \u2014 depicts (P180=Q108560)",
+      "verdict": "rejected",
+      "reason": "given-name: the file's evidence names multiple people (ar rahman, dargah kalifa, garden cc-zero, kalifa masthan \u2026) including a different person sharing the surname 'rahman', and never names 'A. R. Rahman' in full \u2014 surname-only agreement is not identity (the Kevin Cramer NASA photo placed for Jim Cramer); fail closed"
+    },
+    {
+      "candidate": "File:AR Rahman Shashi Gopal.jpg",
+      "route": "identity \u2014 depicts (P180=Q108560)",
+      "verdict": "rejected",
+      "reason": "given-name: the file's evidence names multiple people (ar rahman, ar shashi, gfdl music, rahman gfdl \u2026) including a different person sharing the surname 'rahman', and never names 'A. R. Rahman' in full \u2014 surname-only agreement is not identity (the Kevin Cramer NASA photo placed for Jim Cramer); fail closed"
+    },
+    {
+      "candidate": "File:AR Rahman and Shankar at Oru Kadhai Sollattumaa Audio Launch.jpg",
+      "route": "identity \u2014 depicts (P180=Q108560)",
+      "verdict": "rejected",
+      "reason": "given-name: the file's evidence names multiple people (ar rahman, audio ar, audio launch, kadhai sollattumaa \u2026) including a different person sharing the surname 'rahman', and never names 'A. R. Rahman' in full \u2014 surname-only agreement is not identity (the Kevin Cramer NASA photo placed for Jim Cramer); fail closed"
+    },
+    {
+      "candidate": "File:Battle at Lanka, Ramayana, Udaipur, 1649-53.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q37293)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:ADI09487.jpg",
+      "route": "identity \u2014 depicts (P180=Q37293)",
+      "verdict": "accepted",
+      "reason": "3751x4689, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Aragonda Hanuman Sanjeevani.JPG",
+      "route": "identity \u2014 depicts (P180=Q37293)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Balinese dance Legong in Ubud, Ramayana performance, 20220823 1900 0454.jpg",
+      "route": "identity \u2014 depicts (P180=Q37293)",
+      "verdict": "accepted",
+      "reason": "4703x2881, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Hans-Zimmer-profile.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q76364)",
+      "verdict": "rejected",
+      "reason": "resolution: 512x680 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Brian May and Hans Zimmer (28260332216).jpg",
+      "route": "identity \u2014 depicts (P180=Q76364)",
+      "verdict": "accepted",
+      "reason": "5184x3456, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Hans-Zimmer-profile (cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q76364)",
+      "verdict": "rejected",
+      "reason": "resolution: 307x369 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Hans-zimmer-440nw-10332765dy.jpg",
+      "route": "identity \u2014 depicts (P180=Q76364)",
+      "verdict": "rejected",
+      "reason": "resolution: 297x420 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Hans Zimmer.png",
+      "route": "identity \u2014 depicts (P180=Q76364)",
+      "verdict": "rejected",
+      "reason": "resolution: 309x416 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Hans Zimmer (28260332896).jpg",
+      "route": "identity \u2014 depicts (P180=Q76364)",
+      "verdict": "accepted",
+      "reason": "5184x3456, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Nitesh Tiwari at the \u2018Khidkiyaan\u2019 movie festival launch.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q16908467)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x881 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Nitesh Tiwari at the \u2018Khidkiyaan\u2019 movie festival launch (cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q16908467)",
+      "verdict": "rejected",
+      "reason": "resolution: 240x320 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Shreya Ghoshal at 54th IFFI.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q402873)",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:6thBIFFes2013.jpg",
+      "route": "identity \u2014 depicts (P180=Q402873)",
+      "verdict": "rejected",
+      "reason": "resolution: 1078x908 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:7thBIFFes2014.jpg",
+      "route": "identity \u2014 depicts (P180=Q402873)",
+      "verdict": "accepted",
+      "reason": "1080x759, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:A. R. Rahman & A. R. Ameen.jpg",
+      "route": "identity \u2014 depicts (P180=Q108560)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/a/af/A._R._Rahman_%26_A._R._Ameen.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=ori"
+    },
+    {
+      "candidate": "File:Balinese dance Legong in Ubud, Ramayana performance, 20220823 1900 0454.jpg",
+      "route": "identity \u2014 depicts (P180=Q37293)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/1/1b/Balinese_dance_Legong_in_Ubud%2C_Ramayana_performance%2C_20220823_1900_0454.jpg?utm_source=commons.wikim"
+    },
+    {
+      "candidate": "File:Brian May and Hans Zimmer (28260332216).jpg",
+      "route": "identity \u2014 depicts (P180=Q76364)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/1/1c/Brian_May_and_Hans_Zimmer_%2828260332216%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&"
+    },
+    {
+      "candidate": "File:ADI09487.jpg",
+      "route": "identity \u2014 depicts (P180=Q37293)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/8/84/ADI09487.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  ],
+  "extras": []
+}

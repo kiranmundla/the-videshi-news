@@ -1,0 +1,83 @@
+[
+  {
+    "id": "cc393fa9-d7d6-439c-a50b-44baffa71716",
+    "headline": "Indian Producers Eye Cyprus as Film Scheme Offers Rebate of up to 45 Per Cent",
+    "slug": "bollywood-cyprus-film-incentive-45-per-cent-rebate",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the eligibility criteria for the 45% cash rebate, including any specific requirements or limitations that producers must meet to qualify.",
+        "Provide a clearer timeline or deadline for when Indian filmmakers can start applying for the rebate and any relevant dates for upcoming projects or initiatives.",
+        "Include a brief overview of how the cash rebate compares to similar incentives offered by other countries to give context to the attractiveness of Cyprus as a filming location.",
+        "Ensure that the article maintains a consistent focus on the key points without unnecessary repetition, particularly regarding the exploratory nature of the talks."
+      ],
+      "embed_opportunities": [
+        "Embed the official Cyprus film scheme announcement or relevant government tweet that outlines the rebate details."
+      ]
+    }
+  },
+  {
+    "id": "cc745fdb-63f6-4433-870e-f62049138870",
+    "headline": "Sathyameva, Law and Order and Octopus Head This Week's Malayalam and Tamil OTT R",
+    "slug": "malayalam-tamil-ott-releases-november-27-sathyameva-octopus",
+    "category": "entertainment",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Both titles begin streaming on ZEE5 on Friday, November 27, 2026.\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the release date for 'Law and Order' as tentative; specify if it will definitely be available on November 27 or if there is a possibility of delay.",
+        "Provide more context on the significance of the titles being released, such as their expected impact on the OTT landscape or any notable achievements of the directors or actors involved.",
+        "Include a brief summary of the critical reception or audience expectations for these titles, if available, to give readers a sense of what to anticipate.",
+        "Ensure consistency in the presentation of the release date; it appears multiple times in the article, and it would be clearer to consolidate this information."
+      ],
+      "embed_opportunities": [
+        "Embed the official ZEE5 and Manorama MAX promotional tweets or posts related to these releases to enhance visibility and provide direct links for viewers."
+      ]
+    }
+  },
+  {
+    "id": "3ed60fd2-2c29-4a64-a706-dde331ec8287",
+    "headline": "Tech Mahindra Will Plough Margin Gains Into AI in Push to Be World-Beating by FY",
+    "slug": "tech-mahindra-world-beating-fy30-mohit-joshi-ai",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the margin roadmap by specifying the exact date in April when it will be unveiled, as this is crucial for readers looking to understand the company's future plans.",
+        "Provide specific figures regarding the current margin percentage and the target for the fourth quarter, as well as any historical context or comparisons to previous fiscal years to enhance understanding of the company's performance.",
+        "Include a brief explanation of what 'world-beating' entails in the context of IT services, possibly with benchmarks or examples of competitors to give readers a clearer picture of Tech Mahindra's ambitions.",
+        "Ensure that quotes from Mohit Joshi are properly attributed with context, such as the setting of the interview or the medium through which it was conducted, to enhance credibility."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Tech Mahindra's official account or a related industry news source that highlights the company's AI initiatives or turnaround strategy."
+      ]
+    }
+  },
+  {
+    "id": "502fc8c3-cd91-49e0-a083-91e79fa6e1db",
+    "headline": "Sarvam Launches Dictate API for English and 22 Indian Languages at \u20b90.50 a Minut",
+    "slug": "sarvam-dictate-api-english-22-indian-languages",
+    "category": "technology",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Sarvam AI released the dictation API for English and 22 Indian languages on Nove\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the launch date by specifying the year in the first sentence, as the current date mentioned (November 23, 2026) could confuse readers about whether this is a future event or a typo.",
+        "Include a brief comparison of pricing with competitors, such as Google's Gemini 3.5, to provide context on how Sarvam Dictate's pricing stands in the market.",
+        "Add a quote from a Sarvam spokesperson or a relevant expert to provide attribution and depth to the claims made about the API's performance and capabilities."
+      ],
+      "embed_opportunities": [
+        "Embed Sarvam's official launch post or a relevant tweet to provide readers with direct access to more detailed information about the API."
+      ]
+    }
+  }
+]

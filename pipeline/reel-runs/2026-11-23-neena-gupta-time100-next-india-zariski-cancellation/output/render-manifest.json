@@ -1,0 +1,374 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "neena-gupta-time100-next-india-zariski-cancellation",
+ "article_slug": "neena-gupta-time100-next-india-zariski-cancellation",
+ "article_id": "53ffd99b-8dc2-4f7a-80a1-b0839997c6e1",
+ "category": "Nri World",
+ "video": "reel-runs/2026-11-23-neena-gupta-time100-next-india-zariski-cancellation/output/neena-gupta-time100-next-india-zariski-cancellation.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://www.livemint.com/lm-img/img/2026/11/22/1600x900/logo/neena_1795357908803_EDzy_1795358066937_fxbN_37a71c55-ef87-432c-8b4c-6fe4ae874cee_UPjP.png",
+  "local_path": "reel-runs/2026-11-23-neena-gupta-time100-next-india-zariski-cancellation/output/hero.png",
+  "width": 1600,
+  "height": 900,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.94)",
+  "has_face": true,
+  "box_source": [
+   647,
+   131,
+   380,
+   496
+  ],
+  "box_bg": [
+   423,
+   224,
+   198,
+   259
+  ],
+  "chin_bg": 483,
+  "anchor": [
+   0.524,
+   0.423
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 264,
+   "block_top": 990,
+   "block_bottom": 1254,
+   "text_bbox": [
+    70,
+    990,
+    930,
+    1254
+   ],
+   "texts": [
+    "Nri World",
+    "NEENA GUPTA, WHO ANSWERED A 70-YEAR-OLD MATHS PROBLEM, NAMED TO TIME100 NEXT INDIA"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.521,
+    "photo_px": [
+     1600,
+     900
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.52125,
+     "window": [
+      0,
+      0,
+      1600,
+      897
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 403,
+   "block_top": 920,
+   "block_bottom": 1323,
+   "text_bbox": [
+    70,
+    920,
+    930,
+    1323
+   ],
+   "texts": [
+    "What Happened",
+    "Neena Gupta, a professor at the Indian Statistical Institute in Kolkata, has been named to TIME100 Next India 2026 in its Health and Science Innovators category."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.592,
+    "photo_px": [
+     1600,
+     900
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.5923295454545454,
+     "window": [
+      134,
+      0,
+      1542,
+      790
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 903,
+   "block_bottom": 1341,
+   "text_bbox": [
+    70,
+    903,
+    930,
+    1341
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "2014",
+    "Gupta found a counterexample to the Zariski Cancellation Problem"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.652,
+    "photo_px": [
+     1600,
+     900
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.6515625,
+     "window": [
+      0,
+      22,
+      1280,
+      740
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 545,
+   "block_top": 849,
+   "block_bottom": 1394,
+   "text_bbox": [
+    70,
+    849,
+    930,
+    1394
+   ],
+   "texts": [
+    "By The Numbers",
+    "2019",
+    "Shanti Swarup Bhatnagar Prize in Mathematical Sciences",
+    "2021",
+    "Ramanujan Prize \u2014 third woman to receive it"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.652,
+    "photo_px": [
+     1600,
+     900
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.6515625,
+     "window": [
+      320,
+      22,
+      1600,
+      740
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 937,
+   "block_bottom": 1306,
+   "text_bbox": [
+    70,
+    937,
+    930,
+    1306
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Educated entirely in Kolkata, at Bethune College and ISI Kolkata",
+    "Recognised internationally without leaving ISI Kolkata"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.704,
+    "photo_px": [
+     1600,
+     900
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7043918918918919,
+     "window": [
+      246,
+      131,
+      1430,
+      795
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 337,
+   "block_top": 691,
+   "block_bottom": 1028,
+   "text_bbox": [
+    70,
+    691,
+    930,
+    1028
+   ],
+   "texts": [
+    "The Takeaway",
+    "Gupta's inclusion adds a pure mathematician to a list dominated by founders, policymakers and public figures.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/emotional-inspiring-inspiring-uplifting.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 113.4,
+ "mp4_bytes": 4699824
+}

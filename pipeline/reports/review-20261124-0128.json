@@ -1,0 +1,43 @@
+[
+  {
+    "id": "cd096a13-6dde-48c9-b4cf-85f40e5ab5a2",
+    "headline": "12,700 Indian Tech Professionals Returned From the US in Nine Months, Xpheno Dat",
+    "slug": "indian-tech-professionals-return-us-india-12700-xpheno-2026",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the data presented. The article mentions figures for 2023, 2024, and 2025, but it could benefit from a clearer explanation of how these years relate to the current 2026 data, especially for readers unfamiliar with the context.",
+        "Provide more context on the implications of the $100,000 payment mentioned in relation to H-1B petitions. Explain how this payment might affect the flow of professionals returning to India or moving to the US, as this is a significant detail that could impact readers' understanding.",
+        "Include a direct quote from Xpheno or The Economic Times to enhance attribution and credibility. This could provide additional insights or perspectives on the data presented."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS announcement regarding the $100,000 payment on H-1B petitions to provide readers with direct access to the source of this information."
+      ]
+    }
+  },
+  {
+    "id": "dcc2a63b-54ff-4154-88f9-335a3265d7e6",
+    "headline": "Anthropic's Claude Ship Lets AI Agents Review, Fix and Approve Code Changes",
+    "slug": "anthropic-claude-ship-ai-agents-review-fix-approve-code",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by correcting the launch date mentioned in the article. It states November 23, 2026, which appears to be a typographical error since the current date is in 2023. Ensure the date reflects the actual launch date.",
+        "Provide specific details about the billing structure for the agents, such as the cost per token or any pricing tiers, to give readers a clearer understanding of potential expenses associated with using Claude Ship.",
+        "Include a brief explanation of what 'token usage' means in this context for readers who may not be familiar with the term, enhancing clarity.",
+        "Add a quote from a representative of Anthropic or a tech industry expert to provide additional context and credibility to the claims made about the product's capabilities and its impact on coding workflows."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement or tweet from Anthropic regarding the launch of Claude Ship to provide readers with direct access to the source of information."
+      ]
+    }
+  }
+]

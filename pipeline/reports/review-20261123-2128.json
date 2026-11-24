@@ -1,0 +1,64 @@
+[
+  {
+    "id": "94ea2d6f-d6c7-447e-9ba4-be42953825c5",
+    "headline": "House Bill Would Let Deportation Orders Expire After 10 Years and Open a Green C",
+    "slug": "protect-our-neighbors-act-deportation-orders-expire-10-years",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the bill's progress by including details on when it is expected to be discussed or voted on in the House Judiciary Committee, as this would provide readers with a clearer understanding of the urgency and potential next steps.",
+        "Include a brief explanation of the implications for individuals currently under final removal orders, such as what actions they should take while the bill is pending, to enhance the article's completeness and provide actionable information.",
+        "Add a quote from one of the bill's sponsors or an immigration expert to provide additional context and authority to the reporting, improving attribution and depth."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the bill's sponsors announcing the introduction of H.R. 11120 to provide readers with direct access to the source and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "624d8905-9c91-4607-94c2-1c2f3360f544",
+    "headline": "Traditional Indian Diet and Daily Walks Put 60.9% of Early Diabetes Patients Int",
+    "slug": "indian-diet-daily-walks-early-type-2-diabetes-remission-study",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The study reported remission in 60.9% of participants with early type 2 diabetes\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the HbA1c reduction by providing context on what these numbers mean for diabetes management and how they compare to standard treatment outcomes.",
+        "Include more details about the methodology of the study, such as how participants were selected and any potential biases that might affect the results, to enhance the completeness of the reporting.",
+        "Add a specific timeline for when the study was conducted and when the results were published to improve the timeliness and context of the information presented.",
+        "Rephrase the cautionary note to emphasize that readers should consult their healthcare providers before making any changes to their diabetes management, ensuring clarity and directness."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from the Chellaram Diabetes Institute or the publication 'Diabetes & Metabolic Syndrome' to provide official acknowledgment of the study and its findings."
+      ]
+    }
+  },
+  {
+    "id": "4f597aef-7a56-4a8d-917d-631b7f539ac3",
+    "headline": "US Measles Cases Jump by 426 in One Week to 5,838, the Largest Rise in Decades",
+    "slug": "us-measles-cases-jump-426-week-5838-largest-rise-decades",
+    "category": "news",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Confirmed US measles cases rose by 426 in one week to 5,838 as of November 19, a\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date when the CDC first reported the total of 5,838 cases, as the current text mentions both November 19 and November 20 without clear context.",
+        "Provide specific details about the vaccination recommendations, including the age at which the MMR vaccine is typically administered, to enhance clarity for readers seeking actionable health advice.",
+        "Include a brief explanation of the implications of losing measles elimination status for public health, such as potential policy changes or increased vaccination campaigns, to give readers a better understanding of the situation's significance.",
+        "Correct the year mentioned for measles-associated deaths; it states '12 measles-associated deaths in 2026,' which appears to be a typographical error and should likely be '2023.'"
+      ],
+      "embed_opportunities": [
+        "Embed the official CDC tweet or statement regarding the measles outbreak to provide readers with direct access to authoritative information."
+      ]
+    }
+  }
+]

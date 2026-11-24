@@ -1,11 +1,11 @@
 {
   "counts": {
-    "channel_videos": 282,
-    "db_rows": 215,
-    "db_rows_with_yt_id": 185,
+    "channel_videos": 285,
+    "db_rows": 218,
+    "db_rows_with_yt_id": 188,
     "legacy_log_entries": 205,
-    "publish_log_entries": 98,
-    "in_sync": 164,
+    "publish_log_entries": 101,
+    "in_sync": 167,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 17,
     "ghost_db_rows": 16,
@@ -1161,6 +1161,27 @@
       "privacy": "public",
       "video_id": "rCyMQoAZPTg",
       "record": "prebuilt_reels:a62a89b7-9ec3-4632-8c18-4a4293ed6fa9"
+    },
+    {
+      "title": "Neena Gupta, Who Answered a 70-Year-Old Maths Problem, Named to TIME100 Next India #Shorts #NRI",
+      "published_at": "2026-11-23T11:14:34Z",
+      "privacy": "public",
+      "video_id": "fNKEpEIsw-s",
+      "record": "prebuilt_reels:9bbf8576-ae9e-415f-ad54-3eadef933899"
+    },
+    {
+      "title": "Ramayana Nears \u20b91,700 Crore Worldwide, Passes Dhurandhar 2 in the US #Shorts #Entertainment",
+      "published_at": "2026-11-23T17:16:01Z",
+      "privacy": "public",
+      "video_id": "Vb2SYALaric",
+      "record": "prebuilt_reels:d2cb6ce2-f6db-4829-851f-fb10e3a4c8e5"
+    },
+    {
+      "title": "Anthropic's Record $81.3 Billion IPO Opens 34% Higher, Then Fades to a 17% Gain #Shorts #TechNews",
+      "published_at": "2026-11-23T23:14:17Z",
+      "privacy": "public",
+      "video_id": "FCsXBiF2sBE",
+      "record": "prebuilt_reels:ab3389d7-2819-4bbc-a65a-5549c21a1ebf"
     }
   ],
   "unknown_legacy_logged": [
@@ -4170,5 +4191,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-11-23T05:15:37+00:00"
+  "generated_at": "2026-11-23T23:15:13+00:00"
 }

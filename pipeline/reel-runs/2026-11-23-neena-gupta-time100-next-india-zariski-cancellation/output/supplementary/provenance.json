@@ -1,0 +1,92 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "neena-gupta-time100-next-india-zariski-cancellation",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Neena Gupta",
+    "TIME100 Next India",
+    "Indian Statistical Institute",
+    "Zariski Cancellation Problem",
+    "Next India",
+    "Problem"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'TIME100 Next India' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Zariski Cancellation Problem' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Next India' named 'next Indian general election', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'Problem' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "File:Neena Gupta.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q6986875)",
+      "verdict": "rejected",
+      "reason": "resolution: 341x439 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Neena Gupta and Vivek Mehra in 2013.jpg",
+      "route": "identity \u2014 depicts (P180=Q6986875)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x881 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Neena Gupta snapped during promotions of Shubh Mangal Zyada Saavdhan .jpg",
+      "route": "identity \u2014 depicts (P180=Q6986875)",
+      "verdict": "rejected",
+      "reason": "resolution: 93x165 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Shubh Mangal Zyada Saavdhan cast snapped during promotions.jpg",
+      "route": "identity \u2014 depicts (P180=Q6986875)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x361 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Indian Statistical Institute, Kolkata.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q3105568)",
+      "verdict": "accepted",
+      "reason": "3226x1897, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:CV Raman Hall, ISI Kolkata.jpg",
+      "route": "identity \u2014 depicts (P180=Q3105568)",
+      "verdict": "accepted",
+      "reason": "4000x3000, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Indian Statistical Institute, Kolkata.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q3105568)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/b/bf/Indian_Statistical_Institute%2C_Kolkata.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_"
+    },
+    {
+      "candidate": "File:CV Raman Hall, ISI Kolkata.jpg",
+      "route": "identity \u2014 depicts (P180=Q3105568)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/8/81/CV_Raman_Hall%2C_ISI_Kolkata.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=ori"
+    }
+  ],
+  "extras": []
+}

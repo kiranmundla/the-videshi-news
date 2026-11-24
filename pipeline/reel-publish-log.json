@@ -1291,5 +1291,70 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "fNKEpEIsw-s",
+    "article_slug": "neena-gupta-time100-next-india-zariski-cancellation",
+    "article_id": "53ffd99b-8dc2-4f7a-80a1-b0839997c6e1",
+    "title": "Neena Gupta, Who Answered a 70-Year-Old Maths Problem, Named to TIME100 Next India #Shorts #NRI",
+    "privacy": "public",
+    "uploaded_at": "2026-11-23T11:14:06.591653+00:00",
+    "video_path": "reel-runs/2026-11-23-neena-gupta-time100-next-india-zariski-cancellation/output/neena-gupta-time100-next-india-zariski-cancellation.mp4",
+    "video_sha256": "b868997ac4d03d2c47e043d1894a6507d69eb4db25f1bc4c8d32e5807fca756e",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "Vb2SYALaric",
+    "article_slug": "ramayana-day-18-box-office-1693-crore-passes-dhurandhar-2-us",
+    "article_id": "0af31d55-bbda-45c4-b2de-2943127cefad",
+    "title": "Ramayana Nears \u20b91,700 Crore Worldwide, Passes Dhurandhar 2 in the US #Shorts #Entertainment",
+    "privacy": "public",
+    "uploaded_at": "2026-11-23T17:15:37.683165+00:00",
+    "video_path": "reel-runs/2026-11-23-ramayana-day-18-box-office-1693-crore-passes-dhurandhar-2-us/output2/ramayana-day-18-box-office-1693-crore-passes-dhurandhar-2-us.mp4",
+    "video_sha256": "c6f250eda05d6e04f9406630ba5f288f2326a3d5a6dcf8095616c7d87aae877e",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "FCsXBiF2sBE",
+    "article_slug": "anthropic-ipo-record-81-billion-nasdaq-debut",
+    "article_id": "d0c590cd-5e44-4349-a8d1-628df871e1c7",
+    "title": "Anthropic's Record $81.3 Billion IPO Opens 34% Higher, Then Fades to a 17% Gain #Shorts #TechNews",
+    "privacy": "public",
+    "uploaded_at": "2026-11-23T23:13:59.344346+00:00",
+    "video_path": "reel-runs/2026-11-23-anthropic-ipo-record-81-billion-nasdaq-debut/output/anthropic-ipo-record-81-billion-nasdaq-debut.mp4",
+    "video_sha256": "69bf67f7a304808eddfb265ff66bd4167a3391ae6eeeef7937f2aa9f524f8d9e",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "_tB3FiIfDIQ",
+    "article_slug": "india-us-defence-ties-military-exercises-fact-sheet-2026",
+    "article_id": "1401dd9b-6016-4f24-ac73-a7577ad8b818",
+    "title": "India Runs More Military Exercises With US Than Any Other Country #Shorts #News",
+    "privacy": "public",
+    "uploaded_at": "2026-11-24T05:14:32.812066+00:00",
+    "video_path": "reel-runs/2026-11-23-india-us-defence-ties-military-exercises-fact-sheet-2026/output/india-us-defence-ties-military-exercises-fact-sheet-2026.mp4",
+    "video_sha256": "2c14624528ae430c03eb4b380721f59ca2a36dedc8e75573524347c17c56a672",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "bQ9tkjah2Xg",
+    "article_slug": "ar-rahman-ramayana-three-years-turned-down-films-iffi",
+    "article_id": "b3ec72ae-4341-449c-8c71-42085c5a78d0",
+    "title": "A. R. Rahman Spent Three Years on 'Ramayana' Music, Turned Down 10\u201312 Films #Shorts #Entertainment",
+    "privacy": "public",
+    "uploaded_at": "2026-11-24T11:14:43.101178+00:00",
+    "video_path": "reel-runs/2026-11-24-ar-rahman-ramayana-three-years-turned-down-films-iffi/output/ar-rahman-ramayana-three-years-turned-down-films-iffi.mp4",
+    "video_sha256": "6ea28f20a0f5b22147e88b4f5c1f77f869fa0276314bb2f00706a50dd166113a",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]
