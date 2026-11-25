@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-18T21:07:44Z",
-  "as_of": "2026-11-18",
+  "generated_at": "2026-11-25T15:24:39Z",
+  "as_of": "2026-11-25",
   "market": "international",
   "band": {
     "id": "intl-1wk",
@@ -2667,43 +2667,16 @@
       "band": "intl-1wk",
       "calendar": [
         {
-          "date_range": "2026-11-24 \u2192 2026-12-02",
-          "dep_date": "2026-11-24",
-          "ret_date": "2026-12-02",
-          "duration_days": 8,
-          "band": "intl-1wk",
-          "price_min": 1861,
-          "price_max": 2027,
-          "cheapest_airline": "Qatar Airways",
-          "num_samples": 2,
-          "fetched_as_of": "2026-11-18",
-          "cache_samples": 0,
-          "year": 2026,
-          "month": 11,
-          "route": "SFO-CAI",
-          "origin_metro": "Bay Area",
-          "dest_metro": "Cairo",
-          "change_vs_prev": {
-            "prev_price_min": 1112,
-            "prev_as_of": "2026-11-11",
-            "delta": -749,
-            "delta_pct": -67.4,
-            "trailing_avg_price_min": 1055,
-            "delta_vs_trailing_avg": -806,
-            "delta_vs_trailing_avg_pct": -76.4
-          }
-        },
-        {
           "date_range": "2026-12-08 \u2192 2026-12-14",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-14",
           "duration_days": 6,
           "band": "intl-1wk",
-          "price_min": 1111,
-          "price_max": 3155,
+          "price_min": 1023,
+          "price_max": 3150,
           "cheapest_airline": "Delta Air Lines",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-18",
+          "fetched_as_of": "2026-11-25",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -2712,13 +2685,13 @@
           "dest_metro": "Cairo",
           "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 1112,
-            "prev_as_of": "2026-11-11",
-            "delta": 1,
-            "delta_pct": 0.1,
-            "trailing_avg_price_min": 1074,
-            "delta_vs_trailing_avg": -37,
-            "delta_vs_trailing_avg_pct": -3.5
+            "prev_price_min": 1111,
+            "prev_as_of": "2026-11-18",
+            "delta": 88,
+            "delta_pct": 7.9,
+            "trailing_avg_price_min": 1081,
+            "delta_vs_trailing_avg": 58,
+            "delta_vs_trailing_avg_pct": 5.4
           }
         },
         {
@@ -2727,11 +2700,11 @@
           "ret_date": "2027-01-20",
           "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1121,
+          "price_min": 1033,
           "price_max": 1237,
           "cheapest_airline": "Delta Air Lines",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-18",
+          "fetched_as_of": "2026-11-25",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -2739,14 +2712,32 @@
           "origin_metro": "Bay Area",
           "dest_metro": "Cairo",
           "change_vs_prev": {
-            "prev_price_min": 1122,
-            "prev_as_of": "2026-11-11",
-            "delta": 1,
-            "delta_pct": 0.1,
-            "trailing_avg_price_min": 1097,
-            "delta_vs_trailing_avg": -24,
-            "delta_vs_trailing_avg_pct": -2.2
+            "prev_price_min": 1121,
+            "prev_as_of": "2026-11-18",
+            "delta": 88,
+            "delta_pct": 7.9,
+            "trailing_avg_price_min": 1103,
+            "delta_vs_trailing_avg": 70,
+            "delta_vs_trailing_avg_pct": 6.4
           }
+        },
+        {
+          "date_range": "2027-02-09 \u2192 2027-02-15",
+          "dep_date": "2027-02-09",
+          "ret_date": "2027-02-15",
+          "duration_days": 6,
+          "band": "intl-1wk",
+          "price_min": 1033,
+          "price_max": 1237,
+          "cheapest_airline": "Delta Air Lines",
+          "num_samples": 4,
+          "fetched_as_of": "2026-11-25",
+          "cache_samples": 0,
+          "year": 2027,
+          "month": 2,
+          "route": "SFO-CAI",
+          "origin_metro": "Bay Area",
+          "dest_metro": "Cairo"
         }
       ],
       "cheapest_overall": {
@@ -2754,7 +2745,7 @@
         "month": 12,
         "band": "intl-1wk",
         "duration_days": 6,
-        "price_min": 1111,
+        "price_min": 1023,
         "date_range": "2026-12-08 \u2192 2026-12-14"
       },
       "destination_slug": "egypt"
@@ -2767,43 +2758,16 @@
       "band": "intl-1wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-03",
-          "dep_date": "2026-11-25",
-          "ret_date": "2026-12-03",
-          "duration_days": 8,
-          "band": "intl-1wk",
-          "price_min": 968,
-          "price_max": 1238,
-          "cheapest_airline": "Emirates",
-          "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
-          "cache_samples": 0,
-          "year": 2026,
-          "month": 11,
-          "route": "LAX-CAI",
-          "origin_metro": "Los Angeles",
-          "dest_metro": "Cairo",
-          "change_vs_prev": {
-            "prev_price_min": 854,
-            "prev_as_of": "2026-11-04",
-            "delta": -114,
-            "delta_pct": -13.3,
-            "trailing_avg_price_min": 761,
-            "delta_vs_trailing_avg": -207,
-            "delta_vs_trailing_avg_pct": -27.2
-          }
-        },
-        {
           "date_range": "2026-12-08 \u2192 2026-12-14",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-14",
           "duration_days": 6,
           "band": "intl-1wk",
-          "price_min": 642,
-          "price_max": 2081,
+          "price_min": 638,
+          "price_max": 2129,
           "cheapest_airline": "Royal Air Maroc",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-25",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -2812,13 +2776,13 @@
           "dest_metro": "Cairo",
           "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 643,
-            "prev_as_of": "2026-11-04",
-            "delta": 1,
-            "delta_pct": 0.2,
-            "trailing_avg_price_min": 643,
-            "delta_vs_trailing_avg": 1,
-            "delta_vs_trailing_avg_pct": 0.1
+            "prev_price_min": 642,
+            "prev_as_of": "2026-11-11",
+            "delta": 4,
+            "delta_pct": 0.6,
+            "trailing_avg_price_min": 642,
+            "delta_vs_trailing_avg": 4,
+            "delta_vs_trailing_avg_pct": 0.7
           }
         },
         {
@@ -2827,11 +2791,11 @@
           "ret_date": "2027-01-18",
           "duration_days": 6,
           "band": "intl-1wk",
-          "price_min": 648,
-          "price_max": 926,
+          "price_min": 644,
+          "price_max": 949,
           "cheapest_airline": "Royal Air Maroc",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-25",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -2839,11 +2803,32 @@
           "origin_metro": "Los Angeles",
           "dest_metro": "Cairo",
           "change_vs_prev": {
-            "prev_price_min": 649,
-            "prev_as_of": "2026-11-04",
-            "delta": 1,
-            "delta_pct": 0.2
+            "prev_price_min": 648,
+            "prev_as_of": "2026-11-11",
+            "delta": 4,
+            "delta_pct": 0.6,
+            "trailing_avg_price_min": 649,
+            "delta_vs_trailing_avg": 5,
+            "delta_vs_trailing_avg_pct": 0.7
           }
+        },
+        {
+          "date_range": "2027-02-09 \u2192 2027-02-15",
+          "dep_date": "2027-02-09",
+          "ret_date": "2027-02-15",
+          "duration_days": 6,
+          "band": "intl-1wk",
+          "price_min": 644,
+          "price_max": 872,
+          "cheapest_airline": "Royal Air Maroc",
+          "num_samples": 4,
+          "fetched_as_of": "2026-11-25",
+          "cache_samples": 0,
+          "year": 2027,
+          "month": 2,
+          "route": "LAX-CAI",
+          "origin_metro": "Los Angeles",
+          "dest_metro": "Cairo"
         }
       ],
       "cheapest_overall": {
@@ -2851,7 +2836,7 @@
         "month": 12,
         "band": "intl-1wk",
         "duration_days": 6,
-        "price_min": 642,
+        "price_min": 638,
         "date_range": "2026-12-08 \u2192 2026-12-14"
       },
       "destination_slug": "egypt"
@@ -2864,58 +2849,31 @@
       "band": "intl-1wk",
       "calendar": [
         {
-          "date_range": "2026-11-26 \u2192 2026-12-02",
-          "dep_date": "2026-11-26",
-          "ret_date": "2026-12-02",
-          "duration_days": 6,
-          "band": "intl-1wk",
-          "price_min": 718,
-          "price_max": 961,
-          "cheapest_airline": "Delta Air Lines",
-          "num_samples": 4,
-          "fetched_as_of": "2026-11-18",
-          "cache_samples": 0,
-          "year": 2026,
-          "month": 11,
-          "route": "JFK-CAI",
-          "origin_metro": "New York",
-          "dest_metro": "Cairo",
-          "cheapest_month": true,
-          "change_vs_prev": {
-            "prev_price_min": 719,
-            "prev_as_of": "2026-11-11",
-            "delta": 1,
-            "delta_pct": 0.1,
-            "trailing_avg_price_min": 728,
-            "delta_vs_trailing_avg": 10,
-            "delta_vs_trailing_avg_pct": 1.4
-          }
-        },
-        {
           "date_range": "2026-12-08 \u2192 2026-12-14",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-14",
           "duration_days": 6,
           "band": "intl-1wk",
-          "price_min": 718,
-          "price_max": 2281,
-          "cheapest_airline": "Delta Air Lines",
+          "price_min": 723,
+          "price_max": 2293,
+          "cheapest_airline": "Air France",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-18",
+          "fetched_as_of": "2026-11-25",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
           "route": "JFK-CAI",
           "origin_metro": "New York",
           "dest_metro": "Cairo",
+          "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 719,
-            "prev_as_of": "2026-11-11",
-            "delta": 1,
-            "delta_pct": 0.1,
-            "trailing_avg_price_min": 731,
-            "delta_vs_trailing_avg": 13,
-            "delta_vs_trailing_avg_pct": 1.8
+            "prev_price_min": 718,
+            "prev_as_of": "2026-11-18",
+            "delta": -5,
+            "delta_pct": -0.7,
+            "trailing_avg_price_min": 728,
+            "delta_vs_trailing_avg": 5,
+            "delta_vs_trailing_avg_pct": 0.7
           }
         },
         {
@@ -2928,7 +2886,7 @@
           "price_max": 826,
           "cheapest_airline": "Delta Air Lines",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-18",
+          "fetched_as_of": "2026-11-25",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -2936,23 +2894,41 @@
           "origin_metro": "New York",
           "dest_metro": "Cairo",
           "change_vs_prev": {
-            "prev_price_min": 729,
-            "prev_as_of": "2026-11-11",
-            "delta": 1,
-            "delta_pct": 0.1,
+            "prev_price_min": 728,
+            "prev_as_of": "2026-11-18",
+            "delta": 0,
+            "delta_pct": 0.0,
             "trailing_avg_price_min": 728,
             "delta_vs_trailing_avg": 0,
             "delta_vs_trailing_avg_pct": -0.0
           }
+        },
+        {
+          "date_range": "2027-02-23 \u2192 2027-03-01",
+          "dep_date": "2027-02-23",
+          "ret_date": "2027-03-01",
+          "duration_days": 6,
+          "band": "intl-1wk",
+          "price_min": 728,
+          "price_max": 914,
+          "cheapest_airline": "Delta Air Lines",
+          "num_samples": 4,
+          "fetched_as_of": "2026-11-25",
+          "cache_samples": 0,
+          "year": 2027,
+          "month": 2,
+          "route": "JFK-CAI",
+          "origin_metro": "New York",
+          "dest_metro": "Cairo"
         }
       ],
       "cheapest_overall": {
         "year": 2026,
-        "month": 11,
+        "month": 12,
         "band": "intl-1wk",
         "duration_days": 6,
-        "price_min": 718,
-        "date_range": "2026-11-26 \u2192 2026-12-02"
+        "price_min": 723,
+        "date_range": "2026-12-08 \u2192 2026-12-14"
       },
       "destination_slug": "egypt"
     },
@@ -2964,58 +2940,31 @@
       "band": "intl-1wk",
       "calendar": [
         {
-          "date_range": "2026-11-24 \u2192 2026-12-02",
-          "dep_date": "2026-11-24",
-          "ret_date": "2026-12-02",
-          "duration_days": 8,
-          "band": "intl-1wk",
-          "price_min": 702,
-          "price_max": 1663,
-          "cheapest_airline": "Delta Air Lines",
-          "num_samples": 4,
-          "fetched_as_of": "2026-11-18",
-          "cache_samples": 0,
-          "year": 2026,
-          "month": 11,
-          "route": "ORD-CAI",
-          "origin_metro": "Chicago",
-          "dest_metro": "Cairo",
-          "cheapest_month": true,
-          "change_vs_prev": {
-            "prev_price_min": 958,
-            "prev_as_of": "2026-11-11",
-            "delta": 256,
-            "delta_pct": 26.7,
-            "trailing_avg_price_min": 770,
-            "delta_vs_trailing_avg": 68,
-            "delta_vs_trailing_avg_pct": 8.9
-          }
-        },
-        {
           "date_range": "2026-12-08 \u2192 2026-12-14",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-14",
           "duration_days": 6,
           "band": "intl-1wk",
           "price_min": 702,
-          "price_max": 2186,
+          "price_max": 2235,
           "cheapest_airline": "Delta Air Lines",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-18",
+          "fetched_as_of": "2026-11-25",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
           "route": "ORD-CAI",
           "origin_metro": "Chicago",
           "dest_metro": "Cairo",
+          "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 703,
-            "prev_as_of": "2026-11-11",
-            "delta": 1,
-            "delta_pct": 0.1,
-            "trailing_avg_price_min": 710,
-            "delta_vs_trailing_avg": 8,
-            "delta_vs_trailing_avg_pct": 1.2
+            "prev_price_min": 702,
+            "prev_as_of": "2026-11-18",
+            "delta": 0,
+            "delta_pct": 0.0,
+            "trailing_avg_price_min": 709,
+            "delta_vs_trailing_avg": 7,
+            "delta_vs_trailing_avg_pct": 1.0
           }
         },
         {
@@ -3025,10 +2974,10 @@
           "duration_days": 8,
           "band": "intl-1wk",
           "price_min": 835,
-          "price_max": 1010,
+          "price_max": 919,
           "cheapest_airline": "Air France",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-18",
+          "fetched_as_of": "2026-11-25",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -3036,23 +2985,41 @@
           "origin_metro": "Chicago",
           "dest_metro": "Cairo",
           "change_vs_prev": {
-            "prev_price_min": 836,
-            "prev_as_of": "2026-11-11",
-            "delta": 1,
-            "delta_pct": 0.1,
-            "trailing_avg_price_min": 793,
-            "delta_vs_trailing_avg": -42,
-            "delta_vs_trailing_avg_pct": -5.3
+            "prev_price_min": 835,
+            "prev_as_of": "2026-11-18",
+            "delta": 0,
+            "delta_pct": 0.0,
+            "trailing_avg_price_min": 803,
+            "delta_vs_trailing_avg": -32,
+            "delta_vs_trailing_avg_pct": -4.0
           }
+        },
+        {
+          "date_range": "2027-02-23 \u2192 2027-03-01",
+          "dep_date": "2027-02-23",
+          "ret_date": "2027-03-01",
+          "duration_days": 6,
+          "band": "intl-1wk",
+          "price_min": 712,
+          "price_max": 978,
+          "cheapest_airline": "Delta Air Lines",
+          "num_samples": 4,
+          "fetched_as_of": "2026-11-25",
+          "cache_samples": 0,
+          "year": 2027,
+          "month": 2,
+          "route": "ORD-CAI",
+          "origin_metro": "Chicago",
+          "dest_metro": "Cairo"
         }
       ],
       "cheapest_overall": {
         "year": 2026,
-        "month": 11,
+        "month": 12,
         "band": "intl-1wk",
-        "duration_days": 8,
+        "duration_days": 6,
         "price_min": 702,
-        "date_range": "2026-11-24 \u2192 2026-12-02"
+        "date_range": "2026-12-08 \u2192 2026-12-14"
       },
       "destination_slug": "egypt"
     },
@@ -3811,40 +3778,7 @@
       "destination_slug": "hawaii"
     }
   },
-  "biggest_drops": [
-    {
-      "route": "DFW-NRT",
-      "origin_metro": "Dallas",
-      "dest_metro": "Tokyo",
-      "year": 2027,
-      "month": 1,
-      "band": "intl-1wk",
-      "duration_days": 8,
-      "date_range": "2027-01-26 \u2192 2027-02-03",
-      "was": 1387,
-      "now": 1226,
-      "drop_abs": 161,
-      "drop_pct": 11.6,
-      "baseline_as_of": "2026-11-11",
-      "cheapest_airline": "Qatar Airways"
-    },
-    {
-      "route": "DFW-NRT",
-      "origin_metro": "Dallas",
-      "dest_metro": "Tokyo",
-      "year": 2026,
-      "month": 11,
-      "band": "intl-1wk",
-      "duration_days": 8,
-      "date_range": "2026-11-26 \u2192 2026-12-04",
-      "was": 1473,
-      "now": 1350,
-      "drop_abs": 123,
-      "drop_pct": 8.4,
-      "baseline_as_of": "2026-11-11",
-      "cheapest_airline": "JAL"
-    }
-  ],
+  "biggest_drops": [],
   "festival_seasons": [],
   "spec": {
     "max_stops": 1,
