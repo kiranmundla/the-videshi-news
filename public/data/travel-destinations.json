@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24",
+  "generated_at": "2026-11-25",
   "current_month": 11,
   "current_year": 2026,
   "destination_count": 50,
@@ -3294,35 +3294,35 @@
       ],
       "season_note": "Bengaluru is mild year-round; Hampi and Coorg shine Oct\u2013Feb.",
       "cheapest_month": {
-        "month": 1,
+        "month": 2,
         "year": 2027,
-        "price_min": 1112,
+        "price_min": 835,
         "route": "SFO-BLR",
-        "duration_days": 22,
+        "duration_days": 20,
         "weeks": null,
         "source": "fare data"
       },
       "fare_from": {
-        "price_min": 1112,
+        "price_min": 835,
         "route": "SFO-BLR",
         "origin_metro": "Bay Area",
         "dest_metro": "Bengaluru",
-        "date_range": "Jan 12 \u2192 Feb 3",
-        "duration_days": 22,
+        "date_range": "Feb 23 \u2192 Mar 15",
+        "duration_days": 20,
         "weeks": null,
-        "as_of": "2026-11-24",
+        "as_of": "2026-11-25",
         "cadence": "daily"
       },
       "fares_by_origin": {
         "SFO": {
-          "price_min": 1112,
+          "price_min": 835,
           "route": "SFO-BLR",
           "origin_metro": "Bay Area",
           "dest_metro": "Bengaluru",
-          "date_range": "Jan 12 \u2192 Feb 3",
-          "duration_days": 22,
+          "date_range": "Feb 23 \u2192 Mar 15",
+          "duration_days": 20,
           "weeks": null,
-          "as_of": "2026-11-24",
+          "as_of": "2026-11-25",
           "cadence": "daily"
         }
       },
@@ -6099,36 +6099,35 @@
     "season_note": "The winter core (Oct\u2013Mar) suits most of India; Kashmir and the Himalayas run spring to autumn.",
     "cheapest_month": null,
     "fare_from": {
-      "price_min": 935,
-      "route": "SFO-DEL",
+      "price_min": 835,
+      "route": "SFO-BLR",
       "origin_metro": "Bay Area",
-      "dest_metro": "Delhi",
-      "date_range": "Jan 26 \u2192 Feb 15",
+      "dest_metro": "Bengaluru",
+      "date_range": "Feb 23 \u2192 Mar 15",
       "duration_days": 20,
-      "as_of": "2026-11-24",
+      "as_of": "2026-11-25",
       "cadence": "daily"
     },
     "fares_by_origin": {
       "SFO": {
-        "price_min": 935,
-        "route": "SFO-DEL",
+        "price_min": 835,
+        "route": "SFO-BLR",
         "origin_metro": "Bay Area",
-        "dest_metro": "Delhi",
-        "date_range": "Jan 26 \u2192 Feb 15",
+        "dest_metro": "Bengaluru",
+        "date_range": "Feb 23 \u2192 Mar 15",
         "duration_days": 20,
-        "as_of": "2026-11-24",
+        "as_of": "2026-11-25",
         "cadence": "daily"
       },
       "JFK": {
-        "price_min": 859,
-        "route": "JFK-HYD",
+        "price_min": 807,
+        "route": "JFK-BOM",
         "origin_metro": "New York",
-        "dest_metro": "Hyderabad",
-        "date_range": "Jan 12 \u2192 Feb 1",
+        "dest_metro": "Mumbai",
+        "date_range": "Feb 9 \u2192 Mar 1",
         "duration_days": 20,
-        "as_of": "2026-11-24",
-        "cadence": "weekly",
-        "indicative": true
+        "as_of": "2026-11-25",
+        "cadence": "daily"
       },
       "ORD": {
         "price_min": 977,
@@ -6230,7 +6229,7 @@
     "trending": {
       "month": 11,
       "year": 2026,
-      "score": 87,
+      "score": 95,
       "max_score": 100,
       "components": [
         {
@@ -6247,9 +6246,9 @@
         },
         {
           "id": "fare_drop",
-          "points": 22,
+          "points": 30,
           "max": 30,
-          "reason": "Fares down 14.4% on DFW-DEL ($2200 \u2192 $1884) vs 2026-11-15"
+          "reason": "Fares down 26.3% on EWR-BOM ($2230 \u2192 $1643) vs 2026-11-23"
         }
       ]
     },
