@@ -1,0 +1,50 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "immigration-court-memo-cuts-key-filing-deadlines-to-10-days",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Executive Office for Immigration Review",
+    "Policy Memorandum 27-02",
+    "Form EOIR-28",
+    "Sirce Owen",
+    "Filing",
+    "Filing Deadlines"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Policy Memorandum 27-02' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Form EOIR-28' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Sirce Owen' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'Filing' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Filing Deadlines' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    }
+  ],
+  "extras": []
+}

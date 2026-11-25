@@ -1,0 +1,300 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites",
+  "verdict": "fail",
+  "held_claims": [
+    "hook_stat.sub",
+    "stats[2].label"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "GALAXEYE AWARDS BELLATRIX PROPULSION CONTRACT FOR ITS NEXT 30 SATELLITES",
+      "numbers": [
+        30.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states GalaxEye awarded Bellatrix a contract for 30 satellites.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Bengaluru-based GalaxEye has awarded Bellatrix Aerospace a multi-year contract to supply Arka electric propulsion systems for its next 30 Drishti Gen-II satellites, in a deal the two startups describe as India's largest private space order by satellite count.",
+      "numbers": [
+        30.0
+      ],
+      "entities": [
+        "Bengaluru-based GalaxEye",
+        "Bellatrix Aerospace",
+        "Drishti Gen-II"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the contract details and the description of the order.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "30",
+      "numbers": [
+        30.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions 30 satellites in the contract.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Satellites in GalaxEye's Drishti Gen-II constellation to be powered by Bellatrix Aerospace Arka propulsion systems",
+      "numbers": [],
+      "entities": [
+        "GalaxEye's Drishti Gen-II",
+        "Bellatrix Aerospace Arka"
+      ],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_entities": [
+          "Bellatrix Aerospace Arka"
+        ]
+      },
+      "llm_reason": "The article states Bellatrix will supply propulsion systems for the satellites.",
+      "verdicts": {
+        "deterministic": "fail",
+        "llm": "supported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "2030",
+      "numbers": [
+        2030.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2030
+        ]
+      },
+      "llm_reason": "The article mentions 2030 as the target year for deployment.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Target year for deploying the Drishti Gen-II constellation",
+      "numbers": [],
+      "entities": [
+        "Drishti Gen-II"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies 2030 as the deployment target.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$20 MILLION",
+      "numbers": [
+        20.0,
+        20000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Bellatrix raised $20 million in March 2026.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Raised by Bellatrix Aerospace in a pre-Series B round in March 2026",
+      "numbers": [
+        2026.0
+      ],
+      "entities": [
+        "Bellatrix Aerospace"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "The article confirms the funding details for Bellatrix.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "\u20b963.84 CRORE",
+      "numbers": [
+        63.84,
+        638400000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions this amount as a commitment to GalaxEye.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Commitment GalaxEye secured from the Technology Development Board",
+      "numbers": [],
+      "entities": [
+        "Commitment GalaxEye",
+        "Technology Development Board"
+      ],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_entities": [
+          "Commitment GalaxEye"
+        ]
+      },
+      "llm_reason": "The article states GalaxEye secured this commitment.",
+      "verdicts": {
+        "deterministic": "fail",
+        "llm": "supported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Two Bengaluru startups signed what they describe as India's largest private space order by satellite count",
+      "numbers": [],
+      "entities": [
+        "Two Bengaluru"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms this description by the startups.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "GalaxEye's satellites image the Earth through cloud cover and at night, for defence, agriculture and disaster management",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article describes the imaging capabilities of GalaxEye's satellites.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The test now is delivery: the first two propulsion systems ship first, and the 30-satellite constellation is a 2030 target, not a fleet in orbit.",
+      "numbers": [
+        30.0,
+        2030.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2030
+        ]
+      },
+      "llm_reason": "The article discusses the delivery timeline and target year.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "GalaxEye",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Bellatrix Aerospace",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Drishti Gen-II",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Pranit Mehta",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Arka",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000705,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

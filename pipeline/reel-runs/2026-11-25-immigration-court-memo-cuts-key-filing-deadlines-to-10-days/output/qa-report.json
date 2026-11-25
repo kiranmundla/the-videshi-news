@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-25-immigration-court-memo-cuts-key-filing-deadlines-to-10-days/output/immigration-court-memo-cuts-key-filing-deadlines-to-10-days.mp4",
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        2273,
+        1621
+      ],
+      "manifest_dims": [
+        2273,
+        1621
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 1453.5,
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Figure_2-_Map_of_Executive_Office_for_Immigration_Review_%28EOIR%29_Immigration_Court_Locations_%2835153795121%29.jpg/1920px-Figure_2-_Map_of_Executive_Office_for_Immigration_Review_%28EOIR%29_Immigration_Court_Locations_%2835153795121%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-25-immigration-court-memo-cuts-key-filing-deadlines-to-10-days/output/qa/frames/frame-hook.png",
+      "text_px_detected": 25988,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-25-immigration-court-memo-cuts-key-filing-deadlines-to-10-days/output/qa/frames/frame-news.png",
+      "text_px_detected": 43352,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-25-immigration-court-memo-cuts-key-filing-deadlines-to-10-days/output/qa/frames/frame-hero.png",
+      "text_px_detected": 30717,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 171.3,
+        "bg_luminance": 0.0,
+        "delta": 171.3
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-25-immigration-court-memo-cuts-key-filing-deadlines-to-10-days/output/qa/frames/frame-grid.png",
+      "text_px_detected": 56232,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 252.9,
+        "bg_luminance": 0.0,
+        "delta": 252.9
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-25-immigration-court-memo-cuts-key-filing-deadlines-to-10-days/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 41749,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-25-immigration-court-memo-cuts-key-filing-deadlines-to-10-days/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 27615,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 0.0,
+        "delta": 253.4
+      }
+    }
+  ]
+}

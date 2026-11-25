@@ -1,0 +1,162 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "priyansh-arya-181-second-highest-t20-score-delhi-tamil-nadu",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Priyansh Arya Smashes 181 Off 68 Balls, the Second-Highest Score in T20 History",
+        "numbers": [
+          20.0,
+          68.0,
+          181.0
+        ],
+        "entities": [
+          "Priyansh Arya Smashes",
+          "Second-Highest Score",
+          "T20 History"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Arya scored 181, second-highest in T20 history.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The Delhi captain's 19 sixes equalled the world record for a T20 innings as Delhi posted 275 for 5 and beat Tamil Nadu by 116 runs in the Syed Mushtaq Ali Trophy in Indore.",
+        "numbers": [
+          5.0,
+          19.0,
+          20.0,
+          116.0,
+          275.0
+        ],
+        "entities": [
+          "Tamil Nadu",
+          "Syed Mushtaq Ali Trophy"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "All facts about the match and records are present in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Priyansh Arya scored 181 off 68 balls \u2014 the highest T20 score by an Indian and the second-highest in men's T20 history",
+        "numbers": [
+          20.0,
+          68.0,
+          181.0
+        ],
+        "entities": [
+          "Priyansh Arya"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms Arya's score as the highest by an Indian and second-highest overall.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "His 19 sixes equalled Finn Allen's world record for a T20 innings; his fifty took 18 balls and his century 36",
+        "numbers": [
+          18.0,
+          19.0,
+          20.0,
+          36.0
+        ],
+        "entities": [
+          "Finn Allen's"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Arya's sixes, fifty, and century timings accurately.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Delhi posted 275 for 5 and won by 116 runs as Tamil Nadu were bowled out for 159",
+        "numbers": [
+          5.0,
+          116.0,
+          159.0,
+          275.0
+        ],
+        "entities": [
+          "Tamil Nadu"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article provides the exact score and match outcome.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Priyansh Arya Smashes 181 Off 68 Balls, the Second-Highest Score in T20 History",
+        "numbers": [
+          20.0,
+          68.0,
+          181.0
+        ],
+        "entities": [
+          "Priyansh Arya Smashes",
+          "Second-Highest Score",
+          "T20 History"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim repeats the verified hook line.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000484,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

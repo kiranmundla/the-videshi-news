@@ -1,0 +1,62 @@
+[
+  {
+    "id": "711816cf-3af6-4b79-a9e1-09ea93a48c16",
+    "headline": "Sooryavanshi, 15, Smashes Fastest List A Century and Double Century in 204-Run B",
+    "slug": "vaibhav-sooryavanshi-fastest-list-a-200-india-a-uae",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of Sooryavanshi's achievements by including a brief comparison of his records with those of other notable cricketers, providing context for readers unfamiliar with List A cricket history.",
+        "Ensure all statistics are attributed correctly, such as the source for the fastest century and double century claims; consider specifying that ESPNcricinfo is the source for these records to enhance credibility.",
+        "Provide a clearer timeline of events by explicitly stating the date of the match and when the records were confirmed by the ICC, which would help in understanding the timeliness of the news."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the International Cricket Council confirming Sooryavanshi's records, which would provide authoritative validation of the achievements."
+      ]
+    }
+  },
+  {
+    "id": "6a625e55-acdd-4c3b-81f9-31880488beff",
+    "headline": "Bihar Porter Sold Land to Send Sons to Kota; Both Cracked NEET and JEE",
+    "slug": "bihar-porter-sells-land-sons-kota-neet-jee",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the year when the sons began their coaching in Kota and when they took their respective entrance exams, as well as when the admissions were confirmed. This will provide readers with a clearer context of the events.",
+        "Include specific details about the financial implications of selling the land, such as the amount received from the sale and how it compares to the cost of coaching in Kota. This would give readers a better understanding of the sacrifices made by the family.",
+        "Add attribution for the statistics mentioned, such as the NEET-UG score and JEE Main percentile, to ensure accuracy and credibility. For example, clarify if these scores are reported by official examination bodies or other reliable sources."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet or post from an official education body or news outlet that discusses the significance of NEET and JEE results, which would provide additional context for readers."
+      ]
+    }
+  },
+  {
+    "id": "ff979700-94ce-4036-a338-63bdb89cd9ac",
+    "headline": "Modi and Merz Say India-EU Trade Deal Will Unlock New Opportunities",
+    "slug": "modi-merz-india-eu-fta-unlock-opportunities",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the expected benefits of the India-EU Free Trade Agreement by including specific figures, such as projected increases in trade volume or economic growth percentages for both India and the EU.",
+        "Provide a brief overview of the key sectors that will benefit from the mobility framework for Indian professionals, including specific professions or industries that will see the most impact.",
+        "Include a quote from either Modi or Merz to enhance the article's attribution and provide a more personal touch to the leaders' perspectives on the agreement."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet or statement from the Prime Minister's Office regarding the phone call and the trade agreement for authenticity and direct access to official information."
+      ]
+    }
+  }
+]

@@ -1,0 +1,36 @@
+{
+ "hook_line": "IMMIGRATION COURT DEADLINES CUT TO 10 DAYS",
+ "hook_stat": {
+  "big": "10 DAYS",
+  "eyebrow": "THE STAKES",
+  "sub": "To file pleadings and evidence in US removal cases"
+ },
+ "stats": [
+  {
+   "big": "60 DAYS",
+   "label": "Previous window to file applications for relief or protection"
+  },
+  {
+   "big": "15 DAYS",
+   "label": "Form EOIR-28 filing cutoff before a master calendar hearing"
+  },
+  {
+   "big": "20 DAYS",
+   "label": "Time for the other side to respond to pleadings and evidence"
+  }
+ ],
+ "diaspora_bullets": [
+  "Have representation in place early — filing Form EOIR-28 moves a case onto the written track",
+  "A missed deadline can mean a final order of removability"
+ ],
+ "key_entities": [
+  "Executive Office for Immigration Review",
+  "Policy Memorandum 27-02",
+  "Form EOIR-28",
+  "Sirce Owen"
+ ],
+ "news_summary": "A new EOIR policy memo, effective November 23, cuts filing deadlines in US immigration court removal cases to 10 days for represented respondents.",
+ "payoff": "Miss the deadline and the application is deemed waived; DHS can seek a final order of removability.",
+ "versus": "",
+ "story_mood": "tense"
+}

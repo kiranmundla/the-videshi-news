@@ -1,0 +1,12 @@
+VIDEO: /home/hatch/workspace/the-videshi-news/pipeline/reel-runs/2026-11-24-sarvam-dictate-api-english-22-indian-languages/output2/sarvam-dictate-api-english-22-indian-languages.mp4
+
+CAPTION:
+SPEECH TO TEXT IN 22 INDIAN LANGUAGES
+
+Bengaluru startup Sarvam AI has launched Sarvam Dictate, an API that turns speech into edited, ready-to-send text in English and 22 Indian languages.
+
+India's voice AI market is projected to reach $1.8 billion by 2030.
+
+Full story: https://thevideshi.com/articles/sarvam-dictate-api-english-22-indian-languages
+
+#TheVideshi #SarvamAI #SarvamDictate #Tech #IndianDiaspora

@@ -1356,5 +1356,57 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "32GPnJ1X6wo",
+    "article_slug": "priyansh-arya-181-second-highest-t20-score-delhi-tamil-nadu",
+    "article_id": "9346a74b-971b-439b-8f19-32cfd7e7d704",
+    "title": "Priyansh Arya Smashes 181 Off 68 Balls, the Second-Highest Score in T20 History #Shorts #Sports",
+    "privacy": "public",
+    "uploaded_at": "2026-11-24T17:13:22.884239+00:00",
+    "video_path": "reel-runs/2026-11-24-priyansh-arya-181-second-highest-t20-score-delhi-tamil-nadu/output/priyansh-arya-181-second-highest-t20-score-delhi-tamil-nadu.mp4",
+    "video_sha256": "17aadbfcecd2b0ae98dc05c93d0f153d5f9ee2dc6a488f29361a2070616bb2d6",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "v_6UvpkPRIc",
+    "article_slug": "galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites",
+    "article_id": "047ce09f-74cc-4955-bf40-e7db34a1c933",
+    "title": "GalaxEye Awards Bellatrix Aerospace Propulsion Contract for Its Next 30 Satellites #Shorts #TechNews",
+    "privacy": "public",
+    "uploaded_at": "2026-11-24T23:14:20.463613+00:00",
+    "video_path": "reel-runs/2026-11-24-galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites/output2/galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites.mp4",
+    "video_sha256": "adc51aa8ce410b66ce4df164ceafa4937206fa588991430d45a516f5be345848",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "vouinnEnjaA",
+    "article_slug": "sarvam-dictate-api-english-22-indian-languages",
+    "article_id": "502fc8c3-cd91-49e0-a083-91e79fa6e1db",
+    "title": "Sarvam Launches Dictate API for English and 22 Indian Languages at \u20b90.50 a Minute #Shorts #TechNews",
+    "privacy": "public",
+    "uploaded_at": "2026-11-25T05:14:33.790182+00:00",
+    "video_path": "reel-runs/2026-11-24-sarvam-dictate-api-english-22-indian-languages/output2/sarvam-dictate-api-english-22-indian-languages.mp4",
+    "video_sha256": "be1fdedd8cf493581811c4b932302db90d946c62de6e15496ad20a337eb3db4c",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "MZwQztvMr2U",
+    "article_slug": "immigration-court-memo-cuts-key-filing-deadlines-to-10-days",
+    "article_id": "b59d28b3-c643-4493-a214-c80d305cc833",
+    "title": "Immigration Court Memo Cuts Key Filing Deadlines to 10 Days #Shorts #Immigration",
+    "privacy": "public",
+    "uploaded_at": "2026-11-25T11:14:33.949368+00:00",
+    "video_path": "reel-runs/2026-11-25-immigration-court-memo-cuts-key-filing-deadlines-to-10-days/output/immigration-court-memo-cuts-key-filing-deadlines-to-10-days.mp4",
+    "video_sha256": "b748b97029380c31ef0cb0c7008422667970f3dd096995e10b8c051d8c2317f9",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

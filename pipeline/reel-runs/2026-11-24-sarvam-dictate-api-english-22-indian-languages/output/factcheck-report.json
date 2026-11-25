@@ -1,0 +1,239 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "sarvam-dictate-api-english-22-indian-languages",
+  "verdict": "fail",
+  "held_claims": [
+    "key_entities:Google Gemini"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "SPEECH TO TEXT IN 22 INDIAN LANGUAGES",
+      "numbers": [
+        22.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states it supports 22 Indian languages.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Bengaluru startup Sarvam AI has launched Sarvam Dictate, an API that turns speech into edited, ready-to-send text in English and 22 Indian languages.",
+      "numbers": [
+        22.0
+      ],
+      "entities": [
+        "Sarvam AI",
+        "Sarvam Dictate"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Sarvam AI launched Sarvam Dictate for English and 22 Indian languages.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "\u20b90.50",
+      "numbers": [
+        0.5
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the cost is 0.50 per minute.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Per minute of audio \u2014 recognition and editing in a single API call",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states recognition and editing are included in one API call.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "THE PRICE TAG",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "40%",
+      "numbers": [
+        40.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states dictate needed 40% fewer edits than Gemini in English tests.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Fewer character edits than Google's Gemini in Sarvam's own English tests",
+      "numbers": [],
+      "entities": [
+        "Google's Gemini"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms fewer edits compared to Gemini in Sarvam's tests.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "1,000",
+      "numbers": [
+        1000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states it accepts up to 1,000 custom names and terms.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Custom names and terms accepted with each request",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms custom names and terms are accepted per request.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Returns the text the speaker meant to write, not a literal transcript",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article describes the API's purpose as returning intended text.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Handles switching between English and an Indian language mid-sentence",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states it is built to handle code-switching.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "India's voice AI market is projected to reach $1.8 billion by 2030.",
+      "numbers": [
+        1.8,
+        2030.0,
+        1800000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2030
+        ]
+      },
+      "llm_reason": "The article cites a projection of $1.8 billion by 2030.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "THE PRICE TAG",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Sarvam AI",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Sarvam Dictate",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Saaras v4",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Sarvam 105B",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Google Gemini",
+      "deterministic": "fail"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000622,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

@@ -1,0 +1,299 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "priyansh-arya-181-second-highest-t20-score-delhi-tamil-nadu",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "181 OFF 68 BALLS: SECOND-HIGHEST SCORE IN T20 HISTORY",
+      "numbers": [
+        20.0,
+        68.0,
+        181.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Claim matches the article's information about Arya's score.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Delhi captain Priyansh Arya scored 181 off 68 balls against Tamil Nadu in the Syed Mushtaq Ali Trophy in Indore, the second-highest score in men's T20 history, as Delhi won by 116 runs.",
+      "numbers": [
+        20.0,
+        68.0,
+        116.0,
+        181.0
+      ],
+      "entities": [
+        "Priyansh Arya",
+        "Tamil Nadu",
+        "Syed Mushtaq Ali Trophy"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "181",
+      "numbers": [
+        181.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The score of 181 is explicitly mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Priyansh Arya's score off 68 balls for Delhi against Tamil Nadu \u2014 the highest T20 score by an Indian",
+      "numbers": [
+        20.0,
+        68.0
+      ],
+      "entities": [
+        "Priyansh Arya's",
+        "Tamil Nadu"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states this is the highest T20 score by an Indian.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "19",
+      "numbers": [
+        19.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Arya hit 19 sixes.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Sixes \u2014 equalling Finn Allen's world record for a T20 innings",
+      "numbers": [
+        20.0
+      ],
+      "entities": [
+        "Finn Allen's"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim about equalling the world record is in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "36 BALLS",
+      "numbers": [
+        36.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Arya's century came in 36 balls.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "For Arya's century \u2014 his fifty took 18 balls and his 150 a tournament-record 60",
+      "numbers": [
+        18.0,
+        60.0,
+        150.0
+      ],
+      "entities": [
+        "For Arya's"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All timing details for milestones are in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "116 RUNS",
+      "numbers": [
+        116.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The winning margin of 116 runs is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Delhi's winning margin \u2014 Delhi posted 275 for 5 and Tamil Nadu were bowled out for 159",
+      "numbers": [
+        5.0,
+        159.0,
+        275.0
+      ],
+      "entities": [
+        "Tamil Nadu"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article provides these exact details.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "The highest T20 innings ever by an Indian batter",
+      "numbers": [
+        20.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states this is the highest score by an Indian.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Arya was retained by Punjab Kings ahead of the IPL 2027 auction",
+      "numbers": [
+        2027.0
+      ],
+      "entities": [
+        "Punjab Kings"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "This information is included in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Arya finished seven runs short of Lhuan-dre Pretorius's world record of 188 not out.",
+      "numbers": [
+        188.0
+      ],
+      "entities": [
+        "Lhuan-dre Pretorius's"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Arya's score relative to the world record.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Priyansh Arya",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Delhi",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Tamil Nadu",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Syed Mushtaq Ali Trophy",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Finn Allen",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000698,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

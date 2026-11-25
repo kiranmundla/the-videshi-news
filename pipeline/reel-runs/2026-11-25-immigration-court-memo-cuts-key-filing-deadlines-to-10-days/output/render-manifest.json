@@ -1,0 +1,376 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "immigration-court-memo-cuts-key-filing-deadlines-to-10-days",
+ "article_slug": "immigration-court-memo-cuts-key-filing-deadlines-to-10-days",
+ "article_id": "b59d28b3-c643-4493-a214-c80d305cc833",
+ "category": "Immigration",
+ "video": "reel-runs/2026-11-25-immigration-court-memo-cuts-key-filing-deadlines-to-10-days/output/immigration-court-memo-cuts-key-filing-deadlines-to-10-days.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Figure_2-_Map_of_Executive_Office_for_Immigration_Review_%28EOIR%29_Immigration_Court_Locations_%2835153795121%29.jpg/1920px-Figure_2-_Map_of_Executive_Office_for_Immigration_Review_%28EOIR%29_Immigration_Court_Locations_%2835153795121%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "local_path": "reel-runs/2026-11-25-immigration-court-memo-cuts-key-filing-deadlines-to-10-days/output/hero.jpg",
+  "width": 2273,
+  "height": 1621,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.522,0.480) damped=(0.511,0.490)",
+  "has_face": false,
+  "box_source": [
+   525,
+   437,
+   1272,
+   648
+  ],
+  "box_bg": [
+   279,
+   316,
+   467,
+   238
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.512,
+   0.491
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   594
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 814,
+   "zone_h": 742,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 1003,
+   "block_bottom": 1366,
+   "text_bbox": [
+    70,
+    1003,
+    930,
+    1366
+   ],
+   "texts": [
+    "Immigration",
+    "IMMIGRATION COURT DEADLINES CUT TO 10 DAYS"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.367,
+    "photo_px": [
+     2273,
+     1621
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 594,
+     "scale": 0.36691597008358995,
+     "window": [
+      0,
+      0,
+      2273,
+      1618
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.18x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 814,
+   "zone_h": 742,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 973,
+   "block_bottom": 1396,
+   "text_bbox": [
+    70,
+    973,
+    930,
+    1396
+   ],
+   "texts": [
+    "What Happened",
+    "A new EOIR policy memo, effective November 23, cuts filing deadlines in US immigration court removal cases to 10 days for represented respondents."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.417,
+    "photo_px": [
+     2273,
+     1621
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 594,
+     "scale": 0.417,
+     "window": [
+      162,
+      84,
+      2162,
+      1508
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.18x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 814,
+   "zone_h": 742,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 966,
+   "block_bottom": 1404,
+   "text_bbox": [
+    70,
+    966,
+    930,
+    1404
+   ],
+   "texts": [
+    "THE STAKES",
+    "10 DAYS",
+    "To file pleadings and evidence in US removal cases"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.459,
+    "photo_px": [
+     2273,
+     1621
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 594,
+     "scale": 0.45874587458745875,
+     "window": [
+      0,
+      149,
+      1818,
+      1443
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.18x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 814,
+   "zone_h": 742,
+   "scale": 0.925,
+   "content_h": 734,
+   "block_top": 818,
+   "block_bottom": 1552,
+   "text_bbox": [
+    70,
+    818,
+    930,
+    1552
+   ],
+   "texts": [
+    "By The Numbers",
+    "60 DAYS",
+    "Previous window to file applications for relief or protection",
+    "15 DAYS",
+    "Form EOIR-28 filing cutoff before a master calendar hearing",
+    "20 DAYS",
+    "Time for the other side to respond to pleadings and evidence"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.459,
+    "photo_px": [
+     2273,
+     1621
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 594,
+     "scale": 0.45874587458745875,
+     "window": [
+      455,
+      149,
+      2273,
+      1443
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.18x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 814,
+   "zone_h": 742,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 969,
+   "block_bottom": 1401,
+   "text_bbox": [
+    70,
+    969,
+    930,
+    1401
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Have representation in place early \u2014 filing Form EOIR-28 moves a case onto the written track",
+    "A missed deadline can mean a final order of removability"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.496,
+    "photo_px": [
+     2273,
+     1621
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 594,
+     "scale": 0.4958382877526754,
+     "window": [
+      321,
+      424,
+      2003,
+      1621
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.18x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 364,
+   "block_top": 678,
+   "block_bottom": 1042,
+   "text_bbox": [
+    70,
+    678,
+    930,
+    1042
+   ],
+   "texts": [
+    "The Takeaway",
+    "Miss the deadline and the application is deemed waived; DHS can seek a final order of removability.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-newer-wave.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 100.9,
+ "mp4_bytes": 7208210
+}

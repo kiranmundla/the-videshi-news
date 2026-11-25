@@ -1,0 +1,143 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "immigration-court-memo-cuts-key-filing-deadlines-to-10-days",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Immigration Court Memo Cuts Key Filing Deadlines to 10 Days",
+        "numbers": [
+          10.0
+        ],
+        "entities": [
+          "Immigration Court Memo Cuts Key Filing Deadlines"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the memo cuts deadlines to 10 days.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "EOIR's Policy Memorandum 27-02, effective November 23, replaces month-long and 60-day filing windows with 10-day deadlines for represented respondents in removal cases.",
+        "numbers": [
+          2.0,
+          10.0,
+          23.0,
+          27.0,
+          60.0
+        ],
+        "entities": [
+          "EOIR's Policy Memorandum"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the memo replaces longer deadlines with 10-day deadlines.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "EOIR Policy Memorandum 27-02, effective November 23, cuts the deadline to file written pleadings and evidence on removability to 10 days, down from about a month",
+        "numbers": [
+          2.0,
+          10.0,
+          23.0,
+          27.0
+        ],
+        "entities": [
+          "EOIR Policy Memorandum"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the deadline for pleadings is cut to 10 days from about a month.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Applications for relief or protection are now due 10 days after a judge sustains the charges of removability, down from 60 days",
+        "numbers": [
+          10.0,
+          60.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions applications are due 10 days after charges are sustained, reduced from 60 days.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "If an application or document is not filed within the time the judge sets, the opportunity to file it is deemed waived",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states unfiled applications are deemed waived.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Immigration Court Memo Cuts Key Filing Deadlines to 10 Days",
+        "numbers": [
+          10.0
+        ],
+        "entities": [
+          "Immigration Court Memo Cuts Key Filing Deadlines"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the memo cuts deadlines to 10 days.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000464,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

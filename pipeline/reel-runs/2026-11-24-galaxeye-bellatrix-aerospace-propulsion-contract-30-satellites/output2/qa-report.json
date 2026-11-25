@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-24-galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites/output2/galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites.mp4",
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1200,
+        675
+      ],
+      "manifest_dims": [
+        1200,
+        675
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 2992.8,
+      "url": "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202611/indias-galaxeye-signs-biggest-private-space-deal-to-power-next-30-satellites-241530355-16x9_0.jpeg?VersionId=w8efeRYFBxAWI0eT4yJvHou.Hva6p6D_"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-24-galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites/output2/qa/frames/frame-hook.png",
+      "text_px_detected": 25071,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.78)",
+        "box": [
+          321,
+          245,
+          42,
+          54
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-24-galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites/output2/qa/frames/frame-news.png",
+      "text_px_detected": 33343,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.90)",
+        "box": [
+          491,
+          250,
+          45,
+          54
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 0.0,
+        "delta": 253.4
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-24-galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites/output2/qa/frames/frame-hero.png",
+      "text_px_detected": 23287,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.84)",
+        "box": [
+          377,
+          265,
+          52,
+          63
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 251.6,
+        "bg_luminance": 0.0,
+        "delta": 251.6
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-24-galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites/output2/qa/frames/frame-grid.png",
+      "text_px_detected": 77572,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.89)",
+        "box": [
+          156,
+          261,
+          55,
+          66
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 0.0,
+        "delta": 253.4
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-24-galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites/output2/qa/frames/frame-diaspora.png",
+      "text_px_detected": 46337,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.72)",
+        "box": [
+          401,
+          140,
+          55,
+          64
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-24-galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites/output2/qa/frames/frame-payoff.png",
+      "text_px_detected": 20242,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          307,
+          227,
+          45,
+          55
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 0.0,
+        "delta": 253.4
+      }
+    }
+  ]
+}

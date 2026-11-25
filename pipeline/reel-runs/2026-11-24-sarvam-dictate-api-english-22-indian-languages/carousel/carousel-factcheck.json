@@ -1,0 +1,143 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "sarvam-dictate-api-english-22-indian-languages",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Sarvam Launches Dictate API for English and 22 Indian Languages at \u20b90.50 a Minute",
+        "numbers": [
+          0.5,
+          22.0
+        ],
+        "entities": [
+          "Sarvam Launches Dictate API",
+          "Indian Languages"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the API is launched for English and 22 Indian languages at $0.50 per minute.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The Bengaluru startup's new developer tool pairs its Saaras v4 speech model with a dictation-tuned Sarvam 105B to turn speech into edited text in one call.",
+        "numbers": [
+          4.0,
+          105.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article describes the pairing of Saaras v4 and Sarvam 105B for speech-to-text conversion.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Dictate turns speech into edited, ready-to-send text in English and 22 Indian languages at \u20b90.50 per minute of audio",
+        "numbers": [
+          0.5,
+          22.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms Dictate's functionality and pricing structure.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "In Sarvam's own tests, Dictate needed 40% fewer character edits than Google's Gemini 3.5 Transcribe on short English dictations",
+        "numbers": [
+          3.5,
+          40.0
+        ],
+        "entities": [
+          "In Sarvam's",
+          "Google's Gemini"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article reports this specific comparison and percentage from Sarvam's tests.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "The API accepts up to 1,000 custom names and terms per request and handles live dictation plus recordings of up to an hour",
+        "numbers": [
+          1000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the API's capabilities regarding custom names and dictation length.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Sarvam Launches Dictate API for English and 22 Indian Languages at \u20b90.50 a Minute",
+        "numbers": [
+          0.5,
+          22.0
+        ],
+        "entities": [
+          "Sarvam Launches Dictate API",
+          "Indian Languages"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the first claim, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000499,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

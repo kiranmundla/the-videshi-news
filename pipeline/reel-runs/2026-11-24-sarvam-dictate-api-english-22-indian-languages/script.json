@@ -1,0 +1,33 @@
+{
+ "hook_line": "SPEECH TO TEXT IN 22 INDIAN LANGUAGES",
+ "hook_stat": {
+  "big": "₹0.50",
+  "eyebrow": "THE PRICE TAG",
+  "sub": "Per minute of audio — recognition and editing in a single API call"
+ },
+ "stats": [
+  {
+   "big": "40%",
+   "label": "Fewer character edits than Google's Gemini in Sarvam's own English tests"
+  },
+  {
+   "big": "1,000",
+   "label": "Custom names and terms accepted with each request"
+  }
+ ],
+ "diaspora_bullets": [
+  "Returns the text the speaker meant to write, not a literal transcript",
+  "Handles switching between English and an Indian language mid-sentence"
+ ],
+ "key_entities": [
+  "Sarvam AI",
+  "Sarvam Dictate",
+  "Saaras v4",
+  "Sarvam 105B",
+  "Gemini 3.5 Transcribe"
+ ],
+ "news_summary": "Bengaluru startup Sarvam AI has launched Sarvam Dictate, an API that turns speech into edited, ready-to-send text in English and 22 Indian languages.",
+ "payoff": "India's voice AI market is projected to reach $1.8 billion by 2030.",
+ "versus": "",
+ "story_mood": "practical"
+}

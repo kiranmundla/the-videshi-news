@@ -1877,5 +1877,16 @@
     "top_story_slug": "anthropic-ipo-record-81-billion-nasdaq-debut",
     "quick_hit_count": 5,
     "deadline_count": 3
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-11-24T14:58:12.474961+00:00Z",
+    "subject": "The Videshi Daily \u2014 November 24, 2026",
+    "subscribers": 11,
+    "sent": 10,
+    "errors": 1,
+    "top_story_slug": "us-measles-cases-jump-426-week-5838-largest-rise-decades",
+    "quick_hit_count": 5,
+    "deadline_count": 3
   }
 ]

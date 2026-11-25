@@ -1,0 +1,97 @@
+[
+  {
+    "id": "df6d325a-b924-4841-b0de-7450200ec389",
+    "headline": "Judge Gives US Until Wednesday to Justify Holding Princeton Student Eva Yi Xie",
+    "slug": "princeton-rally-judge-deadline-eva-yi-xie-ice-case",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the date of the judge's ruling and the context of the detention. For example, mention that the judge's deadline is set for November 25, 2026, and provide a brief explanation of why this date is significant in the context of the case.",
+        "Include a direct quote from the judge or legal experts to enhance the attribution and provide more authority to the reporting. This would help clarify the legal implications of the judge's order.",
+        "Provide more context about the asylum application process and what it means for Xie's situation. This could include details about how long asylum applications typically take to process and what the implications of her pending application are for her current detention.",
+        "Mention any potential consequences if the government fails to justify Xie's detention by the deadline, such as what a bond hearing would entail or what it could mean for her future in the U.S."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Rep. Bonnie Watson Coleman regarding her statement on Xie's detention to provide direct attribution and a real-time perspective on the political response."
+      ]
+    }
+  },
+  {
+    "id": "3b7b3fbc-9de4-4a68-8850-b46011b57bf5",
+    "headline": "FSSAI Confines Bisleri Action to One Goa Batch; Company Says Stock Is Gone",
+    "slug": "fssai-bisleri-one-batch-go-270-clarification-response",
+    "category": "food",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The FSSAI clarified on November 23, 2026, that its sale prohibition covers only \u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating when the initial sample was collected and when the FSSAI's clarification was issued. This will help readers understand the sequence of actions taken.",
+        "Provide more context on the implications of the PAH levels detected in the water. For example, explain what the acceptable limits are and the potential health risks associated with higher levels of PAH.",
+        "Include a direct quote from a Bisleri representative regarding their dispute of the PAH findings to enhance attribution and provide a clearer perspective on the company's stance.",
+        "Ensure that the headline reflects the specificity of the situation. Consider revising it to something like 'FSSAI Limits Bisleri's Action to One Goa Batch Amid Disputed PAH Findings'."
+      ],
+      "embed_opportunities": [
+        "Embed the official FSSAI statement or tweet regarding the clarification to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "1f4d2921-5474-4b80-acc0-6085e5b8f1f9",
+    "headline": "India's First Human Metabolic Chamber Opens at CMC Vellore",
+    "slug": "india-first-human-metabolic-chamber-cmc-vellore",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the Human Metabolic Chamber by including specific examples of how the research conducted there could impact public health or clinical practices in India, such as potential changes in diabetes treatment protocols or obesity management strategies.",
+        "Include a quote from Union Health Secretary Punya Salila Srivastava or another key stakeholder to provide a personal perspective on the importance of this facility and its expected contributions to health research in India.",
+        "Add a brief explanation of how the funding from the Department of Atomic Energy and CSR support from Hindustan Unilever specifically contributed to the establishment of the chamber, which would provide readers with context on the collaboration and investment in health research."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Union Health Ministry announcing the inauguration of the facility for authenticity and to provide readers with direct access to government communications."
+      ]
+    }
+  },
+  {
+    "id": "6f39fe71-63fd-4ef1-ac0f-e18fbbf65b45",
+    "headline": "Indians Among 13 Killed as Bus Hits Stopped Truck in Ras Al Khaimah",
+    "slug": "indians-among-13-killed-ras-al-khaimah-bus-truck-crash",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the number of Indian nationals among the deceased as soon as possible, as this is a key detail that readers would want to know.",
+        "Include a direct quote from the UAE Ministry of Interior or local authorities regarding the investigation into the accident to enhance attribution and credibility.",
+        "Add specific details about the injuries sustained by the 14 individuals, such as the severity or types of injuries, to provide a more complete picture of the incident."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the UAE Ministry of Interior regarding the accident for authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "5607c9ff-674e-477d-8a86-bbc53fd87527",
+    "headline": "Mangolik (\u09ae\u09be\u0999\u09cd\u0997\u09b2\u09bf\u0995) Trailer Out: Soumitrisha, Gourab C",
+    "slug": "mangolik-trailer-out-soumitrisha-gourab-c",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 8,
+      "suggestions": [
+        "Ensure the headline follows the 'Film Teaser/Trailer Out' format, as it currently states 'Trailer Out' without the film type.",
+        "Clarify the embed link format; it should be presented as an embedded video rather than just a URL."
+      ],
+      "embed_opportunities": []
+    }
+  }
+]

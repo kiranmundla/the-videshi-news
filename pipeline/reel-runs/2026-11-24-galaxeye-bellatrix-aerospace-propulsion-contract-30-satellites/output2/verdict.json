@@ -1,0 +1,54 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black",
+    "via": "v7 fallback \u2014 named-person distinct-image hold (Kiran 2026-11-22)"
+  },
+  "article_slug": "galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites",
+  "name": "galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites",
+  "script": "reel-runs/2026-11-24-galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000706
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-24-galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites/output2/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {}
+  },
+  "stock": {
+    "eligible": false,
+    "reason": "named-person story (Drishti Gen-II, Pranit Mehta) \u2014 stock fallback forbidden"
+  },
+  "distinct_images": {
+    "usable": 1,
+    "scenes": 6,
+    "labels": [
+      "hero"
+    ]
+  },
+  "fallback": {
+    "attempted": true,
+    "persons": [
+      "Drishti Gen-II",
+      "Pranit Mehta"
+    ],
+    "reason": "v8 distinct-image hold: 1 distinct usable images for 6 scenes",
+    "qa_score": 10.0,
+    "qa_passed": true,
+    "result": "ready (QA 10.0)"
+  },
+  "manifest": "reel-runs/2026-11-24-galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites/output2/render-manifest.json",
+  "video": "reel-runs/2026-11-24-galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites/output2/galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-24-galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites/output2/tiktok-caption.txt"
+}

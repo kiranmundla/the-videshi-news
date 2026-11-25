@@ -1,0 +1,86 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "priyansh-arya-181-second-highest-t20-score-delhi-tamil-nadu",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Priyansh Arya",
+    "Delhi",
+    "Tamil Nadu",
+    "Syed Mushtaq Ali Trophy",
+    "Finn Allen",
+    "Finn Allen's"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: \"Finn Allen's\" has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Red Fort in Delhi 03-2016 img3.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1353)",
+      "verdict": "rejected",
+      "reason": "license: FAL \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:1989delhi.png",
+      "route": "identity \u2014 depicts (P180=Q1353)",
+      "verdict": "rejected",
+      "reason": "resolution: 945x1300 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:20191203 Muhammad Wali Masjid, Delhi 0915 6500 DxO.jpg",
+      "route": "identity \u2014 depicts (P180=Q1353)",
+      "verdict": "accepted",
+      "reason": "3597x4235, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:26 01 2020 Cerim\u00f4nia de Apresenta\u00e7\u00e3o de Altos Dignit\u00e1rios (49443924038).jpg",
+      "route": "identity \u2014 depicts (P180=Q1353)",
+      "verdict": "accepted",
+      "reason": "3506x2337, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Tea Fields Nilgiris Ranges Mynala Dec25 A7CR 09866.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1445)",
+      "verdict": "accepted",
+      "reason": "8904x5565, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:2019 Lok Sabha in Tamil Nadu.svg",
+      "route": "identity \u2014 depicts (P180=Q1445)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:A man dyeing silk red in boiling water in Kumbakonam, Tamil Nadu.jpg",
+      "route": "identity \u2014 depicts (P180=Q1445)",
+      "verdict": "accepted",
+      "reason": "2000x3000, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:A man dyeing silk red in boiling water in Kumbakonam, Tamil Nadu.jpg",
+      "route": "identity \u2014 depicts (P180=Q1445)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/3/39/A_man_dyeing_silk_red_in_boiling_water_in_Kumbakonam%2C_Tamil_Nadu.jpg?utm_source=commons.wikimedia.org&"
+    },
+    {
+      "candidate": "File:20191203 Muhammad Wali Masjid, Delhi 0915 6500 DxO.jpg",
+      "route": "identity \u2014 depicts (P180=Q1353)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/8/86/20191203_Muhammad_Wali_Masjid%2C_Delhi_0915_6500_DxO.jpg?utm_source=commons.wikimedia.org&utm_campaign=i"
+    },
+    {
+      "candidate": "File:Tea Fields Nilgiris Ranges Mynala Dec25 A7CR 09866.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1445)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/f/f7/Tea_Fields_Nilgiris_Ranges_Mynala_Dec25_A7CR_09866.jpg?utm_source=commons.wikimedia.org&utm_campaign=ima"
+    }
+  ],
+  "extras": []
+}

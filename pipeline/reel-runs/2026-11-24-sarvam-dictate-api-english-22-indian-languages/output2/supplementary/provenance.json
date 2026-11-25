@@ -1,0 +1,50 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "sarvam-dictate-api-english-22-indian-languages",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Sarvam AI",
+    "Sarvam Dictate",
+    "Saaras v4",
+    "Sarvam 105B",
+    "Gemini 3.5 Transcribe",
+    "Sarvam"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Sarvam Dictate' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Saaras v4' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Sarvam 105B' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Gemini 3.5 Transcribe' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Sarvam' named 'Hanuman', which does not bear the queried name \u2014 not an identity; fail closed"
+    }
+  ],
+  "extras": []
+}

@@ -468,5 +468,15 @@
     "quick_hit_count": 5,
     "deadline_count": 3,
     "chars": 2514
+  },
+  {
+    "type": "whatsapp-digest",
+    "sent_at": "2026-11-24T15:13:01.740177+00:00Z",
+    "subject": "WhatsApp digest \u2014 Nov 24 (ready to paste)",
+    "sent_to": "editor@thevideshi.com",
+    "top_story_slug": "chicago-mayor-brandon-johnson-proclamation-diwali-cook-county",
+    "quick_hit_count": 5,
+    "deadline_count": 3,
+    "chars": 2538
   }
 ]

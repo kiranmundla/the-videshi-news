@@ -1,0 +1,63 @@
+[
+  {
+    "id": "f9795eb2-d41e-4f1d-9a19-e265c3700eb6",
+    "headline": "UK Watchdog Warns AI Agents That Handle Money May Need Financial Authorisation",
+    "slug": "fca-ai-agents-financial-authorisation-warning-uk",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the specific implications for technology providers and regulated firms in terms of compliance deadlines or requirements. For example, include a timeline for when the FCA expects firms to engage with the new guidance or any specific actions they need to take.",
+        "Provide more context on the potential consequences for firms that fail to comply with the FCA's guidance. This could include potential penalties or regulatory actions, which would be critical for affected parties to understand.",
+        "Include a quote from a relevant FCA official or an industry expert to enhance credibility and provide additional insights into the implications of the guidance."
+      ],
+      "embed_opportunities": [
+        "Embed the official FCA announcement or guidance document to provide readers with direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "623bd18e-49f3-4bb5-a17f-d4f9e6d16ec9",
+    "headline": "CrowdStrike to Buy Jay Chaudhry's Zscaler in $43.9 Billion All-Stock Deal",
+    "slug": "crowdstrike-acquire-zscaler-jay-chaudhry-43-9-billion",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the deal by explicitly stating the expected closing date range in a more prominent position in the article, as this is crucial information for readers.",
+        "Ensure consistency in the reporting of dates; the article mentions November 20, 2026, which appears to be a typo, as the announcement was made on November 23, 2023. This could confuse readers.",
+        "Add a brief background on Zscaler's market position and significance in the cybersecurity industry to provide context for the acquisition's impact.",
+        "Include a quote from CrowdStrike's CEO or a financial analyst to provide additional perspective on the implications of the acquisition."
+      ],
+      "embed_opportunities": [
+        "Embed the official press release from CrowdStrike regarding the acquisition to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "c9b6072c-32a4-454a-a364-4c574029eaf5",
+    "headline": "US Readies New Tariffs on 16 Partners, India Included, as Soon as Tuesday",
+    "slug": "us-section-301-excess-capacity-tariffs-16-partners-india",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact date of the announcement and any potential deadlines for affected exporters to prepare for the new tariffs.",
+        "Include specific examples of goods that may be impacted by the new tariffs to provide readers with a clearer understanding of the potential effects on trade and pricing.",
+        "Add attribution for the source of the information regarding the proposed tariff rates for the EU, Japan, South Korea, and Malaysia to enhance credibility and transparency."
+      ],
+      "embed_opportunities": [
+        "Embed the official USTR announcement or a relevant tweet from the USTR to provide readers with direct access to the primary source of information."
+      ]
+    }
+  }
+]

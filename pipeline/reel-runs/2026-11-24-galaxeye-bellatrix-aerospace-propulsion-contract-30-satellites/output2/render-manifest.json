@@ -1,0 +1,376 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites",
+ "article_slug": "galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites",
+ "article_id": "047ce09f-74cc-4955-bf40-e7db34a1c933",
+ "category": "Technology",
+ "video": "reel-runs/2026-11-24-galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites/output2/galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202611/indias-galaxeye-signs-biggest-private-space-deal-to-power-next-30-satellites-241530355-16x9_0.jpeg?VersionId=w8efeRYFBxAWI0eT4yJvHou.Hva6p6D_",
+  "local_path": "reel-runs/2026-11-24-galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites/output2/hero.jpeg",
+  "width": 1200,
+  "height": 675,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.88)",
+  "has_face": true,
+  "box_source": [
+   338,
+   133,
+   60,
+   75
+  ],
+  "box_bg": [
+   321,
+   248,
+   42,
+   52
+  ],
+  "chin_bg": 300,
+  "anchor": [
+   0.306,
+   0.254
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 279,
+   "block_top": 982,
+   "block_bottom": 1261,
+   "text_bbox": [
+    70,
+    982,
+    930,
+    1261
+   ],
+   "texts": [
+    "Technology",
+    "GALAXEYE AWARDS BELLATRIX PROPULSION CONTRACT FOR ITS NEXT 30 SATELLITES"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      673
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 303,
+   "block_top": 970,
+   "block_bottom": 1273,
+   "text_bbox": [
+    70,
+    970,
+    930,
+    1273
+   ],
+   "texts": [
+    "What Happened",
+    "Bengaluru-based GalaxEye has awarded Bellatrix Aerospace a multi-year contract to supply Arka electric propulsion systems for its next 30 Drishti Gen-II satellites, in a deal the two startups describe as India's largest private space order by satellite count."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7897727272727273,
+     "window": [
+      0,
+      0,
+      1056,
+      592
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 394,
+   "block_top": 925,
+   "block_bottom": 1319,
+   "text_bbox": [
+    70,
+    925,
+    930,
+    1319
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "30",
+    "GalaxEye satellites in the Drishti Gen-II constellation, to be fitted with Arka propulsion systems"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.86875,
+     "window": [
+      0,
+      0,
+      960,
+      538
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 728,
+   "block_bottom": 1516,
+   "text_bbox": [
+    70,
+    728,
+    930,
+    1516
+   ],
+   "texts": [
+    "By The Numbers",
+    "2030",
+    "Target year for deploying the Drishti Gen-II constellation",
+    "$20 MILLION",
+    "Raised by Bellatrix Aerospace in a pre-Series B round in March 2026",
+    "\u20b963.84 CRORE",
+    "Technology Development Board commitment secured by GalaxEye"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.86875,
+     "window": [
+      240,
+      0,
+      1200,
+      538
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 429,
+   "block_top": 907,
+   "block_bottom": 1336,
+   "text_bbox": [
+    70,
+    907,
+    930,
+    1336
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Two Bengaluru startups signed what they describe as India's largest private space order by satellite count",
+    "GalaxEye's satellites image the Earth through cloud cover and at night, for defence, agriculture and disaster management"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.939,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.9391891891891891,
+     "window": [
+      0,
+      133,
+      888,
+      631
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 325,
+   "block_top": 697,
+   "block_bottom": 1022,
+   "text_bbox": [
+    70,
+    697,
+    930,
+    1022
+   ],
+   "texts": [
+    "The Takeaway",
+    "The test now is delivery: the first two propulsion systems ship first, and the 30-satellite constellation is a 2030 target, not a fleet in orbit.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 102.0,
+ "mp4_bytes": 8079459
+}

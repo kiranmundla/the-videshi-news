@@ -1,0 +1,259 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "immigration-court-memo-cuts-key-filing-deadlines-to-10-days",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "IMMIGRATION COURT DEADLINES CUT TO 10 DAYS",
+      "numbers": [
+        10.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Deadlines for filing are indeed cut to 10 days.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "A new EOIR policy memo, effective November 23, cuts filing deadlines in US immigration court removal cases to 10 days for represented respondents.",
+      "numbers": [
+        10.0,
+        23.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the memo cuts deadlines to 10 days effective November 23.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "10 DAYS",
+      "numbers": [
+        10.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the new deadline is 10 days.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "To file pleadings and evidence in US removal cases",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately reflects the purpose of the 10-day deadline.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "THE STAKES",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "60 DAYS",
+      "numbers": [
+        60.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The previous deadline for applications was indeed 60 days.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Previous window to file applications for relief or protection",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the previous window was 60 days.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "15 DAYS",
+      "numbers": [
+        15.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions a 15-day cutoff for filing Form EOIR-28.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Form EOIR-28 filing cutoff before a master calendar hearing",
+      "numbers": [
+        28.0
+      ],
+      "entities": [
+        "Form EOIR-28"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately describes the filing cutoff for Form EOIR-28.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "20 DAYS",
+      "numbers": [
+        20.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the other side has 20 days to respond.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Time for the other side to respond to pleadings and evidence",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately reflects the response time for the other side.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Have representation in place early \u2014 filing Form EOIR-28 moves a case onto the written track",
+      "numbers": [
+        28.0
+      ],
+      "entities": [
+        "Form EOIR-28"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states filing Form EOIR-28 moves a case to the written track.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "A missed deadline can mean a final order of removability",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article explains consequences of missing deadlines.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Miss the deadline and the application is deemed waived; DHS can seek a final order of removability.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms missed deadlines lead to waiving applications.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "THE STAKES",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Executive Office for Immigration Review",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Policy Memorandum 27-02",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Form EOIR-28",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Sirce Owen",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000659,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

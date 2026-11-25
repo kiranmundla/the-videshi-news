@@ -1,17 +1,17 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-11-24T11:15:18+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-11-24T23:16:06+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
-- Channel uploads (actual, via API): **286**
-- prebuilt_reels rows: 220 (190 with a yt_video_id)
+- Channel uploads (actual, via API): **289**
+- prebuilt_reels rows: 222 (192 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 103
-- **In sync** (channel video backed by a DB/publish-log record): **168**
+- Phase 2 publish-log entries: 105
+- **In sync** (channel video backed by a DB/publish-log record): **171**
 - Unknown — legacy-logged only: 101
 - Unknown — no record anywhere: 17
-- Ghost DB rows (yt_video_id not on channel): 17
+- Ghost DB rows (yt_video_id not on channel): 16
 - Superseded DB rows (owner-deleted/replaced; not ghosts): 5
 - Public with no DB record: 118
 - Phase 2 uploads now public (manual flip expected): 0
@@ -140,7 +140,7 @@ Generated: 2026-11-24T11:15:18+00:00 · Tool: `pipeline/reel_reconcile.py` (read
 - `ggCw3zXf8r8` · public · 2026-11-07 · 28 Years of Waiting. One Extraordinary Love Story. | PYRE
 - `1FBfhGDwX5E` · public · 2026-11-08 · Diwali: Same Lights. Different Stories. 🪔
 
-## (b) Ghost DB rows — yt_video_id not on the channel (17)
+## (b) Ghost DB rows — yt_video_id not on the channel (16)
 
 - row `9ac8c1ac-0fa5-49c1-82d9-3606f5373a05` · slug welcome-to-the-jungle-akshay-kumar-ensemble-comedy-june-26-nri-20260603 · yt_video_id `TlA7C-Df2-I` · status pending
 - row `4bc561e2-ca7d-4fdd-86a1-e0341a6fe801` · slug scotus-overturns-humphreys-executor-presidential-power-independent-agencies-2026 · yt_video_id `zoJRBSo2Qkk` · status pending
@@ -156,7 +156,6 @@ Generated: 2026-11-24T11:15:18+00:00 · Tool: `pipeline/reel_reconcile.py` (read
 - row `ba61a966-a888-4041-8ca6-12e845ec0d36` · slug india-third-chip-plant-cg-semi-sanand-osat-five-billion-20260708 · yt_video_id `mQwtFEhuvuo` · status ready
 - row `6ac4d40a-7ad8-49a0-93a8-d9ce2f78b52c` · slug india-remittance-record-145-billion-america-largest-source-20260708 · yt_video_id `QeO4sLlXZII` · status ready
 - row `21634a8f-8b70-4645-bb38-664eafc8d72a` · slug social-security-totalization-india-h1b-workers-lost-20260709 · yt_video_id `wWi6O6dqYGw` · status ready
-- row `4a5e7c4b-e3dc-4946-b4a5-a5d5b5692505` · slug brad-smith-vance-h1b-microsoft-nadella-medal · yt_video_id `ch5JcYGZZxE` · status yt_posted
 - row `c7713080-09d5-4d70-914a-5090686d7791` · slug nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks · yt_video_id `dB5AYzpRFC8` · status yt_posted
 - row `97cd9bb0-7820-4435-a26f-5e9b8454f259` · slug samvat-2082-largecaps-fall-smallcap-multibaggers-diwali · yt_video_id `guB2GssTJoo` · status yt_posted
 
@@ -293,7 +292,7 @@ _None._
 - row `9cc51a36-a469-4ddf-96b3-3570fdcc497a` · slug infosys-doj-investigation-h1b-classifications-disclosure · yt_video_id `sVryrh31poY` · on channel: no
 - row `3c385175-84c2-48c0-afec-378bee1ba1d6` · slug ambani-adds-6-3-billion-reliance-shares-jump-record-profit · yt_video_id `B45MLVEFtk4` · on channel: no
 
-## (d) In sync (168)
+## (d) In sync (171)
 
 - `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
 - `5rPRXIxjDVc` · public · 2026-06-17 · Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts [prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee]
@@ -370,6 +369,7 @@ _None._
 - `2MrWgJOsprg` · public · 2026-10-14 · Astrophysicist Sukanya Chakrabarti Elected Fellow of American Physical Society #Shorts #DarkMatter [prebuilt_reels:c236b952-ed9d-4de2-b33b-f266d3884960]
 - `F65YQsTymGw` · public · 2026-10-14 · DHS Proposes Ending Deference to Prior H-1B and L-1 Petition Approvals #Shorts #H1B [prebuilt_reels:cecd5411-672e-4729-b616-f6f85448021c]
 - `l2Kt9NQJhfc` · public · 2026-10-15 · Cabinet Clears 78-Day Diwali Bonus for 11.4 Lakh Railway Employees #Shorts #News [prebuilt_reels:9ff85f0e-fd3c-47f7-be42-31b186520a19]
+- `ch5JcYGZZxE` · public · 2026-10-16 · Microsoft's Brad Smith Hits Back at Vance as Nadella Medal Exposes H-1B Split #Shorts #H1B [prebuilt_reels:4a5e7c4b-e3dc-4946-b4a5-a5d5b5692505]
 - `6dz3MkFtrSY` · public · 2026-10-16 · Court Orders State Department to Reopen 55,000-Visa Green Card Lottery #Shorts #GreenCard [prebuilt_reels:05c15505-d893-4f35-8dc2-01d4bdf77886]
 - `ioSSw3vOlJE` · public · 2026-10-17 · Bengaluru-Born Astronomer Ramya Anche to Lead NASA's $20 Million PUFFINS Mission #Shorts #TechNews [prebuilt_reels:2c934096-1240-412c-b4c7-9d770d08afea]
 - `V7FTpE5qRvc` · public · 2026-10-17 · ICICI Bank Profit Jumps 20% to Rs 14,843 Crore in Second Quarter #Shorts #Markets [prebuilt_reels:2ab35e77-428e-450c-abc2-a0c3645ffd80]
@@ -463,4 +463,6 @@ _None._
 - `FCsXBiF2sBE` · public · 2026-11-23 · Anthropic's Record $81.3 Billion IPO Opens 34% Higher, Then Fades to a 17% Gain #Shorts #TechNews [prebuilt_reels:ab3389d7-2819-4bbc-a65a-5549c21a1ebf]
 - `_tB3FiIfDIQ` · public · 2026-11-24 · India Runs More Military Exercises With US Than Any Other Country #Shorts #News [prebuilt_reels:25e76b97-faea-489f-bc90-63fc6d55a364]
 - `bQ9tkjah2Xg` · public · 2026-11-24 · A. R. Rahman Spent Three Years on 'Ramayana' Music, Turned Down 10–12 Films #Shorts #Entertainment [prebuilt_reels:00a7ef5e-7651-4bdc-9d70-728ed208621a]
+- `32GPnJ1X6wo` · public · 2026-11-24 · Priyansh Arya Smashes 181 Off 68 Balls, the Second-Highest Score in T20 History #Shorts #Sports [prebuilt_reels:fdd31261-8cf9-498a-9195-c257850b5ace]
+- `v_6UvpkPRIc` · public · 2026-11-24 · GalaxEye Awards Bellatrix Aerospace Propulsion Contract for Its Next 30 Satellites #Shorts #TechNews [prebuilt_reels:0b5f34e4-43c2-46a2-bd3b-e17728fc2539]
 

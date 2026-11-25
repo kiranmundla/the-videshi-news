@@ -1,0 +1,13 @@
+{
+ "cover_headline": "Sarvam Launches Dictate API for English and 22 Indian Languages at ₹0.50 a Minute",
+ "eyebrow": "TECHNOLOGY",
+ "facts": [
+  "Dictate turns speech into edited, ready-to-send text in English and 22 Indian languages at ₹0.50 per minute of audio",
+  "In Sarvam's own tests, Dictate needed 40% fewer character edits than Google's Gemini 3.5 Transcribe on short English dictations",
+  "The API accepts up to 1,000 custom names and terms per request and handles live dictation plus recordings of up to an hour"
+ ],
+ "end": {
+  "headline": "Sarvam Launches Dictate API for English and 22 Indian Languages at ₹0.50 a Minute",
+  "line": "The Bengaluru startup's new developer tool pairs its Saaras v4 speech model with a dictation-tuned Sarvam 105B to turn speech into edited text in one call."
+ }
+}

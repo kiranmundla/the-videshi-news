@@ -1,14 +1,14 @@
 {
   "counts": {
-    "channel_videos": 286,
-    "db_rows": 220,
-    "db_rows_with_yt_id": 190,
+    "channel_videos": 289,
+    "db_rows": 222,
+    "db_rows_with_yt_id": 192,
     "legacy_log_entries": 205,
-    "publish_log_entries": 103,
-    "in_sync": 168,
+    "publish_log_entries": 105,
+    "in_sync": 171,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 17,
-    "ghost_db_rows": 17,
+    "ghost_db_rows": 16,
     "superseded_db_rows": 5,
     "public_without_db_record": 118,
     "phase2_uploads_now_public": 0
@@ -538,6 +538,13 @@
       "privacy": "public",
       "video_id": "l2Kt9NQJhfc",
       "record": "prebuilt_reels:9ff85f0e-fd3c-47f7-be42-31b186520a19"
+    },
+    {
+      "title": "Microsoft's Brad Smith Hits Back at Vance as Nadella Medal Exposes H-1B Split #Shorts #H1B",
+      "published_at": "2026-10-16T22:08:45Z",
+      "privacy": "public",
+      "video_id": "ch5JcYGZZxE",
+      "record": "prebuilt_reels:4a5e7c4b-e3dc-4946-b4a5-a5d5b5692505"
     },
     {
       "title": "Court Orders State Department to Reopen 55,000-Visa Green Card Lottery #Shorts #GreenCard",
@@ -1189,6 +1196,20 @@
       "privacy": "public",
       "video_id": "bQ9tkjah2Xg",
       "record": "prebuilt_reels:00a7ef5e-7651-4bdc-9d70-728ed208621a"
+    },
+    {
+      "title": "Priyansh Arya Smashes 181 Off 68 Balls, the Second-Highest Score in T20 History #Shorts #Sports",
+      "published_at": "2026-11-24T17:13:47Z",
+      "privacy": "public",
+      "video_id": "32GPnJ1X6wo",
+      "record": "prebuilt_reels:fdd31261-8cf9-498a-9195-c257850b5ace"
+    },
+    {
+      "title": "GalaxEye Awards Bellatrix Aerospace Propulsion Contract for Its Next 30 Satellites #Shorts #TechNews",
+      "published_at": "2026-11-24T23:14:46Z",
+      "privacy": "public",
+      "video_id": "v_6UvpkPRIc",
+      "record": "prebuilt_reels:0b5f34e4-43c2-46a2-bd3b-e17728fc2539"
     }
   ],
   "unknown_legacy_logged": [
@@ -2723,14 +2744,6 @@
       "malformed_id": false
     },
     {
-      "row_id": "4a5e7c4b-e3dc-4946-b4a5-a5d5b5692505",
-      "article_slug": "brad-smith-vance-h1b-microsoft-nadella-medal",
-      "yt_video_id": "ch5JcYGZZxE",
-      "status": "yt_posted",
-      "yt_posted_at": "2026-10-16T19:41:01.897644+00:00",
-      "malformed_id": false
-    },
-    {
       "row_id": "c7713080-09d5-4d70-914a-5090686d7791",
       "article_slug": "nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks",
       "yt_video_id": "dB5AYzpRFC8",
@@ -4206,5 +4219,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-11-24T11:15:18+00:00"
+  "generated_at": "2026-11-24T23:16:06+00:00"
 }

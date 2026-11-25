@@ -1,0 +1,12 @@
+VIDEO: /home/hatch/workspace/the-videshi-news/pipeline/reel-runs/2026-11-24-galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites/output2/galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites.mp4
+
+CAPTION:
+GALAXEYE AWARDS BELLATRIX PROPULSION CONTRACT FOR ITS NEXT 30 SATELLITES
+
+Bengaluru-based GalaxEye has awarded Bellatrix Aerospace a multi-year contract to supply Arka electric propulsion systems for its next 30 Drishti Gen-II satellites, in a deal the two startups describe as India's largest private space order by satellite count.
+
+The test now is delivery: the first two propulsion systems ship first, and the 30-satellite constellation is a 2030 target, not a fleet in orbit.
+
+Full story: https://thevideshi.com/articles/galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites
+
+#TheVideshi #GalaxEye #BellatrixAerospace #Tech #IndianDiaspora

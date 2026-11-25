@@ -1,0 +1,20 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites",
+  "name": "galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites",
+  "script": "reel-runs/2026-11-24-galaxeye-bellatrix-aerospace-propulsion-contract-30-satellites/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "hook_stat.sub",
+      "stats[2].label"
+    ],
+    "llm_cost_usd": 0.000705
+  }
+}

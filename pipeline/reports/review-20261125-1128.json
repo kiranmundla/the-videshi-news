@@ -1,0 +1,21 @@
+[
+  {
+    "id": "2b3cc1e5-723c-4a23-94c9-72a41b0c01b2",
+    "headline": "Gatto \u2013 Official Trailer Out: In Cinemas March 5, 2027",
+    "slug": "gatto-official-trailer-out-in-cinemas-march-5-2027",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 2 embed(s) placed in the bottom 30% \u2014 move higher for engagement",
+      "Two embeds clustered within 200 chars of each other"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "The headline should follow the 'Film Teaser/Trailer Out' format, but it currently states 'Gatto \u2013 Official Trailer Out' which is acceptable.",
+        "The drop date for the trailer is mentioned, but it should clarify that the trailer dropped on November 13, 2026, not the film release date.",
+        "Ensure that the correct YouTube embed is included; the links provided in the body should be checked for relevance."
+      ],
+      "embed_opportunities": []
+    }
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "d160404c-f56d-4d80-9bcd-ca85ee560beb",
+    "headline": "From Amul to Wow! Momo, Indian Food Brands Are Going Global",
+    "slug": "indian-food-brands-go-global-amul-parle-wow-momo",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Highlight specific benefits for NRIs, such as the availability of familiar products in local supermarkets and how this impacts their shopping habits or cultural connection.",
+        "Include concrete figures related to the expansion, such as expected price points for Amul products in the US or comparisons of costs between local and imported Indian products.",
+        "Provide a timeline or key dates for when these products will be available in specific regions, especially for NRIs planning to visit or relocate.",
+        "Discuss eligibility or considerations for NRIs looking to invest in or partner with these brands as they expand globally."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Amul or Wow! Momo announcing their international expansion or a related promotional campaign to enhance engagement."
+      ]
+    }
+  },
+  {
+    "id": "5d90992d-e4dc-4e1d-9964-5d18793d19f0",
+    "headline": "Two Indians Among 11 Injured as Houthis Strike Riyadh Finance District Tower",
+    "slug": "two-indians-injured-houthi-attack-riyadh-tower",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the incident in the opening sentence to ensure readers immediately understand the timeliness of the report. For example, instead of 'on Tuesday, November 24,' specify 'on Tuesday, November 24, 2023.'",
+        "Provide more context about the nature of the injuries sustained by the victims, if available, to give readers a clearer picture of the situation.",
+        "Include a quote or statement from a Saudi official or the Indian Embassy to enhance attribution and provide authoritative perspectives on the incident.",
+        "Mention any potential implications for safety or security in the area, especially for expatriates, to give readers a better understanding of the broader context."
+      ]
+    }
+  },
+  {
+    "id": "6e608098-8da7-41e1-af57-0c5d19e71894",
+    "headline": "Film Workers' Body Asks PM Modi to Block Fawad Khan's Pakistani Netflix Series i",
+    "slug": "aicwa-pm-modi-block-fawad-khan-netflix-series-india",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date when AICWA's letter was sent and the significance of the May 8, 2025 advisory. This will help readers understand the urgency and context of the request.",
+        "Include a direct quote from AICWA's letter to provide a clearer insight into their reasoning and demands. This would enhance the article's attribution and depth.",
+        "Provide more context about the implications of the government's advisory against Pakistani-origin content and how it has been enforced in the past. This will help readers understand the potential impact of AICWA's request.",
+        "Ensure that the article maintains a consistent structure by avoiding repetitive phrases. For example, the mention of the letter and its recipients could be streamlined to improve clarity."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from AICWA announcing their letter to PM Modi for direct access to their statement and to enhance credibility."
+      ]
+    }
+  }
+]
