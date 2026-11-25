@@ -6109,6 +6109,50 @@
       "cadence": "daily"
     },
     "fares_by_origin": {
+      "EWR": {
+        "price_min": 1133,
+        "route": "EWR-DEL",
+        "origin_metro": "New York",
+        "dest_metro": "Delhi",
+        "date_range": "Jan 12 \u2192 Feb 3",
+        "duration_days": 22,
+        "as_of": "2026-11-25",
+        "cadence": "weekly",
+        "indicative": true
+      },
+      "IAD": {
+        "price_min": 840,
+        "route": "IAD-BOM",
+        "origin_metro": "Washington DC",
+        "dest_metro": "Mumbai",
+        "date_range": "Jan 12 \u2192 Feb 1",
+        "duration_days": 20,
+        "as_of": "2026-11-25",
+        "cadence": "weekly",
+        "indicative": true
+      },
+      "ATL": {
+        "price_min": 1117,
+        "route": "ATL-BLR",
+        "origin_metro": "Atlanta",
+        "dest_metro": "Bengaluru",
+        "date_range": "Jan 12 \u2192 Feb 1",
+        "duration_days": 20,
+        "as_of": "2026-11-25",
+        "cadence": "weekly",
+        "indicative": true
+      },
+      "BOS": {
+        "price_min": 879,
+        "route": "BOS-BOM",
+        "origin_metro": "Boston",
+        "dest_metro": "Mumbai",
+        "date_range": "Jan 12 \u2192 Feb 1",
+        "duration_days": 20,
+        "as_of": "2026-11-25",
+        "cadence": "weekly",
+        "indicative": true
+      },
       "SFO": {
         "price_min": 835,
         "route": "SFO-BLR",
@@ -6172,50 +6216,6 @@
         "as_of": "2026-11-25",
         "cadence": "weekly",
         "indicative": true
-      },
-      "EWR": {
-        "price_min": 1133,
-        "route": "EWR-DEL",
-        "origin_metro": "New York",
-        "dest_metro": "Delhi",
-        "date_range": "Jan 12 \u2192 Feb 3",
-        "duration_days": 22,
-        "as_of": "2026-11-25",
-        "cadence": "weekly",
-        "indicative": true
-      },
-      "IAD": {
-        "price_min": 840,
-        "route": "IAD-BOM",
-        "origin_metro": "Washington DC",
-        "dest_metro": "Mumbai",
-        "date_range": "Jan 12 \u2192 Feb 1",
-        "duration_days": 20,
-        "as_of": "2026-11-25",
-        "cadence": "weekly",
-        "indicative": true
-      },
-      "ATL": {
-        "price_min": 1117,
-        "route": "ATL-BLR",
-        "origin_metro": "Atlanta",
-        "dest_metro": "Bengaluru",
-        "date_range": "Jan 12 \u2192 Feb 1",
-        "duration_days": 20,
-        "as_of": "2026-11-25",
-        "cadence": "weekly",
-        "indicative": true
-      },
-      "BOS": {
-        "price_min": 879,
-        "route": "BOS-BOM",
-        "origin_metro": "Boston",
-        "dest_metro": "Mumbai",
-        "date_range": "Jan 12 \u2192 Feb 1",
-        "duration_days": 20,
-        "as_of": "2026-11-25",
-        "cadence": "weekly",
-        "indicative": true
       }
     },
     "highlights": [
@@ -6229,7 +6229,7 @@
     "trending": {
       "month": 11,
       "year": 2026,
-      "score": 95,
+      "score": 82,
       "max_score": 100,
       "components": [
         {
@@ -6246,9 +6246,9 @@
         },
         {
           "id": "fare_drop",
-          "points": 30,
+          "points": 17,
           "max": 30,
-          "reason": "Fares down 26.3% on EWR-BOM ($2230 \u2192 $1643) vs 2026-11-23"
+          "reason": "Fares down 11.2% on IAD-BLR ($1576 \u2192 $1399) vs 2026-11-16"
         }
       ]
     },
