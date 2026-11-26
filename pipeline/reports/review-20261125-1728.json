@@ -1,0 +1,40 @@
+[
+  {
+    "id": "a781ebf0-9f30-4de9-ae95-31a3242c1385",
+    "headline": "Over 2,300 Indian Sikh Pilgrims Mark Guru Nanak's 557th Birthday in Pakistan",
+    "slug": "indian-sikh-pilgrims-nankana-sahib-guru-nanak-557",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "f5beea4b-1335-49f0-b08d-46f69583190c",
+    "headline": "India's KochVac TB Vaccine Candidate Targets Human Trials by Mid-2027",
+    "slug": "kochvac-tb-vaccine-iit-bhubaneswar-human-trials-2027",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "c56c2294-5df1-4aec-9591-8fcabb2d6208",
+    "headline": "Gukesh Draws Game 2 in 20 Moves as World Title Match Stays Level",
+    "slug": "gukesh-sindarov-game-2-draw-world-championship-level",
+    "category": "sports",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Game 2 ended in a 20-move draw by repetition, leaving the match level at 1-1.\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "1435645e-372a-4c99-bc40-5c792f65ef79",
+    "headline": "Banned Nvidia B300 Servers Quoted at Up to $3.4 Million in Shenzhen",
+    "slug": "nvidia-b300-servers-shenzhen-black-market-prices",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  }
+]

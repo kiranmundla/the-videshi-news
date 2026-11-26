@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "nvidia-b300-servers-shenzhen-black-market-prices",
+  "name": "nvidia-b300-servers-shenzhen-black-market-prices",
+  "script": "reel-runs/2026-11-25-nvidia-b300-servers-shenzhen-black-market-prices/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "llm_layer_unavailable: unparseable LLM response: 'choices'"
+    ],
+    "llm_cost_usd": 0.0
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "hook_line": "BANNED NVIDIA SERVERS QUOTED AT $3.4 MILLION IN SHENZHEN",
+  "hook_stat": {"big": "$3.4 MILLION", "eyebrow": "BY THE NUMBERS", "sub": "Quoted price for Nvidia Blackwell B300 servers in Shenzhen"},
+  "stats": [
+    {"big": "$600,000", "label": "List price for the same server in the United States"},
+    {"big": "$2 MILLION", "label": "Quoted price two months earlier"},
+    {"big": "8", "label": "GPUs in the Nvidia Blackwell B300 system quoted in Shenzhen"}
+  ],
+  "diaspora_bullets": [
+    "Export controls bar the B300 from China, yet vendors quote it openly",
+    "The Post could not verify the systems offered were genuine"
+  ],
+  "key_entities": ["Nvidia", "Blackwell B300", "Huaqiangbei", "Shenzhen"],
+  "news_summary": "Sellers at Shenzhen's Huaqiangbei electronics market are quoting $3 million to $3.4 million for eight-GPU Nvidia Blackwell B300 servers, hardware barred from export to China since 2024.",
+  "payoff": "A market quoting the barred hardware openly states the enforcement problem in its plainest form.",
+  "versus": "",
+  "story_mood": "tense"
+}

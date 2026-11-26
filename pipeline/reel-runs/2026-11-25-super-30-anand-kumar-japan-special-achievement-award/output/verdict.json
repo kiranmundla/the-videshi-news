@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "super-30-anand-kumar-japan-special-achievement-award",
+  "name": "super-30-anand-kumar-japan-special-achievement-award",
+  "script": "reel-runs/2026-11-25-super-30-anand-kumar-japan-special-achievement-award/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "llm_layer_unavailable: unparseable LLM response: 'choices'"
+    ],
+    "llm_cost_usd": 0.0
+  }
+}

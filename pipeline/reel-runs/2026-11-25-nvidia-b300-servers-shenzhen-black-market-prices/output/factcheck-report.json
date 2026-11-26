@@ -1,0 +1,251 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "nvidia-b300-servers-shenzhen-black-market-prices",
+  "verdict": "fail",
+  "held_claims": [
+    "llm_layer_unavailable: unparseable LLM response: 'choices'"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "BANNED NVIDIA SERVERS QUOTED AT $3.4 MILLION IN SHENZHEN",
+      "numbers": [
+        3.4,
+        3400000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Sellers at Shenzhen's Huaqiangbei electronics market are quoting $3 million to $3.4 million for eight-GPU Nvidia Blackwell B300 servers, hardware barred from export to China since 2024.",
+      "numbers": [
+        3.0,
+        3.4,
+        300.0,
+        2024.0,
+        3000000.0,
+        3400000.0
+      ],
+      "entities": [
+        "Shenzhen's Huaqiangbei",
+        "Nvidia Blackwell B300"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2024
+        ]
+      },
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$3.4 MILLION",
+      "numbers": [
+        3.4,
+        3400000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Quoted price for Nvidia Blackwell B300 servers in Shenzhen",
+      "numbers": [
+        300.0
+      ],
+      "entities": [
+        "Nvidia Blackwell B300"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$600,000",
+      "numbers": [
+        600000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "List price for the same server in the United States",
+      "numbers": [],
+      "entities": [
+        "United States"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$2 MILLION",
+      "numbers": [
+        2.0,
+        2000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Quoted price two months earlier",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "8",
+      "numbers": [
+        8.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "GPUs in the Nvidia Blackwell B300 system quoted in Shenzhen",
+      "numbers": [
+        300.0
+      ],
+      "entities": [
+        "Nvidia Blackwell B300"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Export controls bar the B300 from China, yet vendors quote it openly",
+      "numbers": [
+        300.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "The Post could not verify the systems offered were genuine",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "A market quoting the barred hardware openly states the enforcement problem in its plainest form.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Nvidia",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Blackwell B300",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Huaqiangbei",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Shenzhen",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": false,
+    "error": "unparseable LLM response: 'choices'",
+    "cost_usd": 0.0,
+    "rounds": 0,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

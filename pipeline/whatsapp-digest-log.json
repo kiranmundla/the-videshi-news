@@ -478,5 +478,15 @@
     "quick_hit_count": 5,
     "deadline_count": 3,
     "chars": 2538
+  },
+  {
+    "type": "whatsapp-digest",
+    "sent_at": "2026-11-25T15:13:02.458376+00:00Z",
+    "subject": "WhatsApp digest \u2014 Nov 25 (ready to paste)",
+    "sent_to": "editor@thevideshi.com",
+    "top_story_slug": "doval-colombo-security-conclave-indian-ocean-connect",
+    "quick_hit_count": 5,
+    "deadline_count": 3,
+    "chars": 2232
   }
 ]

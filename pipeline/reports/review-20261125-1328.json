@@ -1,0 +1,38 @@
+[
+  {
+    "id": "fb3cdf70-cc7c-437c-bb20-5d22e82e36ff",
+    "headline": "Ramayana Closes Day 20 at \u20b9972.95 Crore Net, \u20b927 Crore From \u20b91,000 Crore Club",
+    "slug": "ramayana-day-20-972-crore-net-1000-crore-club",
+    "category": "entertainment",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The film closed Day 20 at \u20b9972.95 crore net in India, according to Sacnilk.\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "24b61232-14bf-419a-81ce-1fcdc0fea89a",
+    "headline": "Cabinet Approves \u20b911,000 Crore Scheme to Build Construction Equipment in India",
+    "slug": "cabinet-11000-crore-construction-equipment-scheme",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "88eaf562-a16d-46c2-bf01-34a8efdca08f",
+    "headline": "Indian Startup Intrinsic Foundries Wins L'Or\u00e9al's 2026 Big Bang Beauty Tech Priz",
+    "slug": "intrinsic-foundries-wins-loreal-big-bang-2026",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "96220c79-8ddb-4171-a9f1-46a09c121588",
+    "headline": "Super 30 Founder Anand Kumar Receives Special Achievement Award in Japan",
+    "slug": "super-30-anand-kumar-japan-special-achievement-award",
+    "category": "news",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Kumar received Japan's Special Achievement Award from CGC Group chairman Atsuhir\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": null
+  }
+]

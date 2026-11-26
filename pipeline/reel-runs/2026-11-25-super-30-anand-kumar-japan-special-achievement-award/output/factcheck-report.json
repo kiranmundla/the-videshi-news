@@ -1,0 +1,217 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "super-30-anand-kumar-japan-special-achievement-award",
+  "verdict": "fail",
+  "held_claims": [
+    "llm_layer_unavailable: unparseable LLM response: 'choices'"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "SUPER 30 FOUNDER HONOURED IN JAPAN",
+      "numbers": [
+        30.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Super 30 founder Anand Kumar has received a Special Achievement Award in Japan, presented by CGC Group chairman Atsuhiro Horiuchi, for making quality education accessible to children from economically disadvantaged backgrounds.",
+      "numbers": [
+        30.0
+      ],
+      "entities": [
+        "Anand Kumar",
+        "Special Achievement Award",
+        "CGC Group",
+        "Atsuhiro Horiuchi"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "SINCE 2002",
+      "numbers": [
+        2002.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2002
+        ]
+      },
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Super 30 has offered free coaching for IIT entrance examinations",
+      "numbers": [
+        30.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "PATNA",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Where Anand Kumar founded Super 30 for underprivileged students",
+      "numbers": [
+        30.0
+      ],
+      "entities": [
+        "Where Anand Kumar"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "SUPER INFINITY",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "His initiative to take mathematics learning across borders",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "A Patna educator honoured by CGC Group, one of Japan's leading business groups",
+      "numbers": [],
+      "entities": [
+        "CGC Group"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Free IIT coaching for students from economically disadvantaged backgrounds",
+      "numbers": [],
+      "entities": [
+        "Free IIT"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The citation recognised Super 30's free IIT coaching and his Super Infinity initiative.",
+      "numbers": [
+        30.0
+      ],
+      "entities": [
+        "Super Infinity"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Anand Kumar",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Super 30",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "CGC Group",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Super Infinity",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": false,
+    "error": "unparseable LLM response: 'choices'",
+    "cost_usd": 0.0,
+    "rounds": 0,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

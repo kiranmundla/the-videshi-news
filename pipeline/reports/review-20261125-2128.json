@@ -1,0 +1,42 @@
+[
+  {
+    "id": "c674d031-181a-4b03-a7ec-4dcbb207a2ac",
+    "headline": "FCC Authorizes SpaceX to Deploy Up to 1 Million Orbital Data-Center Satellites",
+    "slug": "fcc-spacex-starmind-1-million-orbital-data-center-satellites",
+    "category": "technology",
+    "structural_issues": [
+      "Inline caption appends the article's lede/takeaway sentence to the photo description: 'The Federal Communications Commission on Wednesday authorized Elon Musk's SpaceX\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "1f1df4d0-b124-4a5b-b933-c8cbceee492d",
+    "headline": "US Would Cap India Tariff at 17% If Trade Deal Is Reached, USTR Says",
+    "slug": "us-cap-india-tariff-17-percent-trade-deal-ustr-greer",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "60ef952f-31e3-4b58-8232-859f2c606cd8",
+    "headline": "Canada Invites 6,000 French-Speaking Candidates at CRS Cut-Off of 401",
+    "slug": "canada-express-entry-french-draw-6000-crs-401-november-25",
+    "category": "immigration",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Canada issued 6,000 invitations in its November 25 French-language Express Entry\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "cbbf4070-ec00-467d-a9fc-54ba2b8b023d",
+    "headline": "Louisiana Visa Fraud Ringleader Patel Sentenced to 10 Years, Faces Removal",
+    "slug": "chandrakant-patel-oakdale-visa-fraud-10-years-removal",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  }
+]
