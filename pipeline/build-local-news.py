@@ -172,7 +172,22 @@ _FRISCO_TX_RX = (
     r"|\b" + _TX_CONTEXT + r"\b.{0,60}\bRichardson\b"
 )
 
+# Brandon, FL (Tampa cluster member) vs Brandon the first name:
+# the 2026-11-25 audit found Tampa's bucket filled entirely by people
+# named Brandon — Chicago Mayor Brandon Johnson's Diwali proclamation
+# and developer Brandon Thomas's Adobe-clone stories (the latter pair
+# also stale, Oct 14/22). Like Warren for Detroit, "Brandon" leaves
+# the plain aliases in clusters.json and matches only with Florida /
+# Tampa-area context nearby.
+_FL_CONTEXT = r"(?:Florida|Tampa|Hillsborough|St\. Petersburg|Riverview|\bFL\b)"
+_TAMPA_FL_RX = (
+    r"\bBrandon,?\s+(?:FL|Fla\.)\b"
+    r"|\bBrandon\b(?=.{0,60}\b" + _FL_CONTEXT + r"\b)"
+    r"|\b" + _FL_CONTEXT + r"\b.{0,60}\bBrandon\b"
+)
+
 _PROFILE_RX = {
+    "tampa_fl": _TAMPA_FL_RX,
     "washington_dc": _WASHINGTON_RX,
     "portland_or": _PORTLAND_RX,
     "dublin_ca": _DUBLIN_CA_RX,
