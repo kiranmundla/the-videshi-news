@@ -1179,6 +1179,7 @@ def build_brief_article(drops, channels_by_name):
         # dict, so these extra keys never reach the insert payload.
         "card_complete": not card_missing,
         "card_missing": card_missing,
+        "release": release,
     }
 
 
@@ -1445,13 +1446,45 @@ def merge_held_into_groups(groups, held):
     return retries + work
 
 
+def _parse_release_date(release):
+    """Parse a card release string ('Nov 20, 2026', 'November 20, 2026',
+    '20 November 2026') to a date, or None when it carries no full date
+    with year (an unpinned release can never prove a brief stale)."""
+    if not release:
+        return None
+    s = release.strip()
+    for fmt in ("%B %d, %Y", "%b %d, %Y", "%d %B %Y", "%d %b %Y",
+                "%d %B, %Y", "%d %b, %Y"):
+        try:
+            return datetime.strptime(s, fmt).date()
+        except ValueError:
+            continue
+    return None
+
+
+def _release_has_passed(release, now):
+    """True when the work's release date is before today (UTC).
+
+    Staleness gate (2026-11-26): a 'Trailer Out' brief is news only
+    before the premiere. The AOT – Dulquer Salmaan brief sat in the held
+    queue until its card completed, then published on Nov 26 for a film
+    released Nov 20 whose review we had already run — the retry path
+    never asked whether the moment had passed. A release date of TODAY
+    is still news (premiere day); only strictly-past dates are stale."""
+    d = _parse_release_date(release)
+    return bool(d) and d < now.date()
+
+
 def attempt_brief(key, drops, channels_by_name, published_briefs, insert_fn):
     """One brief attempt for a film group.
 
-    Returns (outcome, art): 'published' | 'merged' | 'skip' | 'held' |
-    'failed'. The film-card gate itself is unchanged (2026-10-13): a
-    brief whose card lacks a type, a full release date with year, or any
-    director/cast credit is held, never published as a thin stub."""
+    Returns (outcome, art): 'published' | 'merged' | 'skip' | 'stale' |
+    'held' | 'failed'. The film-card gate itself is unchanged
+    (2026-10-13): a brief whose card lacks a type, a full release date
+    with year, or any director/cast credit is held, never published as a
+    thin stub. A brief whose film has already released is 'stale' and is
+    dropped, never published (2026-11-26) — merging a late language
+    version into an already-published brief still happens above."""
     art = build_brief_article(drops, channels_by_name)
     existing = find_cross_run_match(key, published_briefs)
     if existing:
@@ -1462,6 +1495,11 @@ def attempt_brief(key, drops, channels_by_name, published_briefs, insert_fn):
     if sb_check_slug(art["slug"]):
         print(f"  skip (slug exists): {art['slug']}")
         return "skip", art
+    if _release_has_passed(art.get("release"),
+                           datetime.now(timezone.utc)):
+        print(f"  STALE brief dropped (already released "
+              f"{art.get('release')}): {art['slug']}")
+        return "stale", art
     if not art.get("card_complete"):
         print(f"  HOLD brief (incomplete film card — missing: "
               f"{', '.join(art.get('card_missing') or [])}): "
@@ -1564,6 +1602,7 @@ def main():
         published_briefs = sb_fetch_published_briefs()
         merged_groups = 0
         held_count = 0
+        stale_count = 0
         expired = 0
         retried = 0
         now = datetime.now(timezone.utc)
@@ -1596,6 +1635,9 @@ def main():
                 dequeue_film(held_queue, key)
             elif outcome == "skip":
                 dequeue_film(held_queue, key)
+            elif outcome == "stale":
+                stale_count += 1
+                dequeue_film(held_queue, key)
             else:  # held / failed -> (re)queue, or expire loudly
                 first_held = (old_entry or {}).get("first_held_at") or now_iso
                 attempts = (old_entry or {}).get("attempts", 0) + 1
@@ -1615,6 +1657,7 @@ def main():
         save_held(held_queue)
         print(f"Brief articles inserted: {articles_written}/{min(len(work), MAX_ARTICLES_PER_RUN)}"
               f" | merged into existing: {merged_groups} | held (thin card): {held_count}"
+              f" | stale dropped: {stale_count}"
               f" | retried from queue: {retried} | held expired: {expired}"
               f" | queue size: {len(held_queue)}")
     elif majors:

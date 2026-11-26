@@ -262,11 +262,44 @@ check("queue: insert was called exactly once", len(inserted) == 1)
 dequeue_film(held, "meghamala")
 check("queue: published film dequeued", held == {})
 
-# Insert failure is retryable, not terminal
-outcome, _ = attempt_brief_fn("gajabraat", [GAJAB_DROP], CHANNELS, [],
+# Insert failure is retryable, not terminal (future-release film, so
+# the staleness gate below does not fire first)
+outcome, _ = attempt_brief_fn("meghamala", work2[0][1], CHANNELS, [],
                               lambda a: False)
 check("queue: failed insert outcome is 'failed' (retryable)",
       outcome == "failed")
+
+# -------------------- staleness gate (2026-11-26)
+# AOT – Dulquer Salmaan: the held brief's card completed on Nov 26 for a
+# film released Nov 20 (review already published) and went out as fresh
+# news. A brief whose release date has passed must drop, never publish.
+_parse_release_date = _ns["_parse_release_date"]
+_release_has_passed = _ns["_release_has_passed"]
+check("stale: parse 'Nov 20, 2026'",
+      _parse_release_date("Nov 20, 2026") == dt(2026, 11, 20).date())
+check("stale: parse 'November 20, 2026'",
+      _parse_release_date("November 20, 2026") == dt(2026, 11, 20).date())
+check("stale: parse '20 November 2026'",
+      _parse_release_date("20 November 2026") == dt(2026, 11, 20).date())
+check("stale: unpinned release never proves stale",
+      _parse_release_date("December 25") is None
+      and _parse_release_date("") is None
+      and _parse_release_date(None) is None)
+_now = dt(2026, 11, 26)
+check("stale: past release has passed",
+      _release_has_passed("Nov 20, 2026", _now) is True)
+check("stale: premiere day is still news",
+      _release_has_passed("Nov 26, 2026", _now) is False)
+check("stale: future release has not passed",
+      _release_has_passed("Dec 25, 2026", _now) is False)
+# Gajab Raat released Oct 23, 2026 — by the real run date its brief is
+# stale: outcome 'stale', and the inserter is never called.
+stale_inserts = []
+outcome, art = attempt_brief_fn("gajabraat", [GAJAB_DROP], CHANNELS, [],
+                                lambda a: stale_inserts.append(a) or True)
+check("stale: post-release brief outcome is 'stale'", outcome == "stale")
+check("stale: inserter never called for a stale brief",
+      stale_inserts == [])
 
 # -------------------- phantom-key re-keying (2026-10-23)
 # A queue entry born from a dialogue-line title carries a phantom key;
