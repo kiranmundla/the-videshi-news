@@ -1,0 +1,78 @@
+{
+ "id": "bad71e8d-1a3a-43d7-9618-6a653f80fcf6",
+ "topic_id": "0ab5f3d2-dcad-4587-bde2-2c315fd3e91a",
+ "headline": "Second Judge Blocks Trump's New Birthright Citizenship Order",
+ "subheadline": "Judge Christopher Cooper's injunction bars three federal agencies from enforcing the August order against children in the class action, joining a Maryland block issued in September.",
+ "body": "<div class=\"key-takeaways\"><ul>\n<li>A federal judge in Washington, DC, on Wednesday blocked President Trump's August executive order narrowing birthright citizenship \u2014 the second court to block it, after a Maryland judge in September.</li>\n<li>The preliminary injunction bars the State Department, Homeland Security and the Social Security Administration from enforcing the order against the children covered by the class action.</li>\n<li>The order targeted new categories, including children of \"birth tourism\" parents and of foreign-government employees without diplomatic immunity.</li>\n<li>For readers: nothing changes at the hospital or the passport office for now \u2014 US-born children in the covered categories remain citizens while the case proceeds, and the administration must win reversals of both injunctions before the order could ever take effect.</li>\n</ul></div>\n<p>A second US judge on Wednesday blocked enforcement of President Donald Trump's executive order limiting who is eligible for birthright citizenship, ruling that the president cannot create new exceptions to a right the Supreme Court has already upheld twice. US District Judge Christopher Cooper in Washington, DC, issued a preliminary injunction in a class action lawsuit brought on behalf of children who would be denied citizenship under the order, which Trump signed in August, <a href=\"https://www.reuters.com/legal/government/trumps-newest-order-curtailing-birthright-citizenship-is-blocked-by-second-judge-2026-11-25/\" target=\"_blank\" rel=\"noopener\">Reuters reported</a>.</p>\n<p>\"The merits in this case are clear-cut,\" Cooper said. \"The Supreme Court has twice confirmed that all children born in this country are US citizens, save only for the small handful who are not subject to US law.\"</p>\n<h2>Who the order targeted \u2014 and who is protected now</h2>\n<p>Trump signed the order \u2014 Executive Order 14418, issued on August 6 \u2014 soon after the Supreme Court in June rejected his first, 2025 effort to end birthright citizenship for children whose parents are not US citizens or green-card holders. The court held that the first order violated the citizenship clause of the 14th Amendment, which grants citizenship to those born in the United States and \"subject to the jurisdiction thereof.\" The new order took a narrower aim, according to Reuters: at \"birth tourism,\" in which women travel to the United States to give birth so their children obtain citizenship; at children whose parents work for foreign governments or international organizations but lack diplomatic immunity; and at children who have a parent classified as an \"alien enemy.\"</p>\n<p>Cooper's injunction bars the US Department of State, the US Department of Homeland Security and the Social Security Administration from enforcing the order against any children covered by the class action, and the judge also granted the case class-action status, <a href=\"https://oklahomavoice.com/2026/11/25/repub/federal-court-blocks-second-trump-order-on-birthright-citizenship/\" target=\"_blank\" rel=\"noopener\">Oklahoma Voice reported</a>. A separate federal judge in Maryland blocked the same order in September. The administration now needs to overturn both decisions before it could ever enforce it.</p>\n<blockquote class=\"pull-quote\"><p>\"Enough is enough. The Supreme Court has twice rejected efforts to gut birthright citizenship, in 1898 and again earlier this year. Third time is not the charm.\"</p><cite>\u2014 Cody Wofsy, ACLU Immigrants' Rights Project</cite></blockquote>\n<h2>What each side says</h2>\n<p>Cody Wofsy, a lawyer at the American Civil Liberties Union, which represents the plaintiffs, said in a statement that Trump \"needs to accept that birthright citizenship is the law of the land.\" Cooper wrote that the Supreme Court's June ruling, in the case Barbara v. Trump, embraced the court's 1898 decision in United States v. Wong Kim Ark, which read the 14th Amendment as recognizing birthright citizenship regardless of a baby's parents' immigration status. The White House disagreed: spokeswoman Lauren Bis called the decision \"just another ruling from an activist judge appointed by (former President Barack) Obama attempting to thwart President Trump's commonsense agenda,\" and said the order was \"consistent with the holdings and analysis set forth by the Supreme Court.\"</p>\n\n<figure style=\"margin:28px auto;text-align:center\"><img src=\"https://upload.wikimedia.org/wikipedia/commons/d/d8/USSupremeCourtWestFacade.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original\" alt=\"West face of the United States Supreme Court building in Washington, D.C. US District Judge Christopher Cooper in Washington, DC, issued a preliminary injunction in a class action lawsuit brought on behalf of children who would be denied citizenship under the order, which Trump signed in August, Reuters reported .\" style=\"max-width:100%;border-radius:8px\" loading=\"lazy\"><figcaption style=\"font-size:0.85rem;color:#666;margin-top:8px\">West face of the United States Supreme Court building in Washington, D.C. US District Judge Christopher Cooper in Washington, DC, issued a preliminary injunction in a class action lawsuit brought on behalf of children who would be denied citizenship under the order, which Trump signed in August, Reuters reported .</figcaption></figure>\n\n<h2>What happens next</h2>\n<p>The injunction stays in place while the litigation continues, so for families expecting a child in the targeted categories \u2014 including parents working in the United States for foreign governments or international organizations \u2014 the practical position is unchanged: a child born in the United States is a US citizen, and the agencies named in the order cannot apply it to the class. The administration is expected to appeal; unless it wins reversals in both the Washington and Maryland cases, the August order cannot take effect.</p>",
+ "diaspora_angle": "Children born in the US to parents in the order's new categories \u2014 including foreign-government and international-organization staff \u2014 remain citizens while both injunctions stand.",
+ "vertical": "immigration",
+ "tags": [
+  "birthright citizenship",
+  "14th amendment",
+  "executive order",
+  "aclu",
+  "federal court"
+ ],
+ "urgency": null,
+ "sources": [
+  {
+   "url": "https://www.reuters.com/legal/government/trumps-newest-order-curtailing-birthright-citizenship-is-blocked-by-second-judge-2026-11-25/",
+   "name": "Reuters"
+  },
+  {
+   "url": "https://oklahomavoice.com/2026/11/25/repub/federal-court-blocks-second-trump-order-on-birthright-citizenship/",
+   "name": "Oklahoma Voice"
+  }
+ ],
+ "slug": "second-judge-blocks-trump-birthright-citizenship-order",
+ "word_count": 686,
+ "status": "published",
+ "is_featured": false,
+ "reviewed_at": null,
+ "published_at": "2026-11-26T04:46:22.603969+00:00",
+ "created_at": "2026-11-26T04:46:24.10092+00:00",
+ "updated_at": "2026-11-26T04:56:38.520151+00:00",
+ "image_url": "https://static.foxnews.com/foxnews.com/content/uploads/2025/09/birthright-citizenship-eo-challenged-by-aclu.jpg",
+ "category": "immigration",
+ "image_attribution": "foxnews.com",
+ "image_entities": [
+  "Judge",
+  "Order"
+ ],
+ "image_must_show": "Must show: Judge; Order (headline subjects)",
+ "image_search_query": "Judge",
+ "score_total": 0,
+ "gallery_images": null,
+ "image_caption": "File photograph: protesters hold a 'Hands Off Birthright Citizenship' banner outside the US Supreme Court in Washington during earlier demonstrations over the policy. On Wednesday a second federal judge blocked the Trump administration's August executive order narrowing birthright citizenship.",
+ "tweeted_at": null,
+ "instagrammed_at": null,
+ "is_editorial": false,
+ "newslettered_at": null,
+ "data_cards": null,
+ "key_takeaways": [
+  "A federal judge in Washington, DC, on Wednesday blocked President Trump's August executive order narrowing birthright citizenship \u2014 the second court to block it, after a Maryland judge in September.",
+  "The preliminary injunction bars the State Department, Homeland Security and the Social Security Administration from enforcing the order against the children covered by the class action.",
+  "The order targeted new categories, including children of 'birth tourism' parents and of foreign-government employees without diplomatic immunity.",
+  "Nothing changes at the hospital or the passport office for now \u2014 US-born children in the covered categories remain citizens while the case proceeds."
+ ],
+ "enriched_at": "2026-11-26T04:54:23+00:00",
+ "cards_rendered_at": null,
+ "newsworthiness": null,
+ "diaspora_impact": null,
+ "prominence": null,
+ "display_score": null,
+ "article_type": "breaking",
+ "focal_x": 0.5,
+ "focal_y": 0.5,
+ "img_w": null,
+ "img_h": null,
+ "event_at": null,
+ "google_cluster_size": 0,
+ "signal_count": 0,
+ "llm_score": 4,
+ "social_embeds": [],
+ "reactions": {},
+ "kids_relevant": false,
+ "image_backfill_blocked": false,
+ "is_visual_story": false
+}

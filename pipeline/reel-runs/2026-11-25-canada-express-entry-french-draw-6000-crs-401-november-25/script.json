@@ -1,0 +1,35 @@
+{
+ "hook_line": "CANADA INVITES 6,000 FRENCH-SPEAKING CANDIDATES",
+ "hook_stat": {
+  "big": "6,000",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Invitations to apply for permanent residence in the November 25 Express Entry draw"
+ },
+ "stats": [
+  {
+   "big": "401",
+   "label": "Minimum CRS score in the November 25 French-language draw"
+  },
+  {
+   "big": "60 DAYS",
+   "label": "Time invited candidates have to submit a complete permanent residence application"
+  },
+  {
+   "big": "66,500",
+   "label": "French-language invitations issued across 13 rounds in 2026"
+  }
+ ],
+ "diaspora_bullets": [
+  "French-language ability is the entry condition \u2014 at least NCLC 7 in each of the four abilities",
+  "Check your IRCC account for your exact deadline and programme"
+ ],
+ "key_entities": [
+  "Express Entry",
+  "Immigration, Refugees and Citizenship Canada",
+  "Comprehensive Ranking System"
+ ],
+ "news_summary": "Canada issued 6,000 invitations to apply for permanent residence on November 25 in a French-language proficiency Express Entry draw, with a minimum CRS score of 401.",
+ "payoff": "An invitation is not permanent residence \u2014 invited candidates have 60 days to submit a complete application.",
+ "versus": "",
+ "story_mood": "practical"
+}

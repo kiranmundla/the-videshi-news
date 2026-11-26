@@ -1,0 +1,20 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "second-judge-blocks-trump-birthright-citizenship-order",
+  "name": "second-judge-blocks-trump-birthright-citizenship-order",
+  "script": "reel-runs/2026-11-25-second-judge-blocks-trump-birthright-citizenship-order/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "hook_stat.big",
+      "llm_layer_unavailable: unparseable LLM response: 'choices'"
+    ],
+    "llm_cost_usd": 0.0
+  }
+}

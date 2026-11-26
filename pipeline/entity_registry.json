@@ -29042,6 +29042,408 @@
    "resolved_confidence": "medium",
    "resolved_context": "FCC Authorizes SpaceX to Deploy Up to 1 Million Orbital Data-Center Satellites   <div class=\"key-takeaways\"><ul>\n<li>The Federal Communications Commission on Wednesday authorized SpaceX to deploy up to 1 million satellites for data centers in space, approving the \"Starmind\" constellation to help meet rapidly growing demand for AI computing, according to Reuters.</li>\n<li>Authorization is not deplo",
    "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'FCC Authorizes SpaceX to Deploy Up to 1 Million Orbital Data-Center Satellites   <div class=\"key-takeaways\"><ul>\\n<li>The Federal Communications Commission on Wednesday authorized SpaceX to deploy up t'; description: independent U.S. government agency"
+  },
+  {
+   "name": "Tata Sons",
+   "aliases": [
+    "Tata Sons"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q2377884",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Air India CEO Gebremariam Gets Free Hand to Rebuild Senior Management   <div class=\"key-takeaways\"><ul><li>Air India's chief executive Tewolde Gebremariam has been given a free hand by Tata Sons chairman N Chandrasekaran to rebuild the airline's senior management, including hiring executives from outside the Tata Group, according to The Economic Times reporting cited by multiple outlets.</li><li>N",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Air India CEO Gebremariam Gets Free Hand to Rebuild Senior Management   <div class=\"key-takeaways\"><ul><li>Air India\\'s chief executive Tewolde Gebremariam has been given a free hand by Tata Sons chair'; description: Indian holding company"
+  },
+  {
+   "name": "Tewolde GebreMariam",
+   "aliases": [
+    "Tewolde Gebremariam",
+    "Tewolde GebreMariam"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q111626805",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Air India CEO Gebremariam Gets Free Hand to Rebuild Senior Management   <div class=\"key-takeaways\"><ul><li>Air India's chief executive Tewolde Gebremariam has been given a free hand by Tata Sons chairman N Chandrasekaran to rebuild the airline's senior management, including hiring executives from outside the Tata Group, according to The Economic Times reporting cited by multiple outlets.</li><li>N",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Air India CEO Gebremariam Gets Free Hand to Rebuild Senior Management   <div class=\"key-takeaways\"><ul><li>Air India\\'s chief executive Tewolde Gebremariam has been given a free hand by Tata Sons chair'; description: Ethiopian business executive"
+  },
+  {
+   "name": "Rajiv Kumar",
+   "aliases": [
+    "Rajiv Kumar"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q112220939",
+   "p18_file": "Chief Election Commissioner of India Rajiv Kumar.jpg",
+   "p18_quality": 829,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Punjab Kings Appoint Paras Mhambrey as Fast Bowling Coach for IPL 2027   <div class=\"key-takeaways\"><ul><li>Punjab Kings have appointed former India bowling coach Paras Mhambrey as fast bowling coach and Rajiv Kumar as fielding coach ahead of IPL 2027, the franchise announced on November 25, 2026.</li><li>Mhambrey replaces James Hopes and Kumar takes over from Brad Haddin; both predecessors were p",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Punjab Kings Appoint Paras Mhambrey as Fast Bowling Coach for IPL 2027   <div class=\"key-takeaways\"><ul><li>Punjab Kings have appointed former India bowling coach Paras Mhambrey as fast bowling coach '; description: Chief Election Commissioner of India"
+  },
+  {
+   "name": "Paras Mhambrey",
+   "aliases": [
+    "Paras Mhambrey",
+    "Barsaman Pun",
+    "Paras Laxmikant Mhambrey"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q3528769",
+   "p18_file": "Paras Mhambrey (Apr 2019).jpg",
+   "p18_quality": 1400,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Punjab Kings Appoint Paras Mhambrey as Fast Bowling Coach for IPL 2027   <div class=\"key-takeaways\"><ul><li>Punjab Kings have appointed former India bowling coach Paras Mhambrey as fast bowling coach and Rajiv Kumar as fielding coach ahead of IPL 2027, the franchise announced on November 25, 2026.</li><li>Mhambrey replaces James Hopes and Kumar takes over from Brad Haddin; both predecessors were p",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Punjab Kings Appoint Paras Mhambrey as Fast Bowling Coach for IPL 2027   <div class=\"key-takeaways\"><ul><li>Punjab Kings have appointed former India bowling coach Paras Mhambrey as fast bowling coach '; description: Indian cricket player"
+  },
+  {
+   "name": "Rahul Dravid",
+   "aliases": [
+    "Rahul Dravid",
+    "Rahul Sharad Dravid",
+    "The Wall",
+    "Jammy",
+    "Mr. Dependable"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q470772",
+   "p18_file": "Rahul Dravid in PMO New Delhi.jpg",
+   "p18_quality": 718,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Punjab Kings Appoint Paras Mhambrey as Fast Bowling Coach for IPL 2027   <div class=\"key-takeaways\"><ul><li>Punjab Kings have appointed former India bowling coach Paras Mhambrey as fast bowling coach and Rajiv Kumar as fielding coach ahead of IPL 2027, the franchise announced on November 25, 2026.</li><li>Mhambrey replaces James Hopes and Kumar takes over from Brad Haddin; both predecessors were p",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Punjab Kings Appoint Paras Mhambrey as Fast Bowling Coach for IPL 2027   <div class=\"key-takeaways\"><ul><li>Punjab Kings have appointed former India bowling coach Paras Mhambrey as fast bowling coach '; description: Indian cricketer"
+  },
+  {
+   "name": "Ricky Ponting",
+   "aliases": [
+    "Ricky Ponting",
+    "Punter",
+    "Ricky Thomas Ponting"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q472649",
+   "p18_file": "Ricky Ponting YM.jpg",
+   "p18_quality": 715,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Punjab Kings Appoint Paras Mhambrey as Fast Bowling Coach for IPL 2027   <div class=\"key-takeaways\"><ul><li>Punjab Kings have appointed former India bowling coach Paras Mhambrey as fast bowling coach and Rajiv Kumar as fielding coach ahead of IPL 2027, the franchise announced on November 25, 2026.</li><li>Mhambrey replaces James Hopes and Kumar takes over from Brad Haddin; both predecessors were p",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Punjab Kings Appoint Paras Mhambrey as Fast Bowling Coach for IPL 2027   <div class=\"key-takeaways\"><ul><li>Punjab Kings have appointed former India bowling coach Paras Mhambrey as fast bowling coach '; description: Australian cricketer"
+  },
+  {
+   "name": "Dow Jones Industrial Average",
+   "aliases": [
+    "Dow Jones Industrial Average",
+    "DJI",
+    "Dow",
+    "DJIA Component",
+    "The Dow"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q180816",
+   "p18_file": "DJIA historical graph to jul11 (log).svg",
+   "p18_quality": 800,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Dow Erases 1,100-Point Drop to Close Higher as Bargain Hunters Step In   <div class=\"key-takeaways\"><ul><li>The Dow Jones Industrial Average erased an intraday loss of more than 1,100 points on Wednesday to close up 164.25 points, or 0.33%, at 50,182.95, according to Reuters.</li><li>The S&amp;P 500 ended down 18.31 points, or 0.25%, at 7,182.78 and the Nasdaq Composite fell 147.73 points, or 0.62",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Dow Erases 1,100-Point Drop to Close Higher as Bargain Hunters Step In   <div class=\"key-takeaways\"><ul><li>The Dow Jones Industrial Average erased an intraday loss of more than 1,100 points on Wednes'; description: stock market index"
+  },
+  {
+   "name": "Help:Development stages",
+   "aliases": [
+    "Maturity Level",
+    "Help:Development stages",
+    "maturity level"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q22706211",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Infosys Becomes World's First Organization Assessed at CMMI AI Maturity Level 5   <div class=\"key-takeaways\"><ul><li>Infosys has become the world's first organization assessed at Maturity Level 5 of the CMMI AI Maturity (AIM) Model, the model's highest level, the company announced on November 25, 2026.</li><li>The assessment, conducted by Benchmarked Pty Ltd, a licensed partner of the CMMI Institu",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Infosys Becomes World\\'s First Organization Assessed at CMMI AI Maturity Level 5   <div class=\"key-takeaways\"><ul><li>Infosys has become the world\\'s first organization assessed at Maturity Level 5 of t'; description: Wikimedia project page"
+  },
+  {
+   "name": "James Hopes",
+   "aliases": [
+    "James Hopes",
+    "James Redfern Hopes"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q2738944",
+   "p18_file": "James Hopes.jpg",
+   "p18_quality": 1220,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Punjab Kings Appoint Paras Mhambrey as Fast Bowling Coach for IPL 2027   Mhambrey, former India bowling coach, replaces James Hopes; Kumar takes over from Brad Haddin.    Punjab Kings have appointed former India bowling coach Paras Mhambrey as fast bowling coach and Rajiv Kumar as fielding coach ahead of IPL 2027, the franchise announced on November 25, 2026.  Mhambrey replaces James Hopes and Kum",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Punjab Kings Appoint Paras Mhambrey as Fast Bowling Coach for IPL 2027   Mhambrey, former India bowling coach, replaces James Hopes; Kumar takes over from Brad Haddin.    Punjab Kings have appointed f'; description: cricketer"
+  },
+  {
+   "name": "congenital rubella syndrome",
+   "aliases": [
+    "CRS",
+    "congenital rubella syndrome",
+    "Congenital Rubella",
+    "Congenital Rubella syndrome",
+    "Gestational rubella syndrome (disorder)",
+    "Fetal rubella syndrome",
+    "congenital rubella",
+    "Rubella Syndrome, Congenital"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1724539",
+   "p18_file": "Cataracts due to Congenital Rubella Syndrome (CRS) PHIL 4284 lores.jpg",
+   "p18_quality": 700,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Canada Invites 6,000 French-Speaking Candidates at CRS Cut-Off of 401   Canada invited 6,000 French-speaking candidates for permanent residence on November 25, with a CRS cut-off of 401.   \n Canada issued 6,000 invitations to apply for permanent residence on November 25 in a French-language proficiency Express Entry draw, with a minimum Comprehensive Ranking System score of 401. \n To be considered",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Canada Invites 6,000 French-Speaking Candidates at CRS Cut-Off of 401   Canada invited 6,000 French-speaking candidates for permanent residence on November 25, with a CRS cut-off of 401.   \\n Canada is'; description: human disease"
+  },
+  {
+   "name": "Indian Institute of Technology Madras",
+   "aliases": [
+    "IIT Madras",
+    "Indian Institute of Technology Madras",
+    "IIT-M",
+    "IIT Chennai",
+    "Indian Institute of Technology, Madras"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q858662",
+   "p18_file": "IITMmensa.jpg",
+   "p18_quality": 2048,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "IIT Madras Pravartak Opens Free Online Training for Students in Classes 7-12 and Teachers   IIT Madras offers free online training for students and teachers.    IIT Madras Pravartak Technologies Foundation, in partnership with BodhBridge Education, has opened registrations for free online live training for school students, teachers and educators.  Students in Classes 7 to 12 can study AI fundament",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'IIT Madras Pravartak Opens Free Online Training for Students in Classes 7-12 and Teachers   IIT Madras offers free online training for students and teachers.    IIT Madras Pravartak Technologies Found'; description: autonomous public engineering and research institution located in Chennai, Tamil Nadu"
+  },
+  {
+   "name": "Aam Aadmi Party",
+   "aliases": [
+    "AAP",
+    "Aam Aadmi Party",
+    "AAP Party",
+    "aam",
+    "Common Man's Party"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q129844",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "Kejriwal, Daughter Threatened in Call Demanding Rs 7 Crore in Bishnoi Gang's Name   Threat conveyed through AAP MLA Jarnail Singh, not directly to Kejriwal. \n  \n Former Delhi Chief Minister Arvind Kejriwal and his daughter Harshita have received a death threat from a caller who claimed to be a member of the Lawrence Bishnoi gang and demanded Rs 7 crore, according to the complaint reported by ANI. ",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: \"Kejriwal, Daughter Threatened in Call Demanding Rs 7 Crore in Bishnoi Gang's Name   Threat conveyed through AAP MLA Jarnail Singh, not directly to Kejriwal. \\n  \\n Former Delhi Chief Minister Arvind Kej\"; description: National Political Party in India"
+  },
+  {
+   "name": "Yahya Saree",
+   "aliases": [
+    "Yahya Saree",
+    "Yahya Sarea"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q123819200",
+   "p18_file": "2026.2025 Yahya Saree (cropped).jpg",
+   "p18_quality": 353,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Houthis Threaten Jeddah and All Saudi Red Sea Ports as Strikes Escalate   <div class=\"key-takeaways\"><ul>\n<li>Yemen's Houthis said on Wednesday that Jeddah and every other Saudi port on the Red Sea coast will be targeted if Saudi Arabia attacks the Yemeni port of Hodeidah.</li>\n<li>Houthi spokesperson Yahya Saree told port workers and nearby residents to evacuate immediately and shipping companies",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Houthis Threaten Jeddah and All Saudi Red Sea Ports as Strikes Escalate   <div class=\"key-takeaways\"><ul>\\n<li>Yemen\\'s Houthis said on Wednesday that Jeddah and every other Saudi port on the Red Sea co'; description: spokesperson for the Houthis, a paramilitary organization linked to the Yemeni Armed Forces in the Middle East"
+  },
+  {
+   "name": "Commonwealth Games",
+   "aliases": [
+    "Commonwealth Games",
+    "British Empire Games",
+    "British Empire and Commonwealth Games",
+    "British Commonwealth Games"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q178340",
+   "p18_file": "Birmingham 2022 Opening Ceremony.jpg",
+   "p18_quality": 4032,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "India Presents 2036 Olympics Bid to IOC, Betting on Ahmedabad   <div class=\"key-takeaways\"><ul>\n<li>India presented its bid to host the 2036 Olympic Games to the IOC's Future Host Commission in an online session on Thursday, November 26.</li>\n<li>The pitch centres on Ahmedabad — host of the 2030 Commonwealth Games — and on India's recent hosting record: 36 international competitions across more th",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'India Presents 2036 Olympics Bid to IOC, Betting on Ahmedabad   <div class=\"key-takeaways\"><ul>\\n<li>India presented its bid to host the 2036 Olympic Games to the IOC\\'s Future Host Commission in an onl'; description: multi-sport event involving athletes from the Commonwealth of Nations"
+  },
+  {
+   "name": "South Korea",
+   "aliases": [
+    "Republic of Korea",
+    "South Korea",
+    "Rep. Korea",
+    "S. Korea",
+    "Korea Republic",
+    "Hanguk",
+    "Daehan Minguk",
+    "Daehanminguk",
+    "Korea (South)",
+    "Choson",
+    "Silla"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q884",
+   "p18_file": "Seoul (175734251).jpeg",
+   "p18_quality": 2048,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "India Presents 2036 Olympics Bid to IOC, Betting on Ahmedabad   <div class=\"key-takeaways\"><ul>\n<li>India presented its bid to host the 2036 Olympic Games to the IOC's Future Host Commission in an online session on Thursday, November 26.</li>\n<li>The pitch centres on Ahmedabad — host of the 2030 Commonwealth Games — and on India's recent hosting record: 36 international competitions across more th",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'India Presents 2036 Olympics Bid to IOC, Betting on Ahmedabad   <div class=\"key-takeaways\"><ul>\\n<li>India presented its bid to host the 2036 Olympic Games to the IOC\\'s Future Host Commission in an onl'; description: country in East Asia"
+  },
+  {
+   "name": "Logan International Airport",
+   "aliases": [
+    "East Boston",
+    "Logan International Airport",
+    "General Edward Lawrence Logan International Airport",
+    "Boston International Airport",
+    "KBOS",
+    "BOS",
+    "Logan Airport",
+    "Logan",
+    "Boston Airport",
+    "Boston Logan International Airport",
+    "East Boston Airport"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q671475",
+   "p18_file": "Logan Airport aerial view.jpg",
+   "p18_quality": 4000,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Boston Man Wins $1 Million Lottery Prize, Then ICE Arrests Him   <div class=\"key-takeaways\"><ul>\n<li>Ariel Velasquez-Morales, a Salvadoran national living in East Boston, won $1 million on a $10 Massachusetts Lottery scratch ticket and claimed the prize on November 18.</li>\n<li>ICE arrested him in East Boston on November 24; the agency says a judge ordered him removed in April 2014 and that he rem",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Boston Man Wins $1 Million Lottery Prize, Then ICE Arrests Him   <div class=\"key-takeaways\"><ul>\\n<li>Ariel Velasquez-Morales, a Salvadoran national living in East Boston, won $1 million on a $10 Massa'; description: airport in Boston, Massachusetts, United States"
+  },
+  {
+   "name": "judge",
+   "aliases": [
+    "Judge",
+    "judge",
+    "magistrate",
+    "justice"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q16533",
+   "p18_file": "Ceremoniële kledij van een rechter Richard Hutton, rechter, in ceremoniële kledij The Habit of a Iudge (titel op object) Ceremoniële kledij van de Engelse adel (serietitel), RP-P-1920-2746.jpg",
+   "p18_quality": 3544,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Second Judge Blocks Trump's New Birthright Citizenship Order   <div class=\"key-takeaways\"><ul>\n<li>A federal judge in Washington, DC, on Wednesday blocked President Trump's August executive order narrowing birthright citizenship — the second court to block it, after a Maryland judge in September.</li>\n<li>The preliminary injunction bars the State Department, Homeland Security and the Social Securi",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Second Judge Blocks Trump\\'s New Birthright Citizenship Order   <div class=\"key-takeaways\"><ul>\\n<li>A federal judge in Washington, DC, on Wednesday blocked President Trump\\'s August executive order narr'; description: official who presides over court proceedings"
+  },
+  {
+   "name": "order",
+   "aliases": [
+    "Order",
+    "order"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q36602",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Second Judge Blocks Trump's New Birthright Citizenship Order   <div class=\"key-takeaways\"><ul>\n<li>A federal judge in Washington, DC, on Wednesday blocked President Trump's August executive order narrowing birthright citizenship — the second court to block it, after a Maryland judge in September.</li>\n<li>The preliminary injunction bars the State Department, Homeland Security and the Social Securi",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Second Judge Blocks Trump\\'s New Birthright Citizenship Order   <div class=\"key-takeaways\"><ul>\\n<li>A federal judge in Washington, DC, on Wednesday blocked President Trump\\'s August executive order narr'; description: taxonomic rank"
+  },
+  {
+   "name": "lottery",
+   "aliases": [
+    "Lottery",
+    "lottery"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q189409",
+   "p18_file": "Raffle Rolling Cage.jpg",
+   "p18_quality": 2000,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Boston Man Wins $1 Million Lottery Prize, Then ICE Arrests Him   <div class=\"key-takeaways\"><ul>\n<li>Ariel Velasquez-Morales, a Salvadoran national living in East Boston, won $1 million on a $10 Massachusetts Lottery scratch ticket and claimed the prize on November 18.</li>\n<li>ICE arrested him in East Boston on November 24; the agency says a judge ordered him removed in April 2014 and that he rem",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Boston Man Wins $1 Million Lottery Prize, Then ICE Arrests Him   <div class=\"key-takeaways\"><ul>\\n<li>Ariel Velasquez-Morales, a Salvadoran national living in East Boston, won $1 million on a $10 Massa'; description: gambling which involves the drawing of numbers at random for a prize"
   }
  ]
 }

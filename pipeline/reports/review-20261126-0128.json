@@ -1,0 +1,39 @@
+[
+  {
+    "id": "2b49d2c5-a608-4caf-863d-45463942fe75",
+    "headline": "Air India CEO Gebremariam Gets Free Hand to Rebuild Senior Management",
+    "slug": "air-india-ceo-gebremariam-free-hand-management-rejig",
+    "category": "travel",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "71df339e-9176-4954-a423-88dc6b149e68",
+    "headline": "Punjab Kings Appoint Paras Mhambrey as Fast Bowling Coach for IPL 2027",
+    "slug": "punjab-kings-paras-mhambrey-bowling-coach-ipl-2027",
+    "category": "sports",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The franchise appointed Mhambrey as fast bowling coach and Kumar as fielding coa\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo",
+      "Inline caption appends the article's lede/takeaway sentence to the photo description: 'Mhambrey replaces James Hopes, while Kumar takes over from Brad Haddin.\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "4551e33f-62ce-484a-aa7e-237425338bde",
+    "headline": "Dow Erases 1,100-Point Drop to Close Higher as Bargain Hunters Step In",
+    "slug": "dow-erases-1100-point-drop-closes-higher-nov-25",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "575553f9-0c79-4a07-9386-29278a942645",
+    "headline": "Infosys Becomes World's First Organization Assessed at CMMI AI Maturity Level 5",
+    "slug": "infosys-first-cmmi-ai-maturity-level-5",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  }
+]

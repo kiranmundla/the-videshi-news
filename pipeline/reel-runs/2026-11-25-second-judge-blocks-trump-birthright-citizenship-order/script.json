@@ -1,0 +1,36 @@
+{
+ "hook_line": "SECOND JUDGE BLOCKS BIRTHRIGHT CITIZENSHIP ORDER",
+ "hook_stat": {
+  "big": "14th",
+  "eyebrow": "THE STAKES",
+  "sub": "Amendment citizenship clause at the centre of the birthright ruling"
+ },
+ "stats": [
+  {
+   "big": "1898",
+   "label": "United States v. Wong Kim Ark decision on birthright citizenship"
+  },
+  {
+   "big": "14418",
+   "label": "Executive Order signed by President Trump in August"
+  },
+  {
+   "big": "3",
+   "label": "Federal agencies barred from enforcing the order against the class"
+  }
+ ],
+ "diaspora_bullets": [
+  "US-born children in the covered categories remain citizens while the case proceeds",
+  "Nothing changes at the hospital or the passport office for now"
+ ],
+ "key_entities": [
+  "Donald Trump",
+  "Christopher Cooper",
+  "Executive Order 14418",
+  "14th Amendment"
+ ],
+ "news_summary": "US District Judge Christopher Cooper in Washington, DC, issued a preliminary injunction blocking President Trump's August executive order narrowing birthright citizenship, the second court to block it.",
+ "payoff": "The administration must win reversals of both injunctions before the order could ever take effect.",
+ "versus": "",
+ "story_mood": "tense"
+}

@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "canada-express-entry-french-draw-6000-crs-401-november-25",
+  "name": "canada-express-entry-french-draw-6000-crs-401-november-25",
+  "script": "reel-runs/2026-11-25-canada-express-entry-french-draw-6000-crs-401-november-25/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "llm_layer_unavailable: unparseable LLM response: 'choices'"
+    ],
+    "llm_cost_usd": 0.0
+  }
+}

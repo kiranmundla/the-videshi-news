@@ -1,0 +1,36 @@
+{
+ "hook_line": "DOW ERASES 1,100-POINT DROP TO CLOSE HIGHER",
+ "hook_stat": {
+  "big": "1,100+",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Points the Dow was down at its session low before closing up 164.25 points"
+ },
+ "stats": [
+  {
+   "big": "50,182.95",
+   "label": "Where the Dow closed, up 164.25 points or 0.33%"
+  },
+  {
+   "big": "4%",
+   "label": "The Nasdaq fell more than 4% early before recovering to close down just 0.62%"
+  },
+  {
+   "big": "11.5%",
+   "label": "HP's gain after its fourth-quarter revenue and profit beat analysts' estimates"
+  }
+ ],
+ "diaspora_bullets": [
+  "Value stocks beat growth on the day: the Russell 1000 value index rose 0.4% while growth fell 0.8%",
+  "US markets are closed on Thursday for Thanksgiving and close early on Friday"
+ ],
+ "key_entities": [
+  "Dow Jones Industrial Average",
+  "Nasdaq Composite",
+  "S&P 500",
+  "Nvidia"
+ ],
+ "news_summary": "The Dow erased an intraday loss of more than 1,100 points on Wednesday to close up 164.25 points at 50,182.95, as bargain hunters stepped in after an AI-led selloff and new US tariff proposals rattled markets ahead of Thanksgiving.",
+ "payoff": "Despite Wednesday's recovery, the Nasdaq and the S&P 500 remained on track for their worst November since 2008.",
+ "versus": "",
+ "story_mood": "tense"
+}

@@ -1,0 +1,243 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "canada-express-entry-french-draw-6000-crs-401-november-25",
+  "verdict": "fail",
+  "held_claims": [
+    "llm_layer_unavailable: unparseable LLM response: 'choices'"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "CANADA INVITES 6,000 FRENCH-SPEAKING CANDIDATES",
+      "numbers": [
+        6000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Canada issued 6,000 invitations to apply for permanent residence on November 25 in a French-language proficiency Express Entry draw, with a minimum CRS score of 401.",
+      "numbers": [
+        25.0,
+        401.0,
+        6000.0
+      ],
+      "entities": [
+        "Express Entry"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "6,000",
+      "numbers": [
+        6000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Invitations to apply for permanent residence in the November 25 Express Entry draw",
+      "numbers": [
+        25.0
+      ],
+      "entities": [
+        "Express Entry"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "401",
+      "numbers": [
+        401.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Minimum CRS score in the November 25 French-language draw",
+      "numbers": [
+        25.0
+      ],
+      "entities": [
+        "Minimum CRS"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "60 DAYS",
+      "numbers": [
+        60.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Time invited candidates have to submit a complete permanent residence application",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "66,500",
+      "numbers": [
+        66500.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "French-language invitations issued across 13 rounds in 2026",
+      "numbers": [
+        13.0,
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "French-language ability is the entry condition \u2014 at least NCLC 7 in each of the four abilities",
+      "numbers": [
+        7.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Check your IRCC account for your exact deadline and programme",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "An invitation is not permanent residence \u2014 invited candidates have 60 days to submit a complete application.",
+      "numbers": [
+        60.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Express Entry",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Immigration, Refugees and Citizenship Canada",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Comprehensive Ranking System",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": false,
+    "error": "unparseable LLM response: 'choices'",
+    "cost_usd": 0.0,
+    "rounds": 0,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

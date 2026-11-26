@@ -1,0 +1,247 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "dow-erases-1100-point-drop-closes-higher-nov-25",
+  "verdict": "fail",
+  "held_claims": [
+    "llm_layer_unavailable: unparseable LLM response: 'choices'"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "DOW ERASES 1,100-POINT DROP TO CLOSE HIGHER",
+      "numbers": [
+        1100.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "The Dow erased an intraday loss of more than 1,100 points on Wednesday to close up 164.25 points at 50,182.95, as bargain hunters stepped in after an AI-led selloff and new US tariff proposals rattled markets ahead of Thanksgiving.",
+      "numbers": [
+        164.25,
+        1100.0,
+        50182.95
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "1,100+",
+      "numbers": [
+        1100.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Points the Dow was down at its session low before closing up 164.25 points",
+      "numbers": [
+        164.25
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "50,182.95",
+      "numbers": [
+        50182.95
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Where the Dow closed, up 164.25 points or 0.33%",
+      "numbers": [
+        0.33,
+        164.25
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "4%",
+      "numbers": [
+        4.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "The Nasdaq fell more than 4% early before recovering to close down just 0.62%",
+      "numbers": [
+        0.62,
+        4.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "11.5%",
+      "numbers": [
+        11.5
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "HP's gain after its fourth-quarter revenue and profit beat analysts' estimates",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Value stocks beat growth on the day: the Russell 1000 value index rose 0.4% while growth fell 0.8%",
+      "numbers": [
+        0.4,
+        0.8,
+        1000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "US markets are closed on Thursday for Thanksgiving and close early on Friday",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Despite Wednesday's recovery, the Nasdaq and the S&P 500 remained on track for their worst November since 2008.",
+      "numbers": [
+        500.0,
+        2008.0
+      ],
+      "entities": [
+        "Despite Wednesday's"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2008
+        ]
+      },
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Dow Jones Industrial Average",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Nasdaq Composite",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "S&P 500",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Nvidia",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": false,
+    "error": "unparseable LLM response: 'choices'",
+    "cost_usd": 0.0,
+    "rounds": 0,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}
