@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-25",
+  "generated_at": "2026-11-26",
   "current_month": 11,
   "current_year": 2026,
   "destination_count": 50,
@@ -3310,7 +3310,7 @@
         "date_range": "Feb 23 \u2192 Mar 15",
         "duration_days": 20,
         "weeks": null,
-        "as_of": "2026-11-25",
+        "as_of": "2026-11-26",
         "cadence": "daily"
       },
       "fares_by_origin": {
@@ -3322,7 +3322,7 @@
           "date_range": "Feb 23 \u2192 Mar 15",
           "duration_days": 20,
           "weeks": null,
-          "as_of": "2026-11-25",
+          "as_of": "2026-11-26",
           "cadence": "daily"
         }
       },
@@ -6105,54 +6105,10 @@
       "dest_metro": "Bengaluru",
       "date_range": "Feb 23 \u2192 Mar 15",
       "duration_days": 20,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-26",
       "cadence": "daily"
     },
     "fares_by_origin": {
-      "EWR": {
-        "price_min": 1133,
-        "route": "EWR-DEL",
-        "origin_metro": "New York",
-        "dest_metro": "Delhi",
-        "date_range": "Jan 12 \u2192 Feb 3",
-        "duration_days": 22,
-        "as_of": "2026-11-25",
-        "cadence": "weekly",
-        "indicative": true
-      },
-      "IAD": {
-        "price_min": 840,
-        "route": "IAD-BOM",
-        "origin_metro": "Washington DC",
-        "dest_metro": "Mumbai",
-        "date_range": "Jan 12 \u2192 Feb 1",
-        "duration_days": 20,
-        "as_of": "2026-11-25",
-        "cadence": "weekly",
-        "indicative": true
-      },
-      "ATL": {
-        "price_min": 1117,
-        "route": "ATL-BLR",
-        "origin_metro": "Atlanta",
-        "dest_metro": "Bengaluru",
-        "date_range": "Jan 12 \u2192 Feb 1",
-        "duration_days": 20,
-        "as_of": "2026-11-25",
-        "cadence": "weekly",
-        "indicative": true
-      },
-      "BOS": {
-        "price_min": 879,
-        "route": "BOS-BOM",
-        "origin_metro": "Boston",
-        "dest_metro": "Mumbai",
-        "date_range": "Jan 12 \u2192 Feb 1",
-        "duration_days": 20,
-        "as_of": "2026-11-25",
-        "cadence": "weekly",
-        "indicative": true
-      },
       "SFO": {
         "price_min": 835,
         "route": "SFO-BLR",
@@ -6160,7 +6116,7 @@
         "dest_metro": "Bengaluru",
         "date_range": "Feb 23 \u2192 Mar 15",
         "duration_days": 20,
-        "as_of": "2026-11-25",
+        "as_of": "2026-11-26",
         "cadence": "daily"
       },
       "JFK": {
@@ -6170,7 +6126,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Feb 9 \u2192 Mar 1",
         "duration_days": 20,
-        "as_of": "2026-11-25",
+        "as_of": "2026-11-26",
         "cadence": "daily"
       },
       "ORD": {
@@ -6212,6 +6168,49 @@
         "origin_metro": "Seattle",
         "dest_metro": "Bengaluru",
         "date_range": "Jan 26 \u2192 Feb 15",
+        "duration_days": 20,
+        "as_of": "2026-11-25",
+        "cadence": "weekly",
+        "indicative": true
+      },
+      "EWR": {
+        "price_min": 918,
+        "route": "EWR-BOM",
+        "origin_metro": "New York",
+        "dest_metro": "Mumbai",
+        "date_range": "Jan 26 \u2192 Feb 17",
+        "duration_days": 22,
+        "as_of": "2026-11-26",
+        "cadence": "daily"
+      },
+      "IAD": {
+        "price_min": 840,
+        "route": "IAD-BOM",
+        "origin_metro": "Washington DC",
+        "dest_metro": "Mumbai",
+        "date_range": "Jan 12 \u2192 Feb 1",
+        "duration_days": 20,
+        "as_of": "2026-11-25",
+        "cadence": "weekly",
+        "indicative": true
+      },
+      "ATL": {
+        "price_min": 1117,
+        "route": "ATL-BLR",
+        "origin_metro": "Atlanta",
+        "dest_metro": "Bengaluru",
+        "date_range": "Jan 12 \u2192 Feb 1",
+        "duration_days": 20,
+        "as_of": "2026-11-25",
+        "cadence": "weekly",
+        "indicative": true
+      },
+      "BOS": {
+        "price_min": 879,
+        "route": "BOS-BOM",
+        "origin_metro": "Boston",
+        "dest_metro": "Mumbai",
+        "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
         "as_of": "2026-11-25",
         "cadence": "weekly",
