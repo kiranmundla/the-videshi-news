@@ -1,0 +1,36 @@
+{
+ "hook_line": "INDIA'S RICE PRICES SURGE DESPITE RECORD STOCKS",
+ "hook_stat": {
+  "big": "12.5%",
+  "eyebrow": "THE PRICE TAG",
+  "sub": "Rise in India's national average rice price in October from a year earlier"
+ },
+ "stats": [
+  {
+   "big": "55.47M",
+   "label": "Metric tons in government rice stocks on October 1, a record and more than four times the buffer requirement"
+  },
+  {
+   "big": "40%",
+   "label": "India's share of global rice trade, as the world's largest rice exporter"
+  },
+  {
+   "big": "5M",
+   "label": "Tons in the doubled target for offering government rice to private buyers"
+  }
+ ],
+ "diaspora_bullets": [
+  "Export curbs could tighten supplies of Sona Masoori in overseas Indian stores",
+  "Southern premium varieties such as Sona Masoori have nearly doubled in a year"
+ ],
+ "key_entities": [
+  "India",
+  "Sona Masoori",
+  "Rice Exporters Association",
+  "B.V. Krishna Rao"
+ ],
+ "news_summary": "Rice prices in India rose 12.5% nationally in October from a year earlier, and some southern premium varieties have nearly doubled in a year, even though government stocks entered the new season at a record 55.47 million metric tons.",
+ "payoff": "The record stocks are mostly common rice that does not substitute for the premium varieties southern consumers buy.",
+ "versus": "",
+ "story_mood": "practical"
+}

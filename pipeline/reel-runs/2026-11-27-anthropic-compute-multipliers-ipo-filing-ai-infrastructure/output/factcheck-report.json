@@ -1,0 +1,254 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "anthropic-compute-multipliers-ipo-filing-ai-infrastructure",
+  "verdict": "fail",
+  "held_claims": [
+    "hook_stat.sub",
+    "llm_layer_unavailable: unparseable LLM response: 'choices'"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "ANTHROPIC'S 'COMPUTE MULTIPLIERS' PUT THE AI INFRASTRUCTURE BOOM IN QUESTION",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Anthropic's IPO filing highlights compute multipliers \u2014 research advances that let its Claude models do more work with less computing power \u2014 with revenue per $1 of compute and infrastructure expense rising from $0.40 in Q1 2025 to $1.72 in Q3 2026.",
+      "numbers": [
+        0.4,
+        1.0,
+        1.72,
+        3.0,
+        2025.0,
+        2026.0
+      ],
+      "entities": [
+        "Anthropic's IPO"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025,
+          2026
+        ]
+      },
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "4x",
+      "numbers": [
+        4.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Revenue Anthropic told investors it could generate from a given amount of computing power, as previously expected",
+      "numbers": [],
+      "entities": [
+        "Revenue Anthropic"
+      ],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_entities": [
+          "Revenue Anthropic"
+        ]
+      },
+      "verdicts": {
+        "deterministic": "fail"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$1.72",
+      "numbers": [
+        1.72
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Revenue per $1 of compute and infrastructure expense in Q3 2026, up from $0.40 in Q1 2025",
+      "numbers": [
+        0.4,
+        1.0,
+        3.0,
+        2025.0,
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025,
+          2026
+        ]
+      },
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$900.9B",
+      "numbers": [
+        900.9
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Disclosed contractual commitments, mostly for compute and infrastructure",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "$5B",
+      "numbers": [
+        5.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Short-term compute that cost more than multi-year capacity, contributing to the Q3 dip",
+      "numbers": [
+        3.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Customer demand still exceeds the computing capacity Anthropic has available",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Demand for AI services and demand for physical infrastructure may not grow as closely together as previously assumed",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Anthropic is not cutting back: customer demand still exceeds the computing capacity it has available.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Anthropic",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Claude",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "AlphaSense",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Charles Zvibleman",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": false,
+    "error": "unparseable LLM response: 'choices'",
+    "cost_usd": 0.0,
+    "rounds": 0,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

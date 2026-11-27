@@ -1,0 +1,41 @@
+[
+  {
+    "id": "34dabcf1-b775-4ba8-96d4-ea48a6707756",
+    "headline": "India's Rice Prices Surge Despite Record Stocks of 55 Million Tonnes",
+    "slug": "india-rice-prices-surge-despite-record-stocks",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "a3e16600-1c8a-41be-9c2e-1e097c0018be",
+    "headline": "Apple Removes Talkie AI Chatbot Worldwide Over Child Safety Reports",
+    "slug": "apple-removes-talkie-ai-chatbot-app-store-child-safety",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "7997a772-bddb-4269-9833-2bfa105e5a7f",
+    "headline": "Israel Kills Hamas Deputy Education Minister in Third Night of Gaza Strikes",
+    "slug": "israel-kills-hamas-deputy-education-minister-gaza-strikes",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "48c48012-72c3-44e2-b099-1b9969491613",
+    "headline": "Black Sea Incidents Surge Tenfold, Raising Risk NATO Is Drawn Into War",
+    "slug": "black-sea-incidents-surge-nato-risk-drawn-into-war",
+    "category": "nri-world",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Incidents involving drones, mines and commercial ships in the sea have risen fro\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo",
+      "Inline caption appends the article's lede/takeaway sentence to the photo description: 'Incidents involving drones, mines and commercial ships are surging in the Black \u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": null
+  }
+]

@@ -1,0 +1,230 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "india-rice-prices-surge-despite-record-stocks",
+  "verdict": "fail",
+  "held_claims": [
+    "llm_layer_unavailable: unparseable LLM response: 'choices'"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIA'S RICE PRICES SURGE DESPITE RECORD STOCKS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Rice prices in India rose 12.5% nationally in October from a year earlier, and some southern premium varieties have nearly doubled in a year, even though government stocks entered the new season at a record 55.47 million metric tons.",
+      "numbers": [
+        12.5,
+        55.47,
+        55470000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "12.5%",
+      "numbers": [
+        12.5
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Rise in India's national average rice price in October from a year earlier",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "THE PRICE TAG",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "55.47M",
+      "numbers": [
+        55.47
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Metric tons in government rice stocks on October 1, a record and more than four times the buffer requirement",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "40%",
+      "numbers": [
+        40.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "India's share of global rice trade, as the world's largest rice exporter",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "5M",
+      "numbers": [
+        5.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Tons in the doubled target for offering government rice to private buyers",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Export curbs could tighten supplies of Sona Masoori in overseas Indian stores",
+      "numbers": [],
+      "entities": [
+        "Sona Masoori"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Southern premium varieties such as Sona Masoori have nearly doubled in a year",
+      "numbers": [],
+      "entities": [
+        "Sona Masoori"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The record stocks are mostly common rice that does not substitute for the premium varieties southern consumers buy.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "THE PRICE TAG",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "India",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Sona Masoori",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Rice Exporters Association",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "B.V. Krishna Rao",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": false,
+    "error": "unparseable LLM response: 'choices'",
+    "cost_usd": 0.0,
+    "rounds": 0,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

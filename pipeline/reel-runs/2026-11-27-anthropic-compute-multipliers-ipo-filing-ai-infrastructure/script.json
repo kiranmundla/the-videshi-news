@@ -1,0 +1,36 @@
+{
+ "hook_line": "ANTHROPIC'S 'COMPUTE MULTIPLIERS' PUT THE AI INFRASTRUCTURE BOOM IN QUESTION",
+ "hook_stat": {
+  "big": "4x",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Revenue Anthropic told investors it could generate from a given amount of computing power, as previously expected"
+ },
+ "stats": [
+  {
+   "big": "$1.72",
+   "label": "Revenue per $1 of compute and infrastructure expense in Q3 2026, up from $0.40 in Q1 2025"
+  },
+  {
+   "big": "$900.9B",
+   "label": "Disclosed contractual commitments, mostly for compute and infrastructure"
+  },
+  {
+   "big": "$5B",
+   "label": "Short-term compute that cost more than multi-year capacity, contributing to the Q3 dip"
+  }
+ ],
+ "diaspora_bullets": [
+  "Customer demand still exceeds the computing capacity Anthropic has available",
+  "Demand for AI services and demand for physical infrastructure may not grow as closely together as previously assumed"
+ ],
+ "key_entities": [
+  "Anthropic",
+  "Claude",
+  "AlphaSense",
+  "Charles Zvibleman"
+ ],
+ "news_summary": "Anthropic's IPO filing highlights compute multipliers — research advances that let its Claude models do more work with less computing power — with revenue per $1 of compute and infrastructure expense rising from $0.40 in Q1 2025 to $1.72 in Q3 2026.",
+ "payoff": "Anthropic is not cutting back: customer demand still exceeds the computing capacity it has available.",
+ "versus": "",
+ "story_mood": "tense"
+}

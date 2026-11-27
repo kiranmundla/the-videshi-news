@@ -1,0 +1,48 @@
+[
+  {
+    "id": "0f39e225-66af-4f37-aef3-1e6b99560be0",
+    "headline": "JPMorgan Sets End-2027 Nifty Target at 29,000, Sees Up to $100 Billion Inflows",
+    "slug": "jpmorgan-nifty-29000-target-2027-india-top-picks",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "5517d76f-99be-4aaf-a50f-73bef01dc0fe",
+    "headline": "Zelenskyy Warns of Major New Russian Strike as Trump Urges Putin to Pull Back",
+    "slug": "zelenskyy-warns-major-russian-strike-trump-putin-pull-back",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "93b7780c-f81a-41f9-80f6-f13c64ae26f9",
+    "headline": "Women Will Get 33% Reservation, Congress Cannot Stop It, Amit Shah Says",
+    "slug": "amit-shah-women-33-percent-reservation-congress",
+    "category": "news",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Shah said on Constitution Day that women will definitely get 33 per cent reserva\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "d8fed457-077c-4eff-b945-f4a1497c44cb",
+    "headline": "Nepal Begins Process to Declare 213 Missing Indians Presumed Dead After August F",
+    "slug": "nepal-213-missing-indians-presumed-dead-flash-floods",
+    "category": "news",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Nepal has begun the process of declaring 213 Indian nationals missing in the Aug\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "2a409ccd-45b1-4956-acc2-1135f8fb8c20",
+    "headline": "Chaalchitro: The Ekchala Murders Trailer Out: Tota, Anirban C, Chanchal C",
+    "slug": "chaalchitro-the-ekchala-murders-trailer-out-tota-anirban-c-chanchal-c",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": null
+  }
+]

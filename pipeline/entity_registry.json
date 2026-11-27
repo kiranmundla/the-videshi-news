@@ -29682,6 +29682,218 @@
    "resolved_confidence": "high",
    "resolved_context": "At 75 and 63, They Married at the Bilaspur Old-Age Home Where They Met   <div class=\"key-takeaways\"><ul>\n<li>Kanhaiya Lal, 75, and Sabina, 63, residents of the Apna Ghar old-age home in Dayoli, Bilaspur, married there on Wednesday, November 25, with traditional rituals.</li>\n<li>Kanhaiya Lal, from Thunag village in Mandi district, lost his wife, lived for a time in a forest, and was rescued and br",
    "notes": "auto-resolved via wikidata-context (confidence high); context: 'At 75 and 63, They Married at the Bilaspur Old-Age Home Where They Met   <div class=\"key-takeaways\"><ul>\\n<li>Kanhaiya Lal, 75, and Sabina, 63, residents of the Apna Ghar old-age home in Dayoli, Bilasp'; description: village in Moga district"
+  },
+  {
+   "name": "App Store",
+   "aliases": [
+    "App Store",
+    "App Store (iPadOS)",
+    "com.apple.AppStore"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q368215",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Apple Removes Talkie AI Chatbot Worldwide Over Child Safety Reports   <div class=\"key-takeaways\"><ul>\n<li>Apple has removed Talkie, the AI companion chatbot made by China's MiniMax, from App Stores worldwide, citing sexual content, after an investigation reported its characters sent inappropriate messages to minors.</li>\n<li>The joint investigation by ABC News and the Bureau of Investigative Journ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Apple Removes Talkie AI Chatbot Worldwide Over Child Safety Reports   <div class=\"key-takeaways\"><ul>\\n<li>Apple has removed Talkie, the AI companion chatbot made by China\\'s MiniMax, from App Stores wo'; description: digital app distribution platform for iOS/iPadOS"
+  },
+  {
+   "name": "rice",
+   "aliases": [
+    "Rice",
+    "rice"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q5090",
+   "p18_file": "White, Brown, Red & Wild rice.jpg",
+   "p18_quality": 2592,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "India's Rice Prices Surge Despite Record Stocks of 55 Million Tonnes   <div class=\"key-takeaways\"><ul>\n<li>Rice prices in India rose 12.5% nationally in October from a year earlier, and some southern premium varieties have nearly doubled in a year — even though government stocks are at record levels.</li>\n<li>India entered the new rice season on October 1 with 55.47 million metric tons in reserve,",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'India\\'s Rice Prices Surge Despite Record Stocks of 55 Million Tonnes   <div class=\"key-takeaways\"><ul>\\n<li>Rice prices in India rose 12.5% nationally in October from a year earlier, and some southern '; description: cereal grain and staple food"
+  },
+  {
+   "name": "Apna Ghar",
+   "aliases": [
+    "Apna Ghar"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q4780025",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "At 75 and 63, They Married at the Bilaspur Old-Age Home Where They Met   Kanhaiya Lal (75) and Sabina (63) married at the Apna Ghar old-age home in Bilaspur where they met.   \n Kanhaiya Lal, 75, and Sabina, 63, residents of the Apna Ghar old-age home in Dayoli, Bilaspur, married there on Wednesday, November 25, with traditional rituals. \n Kanhaiya Lal, from Thunag village in Mandi district, lost h",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'At 75 and 63, They Married at the Bilaspur Old-Age Home Where They Met   Kanhaiya Lal (75) and Sabina (63) married at the Apna Ghar old-age home in Bilaspur where they met.   \\n Kanhaiya Lal, 75, and S'; description: 1942 film by Debaki Bose"
+  },
+  {
+   "name": "Vijay Sethupathi",
+   "aliases": [
+    "Vijay Sethupathi",
+    "Vijaya Gurunatha Sethupathi Kalimuthu"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q7929207",
+   "p18_file": "Vijay Sethupathi at the premiere of Merry Christmas (cropped).jpg",
+   "p18_quality": 441,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "'Aachi Aachi': First Song From Mani Ratnam's Inji Vellam Is Out   The song introduces Sai Pallavi's character as a pregnant woman, co-starring with Vijay Sethupathi for the first time.   \n 'Aachi Aachi', the first single from Mani Ratnam's Tamil film Inji Vellam, was released on Wednesday, November 25, with music by AR Rahman — his 19th collaboration with the director. \n The song is sung by Vaisha",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: \"'Aachi Aachi': First Song From Mani Ratnam's Inji Vellam Is Out   The song introduces Sai Pallavi's character as a pregnant woman, co-starring with Vijay Sethupathi for the first time.   \\n 'Aachi Aach\"; description: Indian actor and Indian film producer"
+  },
+  {
+   "name": "Klamath Falls Airport",
+   "aliases": [
+    "LMT",
+    "Klamath Falls Airport",
+    "KLMT"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q6419636",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "India Takes Forward Six Urea Plants Under NIPU-2026 in Push for Self-Reliance   Each new plant will add 12.7 lakh metric tonnes (LMT) of annual capacity, replacing older units or expanding existing facilities.   \n India has taken forward six brownfield urea plants under the National Investment Policy for Urea (NIPU)-2026, with an investment of approximately ₹54,000 crore, the Press Information Bur",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'India Takes Forward Six Urea Plants Under NIPU-2026 in Push for Self-Reliance   Each new plant will add 12.7 lakh metric tonnes (LMT) of annual capacity, replacing older units or expanding existing fa'; description: airport in Oregon, United States of America"
+  },
+  {
+   "name": "Rachin Ravindra",
+   "aliases": [
+    "Rachin Ravindra"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q58008279",
+   "p18_file": "Rachin Ravindra.jpg",
+   "p18_quality": 1372,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "New Zealand Name Conway and Ravindra for India Tests, Subject to Fitness   Conway, Ravindra, and Blundell included but fitness uncertain.    New Zealand have named a 14-player Test squad for the two-match series against India, captained by Tom Latham, with the first Test starting at the Basin Reserve in Wellington on November 19.  Devon Conway (concussion), Rachin Ravindra (dislocated shoulder) an",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'New Zealand Name Conway and Ravindra for India Tests, Subject to Fitness   Conway, Ravindra, and Blundell included but fitness uncertain.    New Zealand have named a 14-player Test squad for the two-m'; description: New Zealand cricketer"
+  },
+  {
+   "name": "Russia and Ukraine",
+   "aliases": [
+    "Russia and Ukraine"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q139730304",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Zelenskyy Warns of Major New Russian Strike as Trump Urges Putin to Pull Back   <div class=\"key-takeaways\"><ul>\n<li>President Volodymyr Zelenskyy warned on Thursday that Russia is completing preparations for a new massive strike on Ukraine's energy infrastructure, logistics and critical services, and urged people to heed air-raid alarms in the coming days.</li>\n<li>US President Donald Trump said h",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Zelenskyy Warns of Major New Russian Strike as Trump Urges Putin to Pull Back   <div class=\"key-takeaways\"><ul>\\n<li>President Volodymyr Zelenskyy warned on Thursday that Russia is completing preparati'; description: "
+  },
+  {
+   "name": "Jared Kushner",
+   "aliases": [
+    "Jared Kushner"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q13628723",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Zelenskyy Warns of Major New Russian Strike as Trump Urges Putin to Pull Back   <div class=\"key-takeaways\"><ul>\n<li>President Volodymyr Zelenskyy warned on Thursday that Russia is completing preparations for a new massive strike on Ukraine's energy infrastructure, logistics and critical services, and urged people to heed air-raid alarms in the coming days.</li>\n<li>US President Donald Trump said h",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Zelenskyy Warns of Major New Russian Strike as Trump Urges Putin to Pull Back   <div class=\"key-takeaways\"><ul>\\n<li>President Volodymyr Zelenskyy warned on Thursday that Russia is completing preparati'; description: American businessman and real estate investor (born 1981)"
+  },
+  {
+   "name": "Amit Shah",
+   "aliases": [
+    "Amit Shah",
+    "Amit Anil Chandra Shah",
+    "Amitbhai Anilchandra Shah",
+    "Amitbhai Shah"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q4746875",
+   "p18_file": "Shri Amit Shah in Raigad.jpg",
+   "p18_quality": 1500,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Women Will Get 33% Reservation, Congress Cannot Stop It, Amit Shah Says   <div class=\"key-takeaways\"><ul>\n<li>Home Minister Amit Shah said on Constitution Day that women will definitely get 33 per cent reservation in Parliament and state assemblies, and that the Congress cannot stop it.</li>\n<li>The quota is already law under the 106th Constitutional Amendment of 2023, but its rollout is tied to a",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Women Will Get 33% Reservation, Congress Cannot Stop It, Amit Shah Says   <div class=\"key-takeaways\"><ul>\\n<li>Home Minister Amit Shah said on Constitution Day that women will definitely get 33 per cen'; description: Indian politician and 32nd Union Minister of Home Affairs"
+  },
+  {
+   "name": "Constitution Day of Republic of India",
+   "aliases": [
+    "Constitution Day",
+    "Constitution Day of Republic of India",
+    "National Law Day",
+    "Samvidhan Divas",
+    "Samvidhāna Divasa"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q16889510",
+   "p18_file": "Constitution of India.jpg",
+   "p18_quality": 2985,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "Women Will Get 33% Reservation, Congress Cannot Stop It, Amit Shah Says   <div class=\"key-takeaways\"><ul>\n<li>Home Minister Amit Shah said on Constitution Day that women will definitely get 33 per cent reservation in Parliament and state assemblies, and that the Congress cannot stop it.</li>\n<li>The quota is already law under the 106th Constitutional Amendment of 2023, but its rollout is tied to a",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'Women Will Get 33% Reservation, Congress Cannot Stop It, Amit Shah Says   <div class=\"key-takeaways\"><ul>\\n<li>Home Minister Amit Shah said on Constitution Day that women will definitely get 33 per cen'; description: day celebrated in India on 26 November every year to commemorate the adoption of Constitution of India"
+  },
+  {
+   "name": "P. Chidambaram",
+   "aliases": [
+    "P. Chidambaram",
+    "Palaniappan Chidambaram"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q377358",
+   "p18_file": "Palaniappan Chidambaram - World Economic Forum Annual Meeting 2011.jpg",
+   "p18_quality": 4828,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Women Will Get 33% Reservation, Congress Cannot Stop It, Amit Shah Says   <div class=\"key-takeaways\"><ul>\n<li>Home Minister Amit Shah said on Constitution Day that women will definitely get 33 per cent reservation in Parliament and state assemblies, and that the Congress cannot stop it.</li>\n<li>The quota is already law under the 106th Constitutional Amendment of 2023, but its rollout is tied to a",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Women Will Get 33% Reservation, Congress Cannot Stop It, Amit Shah Says   <div class=\"key-takeaways\"><ul>\\n<li>Home Minister Amit Shah said on Constitution Day that women will definitely get 33 per cen'; description: Indian politician"
   }
  ]
 }

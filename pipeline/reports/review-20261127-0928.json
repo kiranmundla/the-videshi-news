@@ -1,0 +1,30 @@
+[
+  {
+    "id": "534f205b-05ff-47c5-bdbf-18db7d274c32",
+    "headline": "UK Study Visa Refusal Rate Hits 6.4%, Highest in Over a Decade",
+    "slug": "uk-study-visa-refusal-rate-highest-decade",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "3a5898d8-fe51-434b-ba74-c8e96f15b49e",
+    "headline": "Putin Links Kerala Teen's AI Work to Modi's 'Make in India' at Moscow Conference",
+    "slug": "putin-praises-kerala-teen-ai-make-in-india-moscow",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "d00fa975-bba8-4f2a-9111-f4c876068f79",
+    "headline": "Swiggy's Instamart to Cut About 340 Corporate Roles in AI-Linked Restructuring",
+    "slug": "swiggy-instamart-cut-340-roles-ai-restructuring",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  }
+]

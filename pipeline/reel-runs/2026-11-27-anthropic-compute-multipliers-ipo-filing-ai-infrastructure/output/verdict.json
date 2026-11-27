@@ -1,0 +1,20 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "anthropic-compute-multipliers-ipo-filing-ai-infrastructure",
+  "name": "anthropic-compute-multipliers-ipo-filing-ai-infrastructure",
+  "script": "reel-runs/2026-11-27-anthropic-compute-multipliers-ipo-filing-ai-infrastructure/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "hook_stat.sub",
+      "llm_layer_unavailable: unparseable LLM response: 'choices'"
+    ],
+    "llm_cost_usd": 0.0
+  }
+}
