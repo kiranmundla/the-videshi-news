@@ -3310,7 +3310,7 @@
         "date_range": "Feb 23 \u2192 Mar 15",
         "duration_days": 20,
         "weeks": null,
-        "as_of": "2026-11-26",
+        "as_of": "2026-11-27",
         "cadence": "daily"
       },
       "fares_by_origin": {
@@ -3322,7 +3322,7 @@
           "date_range": "Feb 23 \u2192 Mar 15",
           "duration_days": 20,
           "weeks": null,
-          "as_of": "2026-11-26",
+          "as_of": "2026-11-27",
           "cadence": "daily"
         }
       },
@@ -6105,32 +6105,10 @@
       "dest_metro": "Bengaluru",
       "date_range": "Feb 23 \u2192 Mar 15",
       "duration_days": 20,
-      "as_of": "2026-11-26",
+      "as_of": "2026-11-27",
       "cadence": "daily"
     },
     "fares_by_origin": {
-      "SEA": {
-        "price_min": 995,
-        "route": "SEA-BLR",
-        "origin_metro": "Seattle",
-        "dest_metro": "Bengaluru",
-        "date_range": "Jan 26 \u2192 Feb 15",
-        "duration_days": 20,
-        "as_of": "2026-11-26",
-        "cadence": "weekly",
-        "indicative": true
-      },
-      "LAX": {
-        "price_min": 1043,
-        "route": "LAX-BOM",
-        "origin_metro": "Los Angeles",
-        "dest_metro": "Mumbai",
-        "date_range": "Jan 12 \u2192 Feb 1",
-        "duration_days": 20,
-        "as_of": "2026-11-26",
-        "cadence": "weekly",
-        "indicative": true
-      },
       "ATL": {
         "price_min": 1178,
         "route": "ATL-DEL",
@@ -6138,23 +6116,24 @@
         "dest_metro": "Delhi",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-26",
-        "cadence": "daily"
-      },
-      "SFO": {
-        "price_min": 835,
-        "route": "SFO-BLR",
-        "origin_metro": "Bay Area",
-        "dest_metro": "Bengaluru",
-        "date_range": "Feb 23 \u2192 Mar 15",
-        "duration_days": 20,
-        "as_of": "2026-11-26",
+        "as_of": "2026-11-27",
         "cadence": "daily"
       },
       "BOS": {
         "price_min": 879,
         "route": "BOS-BOM",
         "origin_metro": "Boston",
+        "dest_metro": "Mumbai",
+        "date_range": "Jan 12 \u2192 Feb 1",
+        "duration_days": 20,
+        "as_of": "2026-11-26",
+        "cadence": "weekly",
+        "indicative": true
+      },
+      "DFW": {
+        "price_min": 940,
+        "route": "DFW-BOM",
+        "origin_metro": "Dallas",
         "dest_metro": "Mumbai",
         "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
@@ -6169,15 +6148,15 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 26 \u2192 Feb 17",
         "duration_days": 22,
-        "as_of": "2026-11-26",
+        "as_of": "2026-11-27",
         "cadence": "daily"
       },
-      "ORD": {
-        "price_min": 977,
-        "route": "ORD-BOM",
-        "origin_metro": "Chicago",
+      "IAD": {
+        "price_min": 840,
+        "route": "IAD-BOM",
+        "origin_metro": "Washington DC",
         "dest_metro": "Mumbai",
-        "date_range": "Jan 26 \u2192 Feb 15",
+        "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
         "as_of": "2026-11-26",
         "cadence": "weekly",
@@ -6190,13 +6169,13 @@
         "dest_metro": "Mumbai",
         "date_range": "Feb 9 \u2192 Mar 1",
         "duration_days": 20,
-        "as_of": "2026-11-26",
+        "as_of": "2026-11-27",
         "cadence": "daily"
       },
-      "DFW": {
-        "price_min": 940,
-        "route": "DFW-BOM",
-        "origin_metro": "Dallas",
+      "LAX": {
+        "price_min": 1043,
+        "route": "LAX-BOM",
+        "origin_metro": "Los Angeles",
         "dest_metro": "Mumbai",
         "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
@@ -6204,16 +6183,37 @@
         "cadence": "weekly",
         "indicative": true
       },
-      "IAD": {
-        "price_min": 840,
-        "route": "IAD-BOM",
-        "origin_metro": "Washington DC",
+      "ORD": {
+        "price_min": 977,
+        "route": "ORD-BOM",
+        "origin_metro": "Chicago",
         "dest_metro": "Mumbai",
-        "date_range": "Jan 12 \u2192 Feb 1",
+        "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
         "as_of": "2026-11-26",
         "cadence": "weekly",
         "indicative": true
+      },
+      "SEA": {
+        "price_min": 995,
+        "route": "SEA-BLR",
+        "origin_metro": "Seattle",
+        "dest_metro": "Bengaluru",
+        "date_range": "Jan 26 \u2192 Feb 15",
+        "duration_days": 20,
+        "as_of": "2026-11-26",
+        "cadence": "weekly",
+        "indicative": true
+      },
+      "SFO": {
+        "price_min": 835,
+        "route": "SFO-BLR",
+        "origin_metro": "Bay Area",
+        "dest_metro": "Bengaluru",
+        "date_range": "Feb 23 \u2192 Mar 15",
+        "duration_days": 20,
+        "as_of": "2026-11-27",
+        "cadence": "daily"
       }
     },
     "highlights": [
