@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-26",
+  "generated_at": "2026-11-27",
   "current_month": 11,
   "current_year": 2026,
   "destination_count": 50,
@@ -6116,7 +6116,7 @@
         "dest_metro": "Bengaluru",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-25",
+        "as_of": "2026-11-26",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6127,20 +6127,19 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
-        "as_of": "2026-11-25",
+        "as_of": "2026-11-26",
         "cadence": "weekly",
         "indicative": true
       },
       "ATL": {
-        "price_min": 1117,
-        "route": "ATL-BLR",
+        "price_min": 1178,
+        "route": "ATL-DEL",
         "origin_metro": "Atlanta",
-        "dest_metro": "Bengaluru",
-        "date_range": "Jan 12 \u2192 Feb 1",
+        "dest_metro": "Delhi",
+        "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-25",
-        "cadence": "weekly",
-        "indicative": true
+        "as_of": "2026-11-26",
+        "cadence": "daily"
       },
       "SFO": {
         "price_min": 835,
@@ -6159,7 +6158,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
-        "as_of": "2026-11-25",
+        "as_of": "2026-11-26",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6180,7 +6179,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-25",
+        "as_of": "2026-11-26",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6201,7 +6200,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
-        "as_of": "2026-11-25",
+        "as_of": "2026-11-26",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6212,7 +6211,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
-        "as_of": "2026-11-25",
+        "as_of": "2026-11-26",
         "cadence": "weekly",
         "indicative": true
       }
@@ -6228,7 +6227,7 @@
     "trending": {
       "month": 11,
       "year": 2026,
-      "score": 82,
+      "score": 65,
       "max_score": 100,
       "components": [
         {
@@ -6245,9 +6244,9 @@
         },
         {
           "id": "fare_drop",
-          "points": 17,
+          "points": 0,
           "max": 30,
-          "reason": "Fares down 11.2% on IAD-BLR ($1576 \u2192 $1399) vs 2026-11-16"
+          "reason": "Fare routes tracked, no notable drop right now"
         }
       ]
     },
