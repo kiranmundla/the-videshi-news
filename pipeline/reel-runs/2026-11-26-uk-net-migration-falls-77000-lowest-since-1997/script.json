@@ -1,0 +1,34 @@
+{
+ "hook_line": "UK NET MIGRATION FALLS TO LOWEST SINCE 1997",
+ "hook_stat": {
+  "big": "77,000",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "UK net migration in the year ending June 2026"
+ },
+ "stats": [
+  {
+   "big": "204,000",
+   "label": "Net migration a year earlier, in the year ending June 2025"
+  },
+  {
+   "big": "944,000",
+   "label": "Peak net migration in the year ending March 2023"
+  },
+  {
+   "big": "258,000",
+   "label": "Non-EU net migration, down from 379,000 a year earlier"
+  }
+ ],
+ "diaspora_bullets": [
+  "Indians remain the most common non-EU nationality arriving in the UK, with study the most common reason",
+  "Work arrivals fell 25% in a year — the door is narrower, not closed"
+ ],
+ "key_entities": [
+  "Office for National Statistics",
+  "Sarah Crofts"
+ ],
+ "news_summary": "Provisional ONS figures show UK net migration fell to 77,000 in the year ending June 2026, down from 204,000 a year earlier — the lowest since 1997 outside the pandemic.",
+ "payoff": "Indians are still the largest non-EU group coming to Britain, but work arrivals fell 25% in a year.",
+ "versus": "",
+ "story_mood": "tense"
+}

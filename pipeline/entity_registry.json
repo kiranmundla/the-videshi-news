@@ -29444,6 +29444,244 @@
    "resolved_confidence": "high",
    "resolved_context": "Boston Man Wins $1 Million Lottery Prize, Then ICE Arrests Him   <div class=\"key-takeaways\"><ul>\n<li>Ariel Velasquez-Morales, a Salvadoran national living in East Boston, won $1 million on a $10 Massachusetts Lottery scratch ticket and claimed the prize on November 18.</li>\n<li>ICE arrested him in East Boston on November 24; the agency says a judge ordered him removed in April 2014 and that he rem",
    "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Boston Man Wins $1 Million Lottery Prize, Then ICE Arrests Him   <div class=\"key-takeaways\"><ul>\\n<li>Ariel Velasquez-Morales, a Salvadoran national living in East Boston, won $1 million on a $10 Massa'; description: gambling which involves the drawing of numbers at random for a prize"
+  },
+  {
+   "name": "Government Information Office, Executive Yuan",
+   "aliases": [
+    "Ministry of Information",
+    "Government Information Office, Executive Yuan",
+    "GIO",
+    "Republic of China Government Information Office",
+    "Government Information Office",
+    "Nationalist Chinese Ministry of Information",
+    "Hsing cheng yüan",
+    "Hsin wen chü",
+    "Xin wen ju",
+    "Hsing cheng yüan. Hsin wen chü"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1063040",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "Centre Asks Netflix to Keep Pakistani Series 'Jo Bachay Hain Sang Samait Lo' Out of India   <div class=\"key-takeaways\"><ul>\n<li>The Ministry of Information and Broadcasting has asked Netflix to ensure that content originating in Pakistan is not streamed in India, and to stand by a commitment it gave the ministry in June last year, official sources said.</li>\n<li>The direction follows complaints ab",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'Centre Asks Netflix to Keep Pakistani Series \\'Jo Bachay Hain Sang Samait Lo\\' Out of India   <div class=\"key-takeaways\"><ul>\\n<li>The Ministry of Information and Broadcasting has asked Netflix to ensure'; description: government agency"
+  },
+  {
+   "name": "Moonshot AI",
+   "aliases": [
+    "Moonshot AI",
+    "moonshot.cn"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q130270266",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "US Chip Curbs and Distillation Crackdown Slow China's AI Model Race   <div class=\"key-takeaways\"><ul>\n<li>China's Z.AI has fallen behind schedule on GLM-5.5, its next flagship AI model, partly because of increasingly effective safeguards against distillation, people familiar with the matter told Reuters.</li>\n<li>A US Commerce Department rule that took effect on November 19 restricts Chinese compa",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'US Chip Curbs and Distillation Crackdown Slow China\\'s AI Model Race   <div class=\"key-takeaways\"><ul>\\n<li>China\\'s Z.AI has fallen behind schedule on GLM-5.5, its next flagship AI model, partly because'; description: Chinese multinational artificial intelligence company"
+  },
+  {
+   "name": "knowledge distillation",
+   "aliases": [
+    "Distillation",
+    "knowledge distillation",
+    "distillation",
+    "distillation (machine learning)",
+    "model distillation"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q74253442",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "US Chip Curbs and Distillation Crackdown Slow China's AI Model Race   <div class=\"key-takeaways\"><ul>\n<li>China's Z.AI has fallen behind schedule on GLM-5.5, its next flagship AI model, partly because of increasingly effective safeguards against distillation, people familiar with the matter told Reuters.</li>\n<li>A US Commerce Department rule that took effect on November 19 restricts Chinese compa",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'US Chip Curbs and Distillation Crackdown Slow China\\'s AI Model Race   <div class=\"key-takeaways\"><ul>\\n<li>China\\'s Z.AI has fallen behind schedule on GLM-5.5, its next flagship AI model, partly because'; description: machine learning method to transfer knowledge from a large model to a smaller one"
+  },
+  {
+   "name": "Office for National Statistics",
+   "aliases": [
+    "ONS",
+    "Office for National Statistics",
+    "Census Office",
+    "Swyddfa Ystadegau Gwladol y DU",
+    "UK Office for National Statistics"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1334971",
+   "p18_file": "ONS main building, Drummond Gate, London SW1.jpg",
+   "p18_quality": 2048,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "UK Net Migration Falls to 77,000, Its Lowest Level Since 1997   Provisional ONS figures for the year to June 2026 show net migration more than halved in a year, driven by fewer non-EU arrivals for work and study — with Indians still the largest non-EU nationality coming to Britain.   \n Net migration to the UK fell to a provisional 77,000 in the year ending June 2026, down from 204,000 a year earli",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'UK Net Migration Falls to 77,000, Its Lowest Level Since 1997   Provisional ONS figures for the year to June 2026 show net migration more than halved in a year, driven by fewer non-EU arrivals for wor'; description: United Kingdom's principal government institution in charge of statistics and census data"
+  },
+  {
+   "name": "Madras Fertilizers",
+   "aliases": [
+    "Madras Fertilizers",
+    "Madras Fertilizers Limited"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q6728484",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "India Takes Forward Six Urea Plants Under NIPU-2026 in Push for Self-Reliance   <div class=\"key-takeaways\"><ul>\n<li>India has taken forward six brownfield urea plants under the National Investment Policy for Urea (NIPU)-2026, with an investment of approximately ₹54,000 crore, the Press Information Bureau said.</li>\n<li>Each project — in Chennai, Nangal, Shahjahanpur, Panagarh, Gadepan and Jagdishp",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'India Takes Forward Six Urea Plants Under NIPU-2026 in Push for Self-Reliance   <div class=\"key-takeaways\"><ul>\\n<li>India has taken forward six brownfield urea plants under the National Investment Pol'; description: public sector undertaking company in India"
+  },
+  {
+   "name": "Greg Daco",
+   "aliases": [
+    "Greg Daco",
+    "Gregory Daco"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q117251346",
+   "p18_file": "Gregory Daco at World Economic Forum Growth Summit 2023.png",
+   "p18_quality": 551,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "New Tariffs Raise the Risk of a More Hawkish Fed, Economists Warn   <div class=\"key-takeaways\"><ul>\n<li>Economists say the Trump administration's newly proposed tariffs raise the risk of a more hawkish Federal Reserve — rate hikes, and rates held higher for longer.</li>\n<li>The proposals follow an eight-month excess-capacity investigation covering 14 trading partners; economists estimate they woul",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'New Tariffs Raise the Risk of a More Hawkish Fed, Economists Warn   <div class=\"key-takeaways\"><ul>\\n<li>Economists say the Trump administration\\'s newly proposed tariffs raise the risk of a more hawkis'; description: EY-Parthenon Chief Economist, Strategy and Transactions, EY"
+  },
+  {
+   "name": "USA Cricket",
+   "aliases": [
+    "USA Cricket"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q48969015",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "US and West Indies Emerge as Preferred Co-Hosts for 2034 T20 World Cup   <div class=\"key-takeaways\"><ul>\n<li>The United States and West Indies have emerged as the preferred co-hosts for the 2034 men's T20 World Cup, according to reporting by The Guardian — the ICC has not confirmed any venue beyond the 2031 World Cup.</li>\n<li>The 2034 tournament is scheduled for July and August, the only men's gl",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'US and West Indies Emerge as Preferred Co-Hosts for 2034 T20 World Cup   <div class=\"key-takeaways\"><ul>\\n<li>The United States and West Indies have emerged as the preferred co-hosts for the 2034 men\\'s'; description: governing body of cricket in the US"
+  },
+  {
+   "name": "Global Trade Research Initiative",
+   "aliases": [
+    "Global Trade Research Initiative"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q141833840",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "US Proposes Tariffs of Up to 25% on India; GTRI Urges New Delhi to Reject Deal   <div class=\"key-takeaways\"><ul>\n<li>The United States has proposed tariffs of up to 25% on Indian goods under a Section 301 investigation into \"structural excess capacity,\" with a lower 17% rate if India signs a reciprocal trade agreement.</li>\n<li>The Global Trade Research Initiative (GTRI) calls the dual rate a \"cal",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'US Proposes Tariffs of Up to 25% on India; GTRI Urges New Delhi to Reject Deal   <div class=\"key-takeaways\"><ul>\\n<li>The United States has proposed tariffs of up to 25% on Indian goods under a Section'; description: "
+  },
+  {
+   "name": "economist",
+   "aliases": [
+    "Economists",
+    "economist",
+    "economists"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q188094",
+   "p18_file": "Kevin Dowd.jpg",
+   "p18_quality": 2082,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "New Tariffs Raise the Risk of a More Hawkish Fed, Economists Warn   <div class=\"key-takeaways\"><ul>\n<li>Economists say the Trump administration's newly proposed tariffs raise the risk of a more hawkish Federal Reserve — rate hikes, and rates held higher for longer.</li>\n<li>The proposals follow an eight-month excess-capacity investigation covering 14 trading partners; economists estimate they woul",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'New Tariffs Raise the Risk of a More Hawkish Fed, Economists Warn   <div class=\"key-takeaways\"><ul>\\n<li>Economists say the Trump administration\\'s newly proposed tariffs raise the risk of a more hawkis'; description: professional in the discipline of economics"
+  },
+  {
+   "name": "Inji Vellam",
+   "aliases": [
+    "Inji Vellam"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q141360106",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "'Aachi Aachi': First Song From Mani Ratnam's Inji Vellam Is Out   <div class=\"key-takeaways\"><ul>\n<li>'Aachi Aachi', the first single from Mani Ratnam's Tamil film Inji Vellam, was released on Wednesday, November 25, with music by AR Rahman — his 19th collaboration with the director.</li>\n<li>The song is sung by Vaishali Samant and Sharanya Srinivas, with Tamil lyrics by Ilango Krishnan and Malaya",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: '\\'Aachi Aachi\\': First Song From Mani Ratnam\\'s Inji Vellam Is Out   <div class=\"key-takeaways\"><ul>\\n<li>\\'Aachi Aachi\\', the first single from Mani Ratnam\\'s Tamil film Inji Vellam, was released on Wednesd'; description: Indian Tamil language film"
+  },
+  {
+   "name": "Madras Talkies",
+   "aliases": [
+    "Madras Talkies"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q3537670",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "'Aachi Aachi': First Song From Mani Ratnam's Inji Vellam Is Out   <div class=\"key-takeaways\"><ul>\n<li>'Aachi Aachi', the first single from Mani Ratnam's Tamil film Inji Vellam, was released on Wednesday, November 25, with music by AR Rahman — his 19th collaboration with the director.</li>\n<li>The song is sung by Vaishali Samant and Sharanya Srinivas, with Tamil lyrics by Ilango Krishnan and Malaya",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: '\\'Aachi Aachi\\': First Song From Mani Ratnam\\'s Inji Vellam Is Out   <div class=\"key-takeaways\"><ul>\\n<li>\\'Aachi Aachi\\', the first single from Mani Ratnam\\'s Tamil film Inji Vellam, was released on Wednesd'; description: film production company"
+  },
+  {
+   "name": "Bilaspur",
+   "aliases": [
+    "Bilaspur"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q21648627",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "At 75 and 63, They Married at the Bilaspur Old-Age Home Where They Met   <div class=\"key-takeaways\"><ul>\n<li>Kanhaiya Lal, 75, and Sabina, 63, residents of the Apna Ghar old-age home in Dayoli, Bilaspur, married there on Wednesday, November 25, with traditional rituals.</li>\n<li>Kanhaiya Lal, from Thunag village in Mandi district, lost his wife, lived for a time in a forest, and was rescued and br",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'At 75 and 63, They Married at the Bilaspur Old-Age Home Where They Met   <div class=\"key-takeaways\"><ul>\\n<li>Kanhaiya Lal, 75, and Sabina, 63, residents of the Apna Ghar old-age home in Dayoli, Bilasp'; description: village in Moga district"
   }
  ]
 }

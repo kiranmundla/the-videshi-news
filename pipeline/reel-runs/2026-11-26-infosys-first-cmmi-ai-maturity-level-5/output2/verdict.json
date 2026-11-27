@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "infosys-first-cmmi-ai-maturity-level-5",
+  "name": "infosys-first-cmmi-ai-maturity-level-5",
+  "script": "reel-runs/2026-11-26-infosys-first-cmmi-ai-maturity-level-5/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "llm_layer_unavailable: unparseable LLM response: 'choices'"
+    ],
+    "llm_cost_usd": 0.0
+  }
+}

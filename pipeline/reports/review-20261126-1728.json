@@ -1,0 +1,40 @@
+[
+  {
+    "id": "119db180-77c1-48bb-8694-75c5f0670c61",
+    "headline": "India Takes Forward Six Urea Plants Under NIPU-2026 in Push for Self-Reliance",
+    "slug": "india-six-urea-plants-nipu-2026-54000-crore",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "dbcbf69a-be96-4647-8c73-70125da79e8e",
+    "headline": "New Tariffs Raise the Risk of a More Hawkish Fed, Economists Warn",
+    "slug": "proposed-tariffs-fed-rates-higher-for-longer-risk",
+    "category": "markets-finance",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Economists warn proposed new tariffs could keep US rates higher for longer.\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "7712e697-7834-4fa0-8aa2-52f8b72a3d4e",
+    "headline": "US and West Indies Emerge as Preferred Co-Hosts for 2034 T20 World Cup",
+    "slug": "usa-west-indies-preferred-co-hosts-2034-t20-world-cup",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "a89785fb-4e11-4c9c-8dad-f7035ff0fcfd",
+    "headline": "US Proposes Tariffs of Up to 25% on India; GTRI Urges New Delhi to Reject Deal",
+    "slug": "us-proposes-tariffs-up-to-25-percent-india-gtri-rejects-deal",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  }
+]

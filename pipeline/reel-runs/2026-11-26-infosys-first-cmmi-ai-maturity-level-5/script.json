@@ -1,0 +1,36 @@
+{
+ "hook_line": "INFOSYS BECOMES WORLD'S FIRST AT CMMI AI MATURITY LEVEL 5",
+ "hook_stat": {
+  "big": "Level 5",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "The highest level of the CMMI AI Maturity Model \u2014 Infosys is the world's first organization assessed at it"
+ },
+ "stats": [
+  {
+   "big": "1,000+",
+   "label": "Projects in the pool sampled for the assessment across service lines and geographies"
+  },
+  {
+   "big": "325,000+",
+   "label": "Employees worldwide at the Bengaluru-headquartered company"
+  },
+  {
+   "big": "59",
+   "label": "Countries where Infosys operates"
+  }
+ ],
+ "diaspora_bullets": [
+  "The assessment evaluated how AI is governed, deployed and measured across Infosys's global delivery environment",
+  "The assessment sampled real delivery projects rather than a single showcase engagement"
+ ],
+ "key_entities": [
+  "Infosys",
+  "CMMI Institute",
+  "Benchmarked Pty Ltd",
+  "Dinesh Rao"
+ ],
+ "news_summary": "Infosys has become the world's first organization assessed at Maturity Level 5 of the CMMI AI Maturity (AIM) Model, the model's highest level, in an assessment by Benchmarked Pty Ltd that sampled projects from a pool of more than 1,000.",
+ "payoff": "For enterprise clients choosing an AI services provider, an independently assessed maturity rating offers a comparison point that marketing claims do not.",
+ "versus": "",
+ "story_mood": "celebratory"
+}

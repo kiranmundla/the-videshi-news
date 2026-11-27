@@ -488,5 +488,15 @@
     "quick_hit_count": 5,
     "deadline_count": 3,
     "chars": 2232
+  },
+  {
+    "type": "whatsapp-digest",
+    "sent_at": "2026-11-26T15:13:04.592023+00:00Z",
+    "subject": "WhatsApp digest \u2014 Nov 26 (ready to paste)",
+    "sent_to": "editor@thevideshi.com",
+    "top_story_slug": "uk-net-migration-falls-77000-lowest-since-1997",
+    "quick_hit_count": 5,
+    "deadline_count": 3,
+    "chars": 2223
   }
 ]

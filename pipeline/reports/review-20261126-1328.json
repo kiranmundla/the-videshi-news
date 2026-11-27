@@ -1,0 +1,42 @@
+[
+  {
+    "id": "024380f5-0c00-4a68-9521-885c1c04156a",
+    "headline": "Centre Asks Netflix to Keep Pakistani Series 'Jo Bachay Hain Sang Samait Lo' Out",
+    "slug": "centre-netflix-pakistani-series-jo-bachay-hain-sang-samait-lo-india",
+    "category": "entertainment",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The Information and Broadcasting Ministry has asked Netflix to ensure that Pakis\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "670890a9-f796-4208-927d-12a46acf6f89",
+    "headline": "Supreme Court Orders Separate 'High Fat, High Sugar, High Salt' Warnings on Pack",
+    "slug": "supreme-court-separate-high-fat-sugar-salt-warnings-packaged-food",
+    "category": "news",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The Supreme Court has directed that packaged foods high in fat, sugar or salt ca\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "77166b64-7aa2-4259-bbea-64e35e6ba62a",
+    "headline": "US Chip Curbs and Distillation Crackdown Slow China's AI Model Race",
+    "slug": "us-chip-curbs-distillation-crackdown-china-ai",
+    "category": "technology",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Moonshot expects the interval between its major model releases could double if i\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "8b31632a-c0a7-487d-b092-75bc7082b6c6",
+    "headline": "UK Net Migration Falls to 77,000, Its Lowest Level Since 1997",
+    "slug": "uk-net-migration-falls-77000-lowest-since-1997",
+    "category": "immigration",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'UK net migration fell to 77,000 in the year ending June 2026, the lowest level s\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": null
+  }
+]
