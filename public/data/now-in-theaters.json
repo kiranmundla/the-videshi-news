@@ -4,54 +4,6 @@
   "movies": [
     {
       "cast": [
-        "Austin Abrams",
-        "Zach Cherry",
-        "Kali Reis",
-        "Paul Walter Hauser",
-        "Johnno Wilson"
-      ],
-      "director": "Zach Cregger",
-      "genre": "Survival Horror",
-      "is_indian": false,
-      "language": "English",
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/3/3c/Resident_Evil_2026_film_poster.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "96% RT",
-      "rating_source": "Rotten Tomatoes",
-      "release_date": "2026-09-18",
-      "slug": "resident-evil-2026",
-      "status": "now_playing",
-      "ticket_url": "https://www.google.com/search?q=Resident+Evil+2026+showtimes+near+me",
-      "title": "Resident Evil",
-      "trailer_url": "https://www.youtube.com/watch?v=mNd1gb19A-c",
-      "why_watch": "The horror event of the fall delivered: a $60M domestic opening — the best in franchise history — on a $108.3M global launch. Zach Cregger (Barbarian, Weapons) ditched the lore for a lean 90-minute single-night survival ride through Raccoon City, and at 96% RT it's officially the highest-rated video game adaptation ever made. Horror cinema's I.P. era finally has a benchmark.",
-      "year": 2026,
-      "cast_details": [
-        {
-          "name": "Austin Abrams",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/Austin_Abrams-60123.jpg/300px-Austin_Abrams-60123.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Zach Cherry",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/Zach_Cherry_at_Toronto_International_Film_Festival_2026_-_photographed_by_Jay_Dixit_-_03872.jpg/300px-Zach_Cherry_at_Toronto_International_Film_Festival_2026_-_photographed_by_Jay_Dixit_-_03872.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Kali Reis",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Kali_Reis_talking_to_Jodie_Foster_2024_%28cropped%29.png/300px-Kali_Reis_talking_to_Jodie_Foster_2024_%28cropped%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Paul Walter Hauser",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/Paul_Walter_Hauser.jpg/300px-Paul_Walter_Hauser.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Johnno Wilson",
-          "photo_url": ""
-        }
-      ],
-      "poster_width": 260,
-      "poster_height": 385
-    },
-    {
-      "cast": [
         "Saoirse Ronan",
         "Eddie Waller",
         "Nia Brown",
@@ -767,6 +719,41 @@
       "poster_height": 353,
       "review_slug": "aakasamlo-oka-tara-review-roundup-critics",
       "fandango_url": "https://www.fandango.com/aakasamlo-oka-tara-2026-248235/movie-overview"
+    },
+    {
+      "title": "Mayan: Chapter-1",
+      "slug": "mayan-chapter-1-2026",
+      "release_date": "2026-12-03",
+      "status": "coming_soon",
+      "language": "Malayalam",
+      "director": "Jithin K. Jose",
+      "cast": [
+        "Jayasurya",
+        "Gibin Gopinath",
+        "Aiswarya Raj"
+      ],
+      "genre": "",
+      "is_indian": true,
+      "year": 2026,
+      "ticket_url": "https://www.google.com/search?q=Mayan%3A%20Chapter-1%20showtimes%20near%20me",
+      "why_watch": "Mayan: Chapter-1 is a Malayalam film directed by Jithin K. Jose, starring Jayasurya, Gibin Gopinath.",
+      "rating": "Opens Dec 3",
+      "rating_source": "Release date",
+      "trailer_url": "https://www.youtube.com/watch?v=Y488C2KfdmQ",
+      "cast_details": [
+        {
+          "name": "Jayasurya",
+          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Jayasurya_in_2016.jpg/300px-Jayasurya_in_2016.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Gibin Gopinath",
+          "photo_url": ""
+        },
+        {
+          "name": "Aiswarya Raj",
+          "photo_url": ""
+        }
+      ]
     },
     {
       "title": "Maatrubhumi: May War Rest in Peace",
