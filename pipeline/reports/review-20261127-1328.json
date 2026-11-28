@@ -1,0 +1,42 @@
+[
+  {
+    "id": "73ccdf7a-2405-4eae-970c-0bf89062c2f2",
+    "headline": "OM Crosses Rs 100 Crore Worldwide, a First for Mammootty and a Sixth for Dhanush",
+    "slug": "om-operation-mole-100-crore-dhanush-mammootty",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "805dbd0a-a979-42e2-85a8-d06dec382e16",
+    "headline": "Foreign Investors Pour a Record Rs 1.42 Lakh Crore Into Indian Stocks in Novembe",
+    "slug": "foreign-investors-record-november-inflows-indian-stocks",
+    "category": "markets-finance",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Foreign investors bought a record Rs 1.42 lakh crore of Indian equities in Novem\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "4a2fe171-e0ad-4c8e-915a-a8c3cb45c169",
+    "headline": "Bhopal Scientists Build India's First Indigenous H5N1 Vaccine for Chickens",
+    "slug": "india-first-indigenous-h5n1-vaccine-chickens-bhopal",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "b948965c-f0ad-4f15-88ef-bf0490c68c13",
+    "headline": "India's Women Climb to World No. 4, Their Highest-Ever FIH Ranking",
+    "slug": "india-women-hockey-world-no-4-fih-ranking-record",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  }
+]

@@ -1,0 +1,36 @@
+{
+ "hook_line": "SUPREME COURT TO HEAR CHALLENGE TO TRUMP'S BORDER ASYLUM BAN",
+ "hook_stat": {
+  "big": "94%",
+  "eyebrow": "THE STAKES",
+  "sub": "National asylum denial rate in June, up from about 50% in 2024"
+ },
+ "stats": [
+  {
+   "big": "95%",
+   "label": "Decline in Southwest border apprehensions, to fewer than 99,000 in fiscal year 2026 from more than 1.8 million a year under President Biden"
+  },
+  {
+   "big": "40%",
+   "label": "Of immigration judges fired or resigned during Trump's first year back in office"
+  },
+  {
+   "big": "2",
+   "label": "Lower federal courts that rejected the administration's argument on the asylum proclamation"
+  }
+ ],
+ "diaspora_bullets": [
+  "The ruling will define how far a president's border-emergency powers reach over the asylum process",
+  "The ban remains in force while the case proceeds \u2014 nothing changes for asylum seekers today"
+ ],
+ "key_entities": [
+  "Supreme Court",
+  "Donald Trump",
+  "Mullin v. RAICES",
+  "D.C. Circuit"
+ ],
+ "news_summary": "The Supreme Court agreed on November 13 to hear Mullin v. RAICES, the challenge to President Trump's proclamation barring asylum claims by people who cross the southern border outside ports of entry.",
+ "payoff": "Arguments are expected in spring 2027, with a decision anticipated by the end of June or early July 2027.",
+ "versus": "",
+ "story_mood": "tense"
+}

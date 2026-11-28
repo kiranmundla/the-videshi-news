@@ -1,0 +1,44 @@
+[
+  {
+    "id": "16146ffe-e609-474c-8702-6e8bd1fb68e5",
+    "headline": "US Measles Cases Pass 6,000 in 2026 as CDC Counts Nine Deaths",
+    "slug": "us-measles-cases-6039-cdc-nine-deaths-2026",
+    "category": "nri-world",
+    "structural_issues": [
+      "Inline caption names venue 'Emory University' not supported by the image file name (CDC_HDR_I.jpg\u2026) \u2014 verify the venue or reword",
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The CDC counted 6,039 confirmed measles cases in the United States in 2026 as of\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo",
+      "Inline caption appends the article's lede/takeaway sentence to the photo description: 'As of November 24, 2026, 6,039 confirmed measles cases were reported in the Unit\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "2ea0756a-9057-48e6-8b9f-88cebbb699ba",
+    "headline": "Measles Killed 32 Baiga Children in Madhya Pradesh as Vaccination Lagged",
+    "slug": "measles-baiga-children-madhya-pradesh-vaccination-gap",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'A measles outbreak in the Baiga community of Balaghat district, Madhya Pradesh, \u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "80cc43a6-84c0-4743-a30b-ae879d363029",
+    "headline": "Naidu Says South's Share Won't Shrink Under 50% Lok Sabha Seat Rise",
+    "slug": "naidu-south-share-lok-sabha-seat-rise-delimitation",
+    "category": "news",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Naidu urged all parties to back the Delimitation Bill and its 50% Lok Sabha seat\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "690fe499-2715-4e2a-968e-b7cad1598b6c",
+    "headline": "Trump to Speak at TSMC Arizona Expansion Groundbreaking on December 4",
+    "slug": "trump-tsmc-arizona-groundbreaking-december-4-huang",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  }
+]

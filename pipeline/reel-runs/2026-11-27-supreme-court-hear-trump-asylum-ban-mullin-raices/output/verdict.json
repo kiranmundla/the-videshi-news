@@ -1,0 +1,20 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "supreme-court-hear-trump-asylum-ban-mullin-raices",
+  "name": "supreme-court-hear-trump-asylum-ban-mullin-raices",
+  "script": "reel-runs/2026-11-27-supreme-court-hear-trump-asylum-ban-mullin-raices/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "llm_layer_unavailable: unparseable LLM response: 'choices'",
+      "key_entities:Donald Trump"
+    ],
+    "llm_cost_usd": 0.0
+  }
+}

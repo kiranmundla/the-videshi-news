@@ -1,0 +1,21 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "india-2036-olympics-bid-presentation-ioc-ahmedabad",
+  "name": "india-2036-olympics-bid-presentation-ioc-ahmedabad",
+  "script": "reel-runs/2026-11-27-india-2036-olympics-bid-presentation-ioc-ahmedabad/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "hook_stat.sub",
+      "diaspora_bullets[0]",
+      "llm_layer_unavailable: unparseable LLM response: 'choices'"
+    ],
+    "llm_cost_usd": 0.0
+  }
+}

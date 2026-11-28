@@ -1,0 +1,40 @@
+[
+  {
+    "id": "f1c7c125-63ce-4c61-ac3b-a140109efd09",
+    "headline": "Global Brands Shift About $254 Million in Orders From Bangladesh to India Amid U",
+    "slug": "global-brands-shift-orders-bangladesh-india-unrest",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "2320acc1-d2d5-4a01-ad22-bf06246ccee4",
+    "headline": "Supreme Court to Hear Arguments Wednesday on State Bans on AR-15 Rifles",
+    "slug": "supreme-court-ar-15-bans-second-amendment-arguments",
+    "category": "nri-world",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The justices hear arguments on December 2 over state and local bans on AR-15-sty\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "a7504a4e-8fe1-4b93-8f86-a0b2eb5e5e7b",
+    "headline": "Election Commission Fixes Website Flaw That Exposed Voter Data, Reuters Finds",
+    "slug": "election-commission-fixes-website-flaw-voter-data-reuters",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "8e80c0e0-e1a6-4ca4-92cd-a71c8f3eeb54",
+    "headline": "Supreme Court Agrees to Hear Challenge to Trump's Border Asylum Ban",
+    "slug": "supreme-court-hear-trump-asylum-ban-mullin-raices",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": null
+  }
+]

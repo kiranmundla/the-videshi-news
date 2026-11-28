@@ -1,0 +1,35 @@
+{
+ "hook_line": "UK NET MIGRATION AT LOWEST SINCE 1997",
+ "hook_stat": {
+  "big": "77,000",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "UK net migration in the year ending June 2026"
+ },
+ "stats": [
+  {
+   "big": "204,000",
+   "label": "UK net migration a year earlier"
+  },
+  {
+   "big": "944,000",
+   "label": "Peak net migration in the year ending March 2023"
+  },
+  {
+   "big": "47%",
+   "label": "Share of non-EU arrivals who came for study"
+  }
+ ],
+ "diaspora_bullets": [
+  "Indians remain the most common non-EU nationality arriving in the UK",
+  "Study is still the main route in, but work arrivals fell 25% in a year"
+ ],
+ "key_entities": [
+  "Office for National Statistics",
+  "United Kingdom",
+  "Sarah Crofts"
+ ],
+ "news_summary": "UK net migration fell to a provisional 77,000 in the year ending June 2026, the lowest level since 1997 outside the pandemic, driven by fewer non-EU arrivals for work and study.",
+ "payoff": "Study routes still account for 47% of non-EU arrivals, but work-related arrivals fell 25% in a year — the door is narrower, not closed.",
+ "versus": "",
+ "story_mood": "practical"
+}

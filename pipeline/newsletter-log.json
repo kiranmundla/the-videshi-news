@@ -1910,5 +1910,16 @@
     "top_story_slug": "india-2036-olympics-bid-presentation-ioc-ahmedabad",
     "quick_hit_count": 5,
     "deadline_count": 3
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-11-27T14:58:14.396158+00:00Z",
+    "subject": "The Videshi Daily \u2014 November 27, 2026",
+    "subscribers": 11,
+    "sent": 10,
+    "errors": 1,
+    "top_story_slug": "foreign-investors-record-november-inflows-indian-stocks",
+    "quick_hit_count": 5,
+    "deadline_count": 2
   }
 ]

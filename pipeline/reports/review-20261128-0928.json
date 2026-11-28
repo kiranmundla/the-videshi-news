@@ -1,0 +1,40 @@
+[
+  {
+    "id": "8f6d3d23-faf0-41f6-8452-4cbe8a4abba5",
+    "headline": "SOG Busts Fake Medical Degree Racket That Sold MBBS, MD Credentials to Around 30",
+    "slug": "fake-mbbs-degree-racket-sog-safdarjung-denial",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "691c736e-f54b-4d9f-b0e6-2bb6d55e6105",
+    "headline": "Lutnick Faces Bipartisan Fire as Senators Vow Crackdown on AI Chip Leaks to Chin",
+    "slug": "lutnick-senators-ai-chip-leaks-china-megaspeed-testimony",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "27a38cb3-b5bc-439e-b252-2c47f685a139",
+    "headline": "Adani Group Seeks Government Nod to Invest in Airlines, Reversing Earlier Stance",
+    "slug": "adani-group-government-nod-invest-airlines-cfo-singh",
+    "category": "markets-finance",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Singh said on Friday that the group has asked the government to allow it to inve\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "244f6e35-685b-4d70-8965-e2b88f9a470c",
+    "headline": "Pakistan's Space Push With China's Help Must Shape India's Planning, Says CDS",
+    "slug": "pakistan-space-capability-china-help-cds-subramani",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  }
+]

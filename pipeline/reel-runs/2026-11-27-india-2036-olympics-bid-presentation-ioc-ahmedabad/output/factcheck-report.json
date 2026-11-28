@@ -1,0 +1,305 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "india-2036-olympics-bid-presentation-ioc-ahmedabad",
+  "verdict": "fail",
+  "held_claims": [
+    "hook_stat.sub",
+    "diaspora_bullets[0]",
+    "llm_layer_unavailable: unparseable LLM response: 'choices'"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIA PITCHES TO HOST THE 2036 OLYMPICS",
+      "numbers": [
+        2036.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2036
+        ]
+      },
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "India presented its bid to host the 2036 Olympic Games to the IOC's Future Host Commission on November 26, centring the pitch on Ahmedabad and a record of 36 international competitions hosted since January 2025.",
+      "numbers": [
+        26.0,
+        36.0,
+        2025.0,
+        2036.0
+      ],
+      "entities": [
+        "Olympic Games",
+        "IOC's Future Host Commission"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025,
+          2036
+        ]
+      },
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "2036",
+      "numbers": [
+        2036.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2036
+        ]
+      },
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "The Games India is bidding to host for the first time",
+      "numbers": [],
+      "entities": [
+        "Games India"
+      ],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_entities": [
+          "Games India"
+        ]
+      },
+      "verdicts": {
+        "deterministic": "fail"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "36",
+      "numbers": [
+        36.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "International competitions hosted across more than 15 cities between January 2025 and June 2026",
+      "numbers": [
+        15.0,
+        2025.0,
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025,
+          2026
+        ]
+      },
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "7",
+      "numbers": [
+        7.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Countries in dialogue with the IOC over the 2036 Games",
+      "numbers": [
+        2036.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2036
+        ]
+      },
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "2029",
+      "numbers": [
+        2029.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2029
+        ]
+      },
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "The IOC is due to select its preferred hosts by mid-2029",
+      "numbers": [
+        2029.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2029
+        ]
+      },
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "A 2036 Ahmedabad Games would be India's first Olympics",
+      "numbers": [
+        2036.0
+      ],
+      "entities": [
+        "Ahmedabad Games"
+      ],
+      "deterministic": "fail",
+      "detail": {
+        "years_checked": [
+          2036
+        ],
+        "ungrounded_entities": [
+          "Ahmedabad Games"
+        ]
+      },
+      "verdicts": {
+        "deterministic": "fail"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Ahmedabad has already secured the 2030 Commonwealth Games",
+      "numbers": [
+        2030.0
+      ],
+      "entities": [
+        "Commonwealth Games"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2030
+        ]
+      },
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The IOC is not due to select its preferred hosts until mid-2029.",
+      "numbers": [
+        2029.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2029
+        ]
+      },
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "India",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "International Olympic Committee",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Ahmedabad",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Indian Olympic Association",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "P V Sindhu",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": false,
+    "error": "unparseable LLM response: 'choices'",
+    "cost_usd": 0.0,
+    "rounds": 0,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

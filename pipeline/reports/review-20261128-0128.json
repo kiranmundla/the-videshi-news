@@ -1,0 +1,40 @@
+[
+  {
+    "id": "dc512b07-f829-43a8-beb1-792b926c555e",
+    "headline": "Cabinet Clears Delimitation Bill With 50% Seat Rise for Every State, Freeze Till",
+    "slug": "cabinet-clears-delimitation-bill-50-percent-seat-rise-freeze-2051",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "b8c2f124-f6c1-4f81-9cb5-b1c8f6d9f030",
+    "headline": "Sensex Falls 989 Points as IT Profit-Taking, Oil and a Weak Rupee End Two-Day Ra",
+    "slug": "sensex-falls-989-points-it-profit-taking-oil-rupee",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "a680829e-2a2e-4697-956c-7be4be5a7f98",
+    "headline": "Tanvi Sharma, Unnati Hooda Set Up All-Indian Syed Modi Semi-Final in Lucknow",
+    "slug": "tanvi-sharma-unnati-hooda-all-indian-syed-modi-semi-final",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "c7465297-1167-4d32-ac30-75da0393f714",
+    "headline": "RBI Restores 90% Daily CRR Floor From December 1, Reversing October Tightening",
+    "slug": "rbi-restores-90-percent-daily-crr-floor-december-1",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "us-measles-cases-6039-cdc-nine-deaths-2026",
+  "name": "us-measles-cases-6039-cdc-nine-deaths-2026",
+  "script": "reel-runs/2026-11-27-us-measles-cases-6039-cdc-nine-deaths-2026/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "llm_layer_unavailable: unparseable LLM response: 'choices'"
+    ],
+    "llm_cost_usd": 0.0
+  }
+}

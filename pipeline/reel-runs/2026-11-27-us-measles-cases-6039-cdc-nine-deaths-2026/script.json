@@ -1,0 +1,35 @@
+{
+ "hook_line": "US MEASLES CASES PASS 6,000 IN 2026",
+ "hook_stat": {
+  "big": "6,039",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Confirmed measles cases in the United States in 2026 as of November 24"
+ },
+ "stats": [
+  {
+   "big": "9",
+   "label": "Measles deaths counted by the CDC in 2026 so far"
+  },
+  {
+   "big": "97%",
+   "label": "Of confirmed cases are outbreak-associated"
+  },
+  {
+   "big": "2,289",
+   "label": "Confirmed cases in all of 2025 — already passed in 2026"
+  }
+ ],
+ "diaspora_bullets": [
+  "Confirm MMR vaccination for children and travelling relatives before holiday travel",
+  "47 jurisdictions have reported cases, with 18 cases among international visitors"
+ ],
+ "key_entities": [
+  "CDC",
+  "measles",
+  "MMR vaccination"
+ ],
+ "news_summary": "The CDC counted 6,039 confirmed measles cases in the United States in 2026 as of November 24, more than the 2,289 cases reported in all of 2025, with nine deaths counted so far.",
+ "payoff": "The CDC advises families to confirm every household member's MMR vaccination status before holiday travel.",
+ "versus": "",
+ "story_mood": "tense"
+}
