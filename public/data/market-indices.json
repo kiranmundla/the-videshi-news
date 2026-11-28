@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-28T00:35:11.714629+00:00",
+  "last_updated": "2026-11-28T12:35:07.483520+00:00",
   "indices": [
     {
       "symbol": "GOLD",
@@ -21,9 +21,9 @@
       "symbol": "USDINR",
       "name": "USD/INR",
       "flag": "\ud83d\udcb1",
-      "value": 92.98,
-      "change": 0.31,
-      "change_pct": 0.33
+      "value": 92.99,
+      "change": 0.32,
+      "change_pct": 0.34
     },
     {
       "symbol": "SENSEX",
