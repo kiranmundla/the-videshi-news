@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-27T12:40:25Z",
- "as_of": "2026-11-27",
+ "generated_at": "2026-11-28T12:22:55Z",
+ "as_of": "2026-11-28",
  "market": "india",
  "band": {
   "id": "in-3wk",
@@ -978,25 +978,26 @@
      "ret_date": "2026-12-28",
      "duration_days": 20,
      "band": "in-3wk",
-     "price_min": 2217,
-     "price_max": 2828,
+     "price_min": 2155,
+     "price_max": 2699,
      "cheapest_airline": "Air France",
      "num_samples": 4,
-     "fetched_as_of": "2026-11-24",
+     "fetched_as_of": "2026-11-28",
      "cache_samples": 4,
      "year": 2026,
      "month": 12,
      "route": "SFO-BLR",
      "origin_metro": "Bay Area",
      "dest_metro": "Bengaluru",
+     "cheapest_month": true,
      "change_vs_prev": {
       "prev_price_min": 2217,
       "prev_as_of": "2026-11-24",
-      "delta": 0,
-      "delta_pct": 0.0,
-      "trailing_avg_price_min": 2190,
-      "delta_vs_trailing_avg": -27,
-      "delta_vs_trailing_avg_pct": -1.2
+      "delta": 62,
+      "delta_pct": 2.8,
+      "trailing_avg_price_min": 2191,
+      "delta_vs_trailing_avg": 36,
+      "delta_vs_trailing_avg_pct": 1.6
      }
     },
     {
@@ -1097,10 +1098,10 @@
      "duration_days": 20,
      "band": "in-3wk",
      "price_min": 935,
-     "price_max": 1297,
+     "price_max": 1366,
      "cheapest_airline": "Qatar Airways",
      "num_samples": 4,
-     "fetched_as_of": "2026-11-23",
+     "fetched_as_of": "2026-11-28",
      "cache_samples": 4,
      "year": 2027,
      "month": 1,
@@ -1112,9 +1113,9 @@
       "prev_as_of": "2026-11-23",
       "delta": 0,
       "delta_pct": 0.0,
-      "trailing_avg_price_min": 1012,
-      "delta_vs_trailing_avg": 77,
-      "delta_vs_trailing_avg_pct": 7.6
+      "trailing_avg_price_min": 1007,
+      "delta_vs_trailing_avg": 72,
+      "delta_vs_trailing_avg_pct": 7.2
      }
     },
     {
@@ -1124,17 +1125,26 @@
      "duration_days": 20,
      "band": "in-3wk",
      "price_min": 932,
-     "price_max": 1196,
+     "price_max": 1269,
      "cheapest_airline": "Qatar Airways",
      "num_samples": 4,
-     "fetched_as_of": "2026-11-25",
-     "cache_samples": 0,
+     "fetched_as_of": "2026-11-28",
+     "cache_samples": 4,
      "year": 2027,
      "month": 2,
      "route": "SFO-DEL",
      "origin_metro": "Bay Area",
      "dest_metro": "Delhi",
-     "cheapest_month": true
+     "cheapest_month": true,
+     "change_vs_prev": {
+      "prev_price_min": 932,
+      "prev_as_of": "2026-11-25",
+      "delta": 0,
+      "delta_pct": 0.0,
+      "trailing_avg_price_min": 932,
+      "delta_vs_trailing_avg": 0,
+      "delta_vs_trailing_avg_pct": 0.0
+     }
     }
    ],
    "cheapest_overall": {
@@ -1243,6 +1253,6 @@
   "min_checked_bags": 2,
   "note": "Excludes basic economy. Prices are snapshots, not live."
  },
- "fetched_as_of_oldest": "2026-11-26",
- "fetched_as_of_newest": "2026-11-26"
+ "fetched_as_of_oldest": "2026-11-24",
+ "fetched_as_of_newest": "2026-11-28"
 }
